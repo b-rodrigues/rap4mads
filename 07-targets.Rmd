@@ -1,0 +1,5 @@
+# Setting up an actual pipeline with `{targets}`
+
+## A first toy example
+
+## Using your package in a `{targets}` pipeline
