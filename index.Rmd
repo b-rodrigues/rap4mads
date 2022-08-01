@@ -7,3 +7,4 @@ site: bookdown::bookdown_site
 
 # Introduction
 
+Reproducible analytical pipelines, see: https://ukgovdatascience.github.io/rap_companion/ 
