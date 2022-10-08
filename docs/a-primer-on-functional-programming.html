@@ -119,6 +119,28 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -133,7 +155,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">SHORT TITLE HERE</a></li>
+<li><a href="./">RAP4MADS</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
@@ -192,7 +214,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9" data-path="going-beyond-static-outputs-with-shiny.html"><a href="going-beyond-static-outputs-with-shiny.html"><i class="fa fa-check"></i><b>9</b> Going beyond static outputs with Shiny</a></li>
 <li class="divider"></li>
-<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+<li><a href="https://github.com/b-rodrigues/rap4mads" target="blank">Published with bookdown</a></li>
 </ul>
 
       </nav>
@@ -222,12 +244,12 @@ return the same result are called pure, and a language that only allows writing 
 is called a pure functional programming language. R is not a pure functional programming language,
 so we have to be careful not to write unpure function that manipulate the global state.</p>
 <p>But what is state? Run the following code in your console:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="a-primer-on-functional-programming.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="a-primer-on-functional-programming.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span></code></pre></div>
 <p>This will list every object defined in your state. Now run the following line:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="a-primer-on-functional-programming.html#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="a-primer-on-functional-programming.html#cb6-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span></span></code></pre></div>
 <p>and then <code>ls()</code>. <code>x</code> should now be listed alongside the other objects. You just manipulated the state
 of your current R session. Now if you run something like:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="a-primer-on-functional-programming.html#cb3-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="a-primer-on-functional-programming.html#cb7-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div>
 <p>This will produce <code>2</code>. We want to avoid pipelines that depend on some definition of some variable somewhere,
 which could be subject to change, because this could mean that 2 different runs of the same pipeline could
 produce 2 different results. Notice that I used the verb <code>avoid</code> in the sentence before. This is
@@ -239,10 +261,21 @@ learn and use them, but only when absolutely necessary. Another consequence is t
 live in plain text files, and not in Jupyter (or equivalent) notebooks. Not only does imperative
 code have state, but notebooks themselves have state. You should avoid notebooks at all costs, even
 for experimenting.</p>
-<p>Let’s first learn about actually writing functions. Read <a href="https://b-rodrigues.github.io/modern_R/defining-your-own-functions.html">chapter 7</a>
-of my other book. You probably don’t need to spend much time reading this chapter, as you are already
-familiar with most of the concepts. Just make sure you know about the syntax if you’re completely new
-to R, and then jump to <a href="https://b-rodrigues.github.io/modern_R/functional-programming.html">chapter 8</a>.</p>
+<p>Let’s first learn about actually writing functions.
+Read <a href="https://b-rodrigues.github.io/modern_R/defining-your-own-functions.html">chapter 7</a>
+of my other book.</p>
+<p>The most important concepts for this course are discussed in the following sections:</p>
+<ul>
+<li>functions that take functions as arguments <a href="https://b-rodrigues.github.io/modern_R/defining-your-own-functions.html#functions-that-take-functions-as-arguments-writing-your-own-higher-order-functions">(section 7.4)</a></li>
+<li>functions that take data (and the data’s columns) as arguments <a href="https://b-rodrigues.github.io/modern_R/defining-your-own-functions.html#functions-that-take-columns-of-data-as-arguments">(section 7.6)</a>;</li>
+</ul>
+<p>Once again, you should ideally work through the whole chapter, and then tackle
+<a href="https://b-rodrigues.github.io/modern_R/functional-programming.html">chapter 8</a>.
+What’s important there are:</p>
+<ul>
+<li><code>purrr::map()</code>, <code>purrr::reduce()</code> (sections <a href="https://b-rodrigues.github.io/modern_R/functional-programming.html#doing-away-with-loops-the-map-family-of-functions">8.3.1</a> and <a href="https://b-rodrigues.github.io/modern_R/functional-programming.html#reducing-with-purrr">8.3.2</a>)</li>
+<li>And list based workflows (section <a href="https://b-rodrigues.github.io/modern_R/functional-programming.html#functional-programming-and-plotting">8.4</a>)</li>
+</ul>
 
 </div>
 </div>
@@ -283,7 +316,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/edit/master/03-functional-programming.Rmd",
+"link": "https://github.com/b-rodrigues/rap4mads/edit/master/03-functional-programming.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -291,7 +324,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/blob/master/03-functional-programming.Rmd",
+"link": "https://github.com/b-rodrigues/rap4mads/blob/master/03-functional-programming.Rmd",
 "text": null
 },
 "download": null,

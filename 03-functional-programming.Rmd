@@ -47,7 +47,18 @@ live in plain text files, and not in Jupyter (or equivalent) notebooks. Not only
 code have state, but notebooks themselves have state. You should avoid notebooks at all costs, even
 for experimenting.
 
-Let's first learn about actually writing functions. Read [chapter 7](https://b-rodrigues.github.io/modern_R/defining-your-own-functions.html)
-of my other book. You probably don't need to spend much time reading this chapter, as you are already
-familiar with most of the concepts. Just make sure you know about the syntax if you're completely new
-to R, and then jump to [chapter 8](https://b-rodrigues.github.io/modern_R/functional-programming.html).
+Let's first learn about actually writing functions. 
+Read [chapter 7](https://b-rodrigues.github.io/modern_R/defining-your-own-functions.html)
+of my other book. 
+
+The most important concepts for this course are discussed in the following sections:
+
+- functions that take functions as arguments [(section 7.4)](https://b-rodrigues.github.io/modern_R/defining-your-own-functions.html#functions-that-take-functions-as-arguments-writing-your-own-higher-order-functions)
+- functions that take data (and the data's columns) as arguments [(section 7.6)](https://b-rodrigues.github.io/modern_R/defining-your-own-functions.html#functions-that-take-columns-of-data-as-arguments);
+
+Once again, you should ideally work through the whole chapter, and then tackle
+[chapter 8](https://b-rodrigues.github.io/modern_R/functional-programming.html).
+What's important there are:
+
+- `purrr::map()`, `purrr::reduce()` (sections [8.3.1](https://b-rodrigues.github.io/modern_R/functional-programming.html#doing-away-with-loops-the-map-family-of-functions) and [8.3.2](https://b-rodrigues.github.io/modern_R/functional-programming.html#reducing-with-purrr))
+- And list based workflows (section [8.4](https://b-rodrigues.github.io/modern_R/functional-programming.html#functional-programming-and-plotting))

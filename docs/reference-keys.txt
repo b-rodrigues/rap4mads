@@ -6,10 +6,11 @@ why-r-why-not-insert-your-favourite-programming-language
 pre-requisites
 introduction-to-r
 reading-in-data-with-r
-cleaning-data-with-r
+a-little-aside-on-pipes
+exploring-and-cleaning-data-with-r
+data-visualization
 a-primer-on-functional-programming
 introduction-1
-why-fp-matters-for-reproducibility
 git
 installing-git
 basic-git-commands
@@ -32,7 +33,3 @@ html-output
 word-and-pptx-outputs
 flexdashboard-no-shiny
 going-beyond-static-outputs-with-shiny
-a-little-aside-on-pipes
-exploring-and-cleaning-data-with-r
-exploring-data
-data-visualization

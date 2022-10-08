@@ -1,7 +1,0 @@
-# A primer on functional programming
-
-## Introduction
-
-## Why FP matters for reproducibility
-
-- No state (this is why notebooks are a bad idea; there's a *hidden* state!)

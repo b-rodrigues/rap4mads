@@ -1,6 +1,0 @@
-# Setting up projects
-
-## Basic structure of a project
-
-## The `{here}` package
-

@@ -1,5 +1,0 @@
-# Git
-
-## Installing Git
-
-## Basic Git commands

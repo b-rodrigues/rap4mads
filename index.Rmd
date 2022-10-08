@@ -76,3 +76,7 @@ I'll help of course, so don't worry. The idea is to put you in the shoes of a re
 that gets asked at 09:00 in the morning to come up with a solution to a problem by COB. In 99% of the cases,
 you will never have encountered that problem ever, as it will be very specific to the company you're working at.
 Google and Stackoverflow will be your only friends in these moments.
+
+The beginning of this course will likely be the toughest part, especially if you're not familiar with R.
+I will need to bring you up to speed in 6 to 8 hours. Only after can we actually start talking about 
+RAPs.

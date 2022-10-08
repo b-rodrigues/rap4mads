@@ -63,7 +63,8 @@ Both expressions above are equivalent to `sqrt(4)`. You will see why this is use
 
 Take a look at 
 [chapter 4](https://b-rodrigues.github.io/modern_R/descriptive-statistics-and-data-manipulation.html#a-first-taste-of-data-manipulation-with-dplyr)
-of my other book, go to the end ideally do the exercises.
+of my other book, ideally you should study the entirety of the chapter, but for our purposes you should
+really focus on sections 4.3, 4.4, 4.5.3, 4.5.4, 4.7 and 4.8.
 
 
 ## Data visualization
