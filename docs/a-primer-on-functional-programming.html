@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 A primer on functional programming | Reproducible Analytical Pipelines - Master’s of Data Science</title>
-  <meta name="description" content="Chapter 4 A primer on functional programming | Reproducible Analytical Pipelines - Master’s of Data Science" />
-  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+  <title>Chapter 3 A primer on functional programming | Reproducible Analytical Pipelines - Master’s of Data Science</title>
+  <meta name="description" content="Chapter 3 A primer on functional programming | Reproducible Analytical Pipelines - Master’s of Data Science" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 A primer on functional programming | Reproducible Analytical Pipelines - Master’s of Data Science" />
+  <meta property="og:title" content="Chapter 3 A primer on functional programming | Reproducible Analytical Pipelines - Master’s of Data Science" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 A primer on functional programming | Reproducible Analytical Pipelines - Master’s of Data Science" />
+  <meta name="twitter:title" content="Chapter 3 A primer on functional programming | Reproducible Analytical Pipelines - Master’s of Data Science" />
   
   
   
@@ -23,15 +23,15 @@
 <meta name="author" content="Bruno Rodrigues" />
 
 
-<meta name="date" content="2022-08-01" />
+<meta name="date" content="2022-10-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="git.html"/>
-<link rel="next" href="unit-tests.html"/>
+<link rel="prev" href="introduction-to-r.html"/>
+<link rel="next" href="git.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -54,6 +54,70 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -72,39 +136,56 @@
 <li><a href="./">SHORT TITLE HERE</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="chapter" data-level="2" data-path="setting-up-projects.html"><a href="setting-up-projects.html"><i class="fa fa-check"></i><b>2</b> Setting up projects</a><ul>
-<li class="chapter" data-level="2.1" data-path="setting-up-projects.html"><a href="setting-up-projects.html#basic-structure-of-a-project"><i class="fa fa-check"></i><b>2.1</b> Basic structure of a project</a></li>
-<li class="chapter" data-level="2.2" data-path="setting-up-projects.html"><a href="setting-up-projects.html#the-here-package"><i class="fa fa-check"></i><b>2.2</b> The <code>{here}</code> package</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#schedule"><i class="fa fa-check"></i><b>1.1</b> Schedule</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#reproducible-analytical-pipelines"><i class="fa fa-check"></i><b>1.2</b> Reproducible analytical pipelines?</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#data-products"><i class="fa fa-check"></i><b>1.3</b> Data products?</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#why-r-why-not-insert-your-favourite-programming-language"><i class="fa fa-check"></i><b>1.4</b> Why R? Why not [insert your favourite programming language]</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#pre-requisites"><i class="fa fa-check"></i><b>1.5</b> Pre-requisites</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>3</b> Git</a><ul>
-<li class="chapter" data-level="3.1" data-path="git.html"><a href="git.html#installing-git"><i class="fa fa-check"></i><b>3.1</b> Installing Git</a></li>
-<li class="chapter" data-level="3.2" data-path="git.html"><a href="git.html#basic-git-commands"><i class="fa fa-check"></i><b>3.2</b> Basic Git commands</a></li>
+<li class="chapter" data-level="2" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>2</b> Introduction to R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#reading-in-data-with-r"><i class="fa fa-check"></i><b>2.1</b> Reading in data with R</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#a-little-aside-on-pipes"><i class="fa fa-check"></i><b>2.2</b> A little aside on pipes</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#exploring-and-cleaning-data-with-r"><i class="fa fa-check"></i><b>2.3</b> Exploring and cleaning data with R</a></li>
+<li class="chapter" data-level="2.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#data-visualization"><i class="fa fa-check"></i><b>2.4</b> Data visualization</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="a-primer-on-functional-programming.html"><a href="a-primer-on-functional-programming.html"><i class="fa fa-check"></i><b>4</b> A primer on functional programming</a><ul>
-<li class="chapter" data-level="4.1" data-path="a-primer-on-functional-programming.html"><a href="a-primer-on-functional-programming.html#introduction-1"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
-<li class="chapter" data-level="4.2" data-path="a-primer-on-functional-programming.html"><a href="a-primer-on-functional-programming.html#why-fp-matters-for-reproducibility"><i class="fa fa-check"></i><b>4.2</b> Why FP matters for reproducibility</a></li>
+<li class="chapter" data-level="3" data-path="a-primer-on-functional-programming.html"><a href="a-primer-on-functional-programming.html"><i class="fa fa-check"></i><b>3</b> A primer on functional programming</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="a-primer-on-functional-programming.html"><a href="a-primer-on-functional-programming.html#introduction-1"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="unit-tests.html"><a href="unit-tests.html"><i class="fa fa-check"></i><b>5</b> Unit tests</a><ul>
-<li class="chapter" data-level="5.1" data-path="unit-tests.html"><a href="unit-tests.html#introduction-2"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
-<li class="chapter" data-level="5.2" data-path="unit-tests.html"><a href="unit-tests.html#unit-testing-with-testthat"><i class="fa fa-check"></i><b>5.2</b> Unit testing with <code>{testthat}</code></a></li>
+<li class="chapter" data-level="4" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>4</b> Git</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="git.html"><a href="git.html#installing-git"><i class="fa fa-check"></i><b>4.1</b> Installing Git</a></li>
+<li class="chapter" data-level="4.2" data-path="git.html"><a href="git.html#basic-git-commands"><i class="fa fa-check"></i><b>4.2</b> Basic Git commands</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html"><i class="fa fa-check"></i><b>6</b> A package for a project</a><ul>
-<li class="chapter" data-level="6.1" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html#getting-started"><i class="fa fa-check"></i><b>6.1</b> Getting started</a></li>
-<li class="chapter" data-level="6.2" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html#adding-functions"><i class="fa fa-check"></i><b>6.2</b> Adding functions</a><ul>
-<li class="chapter" data-level="6.2.1" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html#functions-dependencies"><i class="fa fa-check"></i><b>6.2.1</b> Functions dependencies</a></li>
+<li class="chapter" data-level="5" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html"><i class="fa fa-check"></i><b>5</b> A package for a project</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html#getting-started"><i class="fa fa-check"></i><b>5.1</b> Getting started</a></li>
+<li class="chapter" data-level="5.2" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html#adding-functions"><i class="fa fa-check"></i><b>5.2</b> Adding functions</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html#functions-dependencies"><i class="fa fa-check"></i><b>5.2.1</b> Functions dependencies</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html#documentation"><i class="fa fa-check"></i><b>6.3</b> Documentation</a><ul>
-<li class="chapter" data-level="6.3.1" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html#documenting-functions"><i class="fa fa-check"></i><b>6.3.1</b> Documenting functions</a></li>
-<li class="chapter" data-level="6.3.2" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html#documenting-the-package"><i class="fa fa-check"></i><b>6.3.2</b> Documenting the package</a></li>
+<li class="chapter" data-level="5.3" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html#documentation"><i class="fa fa-check"></i><b>5.3</b> Documentation</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html#documenting-functions"><i class="fa fa-check"></i><b>5.3.1</b> Documenting functions</a></li>
+<li class="chapter" data-level="5.3.2" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html#documenting-the-package"><i class="fa fa-check"></i><b>5.3.2</b> Documenting the package</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html#testing-your-package"><i class="fa fa-check"></i><b>6.4</b> Testing your package</a></li>
+<li class="chapter" data-level="5.4" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html#testing-your-package"><i class="fa fa-check"></i><b>5.4</b> Testing your package</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="setting-up-an-actual-pipeline-with-targets.html"><a href="setting-up-an-actual-pipeline-with-targets.html"><i class="fa fa-check"></i><b>7</b> Setting up an actual pipeline with <code>{targets}</code></a><ul>
+<li class="chapter" data-level="6" data-path="unit-tests.html"><a href="unit-tests.html"><i class="fa fa-check"></i><b>6</b> Unit tests</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="unit-tests.html"><a href="unit-tests.html#introduction-2"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="unit-tests.html"><a href="unit-tests.html#unit-testing-with-testthat"><i class="fa fa-check"></i><b>6.2</b> Unit testing with <code>{testthat}</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="setting-up-an-actual-pipeline-with-targets.html"><a href="setting-up-an-actual-pipeline-with-targets.html"><i class="fa fa-check"></i><b>7</b> Setting up an actual pipeline with <code>{targets}</code></a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="setting-up-an-actual-pipeline-with-targets.html"><a href="setting-up-an-actual-pipeline-with-targets.html#a-first-toy-example"><i class="fa fa-check"></i><b>7.1</b> A first toy example</a></li>
 <li class="chapter" data-level="7.2" data-path="setting-up-an-actual-pipeline-with-targets.html"><a href="setting-up-an-actual-pipeline-with-targets.html#using-your-package-in-a-targets-pipeline"><i class="fa fa-check"></i><b>7.2</b> Using your package in a <code>{targets}</code> pipeline</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>8</b> Rmarkdown</a><ul>
+<li class="chapter" data-level="8" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>8</b> Rmarkdown</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="rmarkdown.html"><a href="rmarkdown.html#html-output"><i class="fa fa-check"></i><b>8.1</b> HTML output</a></li>
 <li class="chapter" data-level="8.2" data-path="rmarkdown.html"><a href="rmarkdown.html#word-and-pptx-outputs"><i class="fa fa-check"></i><b>8.2</b> Word and PPTX outputs</a></li>
 <li class="chapter" data-level="8.3" data-path="rmarkdown.html"><a href="rmarkdown.html#flexdashboard-no-shiny"><i class="fa fa-check"></i><b>8.3</b> Flexdashboard (no shiny)</a></li>
@@ -129,16 +210,39 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="a-primer-on-functional-programming" class="section level1 hasAnchor">
-<h1><span class="header-section-number">Chapter 4</span> A primer on functional programming<a href="a-primer-on-functional-programming.html#a-primer-on-functional-programming" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="introduction-1" class="section level2 hasAnchor">
-<h2><span class="header-section-number">4.1</span> Introduction<a href="a-primer-on-functional-programming.html#introduction-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-</div>
-<div id="why-fp-matters-for-reproducibility" class="section level2 hasAnchor">
-<h2><span class="header-section-number">4.2</span> Why FP matters for reproducibility<a href="a-primer-on-functional-programming.html#why-fp-matters-for-reproducibility" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li>No state (this is why notebooks are a bad idea; there’s a <em>hidden</em> state!)</li>
-</ul>
+<div id="a-primer-on-functional-programming" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> A primer on functional programming<a href="a-primer-on-functional-programming.html#a-primer-on-functional-programming" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>What you’ll have learned by the end of the chapter: writing your own functions, functional programming basics (map, reduce, anonymous functions).</p>
+<div id="introduction-1" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Introduction<a href="a-primer-on-functional-programming.html#introduction-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Functional programming is a way of write programs that relies exclusively on functions. Mathematical
+functions have a very property: for any given input, they ALWAYS return exactly the same output.
+This is what we want to achieve with the functions that we will write. Functions that always
+return the same result are called pure, and a language that only allows writing pure functions
+is called a pure functional programming language. R is not a pure functional programming language,
+so we have to be careful not to write unpure function that manipulate the global state.</p>
+<p>But what is state? Run the following code in your console:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="a-primer-on-functional-programming.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span></code></pre></div>
+<p>This will list every object defined in your state. Now run the following line:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="a-primer-on-functional-programming.html#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span></span></code></pre></div>
+<p>and then <code>ls()</code>. <code>x</code> should now be listed alongside the other objects. You just manipulated the state
+of your current R session. Now if you run something like:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="a-primer-on-functional-programming.html#cb3-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div>
+<p>This will produce <code>2</code>. We want to avoid pipelines that depend on some definition of some variable somewhere,
+which could be subject to change, because this could mean that 2 different runs of the same pipeline could
+produce 2 different results. Notice that I used the verb <code>avoid</code> in the sentence before. This is
+sometimes not possible to avoid. Such situations have to be carefully document and controlled.</p>
+<p>A very practical consequence of using functional programming is that loops are not used, because
+loops are imperative and imperative programming is all about manipulating state. However, there are
+situations where loops are more efficient than the alternative (in R at least). So we will still
+learn and use them, but only when absolutely necessary. Another consequence is that our code will
+live in plain text files, and not in Jupyter (or equivalent) notebooks. Not only does imperative
+code have state, but notebooks themselves have state. You should avoid notebooks at all costs, even
+for experimenting.</p>
+<p>Let’s first learn about actually writing functions. Read <a href="https://b-rodrigues.github.io/modern_R/defining-your-own-functions.html">chapter 7</a>
+of my other book. You probably don’t need to spend much time reading this chapter, as you are already
+familiar with most of the concepts. Just make sure you know about the syntax if you’re completely new
+to R, and then jump to <a href="https://b-rodrigues.github.io/modern_R/functional-programming.html">chapter 8</a>.</p>
 
 </div>
 </div>
@@ -147,8 +251,8 @@
           </div>
         </div>
       </div>
-<a href="git.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="unit-tests.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="introduction-to-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="git.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -179,7 +283,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/edit/master/04-functional-programming.Rmd",
+"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/edit/master/03-functional-programming.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -187,7 +291,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/blob/master/04-functional-programming.Rmd",
+"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/blob/master/03-functional-programming.Rmd",
 "text": null
 },
 "download": null,

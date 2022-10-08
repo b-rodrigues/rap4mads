@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Reproducible Analytical Pipelines - Master’s of Data Science</title>
-  <meta name="description" content="Reproducible Analytical Pipelines - Master’s of Data Science" />
+  <title>Chapter 2 Introduction to R | Reproducible Analytical Pipelines - Master’s of Data Science</title>
+  <meta name="description" content="Chapter 2 Introduction to R | Reproducible Analytical Pipelines - Master’s of Data Science" />
   <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Reproducible Analytical Pipelines - Master’s of Data Science" />
+  <meta property="og:title" content="Chapter 2 Introduction to R | Reproducible Analytical Pipelines - Master’s of Data Science" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Reproducible Analytical Pipelines - Master’s of Data Science" />
+  <meta name="twitter:title" content="Chapter 2 Introduction to R | Reproducible Analytical Pipelines - Master’s of Data Science" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="introduction-to-r.html"/>
+<link rel="prev" href="index.html"/>
+<link rel="next" href="a-primer-on-functional-programming.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -119,28 +119,6 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -176,7 +154,6 @@ div.csl-indent {
 <li class="chapter" data-level="3" data-path="a-primer-on-functional-programming.html"><a href="a-primer-on-functional-programming.html"><i class="fa fa-check"></i><b>3</b> A primer on functional programming</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="a-primer-on-functional-programming.html"><a href="a-primer-on-functional-programming.html#introduction-1"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
-<li class="chapter" data-level="3.2" data-path="a-primer-on-functional-programming.html"><a href="a-primer-on-functional-programming.html#why-fp-matters-for-reproducibility"><i class="fa fa-check"></i><b>3.2</b> Why FP matters for reproducibility</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>4</b> Git</a>
 <ul>
@@ -233,79 +210,64 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Reproducible Analytical Pipelines - Master’s of Data Science</h1>
-<p class="author"><em>Bruno Rodrigues</em></p>
-<p class="date"><em>2022-10-08</em></p>
-</div>
-<div id="introduction" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="schedule" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Schedule<a href="index.html#schedule" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="introduction-to-r" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Introduction to R<a href="introduction-to-r.html#introduction-to-r" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>What you’ll have learned by the end of the chapter: reading and writing, exploring (and optionally visualising) data.</p>
+<div id="reading-in-data-with-r" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Reading in data with R<a href="introduction-to-r.html#reading-in-data-with-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Your first job is to actually get the following datasets into an R session.</p>
+<p>First install the <code>{rio}</code> package, then download the following datasets:</p>
 <ul>
-<li>2022/10/25, morning: Introduction to the course and first steps with R</li>
-<li>2022/10/25, afternoon: Explore and visualize data with R</li>
-<li>2022/10/31, afternoon: Functional programming</li>
-<li>2022/11/07, afternoon: Git and package development</li>
-<li>2022/11/08, morning: Machine learning with <code>{tidymodels}</code></li>
-<li>2022/11/08, afternoon: Literate programming and <code>{shiny}</code></li>
-<li>2022/11/21, afternoon: Build automation with <code>{targets}</code></li>
-<li>2022/11/22, noon: Putting it all together with Docker</li>
+<li><a href="https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/mtcars.csv">mtcars.csv</a></li>
+<li><a href="https://github.com/b-rodrigues/modern_R/raw/master/datasets/mtcars.dta">mtcars.dta</a></li>
+<li><a href="https://github.com/b-rodrigues/modern_R/raw/master/datasets/mtcars.sas7bdat">mtcars.sas7bdat</a></li>
+<li><a href="https://github.com/b-rodrigues/modern_R/raw/master/datasets/multi.xlsx">multi.xlsx</a></li>
 </ul>
-</div>
-<div id="reproducible-analytical-pipelines" class="section level2 hasAnchor" number="1.2">
-<h2><span class="header-section-number">1.2</span> Reproducible analytical pipelines?<a href="index.html#reproducible-analytical-pipelines" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>This course is my take on setting up code that results in some <em>data product</em>.
-This code has to be reproducible, documented and production ready.
-Many resources on the subject exist, such as <span class="citation">(Gregory and Upson 2022)</span>.</p>
-<p>The basic idea of RAPs is to have code that always produces the same result
-when run, whatever this result might be. This is obviously crucial in
-research and science, but this is also the case in businesses that deal
-with data science/data-driven decision making etc.</p>
-<p>A well documented RAP avoids a lot of headache and is usually re-usable for other
-projects as well.</p>
-</div>
-<div id="data-products" class="section level2 hasAnchor" number="1.3">
-<h2><span class="header-section-number">1.3</span> Data products?<a href="index.html#data-products" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In this course each of you will develop a <em>data product</em>. A data product is anything
-that requires data as an input. This can be a very simple report in PDF or Word format
-to a complex webapp. This website is actually also a data product. In this course
-we will not focus too much on how to create automated reports or webapps (but I’ll give
-an introduction to these, don’t worry) but our focus will be on the set up of a pipeline
-that results in these data products in a reproducible way.</p>
-</div>
-<div id="why-r-why-not-insert-your-favourite-programming-language" class="section level2 hasAnchor" number="1.4">
-<h2><span class="header-section-number">1.4</span> Why R? Why not [insert your favourite programming language]<a href="index.html#why-r-why-not-insert-your-favourite-programming-language" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In my absolutely objective opinion R is currently the most interesting and simple language
-you can use to create such data products. If you learn R you have access to almost 19000
-packages (as of October 2022) to:</p>
+<p>Also download the following 4 <code>csv</code> files and put them in a directory called <code>unemployment</code>:</p>
 <ul>
-<li>clean data (see: <code>{dplyr}</code>, <code>{tidyr}</code>, <code>{data.table}</code>…);</li>
-<li>work with medium and big data (see: <code>{arrow}</code>, <code>{sparklyr}</code>…);</li>
-<li>visualize data (see: <code>{ggplot2}</code>, <code>{plotly}</code>, <code>{echarts4r}</code>…);</li>
-<li>do literate programming (using Rmarkdown, you can write books, documents even create a website);</li>
-<li>do functional programming (see: <code>{purrr}</code>…);</li>
-<li>call other languages for R (see: <code>{reticulate}</code> to call Python from R);</li>
-<li>do machine learning and AI (see: <code>{tidymodels}</code>, <code>{tensorflow}</code>, <code>{keras}</code>…)</li>
-<li>create webapps (see: <code>{shiny}</code>…)</li>
-<li>domain specific statistics/machine learning (see <a href="https://cran.r-project.org/web/views/">CRAN Task Views</a> for an exhaustive list);</li>
-<li>and more</li>
+<li><a href="https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/unemployment/unemp_2013.csv">unemp_2013.csv</a></li>
+<li><a href="https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/unemployment/unemp_2014.csv">unemp_2014.csv</a></li>
+<li><a href="https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/unemployment/unemp_2015.csv">unemp_2015.csv</a></li>
+<li><a href="https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/unemployment/unemp_2016.csv">unemp_2016.csv</a></li>
 </ul>
-<p>It’s not just about what the packages provide: installing R and its packages and dependencies is rarely
-frustrating, which is not the case with Python
-(Python 2 vs Python 3, <code>pip</code> vs <code>conda</code>, <code>pyenv</code> vs <code>venv</code>…, dependency hell is a real place full of snakes)</p>
-<p>Does that mean R is perfect? No, but it sucks less than alternatives.</p>
+<p>Finally, download this one as well, but put it in a folder called <code>problem</code>:</p>
+<ul>
+<li><a href="https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/problems/mtcars.csv">mtcars.csv</a></li>
+</ul>
+<p>and take a look at chapter 3 of my other book, <a href="https://b-rodrigues.github.io/modern_R/reading-and-writing-data.html">Modern R with the {tidyverse}</a>
+and follow along. This will teach you to import and export data.</p>
+<p>To know which packages are used by <code>{rio}</code>, you can take a look at this <a href="https://cran.r-project.org/web/packages/rio/vignettes/rio.html">vignette</a>.</p>
+<p>If you need to import very large datasets (potentially several GBs), you might want to look at packages
+like <code>{vroom}</code> (see the benchmark were a 1.5G csv file gets read in seconds by
+<code>{vroom}</code> <a href="https://vroom.r-lib.org/articles/benchmarks.html#reading-delimited-files">here</a>. For even larger
+files, take a look at <code>{arrow}</code> <a href="https://arrow.apache.org/docs/r/">here</a>. This package is able to efficiently read
+very large files (<code>csv</code>, <code>json</code>, <code>parquet</code> and <code>feather</code> formats)</p>
 </div>
-<div id="pre-requisites" class="section level2 hasAnchor" number="1.5">
-<h2><span class="header-section-number">1.5</span> Pre-requisites<a href="index.html#pre-requisites" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>I will assume basic programming knowledge, and not much more. If you need to set up R on your computer
-you can read the intro to my other book <a href="https://b-rodrigues.github.io/modern_R/index.html#prerequisites">Modern R with the tidyverse</a></p>
-<p>The course will be very, very hands-on. I’ll give general hints and steps, and ask you to do stuff.
-It will not always be 100% simple and obvious, and you will need to also think a bit by yourself.
-I’ll help of course, so don’t worry. The idea is to put you in the shoes of a read data scientist
-that gets asked at 09:00 in the morning to come up with a solution to a problem by COB. In 99% of the cases,
-you will never have encountered that problem ever, as it will be very specific to the company you’re working at.
-Google and Stackoverflow will be your only friends in these moments.</p>
+<div id="a-little-aside-on-pipes" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> A little aside on pipes<a href="introduction-to-r.html#a-little-aside-on-pipes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Since R version 4.1, a forward pipe <code>|&gt;</code> is included. It allows to do this:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="introduction-to-r.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="sc">|&gt;</span></span>
+<span id="cb1-2"><a href="introduction-to-r.html#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>()</span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<p>Before R version 4.1, there was already a forward pipe, introduced with the <code>{magrittr}</code> package (and automatically loaded
+by many other packages):</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="introduction-to-r.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb3-2"><a href="introduction-to-r.html#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="introduction-to-r.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="sc">%&gt;%</span></span>
+<span id="cb3-4"><a href="introduction-to-r.html#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>()</span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<p>Both expressions above are equivalent to <code>sqrt(4)</code>. You will see why this is useful very soon. For now, just know this.</p>
+</div>
+<div id="exploring-and-cleaning-data-with-r" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Exploring and cleaning data with R<a href="introduction-to-r.html#exploring-and-cleaning-data-with-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Take a look at
+<a href="https://b-rodrigues.github.io/modern_R/descriptive-statistics-and-data-manipulation.html#a-first-taste-of-data-manipulation-with-dplyr">chapter 4</a>
+of my other book, go to the end ideally do the exercises.</p>
+</div>
+<div id="data-visualization" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Data visualization<a href="introduction-to-r.html#data-visualization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We’re not going to focus on visualization due to lack of time. If you need to create graphs,
+read <a href="https://b-rodrigues.github.io/modern_R/graphs.html">chapter 5</a>.</p>
 
 </div>
 </div>
@@ -314,8 +276,8 @@ Google and Stackoverflow will be your only friends in these moments.</p>
           </div>
         </div>
       </div>
-
-<a href="introduction-to-r.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="a-primer-on-functional-programming.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -346,7 +308,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/edit/master/index.Rmd",
+"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/edit/master/02-cleaning_data.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -354,7 +316,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/blob/master/index.Rmd",
+"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/blob/master/02-cleaning_data.Rmd",
 "text": null
 },
 "download": null,

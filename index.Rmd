@@ -2,9 +2,77 @@
 title: "Reproducible Analytical Pipelines - Master's of Data Science"
 author: "Bruno Rodrigues"
 date: "`r Sys.Date()`"
+bibliography: biblio.bib
 site: bookdown::bookdown_site
 ---
 
 # Introduction
 
-Reproducible analytical pipelines, see: https://ukgovdatascience.github.io/rap_companion/ 
+## Schedule
+
+- 2022/10/25, morning: Introduction to the course and first steps with R
+- 2022/10/25, afternoon: Explore and visualize data with R
+- 2022/10/31, afternoon: Functional programming
+- 2022/11/07, afternoon: Git and package development
+- 2022/11/08, morning: Machine learning with `{tidymodels}`
+- 2022/11/08, afternoon: Literate programming and `{shiny}`
+- 2022/11/21, afternoon: Build automation with `{targets}`
+- 2022/11/22, noon: Putting it all together with Docker
+
+## Reproducible analytical pipelines?
+
+This course is my take on setting up code that results in some *data product*.
+This code has to be reproducible, documented and production ready. 
+Many resources on the subject exist, such as [@rap_companion].
+
+The basic idea of RAPs is to have code that always produces the same result
+when run, whatever this result might be. This is obviously crucial in 
+research and science, but this is also the case in businesses that deal 
+with data science/data-driven decision making etc.
+
+A well documented RAP avoids a lot of headache and is usually re-usable for other
+projects as well.
+
+## Data products?
+
+In this course each of you will develop a *data product*. A data product is anything
+that requires data as an input. This can be a very simple report in PDF or Word format
+to a complex webapp. This website is actually also a data product. In this course
+we will not focus too much on how to create automated reports or webapps (but I'll give
+an introduction to these, don't worry) but our focus will be on the set up of a pipeline
+that results in these data products in a reproducible way.
+
+## Why R? Why not [insert your favourite programming language]
+
+In my absolutely objective opinion R is currently the most interesting and simple language
+you can use to create such data products. If you learn R you have access to almost 19000
+packages (as of October 2022) to:
+
+- clean data (see: `{dplyr}`, `{tidyr}`, `{data.table}`...);
+- work with medium and big data (see: `{arrow}`, `{sparklyr}`...);
+- visualize data (see: `{ggplot2}`, `{plotly}`, `{echarts4r}`...);
+- do literate programming (using Rmarkdown, you can write books, documents even create a website);
+- do functional programming (see: `{purrr}`...);
+- call other languages for R (see: `{reticulate}` to call Python from R);
+- do machine learning and AI (see: `{tidymodels}`, `{tensorflow}`, `{keras}`...)
+- create webapps (see: `{shiny}`...)
+- domain specific statistics/machine learning (see [CRAN Task Views](https://cran.r-project.org/web/views/) for an exhaustive list);
+- and more
+
+It's not just about what the packages provide: installing R and its packages and dependencies is rarely
+frustrating, which is not the case with Python 
+(Python 2 vs Python 3, `pip` vs `conda`, `pyenv` vs `venv`..., dependency hell is a real place full of snakes)
+
+Does that mean R is perfect? No, but it sucks less than alternatives. 
+
+## Pre-requisites
+
+I will assume basic programming knowledge, and not much more. If you need to set up R on your computer
+you can read the intro to my other book [Modern R with the tidyverse](https://b-rodrigues.github.io/modern_R/index.html#prerequisites)
+
+The course will be very, very hands-on. I'll give general hints and steps, and ask you to do stuff.
+It will not always be 100% simple and obvious, and you will need to also think a bit by yourself.
+I'll help of course, so don't worry. The idea is to put you in the shoes of a read data scientist
+that gets asked at 09:00 in the morning to come up with a solution to a problem by COB. In 99% of the cases,
+you will never have encountered that problem ever, as it will be very specific to the company you're working at.
+Google and Stackoverflow will be your only friends in these moments.
