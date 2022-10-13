@@ -35,12 +35,12 @@ projects as well.
 
 ## Data products?
 
-In this course each of you will develop a *data product*. A data product is anything
-that requires data as an input. This can be a very simple report in PDF or Word format
-to a complex webapp. This website is actually also a data product. In this course
-we will not focus too much on how to create automated reports or webapps (but I'll give
-an introduction to these, don't worry) but our focus will be on the set up of a pipeline
-that results in these data products in a reproducible way.
+In this course each of you will develop a *data product*. A data product is anything that requires
+data as an input. This can be a very simple report in PDF or Word format or a complex webapp. This
+website is actually also a data product, which I made using the R programming language. In this
+course we will not focus too much on how to create automated reports or webapps (but I'll give an
+introduction to these, don't worry) but our focus will be on the setting up of a pipeline that results
+in these data products in a reproducible way.
 
 ## Why R? Why not [insert your favourite programming language]
 
@@ -63,7 +63,7 @@ It's not just about what the packages provide: installing R and its packages and
 frustrating, which is not the case with Python 
 (Python 2 vs Python 3, `pip` vs `conda`, `pyenv` vs `venv`..., dependency hell is a real place full of snakes)
 
-Does that mean R is perfect? No, but it sucks less than alternatives. 
+Does that mean R is perfect? No, but it sucks less than the alternatives (again, in my absolutely objective opinion). 
 
 ## Pre-requisites
 
@@ -72,11 +72,11 @@ you can read the intro to my other book [Modern R with the tidyverse](https://b-
 
 The course will be very, very hands-on. I'll give general hints and steps, and ask you to do stuff.
 It will not always be 100% simple and obvious, and you will need to also think a bit by yourself.
-I'll help of course, so don't worry. The idea is to put you in the shoes of a read data scientist
-that gets asked at 09:00 in the morning to come up with a solution to a problem by COB. In 99% of the cases,
+I'll help of course, so don't worry. The idea is to put you in the shoes of a real data scientist
+that gets asked at 9 in the morning to come up with a solution to a problem by COB. In 99% of the cases,
 you will never have encountered that problem ever, as it will be very specific to the company you're working at.
 Google and Stackoverflow will be your only friends in these moments.
 
 The beginning of this course will likely be the toughest part, especially if you're not familiar with R.
 I will need to bring you up to speed in 6 to 8 hours. Only after can we actually start talking about 
-RAPs.
+RAPs. What's important is to never give up and work together with me.

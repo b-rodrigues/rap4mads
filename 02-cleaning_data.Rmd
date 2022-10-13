@@ -37,7 +37,8 @@ very large files (`csv`, `json`, `parquet` and `feather` formats)
 
 ## A little aside on pipes
 
-Since R version 4.1, a forward pipe  `|>` is included. It allows to do this:
+Since R version 4.1, a forward pipe  `|>` is included in the standard library of the language. 
+It allows to do this:
 
 ```{r}
 
@@ -46,8 +47,8 @@ Since R version 4.1, a forward pipe  `|>` is included. It allows to do this:
 
 ```
 
-Before R version 4.1, there was already a forward pipe, introduced with the `{magrittr}` package (and automatically loaded
-by many other packages):
+Before R version 4.1, there was already a forward pipe, introduced with the `{magrittr}` package
+(and automatically loaded by many other packages):
 
 ```{r}
 library(dplyr)
@@ -57,7 +58,8 @@ library(dplyr)
 
 ```
 
-Both expressions above are equivalent to `sqrt(4)`. You will see why this is useful very soon. For now, just know this.
+Both expressions above are equivalent to `sqrt(4)`. You will see why this is useful very soon. For now, 
+just know this exists and try to get used to it.
 
 ## Exploring and cleaning data with R
 

@@ -13,7 +13,7 @@ a-primer-on-functional-programming
 introduction-1
 git
 installing-git
-basic-git-commands
+setting-up-a-repo
 a-package-for-a-project
 getting-started
 adding-functions
@@ -33,3 +33,7 @@ html-output
 word-and-pptx-outputs
 flexdashboard-no-shiny
 going-beyond-static-outputs-with-shiny
+cloning-the-repository-onto-your-computer
+what-else-should-you-learn
+your-first-commit
+introduction-3

@@ -23,7 +23,7 @@
 <meta name="author" content="Bruno Rodrigues" />
 
 
-<meta name="date" content="2022-10-08" />
+<meta name="date" content="2022-10-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -180,7 +180,7 @@ div.csl-indent {
 <li class="chapter" data-level="4" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>4</b> Git</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="git.html"><a href="git.html#installing-git"><i class="fa fa-check"></i><b>4.1</b> Installing Git</a></li>
-<li class="chapter" data-level="4.2" data-path="git.html"><a href="git.html#basic-git-commands"><i class="fa fa-check"></i><b>4.2</b> Basic Git commands</a></li>
+<li class="chapter" data-level="4.2" data-path="git.html"><a href="git.html#setting-up-a-repo"><i class="fa fa-check"></i><b>4.2</b> Setting up a repo</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html"><i class="fa fa-check"></i><b>5</b> A package for a project</a>
 <ul>
@@ -267,18 +267,27 @@ very large files (<code>csv</code>, <code>json</code>, <code>parquet</code> and 
 </div>
 <div id="a-little-aside-on-pipes" class="section level2 hasAnchor" number="2.2">
 <h2><span class="header-section-number">2.2</span> A little aside on pipes<a href="introduction-to-r.html#a-little-aside-on-pipes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Since R version 4.1, a forward pipe <code>|&gt;</code> is included. It allows to do this:</p>
+<p>Since R version 4.1, a forward pipe <code>|&gt;</code> is included in the standard library of the language.
+It allows to do this:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="introduction-to-r.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="sc">|&gt;</span></span>
 <span id="cb1-2"><a href="introduction-to-r.html#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>()</span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
-<p>Before R version 4.1, there was already a forward pipe, introduced with the <code>{magrittr}</code> package (and automatically loaded
-by many other packages):</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="introduction-to-r.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb3-2"><a href="introduction-to-r.html#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="introduction-to-r.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="sc">%&gt;%</span></span>
-<span id="cb3-4"><a href="introduction-to-r.html#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>()</span></code></pre></div>
+<p>Before R version 4.1, there was already a forward pipe, introduced with the <code>{magrittr}</code> package
+(and automatically loaded by many other packages):</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="introduction-to-r.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="introduction-to-r.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="introduction-to-r.html#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>()</span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
-<p>Both expressions above are equivalent to <code>sqrt(4)</code>. You will see why this is useful very soon. For now, just know this.</p>
+<p>Both expressions above are equivalent to <code>sqrt(4)</code>. You will see why this is useful very soon. For now,
+just know this exists and try to get used to it.</p>
 </div>
 <div id="exploring-and-cleaning-data-with-r" class="section level2 hasAnchor" number="2.3">
 <h2><span class="header-section-number">2.3</span> Exploring and cleaning data with R<a href="introduction-to-r.html#exploring-and-cleaning-data-with-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>

@@ -23,7 +23,7 @@
 <meta name="author" content="Bruno Rodrigues" />
 
 
-<meta name="date" content="2022-10-08" />
+<meta name="date" content="2022-10-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -180,7 +180,7 @@ div.csl-indent {
 <li class="chapter" data-level="4" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>4</b> Git</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="git.html"><a href="git.html#installing-git"><i class="fa fa-check"></i><b>4.1</b> Installing Git</a></li>
-<li class="chapter" data-level="4.2" data-path="git.html"><a href="git.html#basic-git-commands"><i class="fa fa-check"></i><b>4.2</b> Basic Git commands</a></li>
+<li class="chapter" data-level="4.2" data-path="git.html"><a href="git.html#setting-up-a-repo"><i class="fa fa-check"></i><b>4.2</b> Setting up a repo</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html"><i class="fa fa-check"></i><b>5</b> A package for a project</a>
 <ul>
@@ -244,12 +244,12 @@ return the same result are called pure, and a language that only allows writing 
 is called a pure functional programming language. R is not a pure functional programming language,
 so we have to be careful not to write unpure function that manipulate the global state.</p>
 <p>But what is state? Run the following code in your console:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="a-primer-on-functional-programming.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="a-primer-on-functional-programming.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span></code></pre></div>
 <p>This will list every object defined in your state. Now run the following line:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="a-primer-on-functional-programming.html#cb6-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="a-primer-on-functional-programming.html#cb10-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span></span></code></pre></div>
 <p>and then <code>ls()</code>. <code>x</code> should now be listed alongside the other objects. You just manipulated the state
 of your current R session. Now if you run something like:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="a-primer-on-functional-programming.html#cb7-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="a-primer-on-functional-programming.html#cb11-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div>
 <p>This will produce <code>2</code>. We want to avoid pipelines that depend on some definition of some variable somewhere,
 which could be subject to change, because this could mean that 2 different runs of the same pipeline could
 produce 2 different results. Notice that I used the verb <code>avoid</code> in the sentence before. This is
