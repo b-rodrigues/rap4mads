@@ -1,5 +1,21 @@
 # Git
 
+Git is a software for version control. Version control is absolutely essential in software engineering, and when setting up a RAP. If you don’t install a version control system such as Git, don’t even start trying to set up a RAP.
+
+You might have heard of [github.com](https://github.com): this is a website that allows programmers to set up repositories on which they can host their code.
+The way to interact with github.com is via Git; but there are many other website such as github.com, such as [gitlab.com](https://gitlab.com) and [bitbucket.com](https://bitbucket.com).
+
+For this course, you should create an account on [github.com](https://github.com). This should be easy enough. Then you should install the git software on your computer.
+
 ## Installing Git
 
-## Basic Git commands
+Installing git is not hard; it installs like any piece of software on your computer. If you’re running a Linux distribution, chances are you already have git installed. 
+To check if it’s already installed on a Linux system, open a terminal and type `which git`. If a path get’s returned, like `usr/bin/gin`, congratulations, it’s
+installed, if the command returns nothing you’ll have to install it. On Ubuntu, type `sudo apt-get install git` and just wait a bit.
+If you’re using macOS or Windows, you will need to install it manually. For Windows, download the installer from [here](https://gitforwindows.org/), and for macOS
+from [here](https://git-scm.com/download/mac); you’ll see that there are several ways of installing it on macOS, if you’ve never head of homebrew or macports
+then install the binary package from [https://sourceforge.net/projects/git-osx-installer/](here).
+
+## Setting up a repo
+
+Ok so now that git is installed, we can actually start using it.
