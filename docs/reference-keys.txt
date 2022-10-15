@@ -12,8 +12,11 @@ data-visualization
 a-primer-on-functional-programming
 introduction-1
 git
+introduction-2
 installing-git
 setting-up-a-repo
+cloning-the-repository-onto-your-computer
+your-first-commit
 a-package-for-a-project
 getting-started
 adding-functions
@@ -23,7 +26,7 @@ documenting-functions
 documenting-the-package
 testing-your-package
 unit-tests
-introduction-2
+introduction-3
 unit-testing-with-testthat
 setting-up-an-actual-pipeline-with-targets
 a-first-toy-example
@@ -33,7 +36,5 @@ html-output
 word-and-pptx-outputs
 flexdashboard-no-shiny
 going-beyond-static-outputs-with-shiny
-cloning-the-repository-onto-your-computer
 what-else-should-you-learn
-your-first-commit
-introduction-3
+contributing-to-someone-elses-repository

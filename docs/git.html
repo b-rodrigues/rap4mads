@@ -23,7 +23,7 @@
 <meta name="author" content="Bruno Rodrigues" />
 
 
-<meta name="date" content="2022-10-13" />
+<meta name="date" content="2022-10-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -98,6 +98,7 @@
 <li class="chapter" data-level="4.3" data-path="git.html"><a href="git.html#setting-up-a-repo"><i class="fa fa-check"></i><b>4.3</b> Setting up a repo</a></li>
 <li class="chapter" data-level="4.4" data-path="git.html"><a href="git.html#cloning-the-repository-onto-your-computer"><i class="fa fa-check"></i><b>4.4</b> Cloning the repository onto your computer</a></li>
 <li class="chapter" data-level="4.5" data-path="git.html"><a href="git.html#your-first-commit"><i class="fa fa-check"></i><b>4.5</b> Your first commit</a></li>
+<li class="chapter" data-level="4.6" data-path="git.html"><a href="git.html#contributing-to-someone-elses-repository"><i class="fa fa-check"></i><b>4.6</b> Contributing to someone else’s repository</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html"><i class="fa fa-check"></i><b>5</b> A package for a project</a>
 <ul>
@@ -247,6 +248,100 @@ repository that was downloaded from github.com at the path you chose before. You
 </div>
 <div id="your-first-commit" class="section level2 hasAnchor" number="4.5">
 <h2><span class="header-section-number">4.5</span> Your first commit<a href="git.html#your-first-commit" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s now create a simple script and some lines of code to it, and save it. Check out the <code>Git</code>
+tab now, you should see your script there, alongside a <code>?</code> icon:</p>
+<p><img src="img/github_10.png" width="762" /></p>
+<p>We are now ready to commit the file, but first let’s check out what actually changed. If you click
+on <code>Diff</code>, a new window will open with the different files that changed since last time:</p>
+<p><img src="img/github_11.png" width="517" /></p>
+<p>Icon (1) shows you the list of files that changed. We only created the file called <code>my_script.R</code>, but two
+other files are listed as well. These files are automatically generated when starting a new project.
+<code>.gitignore</code> lists files and folder that git should not track, meaning, any change that will affect
+these files will be ignored by git. This means that these files will also not be uploaded to
+github.com when committing. The file ending with the <code>.Rproj</code> extension is a RStudio specific file,
+which simply defines some variables that help RStudio starting your project. What matters here is
+that the files you changed are listed, and that you saved them. You can double check that you actually
+correctly saved your files by looking at (2), which lists the lines that were added (added lines
+will be highlighted in green, lines removed in red). In (3) you can write a commit message. This
+message should be informative enough that a coworker, or future you, can read through them and have
+a rough idea of what changed. Best practice is to commit often and early, and try to limit one commit
+per change. Let’s write something like: “Started project: first graph done”. We’re almost done: now
+let’s stage the files for this commit. This means that we can choose which files should actually
+be included in this commit. You can only stage one file, several files, or all files. Since this is
+our first commit, let’s stage everything we’ve got, by simply clicking on the checkboxes below the
+column <code>Staged</code> in (1).</p>
+<p><img src="img/github_12.png" width="518" /></p>
+<p>The status of the files now changed: they’ve been added for this commit. We can now click on the
+<code>Commit</code> button. Now these changes have been committed there are no unstaged files anymore. We have
+two options at this point: we can continue working, and then do another commit, or we can push
+our changes to github.com. Committing without pushing does not make our changes available to our
+colleagues, but because we committed them, we can recover our changes. For example, if I continue
+working on my file and remove some lines by mistake, I can recover them (I’ll show you how to do
+this later on). But it is a much better idea to push our commit now. This makes our changes
+available to colleagues (who need to pull the changes from github.com) and should our computer
+spontaneously combust, at least or work is now securely saved on github.com. So let’s <code>Push</code>:</p>
+<p><img src="img/github_13.png" width="458" /></p>
+<p>Ooooooops! Something’s wrong! Apparently, we do not have access rights to the repo? This can sound
+weird, because after all, we created the repo with our account and then cloned it. So what’s going
+on? Well, remember that anyone can clone a public repository, but only authorized people can
+push changes to it. So at this stage, the git software (that we’re using through RStudio) has
+no clue who you are. Git simply doesn’t know that your the <em>admin</em> of the repository. You need to
+provide a way for git to know by logging in. And the way you login is through a so-called ssh key.</p>
+<p>Now if you thought that git was confusing, I’m sorry to say that what’s coming confuses students
+in general even more. Ok so what’s a ssh key, and why does git need it? <em>An</em> ssh key is actually
+a misnomer, because we should really be talking about a pair of keys. The idea is that you
+generated two files on the computer that you need to access github.com from. One of these keys
+will be a public key, the other a private key. The private key will be a file usually called
+<code>id_rsa</code> without any extension, while the public key will be called the same, but with a <code>.pub</code>
+extension, so <code>id_rsa.pub</code> (we will generate these two files using RStudio in a bit).
+What you do is that you give the public key to github.com, but you keep your private key on
+your machine. Never, ever, upload or share your private key with anyone! It’s called private for
+a reason. Once github.com has your public key, each time you want to push to github.com,
+what happens is that the public key is checked against your private key. If they match, github.com
+knows that you are the person you claim to be, and will allow you to push to the repository. If not
+you will get the error from before.</p>
+<p>So let’s now generate an ssh key pair. For this, go to <code>Tools &gt; Global Options &gt; Git/Svn</code>, and then
+click on the <code>Create RSA Key...</code></p>
+<p><img src="img/github_14.png" width="505" /></p>
+<p>Icon (1) shows you the path where the keys will be saved. Take note of this path, because you will need
+to paste the public key to github.com. You don’t need to add a passphrase. This is only useful if
+you have reasons to worry that your private key might be compromised, but without physical access
+to your machine, an attacker would have a lot of trouble retrieving it (if you keep your OS updated…).
+Finally click on <code>Create</code>:</p>
+<p><img src="img/github_15.png" width="300" />
+Ok so now that you have generated these keys, let’s copy the public key in
+our clipboard (because we need to paste the key into github.com). You should be able to find this
+key from RStudio. Go back to <code>Tools &gt; Global Options &gt; Git/Svn</code>, and then click on <code>View public key</code>:</p>
+<p><img src="img/github_18.png" width="418" /></p>
+<p>A new window will open showing you your public key. You can now copy and paste it into github.com.
+For this, first go to your profile, then <code>Settings</code> then <code>SSH and GPG keys</code>:</p>
+<p><img src="img/github_16.png" width="691" /></p>
+<p>Then, on the new screen click on <code>New SSH key</code>:</p>
+<p><img src="img/github_17.png" width="440" /></p>
+<p>You can now add your key. Add a title, for example <code>home</code> for your home
+computer, or <code>work</code> for your work laptop. Paste the key from RStudio
+into the field (2), and then click on <code>Add SSH key</code>:</p>
+<p><img src="img/github_19.png" width="697" /></p>
+<p>Ok, now that github.com has your public key, you can now push your commits
+without any error. Go back to RStudio, to the <code>Git</code> tab and click on
+<code>Push</code>:</p>
+<p><img src="img/github_20.png" width="405" /></p>
+<p>A new window will open, this time showing you that the upload went through:</p>
+<p><img src="img/github_21.png" width="514" /></p>
+<p>You will need to add one public key per computer you use on github.com.
+In the past, it was possible to push your commits by providing a password
+each time. This was not secure enough however, so now the only way to
+to push commits is via ssh key pairs. This concept is quite important:
+whatever service you use, even if your company has a private git server
+instance, you will need to provide the public key to the central server.
+All of this ssh key pair business IS NOT specific to github.com, so
+make sure that you understand this well, because sooner rather later,
+you will need to provide another public key, either because you work from
+several computers or because the your first job will have it’s own
+git instance.</p>
+</div>
+<div id="contributing-to-someone-elses-repository" class="section level2 hasAnchor" number="4.6">
+<h2><span class="header-section-number">4.6</span> Contributing to someone else’s repository<a href="git.html#contributing-to-someone-elses-repository" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 
 </div>
 </div>
