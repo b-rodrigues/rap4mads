@@ -6,7 +6,7 @@ What you'll have learned by the end of the chapter: reading and writing, explori
 
 Your first job is to actually get the following datasets into an R session.
 
-First install the `{rio}` package, then download the following datasets:
+First install the `{rio}` package (if you don't have it already), then download the following datasets:
 
 - [mtcars.csv](https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/mtcars.csv)
 - [mtcars.dta](https://github.com/b-rodrigues/modern_R/raw/master/datasets/mtcars.dta)
@@ -27,13 +27,16 @@ Finally, download this one as well, but put it in a folder called `problem`:
 and take a look at chapter 3 of my other book, [Modern R with the {tidyverse}](https://b-rodrigues.github.io/modern_R/reading-and-writing-data.html)
 and follow along. This will teach you to import and export data.
 
-To know which packages are used by `{rio}`, you can take a look at this [vignette](https://cran.r-project.org/web/packages/rio/vignettes/rio.html).
+`{rio}` is some kind of wrapper around many packages. You can keep using `{rio}`, but it is also a good
+idea to know which packages are used under the hood by `{rio}`. For this, you can take a look at this 
+[vignette](https://cran.r-project.org/web/packages/rio/vignettes/rio.html).
 
-If you need to import very large datasets (potentially several GBs), you might want to look at packages
-like `{vroom}` (see the benchmark were a 1.5G csv file gets read in seconds by
-`{vroom}` [here](https://vroom.r-lib.org/articles/benchmarks.html#reading-delimited-files). For even larger
-files, take a look at `{arrow}` [here](https://arrow.apache.org/docs/r/). This package is able to efficiently read
-very large files (`csv`, `json`, `parquet` and `feather` formats)
+If you need to import very large datasets (potentially several GBs), you might want to look at
+packages like `{vroom}` ([this
+benchmark](https://vroom.r-lib.org/articles/benchmarks.html#reading-delimited-files) shows a 1.5G
+csv file getting imported in seconds by `{vroom}`. For even larger files, take a look at `{arrow}`
+[here](https://arrow.apache.org/docs/r/). This package is able to efficiently read very large files
+(`csv`, `json`, `parquet` and `feather` formats).
 
 ## A little aside on pipes
 
@@ -48,7 +51,7 @@ It allows to do this:
 ```
 
 Before R version 4.1, there was already a forward pipe, introduced with the `{magrittr}` package
-(and automatically loaded by many other packages):
+(and automatically loaded by many other packages from the *tidyverse*, like `{dplyr}`):
 
 ```{r}
 library(dplyr)
@@ -66,7 +69,7 @@ just know this exists and try to get used to it.
 Take a look at 
 [chapter 4](https://b-rodrigues.github.io/modern_R/descriptive-statistics-and-data-manipulation.html#a-first-taste-of-data-manipulation-with-dplyr)
 of my other book, ideally you should study the entirety of the chapter, but for our purposes you should
-really focus on sections 4.3, 4.4, 4.5.3, 4.5.4, 4.7 and 4.8.
+really focus on sections 4.3, 4.4, 4.5.3, 4.5.4, (optionally 4.7) and 4.8.
 
 
 ## Data visualization

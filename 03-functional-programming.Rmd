@@ -5,7 +5,7 @@ What you'll have learned by the end of the chapter: writing your own functions, 
 ## Introduction
 
 Functional programming is a way of write programs that relies exclusively on functions. Mathematical
-functions have a very property: for any given input, they ALWAYS return exactly the same output.
+functions have a very neat property: for any given input, they ALWAYS return exactly the same output.
 This is what we want to achieve with the functions that we will write. Functions that always 
 return the same result are called pure, and a language that only allows writing pure functions
 is called a pure functional programming language. R is not a pure functional programming language,
@@ -34,18 +34,20 @@ x + 1
 
 ```
 
-This will produce `2`. We want to avoid pipelines that depend on some definition of some variable somewhere, 
+This will produce `2`. We want to avoid pipelines that depend on some definition of some global variable somewhere,
 which could be subject to change, because this could mean that 2 different runs of the same pipeline could 
 produce 2 different results. Notice that I used the verb `avoid` in the sentence before. This is 
-sometimes not possible to avoid. Such situations have to be carefully document and controlled.
+sometimes not possible to avoid. Such situations have to be carefully documented and controlled.
 
 A very practical consequence of using functional programming is that loops are not used, because
 loops are imperative and imperative programming is all about manipulating state. However, there are
 situations where loops are more efficient than the alternative (in R at least). So we will still
 learn and use them, but only when absolutely necessary. Another consequence is that our code will
 live in plain text files, and not in Jupyter (or equivalent) notebooks. Not only does imperative
-code have state, but notebooks themselves have state. You should avoid notebooks at all costs, even
-for experimenting.
+code have state, but notebooks themselves have a (hidden) state. You should avoid notebooks at all costs, 
+even for experimenting.
+
+## Defining your own functions
 
 Let's first learn about actually writing functions. 
 Read [chapter 7](https://b-rodrigues.github.io/modern_R/defining-your-own-functions.html)
@@ -56,7 +58,9 @@ The most important concepts for this course are discussed in the following secti
 - functions that take functions as arguments [(section 7.4)](https://b-rodrigues.github.io/modern_R/defining-your-own-functions.html#functions-that-take-functions-as-arguments-writing-your-own-higher-order-functions)
 - functions that take data (and the data's columns) as arguments [(section 7.6)](https://b-rodrigues.github.io/modern_R/defining-your-own-functions.html#functions-that-take-columns-of-data-as-arguments);
 
-Once again, you should ideally work through the whole chapter, and then tackle
+## Functional programming
+
+You should ideally work through the whole of chapter 7, and then tackle
 [chapter 8](https://b-rodrigues.github.io/modern_R/functional-programming.html).
 What's important there are:
 

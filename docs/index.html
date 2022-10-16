@@ -23,7 +23,7 @@
 <meta name="author" content="Bruno Rodrigues" />
 
 
-<meta name="date" content="2022-10-15" />
+<meta name="date" content="2022-10-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -119,28 +119,6 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -184,6 +162,7 @@ div.csl-indent {
 <li class="chapter" data-level="4.3" data-path="git.html"><a href="git.html#setting-up-a-repo"><i class="fa fa-check"></i><b>4.3</b> Setting up a repo</a></li>
 <li class="chapter" data-level="4.4" data-path="git.html"><a href="git.html#cloning-the-repository-onto-your-computer"><i class="fa fa-check"></i><b>4.4</b> Cloning the repository onto your computer</a></li>
 <li class="chapter" data-level="4.5" data-path="git.html"><a href="git.html#your-first-commit"><i class="fa fa-check"></i><b>4.5</b> Your first commit</a></li>
+<li class="chapter" data-level="4.6" data-path="git.html"><a href="git.html#contributing-to-someone-elses-repository"><i class="fa fa-check"></i><b>4.6</b> Contributing to someone else’s repository</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html"><i class="fa fa-check"></i><b>5</b> A package for a project</a>
 <ul>
@@ -239,10 +218,13 @@ div.csl-indent {
 <div id="header">
 <h1 class="title">Reproducible Analytical Pipelines - Master’s of Data Science</h1>
 <p class="author"><em>Bruno Rodrigues</em></p>
-<p class="date"><em>2022-10-15</em></p>
+<p class="date"><em>2022-10-16</em></p>
 </div>
 <div id="introduction" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">Chapter 1</span> Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div style="text-align:center;">
+<p><img src="/img/cover.png" title = "Cover image created with Dall-e. The prompt was 'Roman engineer building a pipeline in the style of ancient roman art'. The result doesn't really show that, but I thought it looked nice." width="70%"></p>
+</div>
 <div id="schedule" class="section level2 hasAnchor" number="1.1">
 <h2><span class="header-section-number">1.1</span> Schedule<a href="index.html#schedule" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
@@ -260,35 +242,35 @@ div.csl-indent {
 <h2><span class="header-section-number">1.2</span> Reproducible analytical pipelines?<a href="index.html#reproducible-analytical-pipelines" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This course is my take on setting up code that results in some <em>data product</em>.
 This code has to be reproducible, documented and production ready.
-Many resources on the subject exist, such as <span class="citation">(Gregory and Upson 2022)</span>.</p>
-<p>The basic idea of RAPs is to have code that always produces the same result
-when run, whatever this result might be. This is obviously crucial in
-research and science, but this is also the case in businesses that deal
-with data science/data-driven decision making etc.</p>
-<p>A well documented RAP avoids a lot of headache and is usually re-usable for other
-projects as well.</p>
+Not my original idea, but introduced by the UK’s
+<a href="https://analysisfunction.civilservice.gov.uk/support/reproducible-analytical-pipelines/">Analysis Function</a>.</p>
+<p>The basic idea of a reproducible analytical pipeline (RAP) is to have code that always produces the
+same result when run, whatever this result might be. This is obviously crucial in research and
+science, but this is also the case in businesses that deal with data science/data-driven decision
+making etc.</p>
+<p>A well documented RAP avoids a lot of headache and is usually re-usable for other projects as well.</p>
 </div>
 <div id="data-products" class="section level2 hasAnchor" number="1.3">
 <h2><span class="header-section-number">1.3</span> Data products?<a href="index.html#data-products" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In this course each of you will develop a <em>data product</em>. A data product is anything that requires
-data as an input. This can be a very simple report in PDF or Word format or a complex webapp. This
+data as an input. This can be a very simple report in PDF or Word format or a complex web app. This
 website is actually also a data product, which I made using the R programming language. In this
-course we will not focus too much on how to create automated reports or webapps (but I’ll give an
-introduction to these, don’t worry) but our focus will be on the setting up of a pipeline that results
+course we will not focus too much on how to create automated reports or web apps (but I’ll give an
+introduction to these, don’t worry) but our focus will be on how to set up a pipeline that results
 in these data products in a reproducible way.</p>
 </div>
 <div id="why-r-why-not-insert-your-favourite-programming-language" class="section level2 hasAnchor" number="1.4">
 <h2><span class="header-section-number">1.4</span> Why R? Why not [insert your favourite programming language]<a href="index.html#why-r-why-not-insert-your-favourite-programming-language" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In my absolutely objective opinion R is currently the most interesting and simple language
-you can use to create such data products. If you learn R you have access to almost 19000
+you can use to create such data products. If you learn R you have access to almost 19’000
 packages (as of October 2022) to:</p>
 <ul>
 <li>clean data (see: <code>{dplyr}</code>, <code>{tidyr}</code>, <code>{data.table}</code>…);</li>
 <li>work with medium and big data (see: <code>{arrow}</code>, <code>{sparklyr}</code>…);</li>
 <li>visualize data (see: <code>{ggplot2}</code>, <code>{plotly}</code>, <code>{echarts4r}</code>…);</li>
-<li>do literate programming (using Rmarkdown, you can write books, documents even create a website);</li>
+<li>do literate programming (using Rmarkdown or Quarto, you can write books, documents even create a website);</li>
 <li>do functional programming (see: <code>{purrr}</code>…);</li>
-<li>call other languages for R (see: <code>{reticulate}</code> to call Python from R);</li>
+<li>call other languages from R (see: <code>{reticulate}</code> to call Python from R);</li>
 <li>do machine learning and AI (see: <code>{tidymodels}</code>, <code>{tensorflow}</code>, <code>{keras}</code>…)</li>
 <li>create webapps (see: <code>{shiny}</code>…)</li>
 <li>domain specific statistics/machine learning (see <a href="https://cran.r-project.org/web/views/">CRAN Task Views</a> for an exhaustive list);</li>
@@ -302,7 +284,8 @@ frustrating, which is not the case with Python
 <div id="pre-requisites" class="section level2 hasAnchor" number="1.5">
 <h2><span class="header-section-number">1.5</span> Pre-requisites<a href="index.html#pre-requisites" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>I will assume basic programming knowledge, and not much more. If you need to set up R on your computer
-you can read the intro to my other book <a href="https://b-rodrigues.github.io/modern_R/index.html#prerequisites">Modern R with the tidyverse</a></p>
+you can read the intro to my other book <a href="https://b-rodrigues.github.io/modern_R/index.html#prerequisites">Modern R with the tidyverse</a>.
+Follow the pre-requisites there: install R, Rstudio and the listed packages.</p>
 <p>The course will be very, very hands-on. I’ll give general hints and steps, and ask you to do stuff.
 It will not always be 100% simple and obvious, and you will need to also think a bit by yourself.
 I’ll help of course, so don’t worry. The idea is to put you in the shoes of a real data scientist

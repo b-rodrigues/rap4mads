@@ -5,17 +5,17 @@
 Git is a software for version control. Version control is absolutely essential in software
 engineering, or when setting up a RAP. If you don’t install a version control system such as Git,
 don’t even start trying to set up a RAP. But what does a version control system like Git actually
-do? The basic workflow of git is as follows: you start by setting up a repository for a project.
-On your computer, this is nothing more than a folder with your scripts in it. However, if you're
-using git to keep track of what's inside that folder, there will be a hidden `.git` folder with
-a bunch of files in it. You can forget about that folder. What matters, is that when you make
-changes to your files, you can first *commit* these changes, and then push the back to a 
-repository. Collaborators can copy this repository and synchronize their files saved on their
-computers with your changes. Your collaborators can then also work on the files, then commit
-and push the changes to the repository as well.
+do? The basic workflow of Git is as follows: you start by setting up a repository for a project. On
+your computer, this is nothing more than a folder with your scripts in it. However, if you're using
+Git to keep track of what's inside that folder, there will be a hidden `.git` folder with a bunch
+of files in it. You can forget about that folder, this is for Git's own internal needs. What
+matters, is that when you make changes to your files, you can first *commit* these changes, and
+then push them back to a repository. Collaborators can copy this repository and synchronize their
+files saved on their computers with your changes. Your collaborators can then also work on the
+files, then commit and push the changes to the repository as well.
 
 You can then pull back these changes onto your computer, add more code, commit, push, etc...
-Git makes it easy to collaborate on projects either with other collaborators, either with future
+Git makes it easy to collaborate on projects either with other people, or with future
 you. It is possible to roll back to previous versions of your code base, you can create new 
 branches of your project to test new features (without affecting the main branch of your code),
 collaborators can submit patches that you can review and merge, and and and ...
@@ -24,9 +24,14 @@ In my experience, learning git is one of the most difficult things there is for 
 buckle up, because this chapter is not going to be easy. But git is incredibly powerful, and 
 absolutely essential in our line of work. So your efforts will be worth it.
 
-Before continuing, you might have heard of [github.com](https://github.com): this is a website that
+But for now, let's pause for a brief moment and watch [this video](https://www.youtube.com/watch?v=2ReR1YJrNOM)
+that explains in 2 minutes the general idea of Git.
+
+Let's get started. 
+
+You might have heard of [github.com](https://github.com): this is a website that
 allows programmers to set up repositories on which they can host their code. The way to interact
-with github.com is via Git; but there are many other website such as github.com, such as
+with github.com is via Git; but there are many other website like github.com, such as
 [gitlab.com](https://gitlab.com) and [bitbucket.com](https://bitbucket.com).
 
 For this course, you should create an account on [github.com](https://github.com). This should be
@@ -34,9 +39,9 @@ easy enough. Then you should install git on your computer.
 
 ## Installing Git
 
-Installing git is not hard; it installs like any piece of software on your computer. If you’re
-running a Linux distribution, chances are you already have git installed. To check if it’s already
-installed on a Linux system, open a terminal and type `which git`. If a path get’s returned, like
+Installing Git is not hard; it installs like any piece of software on your computer. If you’re
+running a Linux distribution, chances are you already have Git installed. To check if it’s already
+installed on a Linux system, open a terminal and type `which git`. If a path gets returned, like
 `usr/bin/gin`, congratulations, it’s installed, if the command returns nothing you’ll have to
 install it. On Ubuntu, type `sudo apt-get install git` and just wait a bit. If you’re using macOS
 or Windows, you will need to install it manually. For Windows, download the installer from
@@ -47,11 +52,11 @@ or macports then install the binary package from
 
 ## Setting up a repo
 
-Ok so now that git is installed, we can actually start using it. First, let's start by creating
-a new repository on github.com. As I've mentioned in the introductory paragraph, git will allow
+Ok so now that Git is installed, we can actually start using it. First, let's start by creating
+a new repository on github.com. As I've mentioned in the introductory paragraph, Git will allow
 you to interact with github.com, and you'll see in what ways soon enough. For now, login to 
 your github.com account, and create a new repository by clicking on the 'plus' sign in the top
-right corner of the your profile page and then choosing 'New repository':
+right corner of your profile page and then choose 'New repository':
 
 ```{r, echo = F}
 knitr::include_graphics("img/github_1.png")
@@ -59,7 +64,6 @@ knitr::include_graphics("img/github_1.png")
 
 In the next screen, choose a nice name for your repository and ignore the other options, they're 
 not important for now. Then click on 'Create repository':
-
 
 ```{r, echo = F}
 knitr::include_graphics("img/github_2.png")

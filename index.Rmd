@@ -8,6 +8,11 @@ site: bookdown::bookdown_site
 
 # Introduction
 
+<div style="text-align:center;">
+<img src="/img/cover.png" title = "Cover image created with Dall-e. The prompt was 'Roman engineer building a pipeline in the style of ancient roman art'. The result doesn't really show that, but I thought it looked nice." width="70%">
+</div>
+
+
 ## Schedule
 
 - 2022/10/25, morning: Introduction to the course and first steps with R
@@ -23,37 +28,37 @@ site: bookdown::bookdown_site
 
 This course is my take on setting up code that results in some *data product*.
 This code has to be reproducible, documented and production ready. 
-Many resources on the subject exist, such as [@rap_companion].
+Not my original idea, but introduced by the UK's 
+[Analysis Function](https://analysisfunction.civilservice.gov.uk/support/reproducible-analytical-pipelines/).
 
-The basic idea of RAPs is to have code that always produces the same result
-when run, whatever this result might be. This is obviously crucial in 
-research and science, but this is also the case in businesses that deal 
-with data science/data-driven decision making etc.
+The basic idea of a reproducible analytical pipeline (RAP) is to have code that always produces the
+same result when run, whatever this result might be. This is obviously crucial in research and
+science, but this is also the case in businesses that deal with data science/data-driven decision
+making etc.
 
-A well documented RAP avoids a lot of headache and is usually re-usable for other
-projects as well.
+A well documented RAP avoids a lot of headache and is usually re-usable for other projects as well.
 
 ## Data products?
 
 In this course each of you will develop a *data product*. A data product is anything that requires
-data as an input. This can be a very simple report in PDF or Word format or a complex webapp. This
+data as an input. This can be a very simple report in PDF or Word format or a complex web app. This
 website is actually also a data product, which I made using the R programming language. In this
-course we will not focus too much on how to create automated reports or webapps (but I'll give an
-introduction to these, don't worry) but our focus will be on the setting up of a pipeline that results
+course we will not focus too much on how to create automated reports or web apps (but I'll give an
+introduction to these, don't worry) but our focus will be on how to set up a pipeline that results
 in these data products in a reproducible way.
 
 ## Why R? Why not [insert your favourite programming language]
 
 In my absolutely objective opinion R is currently the most interesting and simple language
-you can use to create such data products. If you learn R you have access to almost 19000
+you can use to create such data products. If you learn R you have access to almost 19'000
 packages (as of October 2022) to:
 
 - clean data (see: `{dplyr}`, `{tidyr}`, `{data.table}`...);
 - work with medium and big data (see: `{arrow}`, `{sparklyr}`...);
 - visualize data (see: `{ggplot2}`, `{plotly}`, `{echarts4r}`...);
-- do literate programming (using Rmarkdown, you can write books, documents even create a website);
+- do literate programming (using Rmarkdown or Quarto, you can write books, documents even create a website);
 - do functional programming (see: `{purrr}`...);
-- call other languages for R (see: `{reticulate}` to call Python from R);
+- call other languages from R (see: `{reticulate}` to call Python from R);
 - do machine learning and AI (see: `{tidymodels}`, `{tensorflow}`, `{keras}`...)
 - create webapps (see: `{shiny}`...)
 - domain specific statistics/machine learning (see [CRAN Task Views](https://cran.r-project.org/web/views/) for an exhaustive list);
@@ -68,7 +73,8 @@ Does that mean R is perfect? No, but it sucks less than the alternatives (again,
 ## Pre-requisites
 
 I will assume basic programming knowledge, and not much more. If you need to set up R on your computer
-you can read the intro to my other book [Modern R with the tidyverse](https://b-rodrigues.github.io/modern_R/index.html#prerequisites)
+you can read the intro to my other book [Modern R with the tidyverse](https://b-rodrigues.github.io/modern_R/index.html#prerequisites).
+Follow the pre-requisites there: install R, Rstudio and the listed packages.
 
 The course will be very, very hands-on. I'll give general hints and steps, and ask you to do stuff.
 It will not always be 100% simple and obvious, and you will need to also think a bit by yourself.

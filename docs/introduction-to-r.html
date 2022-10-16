@@ -23,7 +23,7 @@
 <meta name="author" content="Bruno Rodrigues" />
 
 
-<meta name="date" content="2022-10-15" />
+<meta name="date" content="2022-10-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -119,28 +119,6 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -184,6 +162,7 @@ div.csl-indent {
 <li class="chapter" data-level="4.3" data-path="git.html"><a href="git.html#setting-up-a-repo"><i class="fa fa-check"></i><b>4.3</b> Setting up a repo</a></li>
 <li class="chapter" data-level="4.4" data-path="git.html"><a href="git.html#cloning-the-repository-onto-your-computer"><i class="fa fa-check"></i><b>4.4</b> Cloning the repository onto your computer</a></li>
 <li class="chapter" data-level="4.5" data-path="git.html"><a href="git.html#your-first-commit"><i class="fa fa-check"></i><b>4.5</b> Your first commit</a></li>
+<li class="chapter" data-level="4.6" data-path="git.html"><a href="git.html#contributing-to-someone-elses-repository"><i class="fa fa-check"></i><b>4.6</b> Contributing to someone else’s repository</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html"><i class="fa fa-check"></i><b>5</b> A package for a project</a>
 <ul>
@@ -242,7 +221,7 @@ div.csl-indent {
 <div id="reading-in-data-with-r" class="section level2 hasAnchor" number="2.1">
 <h2><span class="header-section-number">2.1</span> Reading in data with R<a href="introduction-to-r.html#reading-in-data-with-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Your first job is to actually get the following datasets into an R session.</p>
-<p>First install the <code>{rio}</code> package, then download the following datasets:</p>
+<p>First install the <code>{rio}</code> package (if you don’t have it already), then download the following datasets:</p>
 <ul>
 <li><a href="https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/mtcars.csv">mtcars.csv</a></li>
 <li><a href="https://github.com/b-rodrigues/modern_R/raw/master/datasets/mtcars.dta">mtcars.dta</a></li>
@@ -262,12 +241,15 @@ div.csl-indent {
 </ul>
 <p>and take a look at chapter 3 of my other book, <a href="https://b-rodrigues.github.io/modern_R/reading-and-writing-data.html">Modern R with the {tidyverse}</a>
 and follow along. This will teach you to import and export data.</p>
-<p>To know which packages are used by <code>{rio}</code>, you can take a look at this <a href="https://cran.r-project.org/web/packages/rio/vignettes/rio.html">vignette</a>.</p>
-<p>If you need to import very large datasets (potentially several GBs), you might want to look at packages
-like <code>{vroom}</code> (see the benchmark were a 1.5G csv file gets read in seconds by
-<code>{vroom}</code> <a href="https://vroom.r-lib.org/articles/benchmarks.html#reading-delimited-files">here</a>. For even larger
-files, take a look at <code>{arrow}</code> <a href="https://arrow.apache.org/docs/r/">here</a>. This package is able to efficiently read
-very large files (<code>csv</code>, <code>json</code>, <code>parquet</code> and <code>feather</code> formats)</p>
+<p><code>{rio}</code> is some kind of wrapper around many packages. You can keep using <code>{rio}</code>, but it is also a good
+idea to know which packages are used under the hood by <code>{rio}</code>. For this, you can take a look at this
+<a href="https://cran.r-project.org/web/packages/rio/vignettes/rio.html">vignette</a>.</p>
+<p>If you need to import very large datasets (potentially several GBs), you might want to look at
+packages like <code>{vroom}</code> (<a href="https://vroom.r-lib.org/articles/benchmarks.html#reading-delimited-files">this
+benchmark</a> shows a 1.5G
+csv file getting imported in seconds by <code>{vroom}</code>. For even larger files, take a look at <code>{arrow}</code>
+<a href="https://arrow.apache.org/docs/r/">here</a>. This package is able to efficiently read very large files
+(<code>csv</code>, <code>json</code>, <code>parquet</code> and <code>feather</code> formats).</p>
 </div>
 <div id="a-little-aside-on-pipes" class="section level2 hasAnchor" number="2.2">
 <h2><span class="header-section-number">2.2</span> A little aside on pipes<a href="introduction-to-r.html#a-little-aside-on-pipes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -277,18 +259,11 @@ It allows to do this:</p>
 <span id="cb1-2"><a href="introduction-to-r.html#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>()</span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
 <p>Before R version 4.1, there was already a forward pipe, introduced with the <code>{magrittr}</code> package
-(and automatically loaded by many other packages):</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="introduction-to-r.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
-<pre><code>## 
-## Attaching package: &#39;dplyr&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     filter, lag</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     intersect, setdiff, setequal, union</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="introduction-to-r.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="sc">%&gt;%</span></span>
-<span id="cb7-2"><a href="introduction-to-r.html#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>()</span></code></pre></div>
+(and automatically loaded by many other packages from the <em>tidyverse</em>, like <code>{dplyr}</code>):</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="introduction-to-r.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb3-2"><a href="introduction-to-r.html#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="introduction-to-r.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="sc">%&gt;%</span></span>
+<span id="cb3-4"><a href="introduction-to-r.html#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>()</span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
 <p>Both expressions above are equivalent to <code>sqrt(4)</code>. You will see why this is useful very soon. For now,
 just know this exists and try to get used to it.</p>
@@ -298,7 +273,7 @@ just know this exists and try to get used to it.</p>
 <p>Take a look at
 <a href="https://b-rodrigues.github.io/modern_R/descriptive-statistics-and-data-manipulation.html#a-first-taste-of-data-manipulation-with-dplyr">chapter 4</a>
 of my other book, ideally you should study the entirety of the chapter, but for our purposes you should
-really focus on sections 4.3, 4.4, 4.5.3, 4.5.4, 4.7 and 4.8.</p>
+really focus on sections 4.3, 4.4, 4.5.3, 4.5.4, (optionally 4.7) and 4.8.</p>
 </div>
 <div id="data-visualization" class="section level2 hasAnchor" number="2.4">
 <h2><span class="header-section-number">2.4</span> Data visualization<a href="introduction-to-r.html#data-visualization" class="anchor-section" aria-label="Anchor link to header"></a></h2>

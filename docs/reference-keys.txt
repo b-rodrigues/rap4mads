@@ -17,6 +17,7 @@ installing-git
 setting-up-a-repo
 cloning-the-repository-onto-your-computer
 your-first-commit
+contributing-to-someone-elses-repository
 a-package-for-a-project
 getting-started
 adding-functions
@@ -37,4 +38,5 @@ word-and-pptx-outputs
 flexdashboard-no-shiny
 going-beyond-static-outputs-with-shiny
 what-else-should-you-learn
-contributing-to-someone-elses-repository
+defining-your-own-functions
+functional-programming
