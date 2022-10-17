@@ -22,7 +22,9 @@ collaborators can submit patches that you can review and merge, and and and ...
 
 In my experience, learning git is one of the most difficult things there is for students. So
 buckle up, because this chapter is not going to be easy. But git is incredibly powerful, and 
-absolutely essential in our line of work. So your efforts will be worth it.
+absolutely essential in our line of work, it is simply not possible to not know at least 
+some basics of Git. And this is what we're going to do, learn the basics, it'll keep us
+plenty busy already.
 
 But for now, let's pause for a brief moment and watch [this video](https://www.youtube.com/watch?v=2ReR1YJrNOM)
 that explains in 2 minutes the general idea of Git.
@@ -284,4 +286,237 @@ you will need to provide another public key, either because you work from
 several computers or because the your first job will have it's own 
 git instance.
 
+Ok so now you have an account on github.com, and know how to set up a 
+repo and push code to it. This is already quite useful, because it allows
+you and future you to collaborate. What I mean by this is that if in two
+or three months you need to go back to some previous version of your 
+code this is now possible. Let's try it out; change the file by adding
+some lines to it, commit your changes and push again. Remember to use
+a commit message that explain what you did. Once you're done, go back
+to the `Git` tab of Rstudio, and click on the `History` button (the 
+icon is a clock):
+
+```{r, echo = F}
+knitr::include_graphics("img/github_22.png")
+```
+
+As you can see from the picture above, clicking on `History` shows every commit since the beginning
+of the repo. It also shows you who pushed that particular commit, and when. For now, you will only
+see your name. At (1) you see the lines I've added. These are reflected, in green, in the `History`
+window. If I had removed some lines, these would have been highlighted in red in the same window.
+(4) shows you the only commit history. There's not much for now, but for projects that have been
+ongoing for some time, this can get quite long! Finally, (5) shows many interesting details. As
+before, who pushed the commit, when, the commit message (under **Subject**), and finally the
+**SHA**. This is a unique sequence of characters that identifies the commit. If you select another
+commit, you will notice that its SHA is different:
+
+```{r, echo = F}
+knitr::include_graphics("img/github_23.png")
+```
+
+The SHA identifier (called a *hash*) is what we're going to use to revert to a previous state of
+the code base. But because this is a bit advanced, there is no way of doing it from RStudio. You
+will need to open a terminal and use Git from there. On Windows, go to the folder of your project,
+right-click on some white space and select `Git Bash Here`:
+
+```{r, echo = F}
+knitr::include_graphics("img/github_24.png")
+```
+
+A similar approach can be used for most Linux distributions (but simply open
+a terminal, Git Bash is Windows only), and you can apparently do something
+similar on macOS, but first need to active the required service 
+as [explained here](https://ladedu.com/how-to-open-a-terminal-window-at-any-folder-from-finder-in-macos/#How-to-Open-Mac-Terminal-from-Finder-in-the-Current-Folder).
+You can also simply open a terminal and navigate to the right folder using
+`cd`.^[Remember the introduction to this book, where I discussed everything else that you should know...]
+
+Once the terminal is opened, follow along but by adapting the paths to your 
+computer:
+
+```{bash}
+# The first line changes the working directory to my github repo on my computer
+# If you did not open the terminal inside the folder as explained above, you need
+# adapt the path.
+
+cd ~/six_to/example_repo  # example_repo is the folder where I cloned the repo
+ls # List all the files in the directory
+```
+
+Listing the files inside the folder confirms that I'm in the right spot. Something
+else you could do here is try out some git commands, for example, `git log`:
+
+```{bash, eval = F}
+git log
+```
+
+```
+## commit bd7daf0dafb12c0a19ba65f85b54834a02f7d150
+## Author: Bruno Rodrigues <bruno@brodrigues.co>
+## Date:   Mon Oct 17 14:38:59 2022 +0200
+## 
+##     added some more lines
+## 
+## commit 95c26ed4dffd8fc40503f25ddc11af7de5c586c0
+## Author: Bruno Rodrigues <bruno@brodrigues.co>
+## Date:   Sat Oct 15 12:52:43 2022 +0200
+## 
+##     Started project: first graph done
+## 
+## commit d9cff70ff71241ed8514cb65d97e669b0bbdf0f6
+## Author: Bruno Rodrigues <brodriguesco@protonmail.com>
+## Date:   Thu Oct 13 22:12:06 2022 +0200
+## 
+##     Create README.md
+
+```
+
+`git log` returns the same stuff as the `History` button of the `Git` pane inside
+RStudio. You see the commit hash, the name of the author and when the commit was
+pushed. At this stage, we have two options. We could "go back in time", but just look
+around, and then go back to where we are. Or we could essentially go back in time, and
+stay there, meaning, we actually revert the code base back. Let's try the first
+option, let's just take a look around at the code base at a particular point in time.
+Copy the hash of a previous commit. With the hash in your clipboard, use the `git checkout` 
+command to go back to this commit:
+
+```{bash, eval = F}
+git checkout 95c26ed4dffd8f
+```
+
+You will see an output similar to this:
+
+```
+Note: switching to '95c26ed4dffd8f'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+HEAD is now at 95c26ed Started project: first graph done
+
+```
+
+When checking out a commit, you are in *detached HEAD* state. I won't go into specifics, but what
+this means is that anything you do here, won't get saved, unless you specifically create a new
+branch for it. Oh, don't worry, we'll talk about branches soon enough.
+
+Take a look at the script file now, you will see that the lines you added are now missing (the
+following line only works on Linux, macOS, or inside a Git Bash terminal on Windows. `cat` is a
+command line program that prints the contents of a text file to a terminal):
+
+```{bash, eval = F}
+cat my_script.R
+```
+
+Once you're doing taking your tour, go back to the main branch by running:
+
+```{bash, eval = F}
+git checkout main
+```
+
+Ok, so how do we actually go back to a previous state? For this, use `git revert`.
+But unlike `git checkout`, you don't use the hash of the commit you want to go back to.
+Instead, you need to use the hash of the commit you want to "cancel". For example,
+imagine that my commit history looks like this:
+
+```
+## commit bd7daf0dafb12c0a19ba65f85b54834a02f7d150
+## Author: Bruno Rodrigues <bruno@brodrigues.co>
+## Date:   Mon Oct 17 14:38:59 2022 +0200
+## 
+##     added some more lines
+## 
+## commit 95c26ed4dffd8fc40503f25ddc11af7de5c586c0
+## Author: Bruno Rodrigues <bruno@brodrigues.co>
+## Date:   Sat Oct 15 12:52:43 2022 +0200
+## 
+##     Started project: first graph done
+## 
+## commit d9cff70ff71241ed8514cb65d97e669b0bbdf0f6
+## Author: Bruno Rodrigues <brodriguesco@protonmail.com>
+## Date:   Thu Oct 13 22:12:06 2022 +0200
+## 
+##     Create README.md
+
+```
+
+and let's suppose I want to go back to commit `95c26ed4dffd8fc`
+(so my second commit). What I need to do is essentially cancel
+commit `bd7daf0dafb1`, which comes after commit `95c26ed4dffd8fc`
+(look at the dates: commit `95c26ed4dffd8fc` was made on October 15th
+and commit `bd7daf0dafb1` was made on October 17th).
+So I need to revert commit `bd7daf0dafb1`. And that's what we're going
+to do:
+
+```{bash, eval = F}
+git revert bd7daf0dafb1
+```
+
+This opens a text editor inside your terminal. Here you can add a commit
+message or just keep the one that was added by default. Let's just keep
+it and quit the text editor. Unfortunately, this is not very use friendly,
+but to quit the editor type `:q`.
+(The editor that was opened is vim, a very powerful terminal editor, but
+with a very steep learning curve.)
+Now you're back inside your terminal. Type `git log` and you will see a new 
+commit (that you have yet to push), which essentially cancels the commit 
+`bd7daf0dafb1`. You can now push this; for pushing this one, let's stay 
+inside the terminal and use the following command:
+
+```{bash, eval = F}
+git push origin main
+```
+
+`origin main`: `origin` here refers to the remote repository, so to github.com,
+and `main` to the main branch (don't think about branches for now...).
+
+Ok, we're doing with the basics. Let's now see how we can contribute to some
+repository.
+ 
+## Collaborating 
+
+Github (and similar services) allow you to collaborate with people. There are
+two ways of achieving this. You can invite people to work with you on the same
+project, by giving them writing rights to the repository. This is what we are
+going to cover in this section. The other way to collaborate is to let strangers
+fork your repository (make a copy of it on github.com); they can then work on
+their copy of the project independently from you. If they want to submit patches 
+to you, they can do so by doing a so-called *pull request*. This workflow is quite
+different from what we'll see here and will be discussed in the next section.
+
+So for this section you will need to form teams of at least 2 people. One of you will
+invite the other to collaborate by going on github.com and then following the instructions
+in the picture below:
+
+```{r, echo = F}
+knitr::include_graphics("img/github_25.png")
+```
+
+Type the username of your colleague to find him/her. In my case I'm inviting my 
+good friend David Solito:
+
+```{r, echo = F}
+knitr::include_graphics("img/github_26.png")
+```
+
+David now essentially owns the repository as well! So he can contribute to it, just like me.
+
+
+
+
 ## Contributing to someone else's repository
+
+This is outside the scope of this course, but it is crucial that you understand
+this as well. For this reason, I highly recommend reading this 
+[link](https://opensource.com/article/19/7/create-pull-request-github).

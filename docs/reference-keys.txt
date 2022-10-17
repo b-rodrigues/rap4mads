@@ -11,6 +11,8 @@ exploring-and-cleaning-data-with-r
 data-visualization
 a-primer-on-functional-programming
 introduction-1
+defining-your-own-functions
+functional-programming
 git
 introduction-2
 installing-git
@@ -38,5 +40,5 @@ word-and-pptx-outputs
 flexdashboard-no-shiny
 going-beyond-static-outputs-with-shiny
 what-else-should-you-learn
-defining-your-own-functions
-functional-programming
+machine-learning
+collaborating

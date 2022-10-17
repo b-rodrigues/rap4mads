@@ -23,7 +23,7 @@
 <meta name="author" content="Bruno Rodrigues" />
 
 
-<meta name="date" content="2022-10-16" />
+<meta name="date" content="2022-10-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -141,8 +141,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#schedule"><i class="fa fa-check"></i><b>1.1</b> Schedule</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#reproducible-analytical-pipelines"><i class="fa fa-check"></i><b>1.2</b> Reproducible analytical pipelines?</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#data-products"><i class="fa fa-check"></i><b>1.3</b> Data products?</a></li>
-<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#why-r-why-not-insert-your-favourite-programming-language"><i class="fa fa-check"></i><b>1.4</b> Why R? Why not [insert your favourite programming language]</a></li>
-<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#pre-requisites"><i class="fa fa-check"></i><b>1.5</b> Pre-requisites</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#machine-learning"><i class="fa fa-check"></i><b>1.4</b> Machine learning?</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#why-r-why-not-insert-your-favourite-programming-language"><i class="fa fa-check"></i><b>1.5</b> Why R? Why not [insert your favourite programming language]</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#pre-requisites"><i class="fa fa-check"></i><b>1.6</b> Pre-requisites</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>2</b> Introduction to R</a>
 <ul>
@@ -154,6 +155,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3" data-path="a-primer-on-functional-programming.html"><a href="a-primer-on-functional-programming.html"><i class="fa fa-check"></i><b>3</b> A primer on functional programming</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="a-primer-on-functional-programming.html"><a href="a-primer-on-functional-programming.html#introduction-1"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="a-primer-on-functional-programming.html"><a href="a-primer-on-functional-programming.html#defining-your-own-functions"><i class="fa fa-check"></i><b>3.2</b> Defining your own functions</a></li>
+<li class="chapter" data-level="3.3" data-path="a-primer-on-functional-programming.html"><a href="a-primer-on-functional-programming.html#functional-programming"><i class="fa fa-check"></i><b>3.3</b> Functional programming</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>4</b> Git</a>
 <ul>
@@ -218,7 +221,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Reproducible Analytical Pipelines - Master’s of Data Science</h1>
 <p class="author"><em>Bruno Rodrigues</em></p>
-<p class="date"><em>2022-10-16</em></p>
+<p class="date"><em>2022-10-17</em></p>
 </div>
 <div id="introduction" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">Chapter 1</span> Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
@@ -231,8 +234,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>2022/10/25, morning: Introduction to the course and first steps with R</li>
 <li>2022/10/25, afternoon: Explore and visualize data with R</li>
 <li>2022/10/31, afternoon: Functional programming</li>
-<li>2022/11/07, afternoon: Git and package development</li>
-<li>2022/11/08, morning: Machine learning with <code>{tidymodels}</code></li>
+<li>2022/11/07, afternoon: Git</li>
+<li>2022/11/08, morning: Git and package development</li>
 <li>2022/11/08, afternoon: Literate programming and <code>{shiny}</code></li>
 <li>2022/11/21, afternoon: Build automation with <code>{targets}</code></li>
 <li>2022/11/22, noon: Putting it all together with Docker</li>
@@ -259,8 +262,35 @@ course we will not focus too much on how to create automated reports or web apps
 introduction to these, don’t worry) but our focus will be on how to set up a pipeline that results
 in these data products in a reproducible way.</p>
 </div>
-<div id="why-r-why-not-insert-your-favourite-programming-language" class="section level2 hasAnchor" number="1.4">
-<h2><span class="header-section-number">1.4</span> Why R? Why not [insert your favourite programming language]<a href="index.html#why-r-why-not-insert-your-favourite-programming-language" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="machine-learning" class="section level2 hasAnchor" number="1.4">
+<h2><span class="header-section-number">1.4</span> Machine learning?<a href="index.html#machine-learning" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>No, being a master in machine learning is not enough to become a data scientist. Actually, the
+older I get, the more I think that machine learning is almost optional. What is not optional is
+knowing how:</p>
+<ul>
+<li>to write, test, and properly document code;</li>
+<li>to acquire (reading in data can be tricky!) and clean data;</li>
+<li>to work inside the Linux terminal/command line interface;</li>
+<li>to use Git, Docker for Dev(Git)Ops;</li>
+<li>the Internet works (what’s a firewall? what’s a reverse proxy? what’s a domain name? etc,
+etc…);</li>
+</ul>
+<p>But what about machine learning? Well, depending what you’ll end up doing, you might indeed focus a
+lot on machine learning and/or statistical modeling. That being said, in practice, it is very often
+much more efficient to let some automl algorithm figure out the best hyperparameters of a XGBoost
+model and simply use that, at least as a starting point (but good luck improving upon automl…).
+What matters, is that the data you’re feeding to your model is clean, that your analysis is
+sensible, and most importantly, that it could be understood by someone taking over (imagine you
+get sick) and rerun with minimal effort in the future. The model here should simply be a piece that
+could be replaced by another model without much impact. The model is rarely central… but of
+course there are exceptions to this, especially in research, but every other point I’ve made still
+stands. It’s just that not only do you have to care about your model a lot, you also have to care
+about everything else.</p>
+<p>So in this course we’re going to learn a bit of all of this. We’re going to learn how to write
+reusable code, learn some basics of the Linux command line, Git and Docker.</p>
+</div>
+<div id="why-r-why-not-insert-your-favourite-programming-language" class="section level2 hasAnchor" number="1.5">
+<h2><span class="header-section-number">1.5</span> Why R? Why not [insert your favourite programming language]<a href="index.html#why-r-why-not-insert-your-favourite-programming-language" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In my absolutely objective opinion R is currently the most interesting and simple language
 you can use to create such data products. If you learn R you have access to almost 19’000
 packages (as of October 2022) to:</p>
@@ -281,8 +311,8 @@ frustrating, which is not the case with Python
 (Python 2 vs Python 3, <code>pip</code> vs <code>conda</code>, <code>pyenv</code> vs <code>venv</code>…, dependency hell is a real place full of snakes)</p>
 <p>Does that mean R is perfect? No, but it sucks less than the alternatives (again, in my absolutely objective opinion).</p>
 </div>
-<div id="pre-requisites" class="section level2 hasAnchor" number="1.5">
-<h2><span class="header-section-number">1.5</span> Pre-requisites<a href="index.html#pre-requisites" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="pre-requisites" class="section level2 hasAnchor" number="1.6">
+<h2><span class="header-section-number">1.6</span> Pre-requisites<a href="index.html#pre-requisites" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>I will assume basic programming knowledge, and not much more. If you need to set up R on your computer
 you can read the intro to my other book <a href="https://b-rodrigues.github.io/modern_R/index.html#prerequisites">Modern R with the tidyverse</a>.
 Follow the pre-requisites there: install R, Rstudio and the listed packages.</p>

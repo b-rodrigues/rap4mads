@@ -18,8 +18,8 @@ site: bookdown::bookdown_site
 - 2022/10/25, morning: Introduction to the course and first steps with R
 - 2022/10/25, afternoon: Explore and visualize data with R
 - 2022/10/31, afternoon: Functional programming
-- 2022/11/07, afternoon: Git and package development
-- 2022/11/08, morning: Machine learning with `{tidymodels}`
+- 2022/11/07, afternoon: Git 
+- 2022/11/08, morning: Git and package development
 - 2022/11/08, afternoon: Literate programming and `{shiny}`
 - 2022/11/21, afternoon: Build automation with `{targets}`
 - 2022/11/22, noon: Putting it all together with Docker
@@ -46,6 +46,34 @@ website is actually also a data product, which I made using the R programming la
 course we will not focus too much on how to create automated reports or web apps (but I'll give an
 introduction to these, don't worry) but our focus will be on how to set up a pipeline that results
 in these data products in a reproducible way.
+
+## Machine learning?
+
+No, being a master in machine learning is not enough to become a data scientist. Actually, the
+older I get, the more I think that machine learning is almost optional. What is not optional is
+knowing how:
+
+- to write, test, and properly document code;
+- to acquire (reading in data can be tricky!) and clean data;
+- to work inside the Linux terminal/command line interface;
+- to use Git, Docker for Dev(Git)Ops;
+- the Internet works (what's a firewall? what's a reverse proxy? what's a domain name? etc,
+  etc...);
+
+But what about machine learning? Well, depending what you'll end up doing, you might indeed focus a
+lot on machine learning and/or statistical modeling. That being said, in practice, it is very often
+much more efficient to let some automl algorithm figure out the best hyperparameters of a XGBoost
+model and simply use that, at least as a starting point (but good luck improving upon automl...).
+What matters, is that the data you're feeding to your model is clean, that your analysis is
+sensible, and most importantly, that it could be understood by someone taking over (imagine you
+get sick) and rerun with minimal effort in the future. The model here should simply be a piece that
+could be replaced by another model without much impact. The model is rarely central... but of
+course there are exceptions to this, especially in research, but every other point I've made still
+stands. It's just that not only do you have to care about your model a lot, you also have to care
+about everything else.
+
+So in this course we're going to learn a bit of all of this. We're going to learn how to write
+reusable code, learn some basics of the Linux command line, Git and Docker. 
 
 ## Why R? Why not [insert your favourite programming language]
 
