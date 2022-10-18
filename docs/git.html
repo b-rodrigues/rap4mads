@@ -23,7 +23,7 @@
 <meta name="author" content="Bruno Rodrigues" />
 
 
-<meta name="date" content="2022-10-17" />
+<meta name="date" content="2022-10-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -170,21 +170,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html"><i class="fa fa-check"></i><b>5</b> A package for a project</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html#getting-started"><i class="fa fa-check"></i><b>5.1</b> Getting started</a></li>
-<li class="chapter" data-level="5.2" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html#adding-functions"><i class="fa fa-check"></i><b>5.2</b> Adding functions</a>
+<li class="chapter" data-level="5.1" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html#introduction-3"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html#getting-started"><i class="fa fa-check"></i><b>5.2</b> Getting started</a></li>
+<li class="chapter" data-level="5.3" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html#adding-functions"><i class="fa fa-check"></i><b>5.3</b> Adding functions</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html#functions-dependencies"><i class="fa fa-check"></i><b>5.2.1</b> Functions dependencies</a></li>
+<li class="chapter" data-level="5.3.1" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html#functions-dependencies"><i class="fa fa-check"></i><b>5.3.1</b> Functions dependencies</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html#documentation"><i class="fa fa-check"></i><b>5.3</b> Documentation</a>
+<li class="chapter" data-level="5.4" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html#documentation"><i class="fa fa-check"></i><b>5.4</b> Documentation</a>
 <ul>
-<li class="chapter" data-level="5.3.1" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html#documenting-functions"><i class="fa fa-check"></i><b>5.3.1</b> Documenting functions</a></li>
-<li class="chapter" data-level="5.3.2" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html#documenting-the-package"><i class="fa fa-check"></i><b>5.3.2</b> Documenting the package</a></li>
+<li class="chapter" data-level="5.4.1" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html#documenting-functions"><i class="fa fa-check"></i><b>5.4.1</b> Documenting functions</a></li>
+<li class="chapter" data-level="5.4.2" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html#documenting-the-package"><i class="fa fa-check"></i><b>5.4.2</b> Documenting the package</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html#testing-your-package"><i class="fa fa-check"></i><b>5.4</b> Testing your package</a></li>
+<li class="chapter" data-level="5.5" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html#testing-your-package"><i class="fa fa-check"></i><b>5.5</b> Testing your package</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="unit-tests.html"><a href="unit-tests.html"><i class="fa fa-check"></i><b>6</b> Unit tests</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="unit-tests.html"><a href="unit-tests.html#introduction-3"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.1" data-path="unit-tests.html"><a href="unit-tests.html#introduction-4"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
 <li class="chapter" data-level="6.2" data-path="unit-tests.html"><a href="unit-tests.html#unit-testing-with-testthat"><i class="fa fa-check"></i><b>6.2</b> Unit testing with <code>{testthat}</code></a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="setting-up-an-actual-pipeline-with-targets.html"><a href="setting-up-an-actual-pipeline-with-targets.html"><i class="fa fa-check"></i><b>7</b> Setting up an actual pipeline with <code>{targets}</code></a>
@@ -576,10 +577,141 @@ in the picture below:</p>
 <p>Type the username of your colleague to find him/her. In my case I’m inviting my
 good friend David Solito:</p>
 <p><img src="img/github_26.png" width="590" /></p>
-<p>David now essentially owns the repository as well! So he can contribute to it, just like me.</p>
+<p>David now essentially owns the repository as well! So he can contribute to it, just like me.
+Now, let’s suppose that I continue working on my end, and don’t coordinate with David.
+After all, this is a post-covid world, so David might be working asynchronously from home,
+and maybe he lives in an entire time zone completely! What’s important to realize, is that
+unlike other ways of collaborating online (for example with an office suite), you do not
+need to coordinate to collaborate with Git.</p>
+<p>The file should look like this (yours might be different, it doesn’t matter):</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="git.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
+<span id="cb12-2"><a href="git.html#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="git.html#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mtcars<span class="sc">$</span>mpg, mtcars<span class="sc">$</span>hp)</span></code></pre></div>
+<p>I’m going to change it to this:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="git.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb13-2"><a href="git.html#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="git.html#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
+<span id="cb13-4"><a href="git.html#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="git.html#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars) <span class="sc">+</span></span>
+<span id="cb13-6"><a href="git.html#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> hp, <span class="at">x =</span> mpg))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+<p>The only thing I did was changing from the base plotting functions to <code>{ggplot2}</code>.
+Since you guys formed groups, please work independently on the repository. Go crazy, change
+some lines, add lines, remove lines, or add new files with new things. Just work as normal,
+and commit and push your changes and see what happens.</p>
+<p>So let’s commit and push. You can do it from RStudio or from the command line/Git Bash.
+This is what I’ll be doing from now on, but feel free to continue using Git through RStudio:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="git.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add . <span class="co"># This adds every file I&#39;ve changed to this next commit</span></span>
+<span id="cb14-2"><a href="git.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-am</span> <span class="st">&quot;Remade plot with ggplot2&quot;</span> <span class="co"># git commit is the command to create the commit. The -am flag means: &#39;a&#39; stands for all, as in &#39;adding all files to the commit&#39;, so it&#39;s actually redundant with the previous line, but I use it out of habit, and &#39;m&#39; specifies that we want to add a message</span></span>
+<span id="cb14-3"><a href="git.html#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main <span class="co"># This pushes the commit to the repository on github.com</span></span></code></pre></div>
+<p>And this is what happens:</p>
+<pre><code>➤ git push origin main
+
+   To github.com:b-rodrigues/example_repo.git
+    ! [rejected]        main -&gt; main (fetch first)
+   error: failed to push some refs to &#39;github.com:b-rodrigues/example_repo.git&#39;
+   hint: Updates were rejected because the remote contains work that you do
+   hint: not have locally. This is usually caused by another repository pushing
+   hint: to the same ref. You may want to first integrate the remote changes
+   hint: (e.g., &#39;git pull ...&#39;) before pushing again.
+   hint: See the &#39;Note about fast-forwards&#39; in &#39;git push --help&#39; for details.</code></pre>
+<p>What this all means is that David already pushed some changes while I was working on the
+project as well. It says so very cleary <em>Updates were rejected because the remote contains
+work that you do not have locally.</em>
+Git tells us that we first need to pull (download, if you will) the changes to our own computer
+to integrate the changes, and then we can push again.</p>
+<p>At this point, if we want, we can first go to github.com and see the commit history there to
+see what David did. Go to your repo, and click on the commit history icon:</p>
+<p><img src="img/github_27.png" width="892" /></p>
+<p>Doing so will list the commit history, as currently on github.com:</p>
+<p><img src="img/github_28.png" width="910" /></p>
+<p>While I was working, David pushed 2 commits to the repository. If you compare to your local history,
+using <code>git log</code> you will see that these commits are not there, but instead, however many
+commits you did (this will not be the case for all of you; whoever of you pushed first will not
+see any difference between the local and remote repository). Let’s see how it looks for me:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="git.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log</span></code></pre></div>
+<pre><code>commit d2ab909fc679a5661fc3c49c7ac549a2764c539e (HEAD -&gt; main)
+Author: Bruno Rodrigues &lt;bruno@brodrigues.co&gt;
+Date:   Tue Oct 18 09:28:10 2022 +0200
+
+    Remade plot with ggplot2
+
+commit e66c68cc8b58831004d1c9433b2223503d718e1c (origin/main, origin/HEAD)
+Author: Bruno Rodrigues &lt;bruno@brodrigues.co&gt;
+Date:   Mon Oct 17 17:33:33 2022 +0200
+
+    Revert &quot;added some more lines&quot;
+    
+    This reverts commit bd7daf0dafb12c0a19ba65f85b54834a02f7d150.
+
+commit bd7daf0dafb12c0a19ba65f85b54834a02f7d150
+Author: Bruno Rodrigues &lt;bruno@brodrigues.co&gt;
+Date:   Mon Oct 17 14:38:59 2022 +0200
+
+    added some more lines
+
+commit 95c26ed4dffd8fc40503f25ddc11af7de5c586c0
+Author: Bruno Rodrigues &lt;bruno@brodrigues.co&gt;
+Date:   Sat Oct 15 12:52:43 2022 +0200
+
+    Started project: first graph done
+
+commit d9cff70ff71241ed8514cb65d97e669b0bbdf0f6
+Author: Bruno Rodrigues &lt;brodriguesco@protonmail.com&gt;
+Date:   Thu Oct 13 22:12:06 2022 +0200
+
+    Create README.md
+
+</code></pre>
+<p>Yep, so none of David’s commits in sight. Let me do what Git told me to do: let’s pull,
+or download, David’s commits locally:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb18-1"><a href="git.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull <span class="at">--rebase</span> </span></code></pre></div>
+<p><code>--rebase</code> is a flag that keeps the commit history linear. There are many different ways
+you can pull changes, but for our purposes we can focus on <code>--rebase</code>. The other strategies
+are more advanced, and you might want at some point to take a look at them.</p>
+<p>Once <code>git pull --rebase</code> is done, we get the following message:</p>
+<pre><code>Auto-merging my_script.R
+CONFLICT (content): Merge conflict in my_script.R
+error: could not apply d2ab909... Remade plot with ggplot2
+hint: Resolve all conflicts manually, mark them as resolved with
+hint: &quot;git add/rm &lt;conflicted_files&gt;&quot;, then run &quot;git rebase --continue&quot;.
+hint: You can instead skip this commit: run &quot;git rebase --skip&quot;.
+hint: To abort and get back to the state before &quot;git rebase&quot;, run &quot;git rebase --abort&quot;.
+Could not apply d2ab909... Remade plot with ggplot2
+</code></pre>
+<p>Once again, it is important to read what Git is telling us. There is a merge conflict
+in the my_script.R file. Let’s open it, and see what’s going on:</p>
+<p><img src="img/github_29.png" width="648" /></p>
+<p>We can see two things: the lines that David changed in (1), and the lines I’ve added
+in (2). This happened because we changed the same lines. Had I added lines instead of
+changing lines that were already there, the merge would have happened automatically,
+because there would have been no conflict. In this case however, Git does not know
+how to solve the issue: do we keep David’s changes, or mine? Actually, we need to keep both.
+I’ll keep my version of plot that uses <code>{ggplot2}</code>, but will also keep what David changed:
+he replaced the <code>hp</code> variable by <code>cyl</code>, and added a linear regression as well. Since this
+seems sensible to me, I will adapt the script in a way that gracefully merges both
+contributions. So the file looks like this now:</p>
+<p><img src="img/github_30.png" width="620" /></p>
+<p>We can now save, and continue following the hints from Git, namely, adding the changed
+file to the next commit and then use <code>git rebase --continue</code>:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb20-1"><a href="git.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add my_script.R</span>
+<span id="cb20-2"><a href="git.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rebase <span class="at">--continue</span></span></code></pre></div>
+<p>This will once again open the editor in your terminal. Simply close it with <code>:q</code>. Let’s now push:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb21-1"><a href="git.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span></code></pre></div>
+<p>and we’re done! Let’s go back to github.com to see the commit history. You can click on the
+hash to see the details of how the file changed (you can do so from RStudio as well):</p>
+<p><img src="img/github_31.png" width="891" /></p>
+<p>In green, you see lines that were added, and in red, lines that were removed. The lines
+where the linear model was defined are not impacted, because David wrote them at the bottom
+of the script, and I did not write anything there:</p>
+<p><img src="img/github_32.png" width="920" /></p>
 </div>
 <div id="contributing-to-someone-elses-repository" class="section level2 hasAnchor" number="4.7">
 <h2><span class="header-section-number">4.7</span> Contributing to someone else’s repository<a href="git.html#contributing-to-someone-elses-repository" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>It is also possible to contribute to someone else’s repository; by this I mean
+someone who is not a colleague, and who did not invite you to his or her repository.
+So this means that you do not have writing rights to the repository and cannot
+push to it.</p>
 <p>This is outside the scope of this course, but it is crucial that you understand
 this as well. For this reason, I highly recommend reading this
 <a href="https://opensource.com/article/19/7/create-pull-request-github">link</a>.</p>

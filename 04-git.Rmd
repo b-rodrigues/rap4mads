@@ -511,11 +511,212 @@ knitr::include_graphics("img/github_26.png")
 ```
 
 David now essentially owns the repository as well! So he can contribute to it, just like me.
+Now, let's suppose that I continue working on my end, and don't coordinate with David.
+After all, this is a post-covid world, so David might be working asynchronously from home,
+and maybe he lives in an entire time zone completely! What's important to realize, is that
+unlike other ways of collaborating online (for example with an office suite), you do not
+need to coordinate to collaborate with Git. 
 
+The file should look like this (yours might be different, it doesn't matter):
+
+```{r, eval = F}
+data(mtcars)
+
+plot(mtcars$mpg, mtcars$hp)
+```
+
+I'm going to change it to this:
+
+```{r}
+library(ggplot2)
+
+data(mtcars)
+
+ggplot(data = mtcars) +
+  geom_point(aes(y = hp, x = mpg))
+
+```
+
+The only thing I did was changing from the base plotting functions to `{ggplot2}`. 
+Since you guys formed groups, please work independently on the repository. Go crazy, change
+some lines, add lines, remove lines, or add new files with new things. Just work as normal,
+and commit and push your changes and see what happens.
+
+So let's commit and push. You can do it from RStudio or from the command line/Git Bash.
+This is what I'll be doing from now on, but feel free to continue using Git through RStudio:
+
+```{bash, eval = F}
+git add . # This adds every file I've changed to this next commit
+git commit -am "Remade plot with ggplot2" # git commit is the command to create the commit. The -am flag means: 'a' stands for all, as in 'adding all files to the commit', so it's actually redundant with the previous line, but I use it out of habit, and 'm' specifies that we want to add a message
+git push origin main # This pushes the commit to the repository on github.com
+
+```
+
+And this is what happens:
+
+```
+➤ git push origin main
+
+   To github.com:b-rodrigues/example_repo.git
+    ! [rejected]        main -> main (fetch first)
+   error: failed to push some refs to 'github.com:b-rodrigues/example_repo.git'
+   hint: Updates were rejected because the remote contains work that you do
+   hint: not have locally. This is usually caused by another repository pushing
+   hint: to the same ref. You may want to first integrate the remote changes
+   hint: (e.g., 'git pull ...') before pushing again.
+   hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+```
+
+
+What this all means is that David already pushed some changes while I was working on the 
+project as well. It says so very cleary *Updates were rejected because the remote contains
+work that you do not have locally.*
+Git tells us that we first need to pull (download, if you will) the changes to our own computer 
+to integrate the changes, and then we can push again.
+
+At this point, if we want, we can first go to github.com and see the commit history there to
+see what David did. Go to your repo, and click on the commit history icon:
+
+```{r, echo = F}
+knitr::include_graphics("img/github_27.png")
+```
+
+Doing so will list the commit history, as currently on github.com:
+
+```{r, echo = F}
+knitr::include_graphics("img/github_28.png")
+```
+
+While I was working, David pushed 2 commits to the repository. If you compare to your local history,
+using `git log` you will see that these commits are not there, but instead, however many
+commits you did (this will not be the case for all of you; whoever of you pushed first will not
+see any difference between the local and remote repository). Let's see how it looks for me:
+
+```{bash, eval = F}
+git log
+
+```
+
+```
+commit d2ab909fc679a5661fc3c49c7ac549a2764c539e (HEAD -> main)
+Author: Bruno Rodrigues <bruno@brodrigues.co>
+Date:   Tue Oct 18 09:28:10 2022 +0200
+
+    Remade plot with ggplot2
+
+commit e66c68cc8b58831004d1c9433b2223503d718e1c (origin/main, origin/HEAD)
+Author: Bruno Rodrigues <bruno@brodrigues.co>
+Date:   Mon Oct 17 17:33:33 2022 +0200
+
+    Revert "added some more lines"
+    
+    This reverts commit bd7daf0dafb12c0a19ba65f85b54834a02f7d150.
+
+commit bd7daf0dafb12c0a19ba65f85b54834a02f7d150
+Author: Bruno Rodrigues <bruno@brodrigues.co>
+Date:   Mon Oct 17 14:38:59 2022 +0200
+
+    added some more lines
+
+commit 95c26ed4dffd8fc40503f25ddc11af7de5c586c0
+Author: Bruno Rodrigues <bruno@brodrigues.co>
+Date:   Sat Oct 15 12:52:43 2022 +0200
+
+    Started project: first graph done
+
+commit d9cff70ff71241ed8514cb65d97e669b0bbdf0f6
+Author: Bruno Rodrigues <brodriguesco@protonmail.com>
+Date:   Thu Oct 13 22:12:06 2022 +0200
+
+    Create README.md
+
+
+```
+
+Yep, so none of David's commits in sight. Let me do what Git told me to do: let's pull,
+or download, David's commits locally:
+
+```{bash, eval = F}
+git pull --rebase 
+```
+
+`--rebase` is a flag that keeps the commit history linear. There are many different ways
+you can pull changes, but for our purposes we can focus on `--rebase`. The other strategies
+are more advanced, and you might want at some point to take a look at them.
+
+Once `git pull --rebase` is done, we get the following message:
+
+```
+Auto-merging my_script.R
+CONFLICT (content): Merge conflict in my_script.R
+error: could not apply d2ab909... Remade plot with ggplot2
+hint: Resolve all conflicts manually, mark them as resolved with
+hint: "git add/rm <conflicted_files>", then run "git rebase --continue".
+hint: You can instead skip this commit: run "git rebase --skip".
+hint: To abort and get back to the state before "git rebase", run "git rebase --abort".
+Could not apply d2ab909... Remade plot with ggplot2
+
+```
+
+Once again, it is important to read what Git is telling us. There is a merge conflict
+in the my_script.R file. Let's open it, and see what's going on:
+
+```{r, echo = F}
+knitr::include_graphics("img/github_29.png")
+```
+
+We can see two things: the lines that David changed in (1), and the lines I've added
+in (2). This happened because we changed the same lines. Had I added lines instead of
+changing lines that were already there, the merge would have happened automatically,
+because there would have been no conflict. In this case however, Git does not know
+how to solve the issue: do we keep David's changes, or mine? Actually, we need to keep both.
+I'll keep my version of plot that uses `{ggplot2}`, but will also keep what David changed:
+he replaced the `hp` variable by `cyl`, and added a linear regression as well. Since this
+seems sensible to me, I will adapt the script in a way that gracefully merges both
+contributions. So the file looks like this now:
+
+
+```{r, echo = F}
+knitr::include_graphics("img/github_30.png")
+```
+
+We can now save, and continue following the hints from Git, namely, adding the changed 
+file to the next commit and then use `git rebase --continue`:
+
+```{bash, eval = F}
+git add my_script.R
+git rebase --continue
+```
+
+This will once again open the editor in your terminal. Simply close it with `:q`. Let's now push:
+
+```{bash, eval = F}
+git push origin main
+```
+
+and we're done! Let's go back to github.com to see the commit history. You can click on the
+hash to see the details of how the file changed (you can do so from RStudio as well):
+
+```{r, echo = F}
+knitr::include_graphics("img/github_31.png")
+```
+
+In green, you see lines that were added, and in red, lines that were removed. The lines
+where the linear model was defined are not impacted, because David wrote them at the bottom
+of the script, and I did not write anything there:
+
+```{r, echo = F}
+knitr::include_graphics("img/github_32.png")
+```
 
 
 
 ## Contributing to someone else's repository
+
+It is also possible to contribute to someone else's repository; by this I mean
+someone who is not a colleague, and who did not invite you to his or her repository.
+So this means that you do not have writing rights to the repository and cannot 
+push to it.
 
 This is outside the scope of this course, but it is crucial that you understand
 this as well. For this reason, I highly recommend reading this 

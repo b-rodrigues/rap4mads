@@ -1,5 +1,48 @@
 # A package for a project
 
+## Introduction
+
+In this chapter we're going to develop a package that will contain a couple of functions.
+Don't focus too much on what these functions do or don't do, that's not really important.
+What matters is that you understand how to build your own package, and why that's useful.
+
+Actually, we can start by why that's useful right now.
+
+R, as you know, has many many packages. When you type something like 
+
+```{r, eval = F}
+install.packages("dplyr")
+```
+
+This install the `{dplyr}` package. The package gets downloaded from a repository called 
+CRAN - The Comprehensive R Archive Network (or from one of its mirrors). Developers thus
+work on their packages and once they feel the package is ready for productions they submit
+it to CRAN. There are very strict rules to respect to publish on CRAN; but if the developers
+respects these rules, and the package does something *non-trivial* (that's not really defined
+but the idea is that your package cannot simply be a collection of your implementation
+of common mathematical functions for example), it'll get published. 
+
+CRAN is actually quite a miracle; it works really well, and it's been working well for years,
+even decades, as CRAN was founded in [1997](https://stat.ethz.ch/pipermail/r-announce/1997/000001.html).
+Installing packages on R is rarely frustrating, and when it is, it is rarely, if not never,
+CRAN's fault (there are some packages that require your operating system to have certain
+libraries or programs installed beforehand, and these can be frustrating to install, like `java`
+or certain libraries used for geospatial statistics).
+
+But while from the point of view from the user, CRAN is great, there are sometimes some
+frictions between package developers and CRAN maintainers. I'll spare you the drama, but just
+know that contributing to CRAN can be sometimes frustrating.
+
+This does not concern us however, because we are going to learn how to develop a package but
+we are not going to publish it to CRAN. Instead, we will be using github.com as a replacement
+for CRAN. This has the advantage that we do not have to be so strict and disciplined when 
+writing our package, and other users can install the package almost just as easily from
+github.com than from CRAN, with the following command:
+
+```{r, eval = f}
+remotes::install_github("github_username/some_package")
+```
+
 ## Getting started
 
 ## Adding functions

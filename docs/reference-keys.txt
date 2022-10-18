@@ -2,6 +2,7 @@ introduction
 schedule
 reproducible-analytical-pipelines
 data-products
+machine-learning
 why-r-why-not-insert-your-favourite-programming-language
 pre-requisites
 introduction-to-r
@@ -19,6 +20,7 @@ installing-git
 setting-up-a-repo
 cloning-the-repository-onto-your-computer
 your-first-commit
+collaborating
 contributing-to-someone-elses-repository
 a-package-for-a-project
 getting-started
@@ -40,5 +42,4 @@ word-and-pptx-outputs
 flexdashboard-no-shiny
 going-beyond-static-outputs-with-shiny
 what-else-should-you-learn
-machine-learning
-collaborating
+introduction-4
