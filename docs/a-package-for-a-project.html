@@ -181,12 +181,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.4.1" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html#documenting-functions"><i class="fa fa-check"></i><b>5.4.1</b> Documenting functions</a></li>
 <li class="chapter" data-level="5.4.2" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html#documenting-the-package"><i class="fa fa-check"></i><b>5.4.2</b> Documenting the package</a></li>
 </ul></li>
-<li class="chapter" data-level="5.5" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html#testing-your-package"><i class="fa fa-check"></i><b>5.5</b> Testing your package</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="unit-tests.html"><a href="unit-tests.html"><i class="fa fa-check"></i><b>6</b> Unit tests</a>
 <ul>
 <li class="chapter" data-level="6.1" data-path="unit-tests.html"><a href="unit-tests.html#introduction-4"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
 <li class="chapter" data-level="6.2" data-path="unit-tests.html"><a href="unit-tests.html#unit-testing-with-testthat"><i class="fa fa-check"></i><b>6.2</b> Unit testing with <code>{testthat}</code></a></li>
+<li class="chapter" data-level="6.3" data-path="unit-tests.html"><a href="unit-tests.html#testing-your-package"><i class="fa fa-check"></i><b>6.3</b> Testing your package</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="setting-up-an-actual-pipeline-with-targets.html"><a href="setting-up-an-actual-pipeline-with-targets.html"><i class="fa fa-check"></i><b>7</b> Setting up an actual pipeline with <code>{targets}</code></a>
 <ul>
@@ -409,20 +409,242 @@ keep using <code>{{}}</code>.</p>
 <p>Let’s now write a more useful function. Remember the datasets about unemployment in Luxembourg?
 I’m thinking about the ones <a href="https://rap4mads.eu/introduction-to-r.html#reading-in-data-with-r">here</a>,
 <code>unemp_2013.csv</code>, <code>unemp_2014.csv</code>, etc.</p>
+<p>Let’s write a function that does some basic summary statistics on these files:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="a-package-for-a-project.html#cb14-1" aria-hidden="true" tabindex="-1"></a>clean_unemp <span class="ot">&lt;-</span> <span class="cf">function</span>(unemp_data, level, col_of_interest){</span>
+<span id="cb14-2"><a href="a-package-for-a-project.html#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="a-package-for-a-project.html#cb14-3" aria-hidden="true" tabindex="-1"></a>  unemp_data <span class="sc">|&gt;</span></span>
+<span id="cb14-4"><a href="a-package-for-a-project.html#cb14-4" aria-hidden="true" tabindex="-1"></a>    janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">|&gt;</span></span>
+<span id="cb14-5"><a href="a-package-for-a-project.html#cb14-5" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>({{level}}) <span class="sc">|&gt;</span></span>
+<span id="cb14-6"><a href="a-package-for-a-project.html#cb14-6" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(year, commune, {{col_of_interest}})</span>
+<span id="cb14-7"><a href="a-package-for-a-project.html#cb14-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>This function does 3 things:</p>
+<ul>
+<li>using <code>janitor::clean_names()</code>, it cleans the column names;</li>
+<li>it filters on a user supplied level. This is because the csv file contains three “regional” levels so to speak: the whole country: first row, where commune equals <code>Grand-Duché de Luxembourg</code>), canton level (where commune contains <code>Canton</code> and the rest are actually communes. Welcome to the real world, where data is dirty and does not always make sense.</li>
+<li>it selects the columns that interest us (with year and commune hardcoded, because we always want those)</li>
+</ul>
+<p>So save the script, and reload your package using <code>CTRL-SHIFT-L</code>, and try with the following lines:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="a-package-for-a-project.html#cb15-1" aria-hidden="true" tabindex="-1"></a>unemp_2013 <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/unemployment/unemp_2013.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## Rows: 118 Columns: 8
+## ── Column specification ───────────────────────────────────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (1): Commune
+## dbl (7): Total employed population, of which: Wage-earners, of which: Non-wa...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="a-package-for-a-project.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">clean_unemp</span>(unemp_2013,</span>
+<span id="cb17-2"><a href="a-package-for-a-project.html#cb17-2" aria-hidden="true" tabindex="-1"></a>            <span class="fu">grepl</span>(<span class="st">&quot;Grand-D.*&quot;</span>, commune),</span>
+<span id="cb17-3"><a href="a-package-for-a-project.html#cb17-3" aria-hidden="true" tabindex="-1"></a>            active_population)</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 3
+##    year commune                   active_population
+##   &lt;dbl&gt; &lt;chr&gt;                                 &lt;dbl&gt;
+## 1  2013 Grand-Duche de Luxembourg            242694</code></pre>
+<p>This selects the columns for the whole country. Let’s try for cantons:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="a-package-for-a-project.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">clean_unemp</span>(unemp_2013,</span>
+<span id="cb19-2"><a href="a-package-for-a-project.html#cb19-2" aria-hidden="true" tabindex="-1"></a>            <span class="fu">grepl</span>(<span class="st">&quot;Canton&quot;</span>, commune),</span>
+<span id="cb19-3"><a href="a-package-for-a-project.html#cb19-3" aria-hidden="true" tabindex="-1"></a>            active_population)</span></code></pre></div>
+<pre><code>## # A tibble: 12 × 3
+##     year commune             active_population
+##    &lt;dbl&gt; &lt;chr&gt;                           &lt;dbl&gt;
+##  1  2013 Canton Capellen                 18873
+##  2  2013 Canton Esch                     73063
+##  3  2013 Canton Luxembourg               68368
+##  4  2013 Canton Mersch                   13774
+##  5  2013 Canton Clervaux                  7936
+##  6  2013 Canton Diekirch                 14056
+##  7  2013 Canton Redange                   7902
+##  8  2013 Canton Vianden                   2280
+##  9  2013 Canton Wiltz                     6670
+## 10  2013 Canton Echternach                7967
+## 11  2013 Canton Grevenmacher             12254
+## 12  2013 Canton Remich                    9551</code></pre>
+<p>And to select for communes, we need to not select cantons nor the whole country:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="a-package-for-a-project.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">clean_unemp</span>(unemp_2013,</span>
+<span id="cb21-2"><a href="a-package-for-a-project.html#cb21-2" aria-hidden="true" tabindex="-1"></a>            <span class="sc">!</span><span class="fu">grepl</span>(<span class="st">&quot;(Canton|Grand-D.*)&quot;</span>, commune),</span>
+<span id="cb21-3"><a href="a-package-for-a-project.html#cb21-3" aria-hidden="true" tabindex="-1"></a>            active_population)</span></code></pre></div>
+<pre><code>## # A tibble: 105 × 3
+##     year commune       active_population
+##    &lt;dbl&gt; &lt;chr&gt;                     &lt;dbl&gt;
+##  1  2013 Dippach                    1817
+##  2  2013 Garnich                     869
+##  3  2013 Hobscheid                  1505
+##  4  2013 Kaerjeng                   4355
+##  5  2013 Kehlen                     2244
+##  6  2013 Koerich                    1016
+##  7  2013 Kopstal                    1284
+##  8  2013 Mamer                      3209
+##  9  2013 Septfontaines               399
+## 10  2013 Steinfort                  2175
+## # … with 95 more rows</code></pre>
+<p>This seems to be working well (in a one of the next sections we will learn how to systematize these
+tests, instead of running them by hand each time we change the function).
+Before continuing, let’s commit and push our changes.</p>
 </div>
 </div>
 <div id="documentation" class="section level2 hasAnchor" number="5.4">
 <h2><span class="header-section-number">5.4</span> Documentation<a href="a-package-for-a-project.html#documentation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>It is time to start documenting our functions, and package. Documentation in R is not just
+about telling users how to use the package and its functions, but it also serves a functional
+role. There are several files that must be edited to completely document a package, and these
+files help define the dependencies of the package. Let’s start with the simplest thing we can
+do, which is documenting functions.</p>
 <div id="documenting-functions" class="section level3 hasAnchor" number="5.4.1">
 <h3><span class="header-section-number">5.4.1</span> Documenting functions<a href="a-package-for-a-project.html#documenting-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As you’ll know, comments in R start with <code>#</code>. Documenting functions consists in commenting
+them with a special kind of comments that start with <code>#'</code>. Let’s try on our <code>clean_unemp()</code>
+function:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="a-package-for-a-project.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; Cleans unemployment data for Luxembourg</span></span>
+<span id="cb23-2"><a href="a-package-for-a-project.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param unemp_data A data frame containing unemployment data for Luxembourg.</span></span>
+<span id="cb23-3"><a href="a-package-for-a-project.html#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param level A predicate condition indicating the regional level of interest. See details for more.</span></span>
+<span id="cb23-4"><a href="a-package-for-a-project.html#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param col_of_interest A column of the `unemp_data` data frame that you wish to select.</span></span>
+<span id="cb23-5"><a href="a-package-for-a-project.html#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @importFrom janitor clean_names</span></span>
+<span id="cb23-6"><a href="a-package-for-a-project.html#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @importFrom dplyr filter select</span></span>
+<span id="cb23-7"><a href="a-package-for-a-project.html#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @export</span></span>
+<span id="cb23-8"><a href="a-package-for-a-project.html#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @return A data frame</span></span>
+<span id="cb23-9"><a href="a-package-for-a-project.html#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @details</span></span>
+<span id="cb23-10"><a href="a-package-for-a-project.html#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; This function allows the user to create a data frame for several regional levels. The first level</span></span>
+<span id="cb23-11"><a href="a-package-for-a-project.html#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; is the complete country. The second level are cantons, and the third level are neither cantons</span></span>
+<span id="cb23-12"><a href="a-package-for-a-project.html#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; nor the whole country, so the communes. Individual communes can be selected as well.</span></span>
+<span id="cb23-13"><a href="a-package-for-a-project.html#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; `level` must be predicate condition passed down to dplyr::filter. See the examples below</span></span>
+<span id="cb23-14"><a href="a-package-for-a-project.html#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; for its usage.</span></span>
+<span id="cb23-15"><a href="a-package-for-a-project.html#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @examples</span></span>
+<span id="cb23-16"><a href="a-package-for-a-project.html#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; # Filter on cantons</span></span>
+<span id="cb23-17"><a href="a-package-for-a-project.html#cb23-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; clean_unemp(unemp_2013,</span></span>
+<span id="cb23-18"><a href="a-package-for-a-project.html#cb23-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;             grepl(&quot;Canton&quot;, commune),</span></span>
+<span id="cb23-19"><a href="a-package-for-a-project.html#cb23-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;             active_population)</span></span>
+<span id="cb23-20"><a href="a-package-for-a-project.html#cb23-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; # Filter on a specific commune</span></span>
+<span id="cb23-21"><a href="a-package-for-a-project.html#cb23-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; clean_unemp(unemp_2013,</span></span>
+<span id="cb23-22"><a href="a-package-for-a-project.html#cb23-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;             grepl(&quot;Kayl&quot;, commune),</span></span>
+<span id="cb23-23"><a href="a-package-for-a-project.html#cb23-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;             active_population)</span></span>
+<span id="cb23-24"><a href="a-package-for-a-project.html#cb23-24" aria-hidden="true" tabindex="-1"></a>clean_unemp <span class="ot">&lt;-</span> <span class="cf">function</span>(unemp_data, level, col_of_interest){</span>
+<span id="cb23-25"><a href="a-package-for-a-project.html#cb23-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-26"><a href="a-package-for-a-project.html#cb23-26" aria-hidden="true" tabindex="-1"></a>  unemp_data <span class="sc">|&gt;</span></span>
+<span id="cb23-27"><a href="a-package-for-a-project.html#cb23-27" aria-hidden="true" tabindex="-1"></a>    janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">|&gt;</span></span>
+<span id="cb23-28"><a href="a-package-for-a-project.html#cb23-28" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>({{level}}) <span class="sc">|&gt;</span></span>
+<span id="cb23-29"><a href="a-package-for-a-project.html#cb23-29" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(year, commune, {{col_of_interest}})</span>
+<span id="cb23-30"><a href="a-package-for-a-project.html#cb23-30" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>So what’s important is that the comments start with <code>#'</code>, and then you can use keywords that start
+with <code>@</code> to define sections. The example above shows basically everything you need to know to
+properly document your functions. An important keyword, that will not appear in the documentation
+itself is <code>@importFrom</code>. This will be useful later, when we document the package, as it helps
+define the dependencies of your package. For now, let’s simply remember to write this. The other
+thing that might not be obvious is the <code>@export</code> line. This simply tells R that this function should be
+public, available to the users. If you need to define private functions, you can omit this
+keyword and the function won’t be visible to users (this is only partially true however, users
+can always reach and use private function by using <code>:::</code>, as in <code>package:::my_private_function()</code>).</p>
+<p>You can now save the script and press <code>CRTL-SHIFT-D</code>. This will generate the help file for your function:</p>
+<p><img src="img/pack_6.png" width="1393" /></p>
+<p>Now, writing <code>?clean_unemp</code> in the console shows the documentation for <code>clean_unemp</code>:</p>
+<video width="640" height="480" controls>
+<source src="img/help_clean_unemp.mp4" type="video/mp4">
+</video>
+<p>Now, let’s document the package.</p>
 </div>
 <div id="documenting-the-package" class="section level3 hasAnchor" number="5.4.2">
 <h3><span class="header-section-number">5.4.2</span> Documenting the package<a href="a-package-for-a-project.html#documenting-the-package" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="the-namespace-file" class="section level4 hasAnchor" number="5.4.2.1">
+<h4><span class="header-section-number">5.4.2.1</span> The NAMESPACE file<a href="a-package-for-a-project.html#the-namespace-file" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>There are several document you need to change to properly document your package. Some are optional
+like <em>vignettes</em>, and some are not optional, like the DESCRIPTION and the NAMESPACE. Let’s start
+with the NAMESPACE. This file gets generated automatically, but sometimes it can happen that it
+gets stuck in a state, where it doesn’t get generated anymore. In these cases, you should simply
+delete it, and then document your package again:</p>
+<video width="640" height="480" controls>
+<source src="img/namespace.mp4" type="video/mp4">
+</video>
+<p>As you can see from the video, the NAMESPACE defines some interesting stuff. First, it says which
+of our functions are exported, and should be available to the users. Then, it defines the imports.
+This is possible because of the <code>@importFrom</code> keywords from before. What we can now do, is go
+back to our function and remove all the references to the packages and simply use the functions,
+meaning that we can use <code>filter(blabla)</code> instead of <code>dplyr::filter()</code>. But in my opinion, it is
+best to keep them. There already there, and by having them there, even if there redundant with the
+NAMESPACE, someone reading the source code will know immediately where the functions come from.
+But if you want, you can remove that, it’ll work.</p>
 </div>
+<div id="the-description-file" class="section level4 hasAnchor" number="5.4.2.2">
+<h4><span class="header-section-number">5.4.2.2</span> The DESCRIPTION file<a href="a-package-for-a-project.html#the-description-file" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The DESCRIPTION file requires more manual work. Let’s take a look at the file as it stands:</p>
+<pre><code>Package: myPackage
+Type: Package
+Title: What the Package Does (Title Case)
+Version: 0.1.0
+Author: Who wrote it
+Maintainer: The package maintainer &lt;yourself@somewhere.net&gt;
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.2.1</code></pre>
+<p>Let’s change this to:</p>
+<pre><code>Package: myPackage
+Type: Package
+Title: Clean Lux Unemployment Data
+Version: 0.1.0
+Author: Bruno Rodrigues
+Maintainer: Bruno Rodrigues
+Description: This package allows users to easily get unemployent data for Luxembourg
+    from raw csv files
+License: GPL (&gt;=3)
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.2.1</code></pre>
+<p>All of this is not really important if you’re not releasing your package on CRAN, but still important
+to think about. If it’s a package you’re keeping private to your company, none of it matters
+much, but if it’s on github.com, you might want to still fill out these fields. What could be important
+is the license you’re releasing the package under (again, only important if you release on CRAN or
+keep it on github.com). What matters, is what you don’t see. We are going to add some more lines
+to this file, which are quite important:</p>
+<pre><code>Package: myPackage
+Type: Package
+Title: Clean Lux Unemployment Data
+Version: 0.1.0
+Author: Bruno Rodrigues
+Maintainer: Bruno Rodrigues
+Description: This package allows users to easily get unemployent data for Luxembourg
+    from raw csv files
+License: GPL (&gt;=3)
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.2.1
+Depends:
+    R (&gt;= 4.1),
+Imports:
+    dplyr,
+    janitor
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat</code></pre>
+<p>We added three fields:</p>
+<ul>
+<li>Depends: we can define hard dependencies here. Because I’m using the base pipe <code>|&gt;</code> in my code, my package needs at least R version 4.1.</li>
+<li>Imports: these is where we list packages that our package needs to run. If these packages are not available, they will be installed when users install our package.</li>
+<li>Suggests: these packages are not required to run, but can unlock further capabilities. This is also where we can list packages that are required to build <em>vignettes</em> (which we’ll discover shortly), or for unit testing.</li>
+</ul>
+<p>There is another field we could add, Remotes, which is where we could define the usage of a package
+only released on github.com. To know more about this, read
+<a href="https://r-pkgs.org/dependencies.html#nonstandard-dependencies">this section</a>
+of <a href="https://r-pkgs.org/">R packages</a>.</p>
 </div>
-<div id="testing-your-package" class="section level2 hasAnchor" number="5.5">
-<h2><span class="header-section-number">5.5</span> Testing your package<a href="a-package-for-a-project.html#testing-your-package" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="vignettes" class="section level4 hasAnchor" number="5.4.2.3">
+<h4><span class="header-section-number">5.4.2.3</span> Vignettes<a href="a-package-for-a-project.html#vignettes" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Vignettes are long form documentation that explain some of the use-cases of your package.
+They are written in the R-Markdown format, which we will learn about in chapter 8.
+To see an example of a vignette, you can take a look at this vignette titled
+<a href="https://b-rodrigues.github.io/chronicler/articles/advanced-topics.html">A non-mathematician’s introduction to monads</a>
+from my <code>{chronicler}</code> package.</p>
+</div>
+<div id="packages-website" class="section level4 hasAnchor" number="5.4.2.4">
+<h4><span class="header-section-number">5.4.2.4</span> Package’s website<a href="a-package-for-a-project.html#packages-website" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>In the previous section I’ve linked to a vignette from my <code>{chronicler}</code> package.
+<a href="https://b-rodrigues.github.io/chronicler/">The website</a> was automatically generated
+using the <a href="https://pkgdown.r-lib.org/">pkgdown</a> package. We are not going to discuss how
+it works in detail here, but you should know this exists, and is actually quite easy to use.</p>
 
+</div>
+</div>
 </div>
 </div>
             </section>

@@ -245,11 +245,241 @@ Let's now write a more useful function. Remember the datasets about unemployment
 I'm thinking about the ones [here](https://rap4mads.eu/introduction-to-r.html#reading-in-data-with-r),
 `unemp_2013.csv`, `unemp_2014.csv`, etc.
 
+Let's write a function that does some basic summary statistics on these files:
+
+```{r}
+clean_unemp <- function(unemp_data, level, col_of_interest){
+
+  unemp_data |>
+    janitor::clean_names() |>
+    dplyr::filter({{level}}) |>
+    dplyr::select(year, commune, {{col_of_interest}})
+}
+```
+
+This function does 3 things:
+
+- using `janitor::clean_names()`, it cleans the column names;
+- it filters on a user supplied level. This is because the csv file contains three "regional" levels so to speak: the whole country: first row, where commune equals `Grand-Duché de Luxembourg`), canton level (where commune contains `Canton` and the rest are actually communes. Welcome to the real world, where data is dirty and does not always make sense.
+- it selects the columns that interest us (with year and commune hardcoded, because we always want those)
+
+So save the script, and reload your package using `CTRL-SHIFT-L`, and try with the following lines:
+
+```{r}
+unemp_2013 <- readr::read_csv("https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/unemployment/unemp_2013.csv")
+
+
+clean_unemp(unemp_2013,
+            grepl("Grand-D.*", commune),
+            active_population)
+
+```
+
+This selects the columns for the whole country. Let's try for cantons:
+
+```{r}
+clean_unemp(unemp_2013,
+            grepl("Canton", commune),
+            active_population)
+```
+
+And to select for communes, we need to not select cantons nor the whole country:
+
+```{r}
+clean_unemp(unemp_2013,
+            !grepl("(Canton|Grand-D.*)", commune),
+            active_population)
+```
+
+This seems to be working well (in a one of the next sections we will learn how to systematize these
+tests, instead of running them by hand each time we change the function).
+Before continuing, let's commit and push our changes.
 
 ## Documentation
 
+It is time to start documenting our functions, and package. Documentation in R is not just
+about telling users how to use the package and its functions, but it also serves a functional
+role. There are several files that must be edited to completely document a package, and these
+files help define the dependencies of the package. Let's start with the simplest thing we can
+do, which is documenting functions.
+
 ### Documenting functions
+
+As you'll know, comments in R start with `#`. Documenting functions consists in commenting
+them with a special kind of comments that start with `#'`. Let's try on our `clean_unemp()`
+function:
+
+```{r, eval = F}
+#' Cleans unemployment data for Luxembourg
+#' @param unemp_data A data frame containing unemployment data for Luxembourg.
+#' @param level A predicate condition indicating the regional level of interest. See details for more.
+#' @param col_of_interest A column of the `unemp_data` data frame that you wish to select.
+#' @importFrom janitor clean_names
+#' @importFrom dplyr filter select
+#' @export
+#' @return A data frame
+#' @details
+#' This function allows the user to create a data frame for several regional levels. The first level
+#' is the complete country. The second level are cantons, and the third level are neither cantons
+#' nor the whole country, so the communes. Individual communes can be selected as well.
+#' `level` must be predicate condition passed down to dplyr::filter. See the examples below
+#' for its usage.
+#' @examples
+#' # Filter on cantons
+#' clean_unemp(unemp_2013,
+#'             grepl("Canton", commune),
+#'             active_population)
+#' # Filter on a specific commune
+#' clean_unemp(unemp_2013,
+#'             grepl("Kayl", commune),
+#'             active_population)
+clean_unemp <- function(unemp_data, level, col_of_interest){
+
+  unemp_data |>
+    janitor::clean_names() |>
+    dplyr::filter({{level}}) |>
+    dplyr::select(year, commune, {{col_of_interest}})
+}
+
+```
+
+So what's important is that the comments start with `#'`, and then you can use keywords that start
+with `@` to define sections. The example above shows basically everything you need to know to 
+properly document your functions. An important keyword, that will not appear in the documentation
+itself is `@importFrom`. This will be useful later, when we document the package, as it helps
+define the dependencies of your package. For now, let's simply remember to write this. The other
+thing that might not be obvious is the `@export` line. This simply tells R that this function should be
+public, available to the users. If you need to define private functions, you can omit this 
+keyword and the function won't be visible to users (this is only partially true however, users
+can always reach and use private function by using `:::`, as in `package:::my_private_function()`).
+
+You can now save the script and press `CRTL-SHIFT-D`. This will generate the help file for your function:
+
+```{r, echo = F}
+knitr::include_graphics("img/pack_6.png")
+```
+
+Now, writing `?clean_unemp` in the console shows the documentation for `clean_unemp`:
+
+<video width="640" height="480" controls>
+  <source src="img/help_clean_unemp.mp4" type="video/mp4">
+</video>
+
+Now, let's document the package.
 
 ### Documenting the package
 
-## Testing your package
+#### The NAMESPACE file
+
+There are several document you need to change to properly document your package. Some are optional
+like *vignettes*, and some are not optional, like the DESCRIPTION and the NAMESPACE. Let's start
+with the NAMESPACE. This file gets generated automatically, but sometimes it can happen that it
+gets stuck in a state, where it doesn't get generated anymore. In these cases, you should simply
+delete it, and then document your package again:
+
+<video width="640" height="480" controls>
+  <source src="img/namespace.mp4" type="video/mp4">
+</video>
+
+As you can see from the video, the NAMESPACE defines some interesting stuff. First, it says which
+of our functions are exported, and should be available to the users. Then, it defines the imports.
+This is possible because of the `@importFrom` keywords from before. What we can now do, is go 
+back to our function and remove all the references to the packages and simply use the functions,
+meaning that we can use `filter(blabla)` instead of `dplyr::filter()`. But in my opinion, it is
+best to keep them. There already there, and by having them there, even if there redundant with the
+NAMESPACE, someone reading the source code will know immediately where the functions come from.
+But if you want, you can remove that, it'll work.
+
+#### The DESCRIPTION file
+
+The DESCRIPTION file requires more manual work. Let's take a look at the file as it stands:
+
+```
+Package: myPackage
+Type: Package
+Title: What the Package Does (Title Case)
+Version: 0.1.0
+Author: Who wrote it
+Maintainer: The package maintainer <yourself@somewhere.net>
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.2.1
+```
+
+Let's change this to:
+
+
+```
+Package: myPackage
+Type: Package
+Title: Clean Lux Unemployment Data
+Version: 0.1.0
+Author: Bruno Rodrigues
+Maintainer: Bruno Rodrigues
+Description: This package allows users to easily get unemployent data for Luxembourg
+    from raw csv files
+License: GPL (>=3)
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.2.1
+```
+
+All of this is not really important if you're not releasing your package on CRAN, but still important
+to think about. If it's a package you're keeping private to your company, none of it matters
+much, but if it's on github.com, you might want to still fill out these fields. What could be important
+is the license you're releasing the package under (again, only important if you release on CRAN or 
+keep it on github.com). What matters, is what you don't see. We are going to add some more lines
+to this file, which are quite important:
+
+```
+Package: myPackage
+Type: Package
+Title: Clean Lux Unemployment Data
+Version: 0.1.0
+Author: Bruno Rodrigues
+Maintainer: Bruno Rodrigues
+Description: This package allows users to easily get unemployent data for Luxembourg
+    from raw csv files
+License: GPL (>=3)
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.2.1
+Depends:
+    R (>= 4.1),
+Imports:
+    dplyr,
+    janitor
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat
+```
+
+We added three fields:
+
+- Depends: we can define hard dependencies here. Because I'm using the base pipe `|>` in my code, my package needs at least R version 4.1.
+- Imports: these is where we list packages that our package needs to run. If these packages are not available, they will be installed when users install our package.
+- Suggests: these packages are not required to run, but can unlock further capabilities. This is also where we can list packages that are required to build *vignettes* (which we'll discover shortly), or for unit testing.
+
+There is another field we could add, Remotes, which is where we could define the usage of a package
+only released on github.com. To know more about this, read 
+[this section](https://r-pkgs.org/dependencies.html#nonstandard-dependencies)
+of [R packages](https://r-pkgs.org/).
+
+#### Vignettes
+
+Vignettes are long form documentation that explain some of the use-cases of your package.
+They are written in the R-Markdown format, which we will learn about in chapter 8.
+To see an example of a vignette, you can take a look at this vignette titled
+[A non-mathematician's introduction to monads](https://b-rodrigues.github.io/chronicler/articles/advanced-topics.html)
+from my `{chronicler}` package.
+
+#### Package's website
+
+In the previous section I've linked to a vignette from my `{chronicler}` package. 
+[The website](https://b-rodrigues.github.io/chronicler/) was automatically generated
+using the [pkgdown](https://pkgdown.r-lib.org/) package. We are not going to discuss how
+it works in detail here, but you should know this exists, and is actually quite easy to use.

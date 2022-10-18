@@ -43,3 +43,7 @@ word-and-pptx-outputs
 flexdashboard-no-shiny
 going-beyond-static-outputs-with-shiny
 what-else-should-you-learn
+the-namespace-file
+the-description-file
+vignettes
+packages-website

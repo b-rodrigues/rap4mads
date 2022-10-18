@@ -3,3 +3,5 @@
 ## Introduction
 
 ## Unit testing with `{testthat}`
+
+## Testing your package
