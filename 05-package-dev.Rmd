@@ -37,17 +37,214 @@ This does not concern us however, because we are going to learn how to develop a
 we are not going to publish it to CRAN. Instead, we will be using github.com as a replacement
 for CRAN. This has the advantage that we do not have to be so strict and disciplined when 
 writing our package, and other users can install the package almost just as easily from
-github.com than from CRAN, with the following command:
+github.com, with the following command:
 
-```{r, eval = f}
+```{r, eval = F}
 remotes::install_github("github_username/some_package")
 ```
 
+It is also possible to build the package and send it as a file per email for example, and then
+install a local copy. This is more cumbersome, that's why we're going to use github.com as a
+repository.
+
 ## Getting started
+
+Let's first start by opening RStudio, and starting a new project:
+
+<video width="640" height="480" controls>
+  <source src="img/new_package.mp4" type="video/mp4">
+</video>
+
+Following these steps creates a folder in the specified path that already contains
+some scaffolding for our package. This also opens a new RStudio session with the
+default script `hello.R` opened:
+
+```{r, echo = F}
+knitr::include_graphics("img/pack_1.png")
+```
+
+We can remove this script, but do take note of the following sentence:
+
+```
+# You can learn more about package authoring with RStudio at:
+#
+#   http://r-pkgs.had.co.nz/
+#
+```
+
+If this course succeeded in turning you into an avid R programmer, you might want to contribute
+to the language by submitting some nice packages. You could at that point refer to this link
+to learn the many, many subtleties of package development. But for our purposes, this chapter
+will suffice. 
+
+Ok, so now let's take a look inside the folder you just created and take a look at the package's 
+structure. You can do so easily from within RStudio:
+
+```{r, echo = F}
+knitr::include_graphics("img/pack_2.png")
+```
+
+But you can also navigate to the folder from inside a file explorer. The folder that will 
+matter to us the most for now is the `R` folder. This folder will contain your scripts, which
+will contain your package's functions. Let's start by adding a new script.
 
 ## Adding functions
 
+To add a new script, simply create a new script, and while we're at it, let's add some code to it:
+
+<video width="640" height="480" controls>
+  <source src="img/pack_adding_script.mp4" type="video/mp4">
+</video>
+
+and that's it! Well, this example is incredibly easy; there will be more subtleties later on,
+but these are the basics: simply write your script as usual. Now let's load the package with 
+`CTRL-SHIFT-L`. Loading the package makes it available in your current R session:
+
+```{r, echo = F}
+knitr::include_graphics("img/pack_3.png")
+```
+
+As you can see, the package is loaded, and RStudio's autocomplete even suggest the function's name
+already. So now that we have already a function, let's push our code to github.com (you remember that
+we checked the box `Create a git repository` when we started the project?). For this, 
+let's go back to github.com and create a new repository. Give it the same name as your package 
+on your computer, just to avoid confusion. Once the repo is created, you will see this familiar
+screen:
+
+```{r, echo = F}
+knitr::include_graphics("img/pack_4.png")
+```
+
+We will start from an existing repository, because our repository already exists. So we can 
+use the terminal to enter the commands suggested here. We can also use the terminal
+from RStudio:
+
+<video width="640" height="480" controls>
+  <source src="img/adding_remote.mp4" type="video/mp4">
+</video>
+
+
+The steps above are a way to link your local repository to the remote repository living
+on github.com. Without these initial steps, there is no way to link your package project
+to github.com!
+
+Let's now write another function, which will depend on functions from other packages.
+
 ### Functions dependencies
+
+In the same script, add the following code:
+
+```{r, eval = F}
+only_automatics <- function(dataset){
+  dataset |>
+    filter(am == 1)
+}
+
+```
+
+This creates a function that takes a dataset as an argument, and filters the `am` variable.
+This function is not great: it is not documented, so the user might not know that the dataset
+that is meant here is the `mtcars` dataset (which is included with R by default). So we will
+need to document this. Also, the variable `am` is hardcoded, that's not good either. What if 
+the user wants to filter another variable with another value? We will solve these issues later
+on. But there is a worse problem here. The `filter()` function that the developer intended to
+use here is `dplyr::filter()`, so the one from the `{dplyr}` package. However, there are several
+functions called `filter()`. If you start typing `filter` inside a fresh R session, here is 
+what the autocomplete suggests to you:
+
+```{r, echo = F}
+knitr::include_graphics("img/pack_5.png")
+```
+
+So there's a `filter()` function from the `{stats}` package (which gets loaded automatically 
+with every new R session), and there's a capital F `Filter()` function from the `{base}` 
+package (R is case sensitive, so `filter()` and `Filter()` are different functions).
+So how can the developer specify the correct `filter()` function? Simply by using the following
+notation: `dplyr::filter()` (which we have already encountered). So let's rewrite the function 
+correctly:
+
+```{r, eval = F}
+only_automatics <- function(dataset){
+  dataset |>
+    dplyr::filter(am == 1)
+}
+
+```
+
+Great, so now `only_automatics()` at least knows which `filter ` function to use, but this function
+could be improved a lot more. In general, what you want is to have a function that is general enough
+that it could work with any variable (if the dataset is supposed to be fixed), or that could work
+with any combination of dataset and variable. Let's make our function a bit more general,
+by making it work on any variable from any dataset
+
+```{r, eval = F}
+my_filter <- function(dataset, condition){
+  dataset |>
+    dplyr::filter(condition)
+}
+
+```
+
+I renamed the function to `my_filter()` because now this function can work on any dataset and
+with any predicate condition (of course this function is not really useful, since it's only a 
+wrapper around `filter()`. But that's not important). Let's save the script and reload the
+package with `CRTL-SHIFT-L` and try out the function:
+
+```{r, eval = F}
+my_filter(mtcars, am == 1)
+
+```
+
+You will get this output:
+
+```
+Error in `dplyr::filter()` at myPackage/R/functions.R:6:4:
+! Problem while computing `..1 = condition`.
+Caused by error in `mask$eval_all_filter()`:
+! object 'am' not found
+Run `rlang::last_error()` to see where the error occurred.
+```
+
+so what's going on? R complains that it cannot find `am`.
+What is wrong with our function? After all, if I call the following, it works:
+
+```{r}
+mtcars |>
+  filter(am == 1)
+```
+
+So what gives? What's going on here, is that R doesn't know that it has look
+for `am` inside the `mtcars` dataset. R is looking for a variable called `am`
+in the global environment, which does not exist. `dplyr::filter()` is programmed
+in a way that tells R to look for `am` inside `mtcars` and not in the global
+environment (or whatever parent environment the function gets called from).
+We need to program our function in the same way. To do this, simply enclose 
+references to columns of dataframes inside `{{}}`, like so:
+
+```{r}
+my_filter <- function(dataset, condition){
+  dataset |>
+    dplyr::filter({{condition}})
+}
+
+```
+
+Now, R knows where to look. So reload the package with `CTRL-SHIFT-L` and 
+try again:
+
+```{r}
+my_filter(mtcars, am == 1)
+```
+
+`{{}}` is not a feature available in a base installation of R, but is provided
+by packages from the `tidyverse` (like `{dplyr}`, `{tidyr}`, etc). If you write functions
+that depend on `{dplyr}` functions like `filter()`, `select()` etc, you'll have to know
+keep using `{{}}`.
+
+Let's now write a more useful function. Remember the datasets about unemployment in Luxembourg?
+I'm thinking about the ones [here](https://rap4mads.eu/introduction-to-r.html#reading-in-data-with-r),
+`unemp_2013.csv`, `unemp_2014.csv`, etc.
+
 
 ## Documentation
 

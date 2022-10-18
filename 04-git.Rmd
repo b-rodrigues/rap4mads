@@ -709,7 +709,10 @@ of the script, and I did not write anything there:
 knitr::include_graphics("img/github_32.png")
 ```
 
-
+Ok, so this wraps up this chapter. Git is incredibly feature rich and complex, but as 
+already discussed, it is NOT optional to know about Git in our trade. So now that you
+have some understanding of how it works, I suggest that you read the manual
+[here](https://git-scm.com/book/tr/v2/Git-Basics-Getting-a-Git-Repository).
 
 ## Contributing to someone else's repository
 

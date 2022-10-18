@@ -23,6 +23,7 @@ your-first-commit
 collaborating
 contributing-to-someone-elses-repository
 a-package-for-a-project
+introduction-3
 getting-started
 adding-functions
 functions-dependencies
@@ -31,7 +32,7 @@ documenting-functions
 documenting-the-package
 testing-your-package
 unit-tests
-introduction-3
+introduction-4
 unit-testing-with-testthat
 setting-up-an-actual-pipeline-with-targets
 a-first-toy-example
@@ -42,4 +43,3 @@ word-and-pptx-outputs
 flexdashboard-no-shiny
 going-beyond-static-outputs-with-shiny
 what-else-should-you-learn
-introduction-4
