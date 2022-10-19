@@ -1,5 +1,7 @@
 # Git
 
+What you'll have learned by the end of the chapter: basics of working alone, and collaboration, using Git.
+
 ## Introduction
 
 Git is a software for version control. Version control is absolutely essential in software
@@ -18,13 +20,16 @@ You can then pull back these changes onto your computer, add more code, commit, 
 Git makes it easy to collaborate on projects either with other people, or with future
 you. It is possible to roll back to previous versions of your code base, you can create new 
 branches of your project to test new features (without affecting the main branch of your code),
-collaborators can submit patches that you can review and merge, and and and ...
+collaborators can submit patches that you can review and merge, and and and...
 
-In my experience, learning git is one of the most difficult things there is for students. So
-buckle up, because this chapter is not going to be easy. But git is incredibly powerful, and 
-absolutely essential in our line of work, it is simply not possible to not know at least 
-some basics of Git. And this is what we're going to do, learn the basics, it'll keep us
-plenty busy already.
+In my experience, learning git is one of the most difficult things there is for students. 
+And this is because Git solves a complex problem, and there is no easy way to solve
+a complex problem. But I would however say that Git is not unnescessarily complex. So
+buckle up, because this chapter is not going to be easy. 
+
+Git is incredibly powerful, and absolutely essential in our line of work, it is simply not p
+ossible to not know at least some basics of Git. And this is what we're going to do, 
+learn the basics, it'll keep us plenty busy already.
 
 But for now, let's pause for a brief moment and watch [this video](https://www.youtube.com/watch?v=2ReR1YJrNOM)
 that explains in 2 minutes the general idea of Git.
@@ -37,7 +42,7 @@ with github.com is via Git; but there are many other website like github.com, su
 [gitlab.com](https://gitlab.com) and [bitbucket.com](https://bitbucket.com).
 
 For this course, you should create an account on [github.com](https://github.com). This should be
-easy enough. Then you should install git on your computer.
+easy enough. Then you should install Git on your computer.
 
 ## Installing Git
 
@@ -48,7 +53,7 @@ installed on a Linux system, open a terminal and type `which git`. If a path get
 install it. On Ubuntu, type `sudo apt-get install git` and just wait a bit. If you’re using macOS
 or Windows, you will need to install it manually. For Windows, download the installer from
 [here](https://gitforwindows.org/), and for macOS from [here](https://git-scm.com/download/mac);
-you’ll see that there are several ways of installing it on macOS, if you’ve never head of homebrew
+you’ll see that there are several ways of installing it on macOS, if you’ve never heard of homebrew
 or macports then install the binary package from
 [https://sourceforge.net/projects/git-osx-installer/](here).
 
@@ -94,12 +99,14 @@ knitr::include_graphics("img/github_5.png")
 ```
 
 Now, to make things easier on you, we're going to use Rstudio as an interface
-for git. But you should know that git can be used independently from a terminal
+for Git. But you should know that Git can be used independently from a terminal
 application on Linux or macOS, or from Git Bash on Windows, and you should 
 definitely get familiar with the Linux/macOS command line at some point if you wish
-to become a data scientist. This is because most, if not all, servers that you are
+to become a data scientist. This is because most servers, if not all, that you are
 going to interact with in your career are running some flavour of Linux. But since
-the Linux command is outside the scope of this course, we'll use Rstudio instead.
+the Linux command line is outside the scope of this course, we'll use Rstudio instead
+(well, we’ll use it as much as we can, because at some point it won’t be enough and
+have to use the terminal instead anyways...).
 
 ## Cloning the repository onto your computer
 
@@ -129,18 +136,14 @@ A new Rstudio window should open. There are several things that you should pay a
 knitr::include_graphics("img/github_9.png")
 ```
 
-(1) indicates that this project is *git-enabled* so to speak. (2) shows you that Rstudio is open
-inside the `example_repo` (or whatever you named your repo to) project, and (3) shows you the actual
-repository that was downloaded from github.com at the path you chose before. You will also see the 
-`README` file that we created before
-(1) indicates that this project is *git-enabled* so to speak. (2) shows you that Rstudio is open
+Icon (1) indicates that this project is *git-enabled* so to speak. (2) shows you that Rstudio is open
 inside the `example_repo` (or whatever you named your repo to) project, and (3) shows you the actual
 repository that was downloaded from github.com at the path you chose before. You will also see the 
 `README` file that we created before.
 
 ## Your first commit
 
-Let's now create a simple script and some lines of code to it, and save it. Check out the `Git`
+Let's now create a simple script and add some lines of code to it, and save it. Check out the `Git`
 tab now, you should see your script there, alongside a `?` icon:
 
 ```{r, echo = F}
@@ -156,16 +159,17 @@ knitr::include_graphics("img/github_11.png")
 
 Icon (1) shows you the list of files that changed. We only created the file called `my_script.R`, but two
 other files are listed as well. These files are automatically generated when starting a new project.
-`.gitignore` lists files and folder that git should not track, meaning, any change that will affect
-these files will be ignored by git. This means that these files will also not be uploaded to 
+`.gitignore` lists files and folders that Git should not track, meaning, any change that will affect
+these files will be ignored by Git. This means that these files will also not be uploaded to 
 github.com when committing. The file ending with the `.Rproj` extension is a RStudio specific file,
-which simply defines some variables that help RStudio starting your project. What matters here is
+which simply defines some variables that help RStudio start your project. What matters here is
 that the files you changed are listed, and that you saved them. You can double check that you actually
 correctly saved your files by looking at (2), which lists the lines that were added (added lines 
-will be highlighted in green, lines removed in red). In (3) you can write a commit message. This
+will be highlighted in green, deleted lines in red). In (3) you can write a commit message. This
 message should be informative enough that a coworker, or future you, can read through them and have
-a rough idea of what changed. Best practice is to commit often and early, and try to limit one commit
-per change. Let's write something like: "Started project: first graph done". We're almost done: now
+a rough idea of what changed. Best practice is to commit often and early, and try to have one commit
+per change (per file for example, or per function within that file) that you make. 
+Let's write something like: "Started project: first graph done" as the commit message. We're almost done: now
 let's stage the files for this commit. This means that we can choose which files should actually
 be included in this commit. You can only stage one file, several files, or all files. Since this is
 our first commit, let's stage everything we've got, by simply clicking on the checkboxes below the 
@@ -185,7 +189,6 @@ this later on). But it is a much better idea to push our commit now. This makes 
 available to colleagues (who need to pull the changes from github.com) and should our computer
 spontaneously combust, at least or work is now securely saved on github.com. So let's `Push`:
 
-
 ```{r, echo = F}
 knitr::include_graphics("img/github_13.png")
 ```
@@ -193,12 +196,12 @@ knitr::include_graphics("img/github_13.png")
 Ooooooops! Something's wrong! Apparently, we do not have access rights to the repo? This can sound
 weird, because after all, we created the repo with our account and then cloned it. So what's going
 on? Well, remember that anyone can clone a public repository, but only authorized people can 
-push changes to it. So at this stage, the git software (that we're using through RStudio) has 
+push changes to it. So at this stage, the Git software (that we're using through RStudio) has 
 no clue who you are. Git simply doesn't know that your the *admin* of the repository. You need to
-provide a way for git to know by logging in. And the way you login is through a so-called ssh key.
+provide a way for Git to know by logging in. And the way you login is through a so-called ssh key.
 
-Now if you thought that git was confusing, I'm sorry to say that what's coming confuses students
-in general even more. Ok so what's a ssh key, and why does git need it? *An* ssh key is actually
+Now if you thought that Git was confusing, I'm sorry to say that what's coming confuses students
+in general even more. Ok so what's a ssh key, and why does Git need it? *An* ssh key is actually
 a misnomer, because we should really be talking about a pair of keys. The idea is that you 
 generated two files on the computer that you need to access github.com from. One of these keys
 will be a public key, the other a private key. The private key will be a file usually called
@@ -214,13 +217,11 @@ you will get the error from before.
 So let's now generate an ssh key pair. For this, go to `Tools > Global Options > Git/Svn`, and then
 click on the `Create RSA Key...`
 
-
 ```{r, echo = F}
 knitr::include_graphics("img/github_14.png")
 ```
 
-Icon (1) shows you the path where the keys will be saved. Take note of this path, because you will need
-to paste the public key to github.com. You don't need to add a passphrase. This is only useful if
+Icon (1) shows you the path where the keys will be saved. This is only useful if
 you have reasons to worry that your private key might be compromised, but without physical access
 to your machine, an attacker would have a lot of trouble retrieving it (if you keep your OS updated...).
 Finally click on `Create`: 
@@ -228,16 +229,14 @@ Finally click on `Create`:
 ```{r, echo = F}
 knitr::include_graphics("img/github_15.png")
 ```
+
 Ok so now that you have generated these keys, let's copy the public key in
 our clipboard (because we need to paste the key into github.com). You should be able to find this
 key from RStudio. Go back to `Tools > Global Options > Git/Svn`, and then click on `View public key`:
 
-
 ```{r, echo = F}
 knitr::include_graphics("img/github_18.png")
 ```
-
-
 
 A new window will open showing you your public key. You can now copy and paste it into github.com.
 For this, first go to your profile, then `Settings` then `SSH and GPG keys`:
@@ -278,13 +277,13 @@ You will need to add one public key per computer you use on github.com.
 In the past, it was possible to push your commits by providing a password
 each time. This was not secure enough however, so now the only way to 
 to push commits is via ssh key pairs. This concept is quite important:
-whatever service you use, even if your company has a private git server
+whatever service you use, even if your company has a private Git server
 instance, you will need to provide the public key to the central server.
 All of this ssh key pair business IS NOT specific to github.com, so
 make sure that you understand this well, because sooner rather later, 
 you will need to provide another public key, either because you work from
 several computers or because the your first job will have it's own 
-git instance.
+Git instance.
 
 Ok so now you have an account on github.com, and know how to set up a 
 repo and push code to it. This is already quite useful, because it allows
@@ -373,7 +372,7 @@ git log
 `git log` returns the same stuff as the `History` button of the `Git` pane inside
 RStudio. You see the commit hash, the name of the author and when the commit was
 pushed. At this stage, we have two options. We could "go back in time", but just look
-around, and then go back to where we are. Or we could essentially go back in time, and
+around, and then go back to where the repository stands currently. Or we could essentially go back in time, and
 stay there, meaning, we actually revert the code base back. Let's try the first
 option, let's just take a look around at the code base at a particular point in time.
 Copy the hash of a previous commit. With the hash in your clipboard, use the `git checkout` 
@@ -409,7 +408,12 @@ HEAD is now at 95c26ed Started project: first graph done
 
 When checking out a commit, you are in *detached HEAD* state. I won't go into specifics, but what
 this means is that anything you do here, won't get saved, unless you specifically create a new
-branch for it. Oh, don't worry, we'll talk about branches soon enough.
+branch for it. A Git repository is composed of branches. The branche you’re currently working
+on should be called *main* or *master*. You can create new branches, and continue working
+on these other branches, without affecting the *master* branch. This allows to explore
+new ideas and experiment. If this turns out to be fruitful, you can merge the experimental
+branch back into *master*. We are not going to explore branches in this course, so you’ll
+have to read about it on your own. But don’t worry, branches are not that difficult to grok.
 
 Take a look at the script file now, you will see that the lines you added are now missing (the
 following line only works on Linux, macOS, or inside a Git Bash terminal on Windows. `cat` is a
@@ -419,7 +423,7 @@ command line program that prints the contents of a text file to a terminal):
 cat my_script.R
 ```
 
-Once you're doing taking your tour, go back to the main branch by running:
+Once you're done taking your tour, go back to the main (or master) branch by running:
 
 ```{bash, eval = F}
 git checkout main
@@ -479,7 +483,7 @@ git push origin main
 ```
 
 `origin main`: `origin` here refers to the remote repository, so to github.com,
-and `main` to the main branch (don't think about branches for now...).
+and `main` to the main branch.
 
 Ok, we're doing with the basics. Let's now see how we can contribute to some
 repository.
@@ -513,7 +517,7 @@ knitr::include_graphics("img/github_26.png")
 David now essentially owns the repository as well! So he can contribute to it, just like me.
 Now, let's suppose that I continue working on my end, and don't coordinate with David.
 After all, this is a post-covid world, so David might be working asynchronously from home,
-and maybe he lives in an entire time zone completely! What's important to realize, is that
+and maybe he lives in an entire different time zone completely! What's important to realize, is that
 unlike other ways of collaborating online (for example with an office suite), you do not
 need to coordinate to collaborate with Git. 
 
@@ -537,7 +541,7 @@ ggplot(data = mtcars) +
 
 ```
 
-The only thing I did was changing from the base plotting functions to `{ggplot2}`. 
+The only thing I did was change from the base plotting functions to `{ggplot2}`. 
 Since you guys formed groups, please work independently on the repository. Go crazy, change
 some lines, add lines, remove lines, or add new files with new things. Just work as normal,
 and commit and push your changes and see what happens.
@@ -566,7 +570,6 @@ And this is what happens:
    hint: (e.g., 'git pull ...') before pushing again.
    hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 ```
-
 
 What this all means is that David already pushed some changes while I was working on the 
 project as well. It says so very cleary *Updates were rejected because the remote contains
@@ -659,7 +662,7 @@ Could not apply d2ab909... Remade plot with ggplot2
 ```
 
 Once again, it is important to read what Git is telling us. There is a merge conflict
-in the my_script.R file. Let's open it, and see what's going on:
+in the `my_script.R` file. Let's open it, and see what's going on:
 
 ```{r, echo = F}
 knitr::include_graphics("img/github_29.png")
@@ -668,13 +671,12 @@ knitr::include_graphics("img/github_29.png")
 We can see two things: the lines that David changed in (1), and the lines I've added
 in (2). This happened because we changed the same lines. Had I added lines instead of
 changing lines that were already there, the merge would have happened automatically,
-because there would have been no conflict. In this case however, Git does not know
+because there would not have been any conflict. In this case however, Git does not know
 how to solve the issue: do we keep David's changes, or mine? Actually, we need to keep both.
-I'll keep my version of plot that uses `{ggplot2}`, but will also keep what David changed:
+I'll keep my version of plot that uses `{ggplot2}`, but will also keep what David added:
 he replaced the `hp` variable by `cyl`, and added a linear regression as well. Since this
 seems sensible to me, I will adapt the script in a way that gracefully merges both
 contributions. So the file looks like this now:
-
 
 ```{r, echo = F}
 knitr::include_graphics("img/github_30.png")
@@ -712,7 +714,7 @@ knitr::include_graphics("img/github_32.png")
 Ok, so this wraps up this chapter. Git is incredibly feature rich and complex, but as 
 already discussed, it is NOT optional to know about Git in our trade. So now that you
 have some understanding of how it works, I suggest that you read the manual
-[here](https://git-scm.com/book/tr/v2/Git-Basics-Getting-a-Git-Repository).
+[here](https://git-scm.com/book/tr/v2/Git-Basics-Getting-a-Git-Repository). 
 
 ## Contributing to someone else's repository
 
