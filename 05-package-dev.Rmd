@@ -1,12 +1,11 @@
-# A package for a project
+# Package development
 
 ## Introduction
 
-In this chapter we're going to develop a package that will contain a couple of functions.
+In this chapter we're going to develop our own package. This package will contain
+some functions that we will write to analyze some data.
 Don't focus too much on what these functions do or don't do, that's not really important.
 What matters is that you understand how to build your own package, and why that's useful.
-
-Actually, we can start by why that's useful right now.
 
 R, as you know, has many many packages. When you type something like 
 
@@ -14,17 +13,17 @@ R, as you know, has many many packages. When you type something like
 install.packages("dplyr")
 ```
 
-This install the `{dplyr}` package. The package gets downloaded from a repository called 
+This installs the `{dplyr}` package. The package gets downloaded from a repository called 
 CRAN - The Comprehensive R Archive Network (or from one of its mirrors). Developers thus
-work on their packages and once they feel the package is ready for productions they submit
+work on their packages and once they feel the package is ready for production they submit
 it to CRAN. There are very strict rules to respect to publish on CRAN; but if the developers
-respects these rules, and the package does something *non-trivial* (that's not really defined
-but the idea is that your package cannot simply be a collection of your implementation
+respects these rules, and the package does something *non-trivial* (non-trivial is not really defined
+but the idea is that your package cannot simply be a collection of your own implementation
 of common mathematical functions for example), it'll get published. 
 
-CRAN is actually quite a miracle; it works really well, and it's been working well for years,
-even decades, as CRAN was founded in [1997](https://stat.ethz.ch/pipermail/r-announce/1997/000001.html).
-Installing packages on R is rarely frustrating, and when it is, it is rarely, if not never,
+CRAN is actually quite a miracle; it works really well, and it's been working well for decades, 
+since CRAN was founded in [1997](https://stat.ethz.ch/pipermail/r-announce/1997/000001.html).
+Installing packages on R is rarely frustrating, and when it is, it is rarely, if ever,
 CRAN's fault (there are some packages that require your operating system to have certain
 libraries or programs installed beforehand, and these can be frustrating to install, like `java`
 or certain libraries used for geospatial statistics).
@@ -34,7 +33,7 @@ frictions between package developers and CRAN maintainers. I'll spare you the dr
 know that contributing to CRAN can be sometimes frustrating.
 
 This does not concern us however, because we are going to learn how to develop a package but
-we are not going to publish it to CRAN. Instead, we will be using github.com as a replacement
+we are not going to publish it on CRAN. Instead, we will be using github.com as a replacement
 for CRAN. This has the advantage that we do not have to be so strict and disciplined when 
 writing our package, and other users can install the package almost just as easily from
 github.com, with the following command:
@@ -49,7 +48,7 @@ repository.
 
 ## Getting started
 
-Let's first start by opening RStudio, and starting a new project:
+Let's first start by opening RStudio, and start a new project:
 
 <video width="640" height="480" controls>
   <source src="img/new_package.mp4" type="video/mp4">
@@ -73,7 +72,7 @@ We can remove this script, but do take note of the following sentence:
 ```
 
 If this course succeeded in turning you into an avid R programmer, you might want to contribute
-to the language by submitting some nice packages. You could at that point refer to this link
+to the language by submitting some nice packages one day. You could at that point refer to this link
 to learn the many, many subtleties of package development. But for our purposes, this chapter
 will suffice. 
 
@@ -149,8 +148,8 @@ need to document this. Also, the variable `am` is hardcoded, that's not good eit
 the user wants to filter another variable with another value? We will solve these issues later
 on. But there is a worse problem here. The `filter()` function that the developer intended to
 use here is `dplyr::filter()`, so the one from the `{dplyr}` package. However, there are several
-functions called `filter()`. If you start typing `filter` inside a fresh R session, here is 
-what the autocomplete suggests to you:
+functions called `filter()`. If you start typing `filter` inside a fresh R session, this is 
+what autocomplete suggests:
 
 ```{r, echo = F}
 knitr::include_graphics("img/pack_5.png")
@@ -175,7 +174,7 @@ Great, so now `only_automatics()` at least knows which `filter ` function to use
 could be improved a lot more. In general, what you want is to have a function that is general enough
 that it could work with any variable (if the dataset is supposed to be fixed), or that could work
 with any combination of dataset and variable. Let's make our function a bit more general,
-by making it work on any variable from any dataset
+by making it work on any variable from any dataset:
 
 ```{r, eval = F}
 my_filter <- function(dataset, condition){
@@ -218,8 +217,10 @@ for `am` inside the `mtcars` dataset. R is looking for a variable called `am`
 in the global environment, which does not exist. `dplyr::filter()` is programmed
 in a way that tells R to look for `am` inside `mtcars` and not in the global
 environment (or whatever parent environment the function gets called from).
-We need to program our function in the same way. To do this, simply enclose 
-references to columns of dataframes inside `{{}}`, like so:
+We need to program our function in the same way. Remember in chapter 3, where
+we learned about functions that take columns of data frames as arguments? This
+is exactly the same situtation here. So, let’s simply enclose 
+references to columns of data frames inside `{{}}`, like so:
 
 ```{r}
 my_filter <- function(dataset, condition){
@@ -236,6 +237,8 @@ try again:
 my_filter(mtcars, am == 1)
 ```
 
+And it’s working!
+
 `{{}}` is not a feature available in a base installation of R, but is provided
 by packages from the `tidyverse` (like `{dplyr}`, `{tidyr}`, etc). If you write functions
 that depend on `{dplyr}` functions like `filter()`, `select()` etc, you'll have to know
@@ -245,7 +248,7 @@ Let's now write a more useful function. Remember the datasets about unemployment
 I'm thinking about the ones [here](https://rap4mads.eu/introduction-to-r.html#reading-in-data-with-r),
 `unemp_2013.csv`, `unemp_2014.csv`, etc.
 
-Let's write a function that does some basic summary statistics on these files:
+Let's write a function that does some basic transformations on these files:
 
 ```{r}
 clean_unemp <- function(unemp_data, level, col_of_interest){
@@ -260,7 +263,7 @@ clean_unemp <- function(unemp_data, level, col_of_interest){
 This function does 3 things:
 
 - using `janitor::clean_names()`, it cleans the column names;
-- it filters on a user supplied level. This is because the csv file contains three "regional" levels so to speak: the whole country: first row, where commune equals `Grand-Duché de Luxembourg`), canton level (where commune contains `Canton` and the rest are actually communes. Welcome to the real world, where data is dirty and does not always make sense.
+- it filters on a user supplied level. This is because the csv file contains three "regional" levels so to speak: the whole country: first row, where commune equals `Grand-Duché de Luxembourg`, canton level: where commune contains the string `Canton` and the last level: the actual communes. Welcome to the real world, where data is dirty and does not always make sense.
 - it selects the columns that interest us (with year and commune hardcoded, because we always want those)
 
 So save the script, and reload your package using `CTRL-SHIFT-L`, and try with the following lines:
@@ -291,16 +294,16 @@ clean_unemp(unemp_2013,
             active_population)
 ```
 
-This seems to be working well (in a one of the next sections we will learn how to systematize these
+This seems to be working well (in one of the next sections we will learn how to systematize these
 tests, instead of running them by hand each time we change the function).
 Before continuing, let's commit and push our changes.
 
 ## Documentation
 
-It is time to start documenting our functions, and package. Documentation in R is not just
+It is time to start documenting our functions, and then our package. Documentation in R is not just
 about telling users how to use the package and its functions, but it also serves a functional
 role. There are several files that must be edited to completely document a package, and these
-files help define the dependencies of the package. Let's start with the simplest thing we can
+files also help define the dependencies of the package. Let's start with the simplest thing we can
 do, which is documenting functions.
 
 ### Documenting functions
@@ -343,15 +346,16 @@ clean_unemp <- function(unemp_data, level, col_of_interest){
 
 ```
 
-So what's important is that the comments start with `#'`, and then you can use keywords that start
-with `@` to define sections. The example above shows basically everything you need to know to 
+The special comments that start with `#'` will be compiled into a nice looking document that users
+can then read. You can add sections to the documentation by using keywords that start
+with `@`. The example above shows essentially everything you need to know to 
 properly document your functions. An important keyword, that will not appear in the documentation
-itself is `@importFrom`. This will be useful later, when we document the package, as it helps
+itself, is `@importFrom`. This will be useful later, when we document the package, as it helps
 define the dependencies of your package. For now, let's simply remember to write this. The other
 thing that might not be obvious is the `@export` line. This simply tells R that this function should be
 public, available to the users. If you need to define private functions, you can omit this 
 keyword and the function won't be visible to users (this is only partially true however, users
-can always reach and use private function by using `:::`, as in `package:::my_private_function()`).
+can always reach deep into the package and use private functions by using `:::`, as in `package:::my_private_function()`).
 
 You can now save the script and press `CRTL-SHIFT-D`. This will generate the help file for your function:
 
@@ -371,10 +375,10 @@ Now, let's document the package.
 
 #### The NAMESPACE file
 
-There are several document you need to change to properly document your package. Some are optional
+There are several files you need to edit to properly document your package. Some are optional
 like *vignettes*, and some are not optional, like the DESCRIPTION and the NAMESPACE. Let's start
 with the NAMESPACE. This file gets generated automatically, but sometimes it can happen that it
-gets stuck in a state, where it doesn't get generated anymore. In these cases, you should simply
+gets stuck in a state where it doesn't get generated anymore. In these cases, you should simply
 delete it, and then document your package again:
 
 <video width="640" height="480" controls>
@@ -386,9 +390,9 @@ of our functions are exported, and should be available to the users. Then, it de
 This is possible because of the `@importFrom` keywords from before. What we can now do, is go 
 back to our function and remove all the references to the packages and simply use the functions,
 meaning that we can use `filter(blabla)` instead of `dplyr::filter()`. But in my opinion, it is
-best to keep them. There already there, and by having them there, even if there redundant with the
-NAMESPACE, someone reading the source code will know immediately where the functions come from.
-But if you want, you can remove that, it'll work.
+best to keep them the script as it is. There already there, and by having them there, even if they’re
+redundant with the NAMESPACE, someone reading the source code will know immediately where the functions come from.
+But if you want, you can remove the references to the packages, it'll work.
 
 #### The DESCRIPTION file
 
@@ -411,7 +415,6 @@ RoxygenNote: 7.2.1
 
 Let's change this to:
 
-
 ```
 Package: myPackage
 Type: Package
@@ -431,7 +434,7 @@ All of this is not really important if you're not releasing your package on CRAN
 to think about. If it's a package you're keeping private to your company, none of it matters
 much, but if it's on github.com, you might want to still fill out these fields. What could be important
 is the license you're releasing the package under (again, only important if you release on CRAN or 
-keep it on github.com). What matters, is what you don't see. We are going to add some more lines
+keep it on github.com). What’s really important in this file, is what’s missing. We are going to add some more lines
 to this file, which are quite important:
 
 ```
@@ -460,8 +463,8 @@ Suggests:
 
 We added three fields:
 
-- Depends: we can define hard dependencies here. Because I'm using the base pipe `|>` in my code, my package needs at least R version 4.1.
-- Imports: these is where we list packages that our package needs to run. If these packages are not available, they will be installed when users install our package.
+- Depends: we can define hard dependencies here. Because I'm using the base pipe `|>` in my examples, my package needs at least R version 4.1.
+- Imports: these is where we list packages that our package needs in order to run. If these packages are not available, they will be installed when users install our package.
 - Suggests: these packages are not required to run, but can unlock further capabilities. This is also where we can list packages that are required to build *vignettes* (which we'll discover shortly), or for unit testing.
 
 There is another field we could add, Remotes, which is where we could define the usage of a package
@@ -472,10 +475,22 @@ of [R packages](https://r-pkgs.org/).
 #### Vignettes
 
 Vignettes are long form documentation that explain some of the use-cases of your package.
-They are written in the R-Markdown format, which we will learn about in chapter 8.
+They are written in the RMarkdown format, which we will learn about in chapter 8.
 To see an example of a vignette, you can take a look at this vignette titled
 [A non-mathematician's introduction to monads](https://b-rodrigues.github.io/chronicler/articles/advanced-topics.html)
-from my `{chronicler}` package.
+from my `{chronicler}` package, or you could also type:
+
+```{r}
+vignette(package = "dplyr")
+```
+
+to see the list of available vignettes for the `{dplyr}` package, and then write:
+
+```{r}
+vignette("programming", "dplyr")
+```
+
+to open the vignette locally.
 
 #### Package's website
 
@@ -483,3 +498,30 @@ In the previous section I've linked to a vignette from my `{chronicler}` package
 [The website](https://b-rodrigues.github.io/chronicler/) was automatically generated
 using the [pkgdown](https://pkgdown.r-lib.org/) package. We are not going to discuss how
 it works in detail here, but you should know this exists, and is actually quite easy to use.
+
+### Installing your package
+
+Once you're done working on your package, you can install it with `CRTL-SHIFT-B`. This way
+you can start using your package from any R session. People that want to install your package
+can use `devtools::install_github()` to install it from github.com. You might want to communicate 
+a specific commit hash to your users, so they install a fixed version of your package, and not
+the latest development version. For example, let’s suppose that I have been working on my package,
+but would prefer my potential users to install the package as it stood at the commit with the
+hash `"e27597409d0992dd8339"`. I can write this in the README of the package:
+
+```
+To install the package, please use the following line
+
+devtools::install_github("b-rodrigues/myPackage", ref = "e27597409d0992dd8339")
+```
+
+This will install the `{myPackage}` package as it looked like at this particular commit. You could
+also create a branch called `release` for example, and direct users to install from this branch:
+
+```
+To install the package, please use the following line
+
+devtools::install_github("b-rodrigues/myPackage", ref = "release")
+```
+
+But for this, you need to create a release branch, which will only contain release-ready code.
