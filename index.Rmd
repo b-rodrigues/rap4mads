@@ -15,14 +15,14 @@ site: bookdown::bookdown_site
 
 ## Schedule
 
-- 2022/10/25, morning: Introduction to the course and first steps with R
-- 2022/10/25, afternoon: Explore and visualize data with R
-- 2022/10/31, afternoon: Functional programming
-- 2022/11/07, afternoon: Git 
-- 2022/11/08, morning: Git and package development
-- 2022/11/08, afternoon: Literate programming and `{shiny}`
-- 2022/11/21, afternoon: Build automation with `{targets}`
-- 2022/11/22, noon: Putting it all together with Docker
+- 2022/10/25, morning: Introduction and data exploration with R
+- 2022/10/25, afternoon: Functional programming
+- 2022/10/31, afternoon: Git
+- 2022/11/07, afternoon: Package development and unit testing
+- 2022/11/08, morning: Literate programming and `{shiny}`
+- 2022/11/08, afternoon: Build automation with `{targets}`
+- 2022/11/21, afternoon: A self-contained pipeline with Docker
+- 2022/11/22, morning: Github Actions
 
 ## Reproducible analytical pipelines?
 
@@ -112,5 +112,5 @@ you will never have encountered that problem ever, as it will be very specific t
 Google and Stackoverflow will be your only friends in these moments.
 
 The beginning of this course will likely be the toughest part, especially if you're not familiar with R.
-I will need to bring you up to speed in 6 to 8 hours. Only after can we actually start talking about 
+I will need to bring you up to speed in 6 hours. Only after can we actually start talking about 
 RAPs. What's important is to never give up and work together with me.
