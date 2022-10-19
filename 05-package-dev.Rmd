@@ -1,5 +1,7 @@
 # Package development
 
+What you’ll have learned by the end of the chapter: building and documenting your own package.
+
 ## Introduction
 
 In this chapter we're going to develop our own package. This package will contain
