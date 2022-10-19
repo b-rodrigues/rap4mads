@@ -1,7 +1,208 @@
 # Unit tests
 
+What you’ll have learned by the end of the chapter: what unit tests are, how to write them, and how to test your package thoroughly.
+
 ## Introduction
 
-## Unit testing with `{testthat}`
+It might not have seemed like it, but developing our own package was actually the first step in writing
+reproducible code. Packaged code is easy to share, and much easier to run than code than lives inside
+scripts. When you share code, be it with future you or others, you have a responsibility to ship 
+high quality code. Unit tests are on way to ensure that your code works as intented, but it is not a panacea.
+But if you write short, well-documented functions, that you package them, and test them thoroughly, you
+are on the right track for success.
+
+But what are unit tests? Unit tests are pieces of code that test other pieces of code (called units in this context).
+It turns out that functions are units of code, and that makes testing them quite easy. I hope that you are 
+starting to see the pieces coming all together: I introduced you to functional programming and insisted that
+you write your code as a sequence of functions calls, because it makes it easier to package and document
+everything. And now that your code lives inside a package, as a series of functions, it will be very easy
+to test these functions (or units of code).
 
 ## Testing your package
+
+Because our code is package, starting to write unit tests will be very easy. For this, open RStudio
+and make sure your package’s project is opened:
+
+In onder to set up the required files and folders for unit testing, run the following line in the R console:
+
+```{r, eval = F}
+usethis::use_test("clean_unemp")
+```
+
+You should see a folder called `tests` appear inside the package. Inside `tests`, there is another folder
+called `testthat`, and inside this folder you should find a file called `test-clean_unemp.R`. This file
+should contain an example:
+
+```{r, eval = f}
+test_that("multiplication works", {
+  expect_equal(2 * 2, 4)
+})
+
+```
+
+This is quite self-explanatory; `test_that()` is the function that we are going to use to write tests. It takes
+a string as an argument, and a test. For the string write an explanatory name. This will make it easier to find the
+test if it fails. `expect_equal()` is a function that tests the equality between its arguments. On one side we have
+`2 * 2`, and on the other, `4`. All our tests will look somewhat like this. There are many `expect_` functions, that
+allow you to test for many conditions. You can take a look at `{testthat}`’s 
+[function reference](https://testthat.r-lib.org/reference/index.html) for a complete list.
+
+So, what should we test? Well, here are several ideas:
+
+- Is the function returning an expected value for a given input?
+- Can the function deal with all kinds of input? What happens if an unexpected input is provided?
+- Is the function failing as expected for certain inputs?
+- Is the function dealing with corner cases as intended?
+
+Let’s try to write some tests for our `clean_unemp()` function now, and start to consider each of these questions.
+
+### Is the function returning an expected value for a given input?
+
+Let’s start by testing if our function actually returns data for the Grand-Duchy of Luxembourg if the user 
+provides a correct regular expression:
+
+```{r, eval = f}
+
+unemp_2013 <- readr::read_csv("https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/unemployment/unemp_2013.csv")
+
+test_that("selecting the grand duchy works", {
+
+  returned_value <- clean_unemp(
+                      unemp_2013,
+                      grepl("Grand-D.*", commune),
+                      active_population)
+
+expected_value <- tibble::as.tibble(
+list("year" = 2013, 
+"commune" = "Grand-Duche de Luxembourg", 
+"active_population" = 242694))
+
+  expect_equal(returned_value, expected_value)
+})
+
+```
+
+So what’s going on here? First, I need to get the data. I load the data outside of the test, so it’ll be available to every test afterwards
+as well. Then, inside the test, I need to define two more variables: the actual value returned by the function, and the value that we expect.
+I need to create this value by hand, and I do so using the `tibble::as.tibble()` function. This function takes a list as an argument and converts
+it to a tibble. I did not explain what tibbles are yet: tibbles are basically the same as a data frame, but have a nicer print method, and other
+niceties. In practice, you don’t need to think about tibbles too much, but here you need to be careful: `clean_unemp()` returns a tibble, because
+that’s what `{dplyr}` functions return by default. So if in your test you compare a tibble to a data.frame, your test will fail, because their classes
+are not equal. So I need to define my expected value as a tibble for the test to pass.
+
+You can now save the script, and press `CTRL-SHIFT-T` to run the test. The test should pass, if not, there’s either something wrong with your function,
+with the inputs you provided to it, or with the expected value. You can keep adding tests to this script, to cover every possible use case:
+
+```{r, eval = f}
+test_that("selecting cantons works", {
+
+  returned_value <- clean_unemp(
+                      unemp_2013,
+                      grepl("Canton", commune),
+                      active_population)
+
+expected_value <- readr::read_csv()
+
+  expect_equal(returned_value, expected_value)
+})
+
+```
+
+In the test above, I cannot write the expected value by hand. So what I did instead was run my function in a terminal, and save the output
+in a csv file. I inspected this output to make sure everything was correct. I can now keep this csv file and test my function against it. 
+Should my function fail when tested against it, I know that something is wrong. We can do the same for communes:
+
+```{r, eval = f}
+test_that("selecting communes works", {
+
+  returned_value <- clean_unemp(
+                      unemp_2013,
+                      !grepl("(Canton|Grand-D.*)", commune),
+                      active_population)
+
+expected_value <- readr::read_csv()
+
+  expect_equal(returned_value, expected_value)
+})
+
+```
+
+We could even add a test for a specific commune:
+
+```{r, eval = f}
+test_that("selecting one commune works", {
+
+  returned_value <- clean_unemp(
+                      unemp_2013,
+                      grepl("Kayl", commune),
+                      active_population)
+
+expected_value <- readr::read_csv()
+
+  expect_equal(returned_value, expected_value)
+})
+
+```
+
+So your final script would look something like this:
+
+```{r, eval = F}
+
+unemp_2013 <- readr::read_csv("https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/unemployment/unemp_2013.csv")
+
+test_that("selecting the grand duchy works", {
+
+  returned_value <- clean_unemp(
+                      unemp_2013,
+                      grepl("Grand-D.*", commune),
+                      active_population)
+
+expected_value <- tibble::as.tibble(
+list("year" = 2013, 
+"commune" = "Grand-Duche de Luxembourg", 
+"active_population" = 242694))
+
+  expect_equal(returned_value, expected_value)
+})
+
+test_that("selecting cantons work", {
+
+  returned_value <- clean_unemp(
+                      unemp_2013,
+                      grepl("Canton", commune),
+                      active_population)
+
+expected_value <- readr::read_csv()
+
+  expect_equal(returned_value, expected_value)
+})
+
+test_that("selecting communes works", {
+
+  returned_value <- clean_unemp(
+                      unemp_2013,
+                      !grepl("(Canton|Grand-D.*)", commune),
+                      active_population)
+
+expected_value <- readr::read_csv()
+
+  expect_equal(returned_value, expected_value)
+})
+
+test_that("selecting one commune works", {
+
+  returned_value <- clean_unemp(
+                      unemp_2013,
+                      grepl("Kayl", commune),
+                      active_population)
+
+expected_value <- tibble::as.tibble(
+list("year" = 2013, 
+"commune" = "Kayl", 
+"active_population" = 242694))
+
+  expect_equal(returned_value, expected_value)
+})
+```
+
+### Can the function deal with all kinds of input?
