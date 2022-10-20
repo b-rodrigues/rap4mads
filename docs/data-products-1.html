@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 8 Rmarkdown | Reproducible Analytical Pipelines - Master’s of Data Science</title>
-  <meta name="description" content="Chapter 8 Rmarkdown | Reproducible Analytical Pipelines - Master’s of Data Science" />
+  <title>Chapter 8 Data products | Reproducible Analytical Pipelines - Master’s of Data Science</title>
+  <meta name="description" content="Chapter 8 Data products | Reproducible Analytical Pipelines - Master’s of Data Science" />
   <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 8 Rmarkdown | Reproducible Analytical Pipelines - Master’s of Data Science" />
+  <meta property="og:title" content="Chapter 8 Data products | Reproducible Analytical Pipelines - Master’s of Data Science" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 8 Rmarkdown | Reproducible Analytical Pipelines - Master’s of Data Science" />
+  <meta name="twitter:title" content="Chapter 8 Data products | Reproducible Analytical Pipelines - Master’s of Data Science" />
   
   
   
@@ -23,15 +23,15 @@
 <meta name="author" content="Bruno Rodrigues" />
 
 
-<meta name="date" content="2022-10-18" />
+<meta name="date" content="2022-10-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="setting-up-an-actual-pipeline-with-targets.html"/>
-<link rel="next" href="going-beyond-static-outputs-with-shiny.html"/>
+<link rel="prev" href="setting-up-pipelines-with-targets.html"/>
+<link rel="next" href="what-else-should-you-learn.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -168,38 +168,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.6" data-path="git.html"><a href="git.html#collaborating"><i class="fa fa-check"></i><b>4.6</b> Collaborating</a></li>
 <li class="chapter" data-level="4.7" data-path="git.html"><a href="git.html#contributing-to-someone-elses-repository"><i class="fa fa-check"></i><b>4.7</b> Contributing to someone else’s repository</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html"><i class="fa fa-check"></i><b>5</b> A package for a project</a>
+<li class="chapter" data-level="5" data-path="package-development.html"><a href="package-development.html"><i class="fa fa-check"></i><b>5</b> Package development</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html#getting-started"><i class="fa fa-check"></i><b>5.1</b> Getting started</a></li>
-<li class="chapter" data-level="5.2" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html#adding-functions"><i class="fa fa-check"></i><b>5.2</b> Adding functions</a>
+<li class="chapter" data-level="5.1" data-path="package-development.html"><a href="package-development.html#introduction-3"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="package-development.html"><a href="package-development.html#getting-started"><i class="fa fa-check"></i><b>5.2</b> Getting started</a></li>
+<li class="chapter" data-level="5.3" data-path="package-development.html"><a href="package-development.html#adding-functions"><i class="fa fa-check"></i><b>5.3</b> Adding functions</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html#functions-dependencies"><i class="fa fa-check"></i><b>5.2.1</b> Functions dependencies</a></li>
+<li class="chapter" data-level="5.3.1" data-path="package-development.html"><a href="package-development.html#functions-dependencies"><i class="fa fa-check"></i><b>5.3.1</b> Functions dependencies</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html#documentation"><i class="fa fa-check"></i><b>5.3</b> Documentation</a>
+<li class="chapter" data-level="5.4" data-path="package-development.html"><a href="package-development.html#documentation"><i class="fa fa-check"></i><b>5.4</b> Documentation</a>
 <ul>
-<li class="chapter" data-level="5.3.1" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html#documenting-functions"><i class="fa fa-check"></i><b>5.3.1</b> Documenting functions</a></li>
-<li class="chapter" data-level="5.3.2" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html#documenting-the-package"><i class="fa fa-check"></i><b>5.3.2</b> Documenting the package</a></li>
+<li class="chapter" data-level="5.4.1" data-path="package-development.html"><a href="package-development.html#documenting-functions"><i class="fa fa-check"></i><b>5.4.1</b> Documenting functions</a></li>
+<li class="chapter" data-level="5.4.2" data-path="package-development.html"><a href="package-development.html#documenting-the-package"><i class="fa fa-check"></i><b>5.4.2</b> Documenting the package</a></li>
+<li class="chapter" data-level="5.4.3" data-path="package-development.html"><a href="package-development.html#installing-your-package"><i class="fa fa-check"></i><b>5.4.3</b> Installing your package</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="a-package-for-a-project.html"><a href="a-package-for-a-project.html#testing-your-package"><i class="fa fa-check"></i><b>5.4</b> Testing your package</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="unit-tests.html"><a href="unit-tests.html"><i class="fa fa-check"></i><b>6</b> Unit tests</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="unit-tests.html"><a href="unit-tests.html#introduction-3"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
-<li class="chapter" data-level="6.2" data-path="unit-tests.html"><a href="unit-tests.html#unit-testing-with-testthat"><i class="fa fa-check"></i><b>6.2</b> Unit testing with <code>{testthat}</code></a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="setting-up-an-actual-pipeline-with-targets.html"><a href="setting-up-an-actual-pipeline-with-targets.html"><i class="fa fa-check"></i><b>7</b> Setting up an actual pipeline with <code>{targets}</code></a>
+<li class="chapter" data-level="6.1" data-path="unit-tests.html"><a href="unit-tests.html#introduction-4"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="unit-tests.html"><a href="unit-tests.html#testing-your-package"><i class="fa fa-check"></i><b>6.2</b> Testing your package</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="setting-up-an-actual-pipeline-with-targets.html"><a href="setting-up-an-actual-pipeline-with-targets.html#a-first-toy-example"><i class="fa fa-check"></i><b>7.1</b> A first toy example</a></li>
-<li class="chapter" data-level="7.2" data-path="setting-up-an-actual-pipeline-with-targets.html"><a href="setting-up-an-actual-pipeline-with-targets.html#using-your-package-in-a-targets-pipeline"><i class="fa fa-check"></i><b>7.2</b> Using your package in a <code>{targets}</code> pipeline</a></li>
+<li class="chapter" data-level="6.2.1" data-path="unit-tests.html"><a href="unit-tests.html#is-the-function-returning-an-expected-value-for-a-given-input"><i class="fa fa-check"></i><b>6.2.1</b> Is the function returning an expected value for a given input?</a></li>
+<li class="chapter" data-level="6.2.2" data-path="unit-tests.html"><a href="unit-tests.html#can-the-function-deal-with-all-kinds-of-input"><i class="fa fa-check"></i><b>6.2.2</b> Can the function deal with all kinds of input?</a></li>
+<li class="chapter" data-level="6.2.3" data-path="unit-tests.html"><a href="unit-tests.html#back-to-developing-again"><i class="fa fa-check"></i><b>6.2.3</b> Back to developing again</a></li>
+<li class="chapter" data-level="6.2.4" data-path="unit-tests.html"><a href="unit-tests.html#and-back-to-testing"><i class="fa fa-check"></i><b>6.2.4</b> And back to testing</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>8</b> Rmarkdown</a>
+</ul></li>
+<li class="chapter" data-level="7" data-path="setting-up-pipelines-with-targets.html"><a href="setting-up-pipelines-with-targets.html"><i class="fa fa-check"></i><b>7</b> Setting up pipelines with <code>{targets}</code></a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="rmarkdown.html"><a href="rmarkdown.html#html-output"><i class="fa fa-check"></i><b>8.1</b> HTML output</a></li>
-<li class="chapter" data-level="8.2" data-path="rmarkdown.html"><a href="rmarkdown.html#word-and-pptx-outputs"><i class="fa fa-check"></i><b>8.2</b> Word and PPTX outputs</a></li>
-<li class="chapter" data-level="8.3" data-path="rmarkdown.html"><a href="rmarkdown.html#flexdashboard-no-shiny"><i class="fa fa-check"></i><b>8.3</b> Flexdashboard (no shiny)</a></li>
+<li class="chapter" data-level="7.1" data-path="setting-up-pipelines-with-targets.html"><a href="setting-up-pipelines-with-targets.html#introduction-5"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.2" data-path="setting-up-pipelines-with-targets.html"><a href="setting-up-pipelines-with-targets.html#build-automation-with-r"><i class="fa fa-check"></i><b>7.2</b> Build automation with R</a></li>
+<li class="chapter" data-level="7.3" data-path="setting-up-pipelines-with-targets.html"><a href="setting-up-pipelines-with-targets.html#making-this-pipeline-almost-reproducible"><i class="fa fa-check"></i><b>7.3</b> Making this pipeline (almost) reproducible</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="setting-up-pipelines-with-targets.html"><a href="setting-up-pipelines-with-targets.html#one-projet-one-library"><i class="fa fa-check"></i><b>7.3.1</b> One projet, one library</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="going-beyond-static-outputs-with-shiny.html"><a href="going-beyond-static-outputs-with-shiny.html"><i class="fa fa-check"></i><b>9</b> Going beyond static outputs with Shiny</a></li>
-<li class="chapter" data-level="10" data-path="what-else-should-you-learn.html"><a href="what-else-should-you-learn.html"><i class="fa fa-check"></i><b>10</b> What else should you learn?</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="data-products-1.html"><a href="data-products-1.html"><i class="fa fa-check"></i><b>8</b> Data products</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="data-products-1.html"><a href="data-products-1.html#static-documents"><i class="fa fa-check"></i><b>8.1</b> Static Documents</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="data-products-1.html"><a href="data-products-1.html#word-pdf-and-pptx-documents"><i class="fa fa-check"></i><b>8.1.1</b> Word, PDF and PPTX Documents</a></li>
+<li class="chapter" data-level="8.1.2" data-path="data-products-1.html"><a href="data-products-1.html#html-documents"><i class="fa fa-check"></i><b>8.1.2</b> HTML documents</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="data-products-1.html"><a href="data-products-1.html#using-your-package-in-a-targets-pipeline"><i class="fa fa-check"></i><b>8.2</b> Using your package in a <code>{targets}</code> pipeline</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="what-else-should-you-learn.html"><a href="what-else-should-you-learn.html"><i class="fa fa-check"></i><b>9</b> What else should you learn?</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/b-rodrigues/rap4mads" target="blank">Published with bookdown</a></li>
 </ul>
@@ -219,19 +232,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="rmarkdown" class="section level1 hasAnchor" number="8">
-<h1><span class="header-section-number">Chapter 8</span> Rmarkdown<a href="rmarkdown.html#rmarkdown" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="html-output" class="section level2 hasAnchor" number="8.1">
-<h2><span class="header-section-number">8.1</span> HTML output<a href="rmarkdown.html#html-output" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li>slides as well</li>
-</ul>
+<div id="data-products-1" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Chapter 8</span> Data products<a href="data-products-1.html#data-products-1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>What you’ll have learned by the end of the chapter:</p>
+<div id="static-documents" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Static Documents<a href="data-products-1.html#static-documents" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="word-pdf-and-pptx-documents" class="section level3 hasAnchor" number="8.1.1">
+<h3><span class="header-section-number">8.1.1</span> Word, PDF and PPTX Documents<a href="data-products-1.html#word-pdf-and-pptx-documents" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 </div>
-<div id="word-and-pptx-outputs" class="section level2 hasAnchor" number="8.2">
-<h2><span class="header-section-number">8.2</span> Word and PPTX outputs<a href="rmarkdown.html#word-and-pptx-outputs" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="html-documents" class="section level3 hasAnchor" number="8.1.2">
+<h3><span class="header-section-number">8.1.2</span> HTML documents<a href="data-products-1.html#html-documents" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 </div>
-<div id="flexdashboard-no-shiny" class="section level2 hasAnchor" number="8.3">
-<h2><span class="header-section-number">8.3</span> Flexdashboard (no shiny)<a href="rmarkdown.html#flexdashboard-no-shiny" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="using-your-package-in-a-targets-pipeline" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Using your package in a <code>{targets}</code> pipeline<a href="data-products-1.html#using-your-package-in-a-targets-pipeline" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 
 </div>
 </div>
@@ -240,8 +254,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="setting-up-an-actual-pipeline-with-targets.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="going-beyond-static-outputs-with-shiny.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="setting-up-pipelines-with-targets.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="what-else-should-you-learn.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -272,7 +286,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/b-rodrigues/rap4mads/edit/master/08-literate-programming.Rmd",
+"link": "https://github.com/b-rodrigues/rap4mads/edit/master/08-products.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -280,7 +294,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/b-rodrigues/rap4mads/blob/master/08-literate-programming.Rmd",
+"link": "https://github.com/b-rodrigues/rap4mads/blob/master/08-products.Rmd",
 "text": null
 },
 "download": null,
@@ -295,6 +309,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

@@ -1,0 +1,11 @@
+# Data products
+
+What you’ll have learned by the end of the chapter:
+
+## Static Documents
+
+### Word, PDF and PPTX Documents
+
+### HTML documents
+
+## Using your package in a `{targets}` pipeline

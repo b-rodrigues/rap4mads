@@ -1,5 +1,11 @@
 # Git
 
+<div style="text-align:center;">
+```{r, echo = F}
+knitr::include_graphics("img/git_header.png")
+```
+</div>
+
 What you'll have learned by the end of the chapter: basics of working alone, and collaboration, using Git.
 
 ## Introduction

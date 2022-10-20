@@ -96,6 +96,14 @@ It's not just about what the packages provide: installing R and its packages and
 frustrating, which is not the case with Python 
 (Python 2 vs Python 3, `pip` vs `conda`, `pyenv` vs `venv`..., dependency hell is a real place full of snakes)
 
+<div style="text-align:center;">
+```{r, echo = F}
+knitr::include_graphics("img/dependency_hell.png")
+```
+</div>
+
+
+
 Does that mean R is perfect? No, but it sucks less than the alternatives (again, in my absolutely objective opinion). 
 
 ## Pre-requisites

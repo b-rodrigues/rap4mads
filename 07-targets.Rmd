@@ -1,5 +1,384 @@
-# Setting up an actual pipeline with `{targets}`
+# Setting up pipelines with `{targets}`
 
-## A first toy example
+<div style="text-align:center;">
+```{r, echo = F}
+knitr::include_graphics("img/pipeline.png")
+```
+</div>
 
-## Using your package in a `{targets}` pipeline
+What you’ll have learned by the end of the chapter: how to set up an (almost) reproducible pipeline.
+
+## Introduction
+
+`{targets}` is a build automation tool for the R programming language. *Build*, in the context of
+this course means the creation of a data product. As mentioned in the introduction, this data
+product can be anything from predictions from a model to interactive web applications.
+*Automation* means that this build automation tool will take the burden off our shoulders when
+it'll be time to run the build pipeline. Using such a tool, programmers don't need to think 
+about which parts of the code to rerun if they introduce a change somewhere. Only the parts
+affected by the change will run. These tools also run the pipeline in parallel, because they
+identify independent pats of the pipeline which are then run simultaneously. Build automation
+tools have many benefits, and because they work in a certain way, they also force you to work
+in a more structured way.
+
+## Build automation with R
+
+As an introduction, there really is not a better source than the `{targets}` manual itself, and in
+particular the [walkthrough section](https://books.ropensci.org/targets/walkthrough.html). After
+reading this section, we have the basic knowledge to build our first pipeline. The goal of this
+pipeline will be to simply create a plot using the unemployment data we've been working on. Let's
+create a new project in RStudio, but make sure that you check the following boxes:
+
+```{r, echo = F}
+knitr::include_graphics("img/pipeline_1.png")
+```
+
+You should see the following message in the R console:
+
+```
+* Initializing project ...
+* Discovering package dependencies ... Done!
+* Copying packages into the cache ... Done!
+The following package(s) will be updated in the lockfile:
+
+# CRAN ===============================
+- renv   [* -> 0.16.0]
+
+The version of R recorded in the lockfile will be updated:
+- R      [*] -> [4.2.1]
+
+* Lockfile written to '~/six_to/first_pipeline/renv.lock'.
+```
+
+This is something that we have not discussed yet, so before we move on, let's have a little aside
+on what `{renv}` is.
+
+## An aside on `{renv}` 
+
+Any of your projects, whether they're simple scripts to analyze some data or more complex
+reproducible analytical pipelines depend on the packages that you use for the analysis. And 
+these packages evolve and change. It can very well happen that a function that you use from
+package `{xyz}` version 1 won't be available anymore in version 2. Or maybe it's still available
+but it works slightly different. It can be something as trivial as the arguments of the function
+have been renamed. The consequence is that when you'll try to rerun your code, it won't work at all,
+or worse, it'll work, but produce a result that is not comparable to old results anymore,
+because the function got changed and the underlying algorithm isn't the same anymore.
+So we need a certain stability, and ideally keep reusing the same packages for the same project.
+If you want to update a project to use new packages version, this can of course also be done,
+but it has to be conscious choice and you will have to make sure that the updated pipeline 
+(using the updated packages) is able to reproduce old results before putting it into production.
+
+`{renv}` creates separate package libraries, one per project. The idea is quite simple; start
+your project with `{renv}` enabled (if you're using RStudio, you can check the box 
+"Use renv with this project" when starting a new project, if you're not using RStudio, you can
+run `renv::init()`). This will create a file in the root of your project called `renv.lock`.
+You can open this file in a text editor, and you should see that the R version you're 
+currently using is recorded (and the version of `{renv}` itself). It should look something 
+like this:
+
+```
+{
+  "R": {
+    "Version": "4.2.1",
+    "Repositories": [
+      {
+        "Name": "CRAN",
+        "URL": "http://cran.rstudio.com"
+      }
+    ]
+  },
+  "Packages": {
+    "renv": {
+      "Package": "renv",
+      "Version": "0.16.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "c9e8442ab69bc21c9697ecf856c1e6c7",
+      "Requirements": []
+    }
+  }
+}
+```
+
+You can then work as usual.
+It doesn't matter if you're simply writing a script with an analysis, or doing something more
+complex like a RAP. You will likely need to re-install packages though; remember, `{renv}`
+sets up a library per project! 
+
+Once you're done and satisfied, run `renv::snapshot()`. As you might have guessed from the name
+this will take a snapshot of the project and write the current status to the `renv.lock` file:
+
+```
+> renv::snapshot()
+The following package(s) will be updated in the lockfile:
+
+# CRAN ===============================
+- R6           [* -> 2.5.1]
+- cli          [* -> 3.4.1]
+- dplyr        [* -> 1.0.10]
+- fansi        [* -> 1.0.3]
+- generics     [* -> 0.1.3]
+- glue         [* -> 1.6.2]
+- lifecycle    [* -> 1.0.3]
+- magrittr     [* -> 2.0.3]
+- pillar       [* -> 1.8.1]
+- pkgconfig    [* -> 2.0.3]
+- rlang        [* -> 1.0.6]
+- tibble       [* -> 3.1.8]
+- tidyselect   [* -> 1.2.0]
+- utf8         [* -> 1.2.2]
+- vctrs        [* -> 0.4.2]
+- withr        [* -> 2.5.0]
+
+Do you want to proceed? [y/N]: 
+```
+
+In it, you will see that the libraries needed to run the project are also recorded. The
+`renv.lock` will now look like this:
+
+```
+{
+  "R": {
+    "Version": "4.2.1",
+    "Repositories": [
+      {
+        "Name": "CRAN",
+        "URL": "http://cran.rstudio.com"
+      }
+    ]
+  },
+  "Packages": {
+    "R6": {
+      "Package": "R6",
+      "Version": "2.5.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "470851b6d5d0ac559e9d01bb352b4021",
+      "Requirements": []
+    },
+    "cli": {
+      "Package": "cli",
+      "Version": "3.4.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "0d297d01734d2bcea40197bd4971a764",
+      "Requirements": []
+    },
+    "dplyr": {
+      "Package": "dplyr",
+      "Version": "1.0.10",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "539412282059f7f0c07295723d23f987",
+      "Requirements": [
+        "R6",
+        "generics",
+        "glue",
+        "lifecycle",
+        "magrittr",
+        "pillar",
+        "rlang",
+        "tibble",
+        "tidyselect",
+        "vctrs"
+      ]
+    },
+    "fansi": {
+      "Package": "fansi",
+      "Version": "1.0.3",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "83a8afdbe71839506baa9f90eebad7ec",
+      "Requirements": []
+    },
+    "generics": {
+      "Package": "generics",
+      "Version": "0.1.3",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "15e9634c0fcd294799e9b2e929ed1b86",
+      "Requirements": []
+    },
+    "glue": {
+      "Package": "glue",
+      "Version": "1.6.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "4f2596dfb05dac67b9dc558e5c6fba2e",
+      "Requirements": []
+    },
+    "lifecycle": {
+      "Package": "lifecycle",
+      "Version": "1.0.3",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "001cecbeac1cff9301bdc3775ee46a86",
+      "Requirements": [
+        "cli",
+        "glue",
+        "rlang"
+      ]
+    },
+    "magrittr": {
+      "Package": "magrittr",
+      "Version": "2.0.3",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "7ce2733a9826b3aeb1775d56fd305472",
+      "Requirements": []
+    },
+    "pillar": {
+      "Package": "pillar",
+      "Version": "1.8.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "f2316df30902c81729ae9de95ad5a608",
+      "Requirements": [
+        "cli",
+        "fansi",
+        "glue",
+        "lifecycle",
+        "rlang",
+        "utf8",
+        "vctrs"
+      ]
+    },
+    "pkgconfig": {
+      "Package": "pkgconfig",
+      "Version": "2.0.3",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "01f28d4278f15c76cddbea05899c5d6f",
+      "Requirements": []
+    },
+    "renv": {
+      "Package": "renv",
+      "Version": "0.16.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "c9e8442ab69bc21c9697ecf856c1e6c7",
+      "Requirements": []
+    },
+    "rlang": {
+      "Package": "rlang",
+      "Version": "1.0.6",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "4ed1f8336c8d52c3e750adcdc57228a7",
+      "Requirements": []
+    },
+    "tibble": {
+      "Package": "tibble",
+      "Version": "3.1.8",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "56b6934ef0f8c68225949a8672fe1a8f",
+      "Requirements": [
+        "fansi",
+        "lifecycle",
+        "magrittr",
+        "pillar",
+        "pkgconfig",
+        "rlang",
+        "vctrs"
+      ]
+    },
+    "tidyselect": {
+      "Package": "tidyselect",
+      "Version": "1.2.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "79540e5fcd9e0435af547d885f184fd5",
+      "Requirements": [
+        "cli",
+        "glue",
+        "lifecycle",
+        "rlang",
+        "vctrs",
+        "withr"
+      ]
+    },
+    "utf8": {
+      "Package": "utf8",
+      "Version": "1.2.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "c9c462b759a5cc844ae25b5942654d13",
+      "Requirements": []
+    },
+    "vctrs": {
+      "Package": "vctrs",
+      "Version": "0.4.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "0e3dfc070b2a8f0478fcdf86fb33355d",
+      "Requirements": [
+        "cli",
+        "glue",
+        "rlang"
+      ]
+    },
+    "withr": {
+      "Package": "withr",
+      "Version": "2.5.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "c0e49a9760983e81e55cdd9be92e7182",
+      "Requirements": []
+    }
+  }
+}
+
+```
+
+On your end, you're done. You can push this project to github.com for instance, and someone
+else who wishes to run this project will have to simply:
+
+- Clone the repository;
+- Run `renv::restore()` to install all the required libraries.
+
+And that's it! This person, who might be future you, will now be able to re-run the project
+with the required libraries and the right versions.
+
+In a coming section we are actually going to do just that, but for now, let's go back to 
+`{targets}`.
+
+## Our actual first pipeline
+
+## Running someone else's pipeline
+
+```
+> renv::restore()
+
+Welcome to renv!
+
+It looks like this is your first time using renv. This is a one-time message,
+briefly describing some of renv's functionality.
+
+renv maintains a local cache of data on the filesystem, located at:
+
+  - "~/.cache/R/renv"
+
+This path can be customized: please see the documentation in `?renv::paths`.
+
+renv will also write to files within the active project folder, including:
+
+  - A folder 'renv' in the project directory, and
+  - A lockfile called 'renv.lock' in the project directory.
+
+In particular, projects using renv will normally use a private, per-project
+R library, in which new packages will be installed. This project library is
+isolated from other R libraries on your system.
+
+In addition, renv will update files within your project directory, including:
+
+  - .gitignore
+  - .Rbuildignore
+  - .Rprofile
+
+Please read the introduction vignette with `vignette("renv")` for more information.
+You can browse the package documentation online at https://rstudio.github.io/renv/.
+
+```
+
+## Why we need more

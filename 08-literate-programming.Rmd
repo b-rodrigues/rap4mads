@@ -1,9 +1,0 @@
-# Rmarkdown
-
-## HTML output
-
-- slides as well
-
-## Word and PPTX outputs
-
-## Flexdashboard (no shiny)

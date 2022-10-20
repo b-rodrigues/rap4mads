@@ -1,5 +1,11 @@
 # Package development
 
+<div style="text-align:center;">
+```{r, echo = F}
+knitr::include_graphics("img/painting_of_a_package.png")
+```
+</div>
+
 What you’ll have learned by the end of the chapter: building and documenting your own package.
 
 ## Introduction
@@ -315,7 +321,7 @@ them with a special kind of comments that start with `#'`. Let's try on our `cle
 function:
 
 ```{r, eval = F}
-#' Cleans unemployment data for Luxembourg
+#' Easily filter unemployment data for Luxembourg
 #' @param unemp_data A data frame containing unemployment data for Luxembourg.
 #' @param level A predicate condition indicating the regional level of interest. See details for more.
 #' @param col_of_interest A column of the `unemp_data` data frame that you wish to select.
@@ -488,7 +494,7 @@ vignette(package = "dplyr")
 
 to see the list of available vignettes for the `{dplyr}` package, and then write:
 
-```{r}
+```{r, eval = F}
 vignette("programming", "dplyr")
 ```
 
