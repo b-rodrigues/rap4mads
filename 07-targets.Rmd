@@ -345,7 +345,113 @@ In a coming section we are actually going to do just that, but for now, let's go
 
 ## Our actual first pipeline
 
+Let’s start by building our very first pipeline. Our goal is the following: start with the unemployment
+data for Luxembourg, and build a series of graphs. We want one graph for Luxembourg, one graph for 
+cantons, and one graph for selected communes. This series of graphs will be our data product; let’s not
+focus too much on the data product itself, the focus here is on building the pipeline. In the next
+chapter we are going to build more interesting data products.
+
+I’ve been mentioning pipelines for some time now, but what is it actually? Nothing more than a script. 
+Let’s go back to the project we started at the beginning of the chapter. We can now create a `_targets.R`
+file on the root of the project. Insert the following lines in the script, we will then go through each
+of them:
+
+```{r, eval = F}
+library(targets)
+
+tar_option_set(packages = c("myPackage", "dplyr", "ggplot2"))
+
+list(
+  tar_target(unemp_data, get_data())
+)
+```
+
+The first line simply loads the `{targets}` package, the second line sets the packages required for the pipeline
+to actually run. This is equivalent to having a series of calls to `library()` in a normal script.
+Then comes a list. Inside this list is where we will define the targets, or the (intemediary) outputs of
+the pipeline. We defined `unemp_data` as being the output of the function `get_data()`... but where does this
+function come from? Well, we need to create another script called `functions.R` where we will define every
+function the we need for this pipeline. Let’s create an empty script and put the following lines in it:
+
+```{r, eval = F}
+get_data <- function(){
+  myPackage::unemp
+}
+```
+
+This function is as simple as it gets; it doesn’t take any arguments and returns the data that we defined in our package.
+We can now go back to `_targets.R` and first of all, add a line to source this file, and then define new targets:
+
+```{r, eval = F}
+library(targets)
+source("functions.R")
+
+tar_option_set(packages = c("myPackage", "dplyr", "ggplot2"))
+
+list(
+  tar_target(unemp_data, get_data())
+)
+```
+
+You can now run the pipeline using `tar_make()`. This will not create any output, but this way you can at least test that
+it’s running. Also, remember `tar_load()` and `tar_read()` from the walkthrough? First try to run `tar_read(unemp_data)`, 
+this should print the data in your console. You can then run `tar_load(unemp_data)`, which this time loads the data in your 
+global environment. You can now access it interactively. This is quite useful if you need to inspect intermediary outputs.
+
+Let’s now add intermediary outputs; we need data for Luxebmourg, data for the cantons and data for some communes:
+
+```{r, eval = F}
+library(targets)
+source("functions.R")
+
+tar_option_set(packages = c("myPackage", "dplyr", "ggplot2"))
+
+list(
+  tar_target(
+    unemp_data, 
+    get_data()
+    ),
+  
+  tar_target(
+    lux_data, 
+    clean_unemp(unemp_data,
+                place_name_of_interest = "Luxembourg",
+                level_of_interest = "Country",
+                active_population)
+    ),
+    
+  tar_target(
+    lux_data, 
+    clean_unemp(unemp_data,
+                level_of_interest = "Cantons",
+                active_population)
+    ),
+    
+  tar_target(
+    lux_data, 
+    clean_unemp(unemp_data,
+                place_name_of_interest = c("Luxembourg", "Dippach", "Wiltz", "Esch/Alzette", "Mersch"),
+                level_of_interest = "Cantons",
+                active_population)
+    ),
+)
+```
+
+At this stage it might be interesting to take a look at the network. Call `tar_visnetwork()` and take a look at 
+the pipeline:
+
+
+
 ## Running someone else's pipeline
+
+Let’s now suppose that we want to run someone else’s pipeline, and let’s assume that that person
+did a good job and used `{renv}` to lock the dependencies of the pipeline, and also made the pipeline
+available on github.com. 
+
+As an example, we are going to use [this repository](https://github.com/wlandau/targets-minimal) from the
+author of `{targets}`. To start clone this repository, and open an R session in the root of the folder.
+
+Then call `renv::restore()`. You should see this:
 
 ```
 > renv::restore()
@@ -378,7 +484,77 @@ In addition, renv will update files within your project directory, including:
 
 Please read the introduction vignette with `vignette("renv")` for more information.
 You can browse the package documentation online at https://rstudio.github.io/renv/.
+Do you want to proceed? [y/N]: 
+```
+
+Press the `y` key on your keyboard to continue. The packages to run this pipeline will get installed
+in a new library, separate from the default library you’ve been using:
+
+```
+* "~/.cache/R/renv" has been created.
+
+This project has not yet been activated.
+Activating this project will ensure the project library is used during restore.
+Please see `?renv::activate` for more details.
+
+Would you like to activate this project before restore? [Y/n]: 
 
 ```
 
+Once again, answer `y`. A list of packages to install will appear. For the last time press `y` to install 
+all the packages. As you can see from the screenshot below, because the packages used for this pipeline
+are not old(ish), they get either download from MRAN or from CRAN’s archive (MRAN is the Microsoft
+R Archive Network, a mirror of CRAN maintained by Microsoft, which gets snapshotted every day. It is thus
+possible to download old packages from there):
+
+Before running the pipeline, load the `{tidyr}` package and then call `sessionInfo()`:
+
+```{r, eval = F}
+library(tidyr)
+
+sessionInfo()
+```
+
+And take note of the `{tidyr}` version:
+
+Now, open a completely fresh R session, and do the same. You should see that `{tidyr}`’s version is 
+different:
+
+This is because the version of `{tidyr}` needed for the pipeline is older, and gets loaded correctly 
+for the pipeline.
+
+## Running any code with older packages
+
+What do you do if you need to run code with older packages, but the original developer did not use `{renv}`?
+In such cases it is still possible to run that code with older packages. What you would need to know however 
+is the rough date where this code was written. Let’s say that you want to run an old script from 2019, and
+you want to make sure that the results you will obtain are as close, if not absolutely equal, to the results
+you would have obtained then. Let’s further assume that the script was last modified on October 31st 2019.
+
+You can rerun this script with a library that looks like one from that same date using a package made
+by Microsoft, called `{checkpoint}`. This package helps install packages from their repository, MRAN 
+(which was already mentioned before), and is quite easy to use. Simply add the following line at the top 
+of the script:
+
+```{r, eval = F}
+checkpoint("2019-10-31")
+```
+
+You can read more about checkpoint [here](https://cran.microsoft.com/web/packages/checkpoint/vignettes/checkpoint.html).
+
 ## Why we need more
+
+While `{renv}` is a huge step towards the right direction, there are at least four problems with it:
+
+- `{renv}` doesn’t do anything about R itself: a pipeline made to run on R version 3 (for example) could still produce different results when run on R 4, even if the packages are the same. In practice, however, R is quite stable, and breaking changes between versions are very rare; most code is retrocompatible for many versions.
+- `{renv}` doesn’t do anything about the operating system the pipeline is running on. Results can even be different between [different versions of the same operating system](https://www.frontiersin.org/articles/10.3389/fninf.2015.00012/full), but in practice, that should only affect you in very specific businesses were very high precision floating point arithmetic is required.
+- `{renv}` can sometimes fail to install packages. I tried running William Landau’s demo pipeline on two computers, one running OpenSuse Linux and one running Windows 10. It ran successfully on Linux, but not on Windows.
+- `{renv}` relies on MRAN and CRAN. While it is unlikely that CRAN will ever be offline, as there are many, many mirrors around the world, [and it could be argued that the longer CRAN is online, the likelier it is it’ll stay online](https://en.wikipedia.org/wiki/Lindy_effect), the same cannot (yet) be said from MRAN. However, `{renv}` could be made to rely entirely on CRAN, so this last point might not be an issue. 
+
+We are going to solve these issues in chapter 9, but for now, let’s be grateful for `{renv}`, `{targets}` and CRAN (and MRAN), for they allow us to quite easily 
+build (almost) reproducible pipelines quite easily! In the next chapter, we will continue building pipelines and build our very first data products.
+
+## Further reading
+
+- The `{targets}` [manual](https://books.ropensci.org/targets/)
+- The `{renv}` [website](https://rstudio.github.io/renv/articles/renv.html)
