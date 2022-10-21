@@ -102,9 +102,11 @@ knitr::include_graphics("img/dependency_hell.png")
 ```
 </div>
 
-
-
-Does that mean R is perfect? No, but it sucks less than the alternatives (again, in my absolutely objective opinion). 
+That doesn’t mean that R does not have any issues. Quite the contrary, R sometimes behaves in seemingly truly
+bizarre ways (as an example, try running `nchar("123456789")` and then `nchar(123456789)` and try to make sense
+of it). To know more about such bizarre behavour, I recommend you read *The R Inferno* (linked at the end 
+of this chapter). So, yes, R is far from perfect, but it sucks less than the alternatives 
+(again, in my absolutely objective opinion). 
 
 ## Pre-requisites
 
@@ -122,3 +124,22 @@ Google and Stackoverflow will be your only friends in these moments.
 The beginning of this course will likely be the toughest part, especially if you're not familiar with R.
 I will need to bring you up to speed in 6 hours. Only after can we actually start talking about 
 RAPs. What's important is to never give up and work together with me.
+
+## Jargon
+
+There’s some jargon that is helpful to know when working with R. Here’s a non-exhaustive list to get you started:
+
+- CRAN: the Comprehensive R Archive Network. This is a curated online repository of packages and R installers. When you type `install.packages("package_name")` in an R console, the package gets downloaded from there;
+- Library: the collection of R packages installed on your machine;
+- R console: the program where the R interpreter runs;
+- Posit/RStudio: Posit (named RStudio in the past) are the makers of the RStudio IDE and of the *tidyverse* collection of packages;
+- tidyverse: a collection of packages created by Posit that offer a common language and syntax to perform any task required for data science — from reading in data, to cleaning data, up to machine learning and visualisation;
+- base R: refers to a vanilla installation (and vanilla capabilities) of R. Often used to contrast a *tidyverse* specific approach to a problem (for example, using base R’s `lapply()` in constrast to the *tidyverse* `purrr::map()`).
+- `package::function()`: Functions can be accessed in several ways in R, either by loading an entire package at the start of a script with `library(dplyr)` or by using `dplyr::select()`. 
+
+## Further reading
+
+[An Introduction to R (from the R team themselves)](https://cran.r-project.org/doc/manuals/r-release/R-intro.html)
+[What is CRAN?](https://cran.r-project.org/doc/FAQ/R-FAQ.html#What-is-CRAN_003f)
+[The R Inferno](https://www.burns-stat.com/pages/Tutor/R_inferno.pdf)
+[Reproducible Analytical Pipelines (RAP)](https://analysisfunction.civilservice.gov.uk/support/reproducible-analytical-pipelines/)
