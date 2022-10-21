@@ -440,7 +440,192 @@ list(
 At this stage it might be interesting to take a look at the network. Call `tar_visnetwork()` and take a look at 
 the pipeline:
 
+All that’s missing now is to write a function to create plots. Since we didn’t learn how to make them using `{ggplot2}`,
+simply copy the code below into the `functions.R` script:
 
+```{r, eval = F}
+make_plot <- function(data){
+  ggplot(data) + 
+    geom_line(aes(y = active_population, x = year, group = place_name, colour = place_name)) + 
+    theme(legend.position = "bottom",
+          legend.title = element_blank())
+}
+```
+
+We can now use this function to define new targets in our `_targets.R` file:
+
+```{r, eval = F}
+library(targets)
+source("functions.R")
+
+tar_option_set(packages = c("myPackage", "dplyr", "ggplot2"))
+
+list(
+  tar_target(
+    unemp_data, 
+    get_data()
+    ),
+  
+  tar_target(
+    lux_data, 
+    clean_unemp(unemp_data,
+                place_name_of_interest = "Luxembourg",
+                level_of_interest = "Country",
+                active_population)
+    ),
+    
+  tar_target(
+    canton_data, 
+    clean_unemp(unemp_data,
+                level_of_interest = "Cantons",
+                active_population)
+    ),
+    
+  tar_target(
+    commune_data, 
+    clean_unemp(unemp_data,
+                place_name_of_interest = c("Luxembourg", "Dippach", "Wiltz", "Esch/Alzette", "Mersch"),
+                level_of_interest = "Cantons",
+                active_population)
+    ),
+    
+  tar_target(
+    luxembourg_plot,
+    make_plot(luxembourg_data)
+  ),
+      
+  tar_target(
+    canton_plot,
+    make_plot(canton_data)
+  ),
+      
+  tar_target(
+    commune_plot,
+    make_plot(commune_data)
+  )
+  
+)
+```
+
+Let’s now take a look at the pipeline again with `tar_visnetwork()`, and then run the pipeline using `tar_make()`. If everything
+went well, we can now take a look at our plots using `tar_read(luxembourg_plot)`.
+
+Finally, let’s write these plots to disk. The way to save a `ggplot` to disk is to use the `ggsave()` function. But targets have
+to return something, so [side-effects](https://books.ropensci.org/targets/targets.html#side-effects) like writing to disk
+must be handled in a specific way. What we’re going to do is write a wrapper around `ggsave()` that will take the path where
+the plot should be save to disk, save the plot to the specified path, and then return the plot. This way, we have a function
+that does not only have a side-effect. Let’s go back to `functions.R` and add the following lines:
+
+```{r, eval = F}
+save_plot <- function(save_path, plot){
+  ggsave(save_path, plot)
+  save_path
+}
+```
+
+We can now define these additional targets:
+
+
+```{r, eval = F}
+library(targets)
+source("functions.R")
+
+tar_option_set(packages = c("myPackage", "dplyr", "ggplot2"))
+
+list(
+  tar_target(
+    unemp_data, 
+    get_data()
+    ),
+  
+  tar_target(
+    lux_data, 
+    clean_unemp(unemp_data,
+                place_name_of_interest = "Luxembourg",
+                level_of_interest = "Country",
+                active_population)
+    ),
+    
+  tar_target(
+    canton_data, 
+    clean_unemp(unemp_data,
+                level_of_interest = "Cantons",
+                active_population)
+    ),
+    
+  tar_target(
+    commune_data, 
+    clean_unemp(unemp_data,
+                place_name_of_interest = c("Luxembourg", "Dippach", "Wiltz", "Esch/Alzette", "Mersch"),
+                level_of_interest = "Cantons",
+                active_population)
+    ),
+    
+  tar_target(
+    luxembourg_plot,
+    make_plot(luxembourg_data)
+  ),
+      
+ tar_target(
+    luxembourg_saved_plot,
+    save_plot("fig/luxembourg.png", luxembourg_plot),
+    format = "file"
+  ),
+      
+  tar_target(
+    canton_plot,
+    make_plot(canton_data)
+  ),
+  
+  tar_target(
+    canton_saved_plot,
+    save_plot("fig/canton.png", canton_plot),
+    format = "file"
+  ),
+  
+  tar_target(
+    commune_plot,
+    make_plot(commune_data)
+  ),
+  
+  tar_target(
+    commune_saved_plot,
+    save_plot("fig/commune.png", commune_plot),
+    format = "file"
+  )
+  
+)
+```
+
+Because we are saving a file to disk, we must add the `format = "file"` argument to the target definiton. This way, `{targets}` watches
+this files for changes as well, and reruns the pipeline if a change is detected. Run the pipeline now with `tar_make()` and watch the plots
+appear in the `fig` folder (which you may have to create before running the pipeline).
+
+Let’s now change `make_plot()` function like this:
+
+```{r, eval = F}
+make_plot <- function(data){
+  ggplot(data) + 
+    geom_line(aes(y = active_population, x = year, group = place_name, colour = place_name)) + 
+    theme(legend.position = "bottom",
+          legend.title = element_blank()) +
+    labs(title = paste0("Unemployement for ", paste(data$place_name, collapse = ", "))
+}
+```
+
+If you know save the script, and check the pipeline with `tar_visnetwork()`, you will see that some targets are not out of date:
+
+```
+
+```
+
+Every targets that gets made by `make_plot()` must be recomputed, and every targets that depends on the intemediary outputs of 
+`make_plot()` as well. Reloading the data is not necessary, since the edits on `make_plot()` do not affect these targets. This is
+an incredible cognitive load that is taken off the data scientists; no need to keep track of outputs that are outdated, and no need
+to re-run everything either, saving lots of time and processing power.
+
+You now know the basics of setting up a reproducible (well, almost, as you’ll see) analytical pipeline. Let’s now move
+to running someone else’s pipeline.
 
 ## Running someone else's pipeline
 
