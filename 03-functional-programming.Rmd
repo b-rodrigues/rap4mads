@@ -236,3 +236,10 @@ What's important there are:
 
 - `purrr::map()`, `purrr::reduce()` (sections [8.3.1](https://b-rodrigues.github.io/modern_R/functional-programming.html#doing-away-with-loops-the-map-family-of-functions) and [8.3.2](https://b-rodrigues.github.io/modern_R/functional-programming.html#reducing-with-purrr))
 - And list based workflows (section [8.4](https://b-rodrigues.github.io/modern_R/functional-programming.html#functional-programming-and-plotting))
+
+## Further reading
+
+[Cleaner R Code with Functional Programming](https://towardsdatascience.com/cleaner-r-code-with-functional-programming-adc37931ef7a)
+[Functional Programming (Chapter from Advanced R)](http://adv-r.had.co.nz/Functional-programming.html)
+[Why you should(n't) care about Monads if you're an R programmer](https://www.brodrigues.co/blog/2022-04-11-monads/)
+[Some learnings from functional programming you can use to write safer programs](https://www.brodrigues.co/blog/2022-05-26-safer_programs/)
