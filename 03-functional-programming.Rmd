@@ -6,7 +6,7 @@ knitr::include_graphics("img/lambda.png")
 ```
 </div>
 
-What you'll have learned by the end of the chapter: writing your own functions, functional programming basics (map, reduce, anonymous functions).
+What you'll have learned by the end of the chapter: writing your own functions, functional programming basics (map, reduce, anonymous functions and higher-order functions).
 
 ## Introduction
 
@@ -42,7 +42,7 @@ x + 1
 
 This will produce `2`. We want to avoid pipelines that depend on some definition of some global variable somewhere,
 which could be subject to change, because this could mean that 2 different runs of the same pipeline could 
-produce 2 different results. Notice that I used the verb `avoid` in the sentence before. This is 
+produce 2 different results. Notice that I used the verb *avoid* in the sentence before. This is 
 sometimes not possible to avoid. Such situations have to be carefully documented and controlled.
 
 As a more realistic example, imagine that within the pipeline you set up, some random numbers are generated.
@@ -78,7 +78,7 @@ this is because while `rnorm()` now does return the same output for the same inp
 if you manipulate the state of your program to change the seed beforehand. Ideally, we would like to have a 
 pure version of `rnorm()`, which would be self-contained and not depend on the value of the seed
 defined in the global environment. There is a package developped by Posit (the makers of RStudio and
-the packages from the `tidyverse`), called `{withr}` which allows to rewrite our functions in a 
+the packages from the *tidyverse*), called `{withr}` which allows to rewrite our functions in a 
 pure way. `{withr}` has several functions, all starting with `with_` that allow users to run
 code with some temporary defined variables, without altering the global environment. For example,
 it is possible to run a `rnorm()` with a seed, using `withr::with_seed()`:
