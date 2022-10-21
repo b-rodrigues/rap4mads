@@ -82,3 +82,7 @@ really focus on sections 4.3, 4.4, 4.5.3, 4.5.4, (optionally 4.7) and 4.8.
 
 We're not going to focus on visualization due to lack of time. If you need to create graphs, 
 read [chapter 5](https://b-rodrigues.github.io/modern_R/graphs.html).
+
+## Further reading
+
+[R for Data Science](https://r4ds.had.co.nz/)
