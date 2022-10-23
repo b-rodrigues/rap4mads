@@ -23,7 +23,7 @@
 <meta name="author" content="Bruno Rodrigues" />
 
 
-<meta name="date" content="2022-10-20" />
+<meta name="date" content="2022-10-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -144,6 +144,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#machine-learning"><i class="fa fa-check"></i><b>1.4</b> Machine learning?</a></li>
 <li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#why-r-why-not-insert-your-favourite-programming-language"><i class="fa fa-check"></i><b>1.5</b> Why R? Why not [insert your favourite programming language]</a></li>
 <li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#pre-requisites"><i class="fa fa-check"></i><b>1.6</b> Pre-requisites</a></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#jargon"><i class="fa fa-check"></i><b>1.7</b> Jargon</a></li>
+<li class="chapter" data-level="1.8" data-path="index.html"><a href="index.html#further-reading"><i class="fa fa-check"></i><b>1.8</b> Further reading</a></li>
+<li class="chapter" data-level="1.9" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i><b>1.9</b> License</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>2</b> Introduction to R</a>
 <ul>
@@ -151,12 +154,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#a-little-aside-on-pipes"><i class="fa fa-check"></i><b>2.2</b> A little aside on pipes</a></li>
 <li class="chapter" data-level="2.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#exploring-and-cleaning-data-with-r"><i class="fa fa-check"></i><b>2.3</b> Exploring and cleaning data with R</a></li>
 <li class="chapter" data-level="2.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#data-visualization"><i class="fa fa-check"></i><b>2.4</b> Data visualization</a></li>
+<li class="chapter" data-level="2.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#further-reading-1"><i class="fa fa-check"></i><b>2.5</b> Further reading</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="a-primer-on-functional-programming.html"><a href="a-primer-on-functional-programming.html"><i class="fa fa-check"></i><b>3</b> A primer on functional programming</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="a-primer-on-functional-programming.html"><a href="a-primer-on-functional-programming.html#introduction-1"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
 <li class="chapter" data-level="3.2" data-path="a-primer-on-functional-programming.html"><a href="a-primer-on-functional-programming.html#defining-your-own-functions"><i class="fa fa-check"></i><b>3.2</b> Defining your own functions</a></li>
 <li class="chapter" data-level="3.3" data-path="a-primer-on-functional-programming.html"><a href="a-primer-on-functional-programming.html#functional-programming"><i class="fa fa-check"></i><b>3.3</b> Functional programming</a></li>
+<li class="chapter" data-level="3.4" data-path="a-primer-on-functional-programming.html"><a href="a-primer-on-functional-programming.html#further-reading-2"><i class="fa fa-check"></i><b>3.4</b> Further reading</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>4</b> Git</a>
 <ul>
@@ -180,7 +185,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="5.4.1" data-path="package-development.html"><a href="package-development.html#documenting-functions"><i class="fa fa-check"></i><b>5.4.1</b> Documenting functions</a></li>
 <li class="chapter" data-level="5.4.2" data-path="package-development.html"><a href="package-development.html#documenting-the-package"><i class="fa fa-check"></i><b>5.4.2</b> Documenting the package</a></li>
-<li class="chapter" data-level="5.4.3" data-path="package-development.html"><a href="package-development.html#installing-your-package"><i class="fa fa-check"></i><b>5.4.3</b> Installing your package</a></li>
+<li class="chapter" data-level="5.4.3" data-path="package-development.html"><a href="package-development.html#checking-your-package"><i class="fa fa-check"></i><b>5.4.3</b> Checking your package</a></li>
+<li class="chapter" data-level="5.4.4" data-path="package-development.html"><a href="package-development.html#installing-your-package"><i class="fa fa-check"></i><b>5.4.4</b> Installing your package</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="unit-tests.html"><a href="unit-tests.html"><i class="fa fa-check"></i><b>6</b> Unit tests</a>
@@ -198,10 +204,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="7.1" data-path="setting-up-pipelines-with-targets.html"><a href="setting-up-pipelines-with-targets.html#introduction-5"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
 <li class="chapter" data-level="7.2" data-path="setting-up-pipelines-with-targets.html"><a href="setting-up-pipelines-with-targets.html#build-automation-with-r"><i class="fa fa-check"></i><b>7.2</b> Build automation with R</a></li>
-<li class="chapter" data-level="7.3" data-path="setting-up-pipelines-with-targets.html"><a href="setting-up-pipelines-with-targets.html#making-this-pipeline-almost-reproducible"><i class="fa fa-check"></i><b>7.3</b> Making this pipeline (almost) reproducible</a>
-<ul>
-<li class="chapter" data-level="7.3.1" data-path="setting-up-pipelines-with-targets.html"><a href="setting-up-pipelines-with-targets.html#one-projet-one-library"><i class="fa fa-check"></i><b>7.3.1</b> One projet, one library</a></li>
-</ul></li>
+<li class="chapter" data-level="7.3" data-path="setting-up-pipelines-with-targets.html"><a href="setting-up-pipelines-with-targets.html#an-aside-on-renv"><i class="fa fa-check"></i><b>7.3</b> An aside on <code>{renv}</code></a></li>
+<li class="chapter" data-level="7.4" data-path="setting-up-pipelines-with-targets.html"><a href="setting-up-pipelines-with-targets.html#our-actual-first-pipeline"><i class="fa fa-check"></i><b>7.4</b> Our actual first pipeline</a></li>
+<li class="chapter" data-level="7.5" data-path="setting-up-pipelines-with-targets.html"><a href="setting-up-pipelines-with-targets.html#running-someone-elses-pipeline"><i class="fa fa-check"></i><b>7.5</b> Running someone else’s pipeline</a></li>
+<li class="chapter" data-level="7.6" data-path="setting-up-pipelines-with-targets.html"><a href="setting-up-pipelines-with-targets.html#running-any-code-with-older-packages"><i class="fa fa-check"></i><b>7.6</b> Running any code with older packages</a></li>
+<li class="chapter" data-level="7.7" data-path="setting-up-pipelines-with-targets.html"><a href="setting-up-pipelines-with-targets.html#why-we-need-more"><i class="fa fa-check"></i><b>7.7</b> Why we need more</a></li>
+<li class="chapter" data-level="7.8" data-path="setting-up-pipelines-with-targets.html"><a href="setting-up-pipelines-with-targets.html#further-reading-3"><i class="fa fa-check"></i><b>7.8</b> Further reading</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="data-products-1.html"><a href="data-products-1.html"><i class="fa fa-check"></i><b>8</b> Data products</a>
 <ul>
@@ -262,13 +270,13 @@ and make sure your package’s project is opened:</p>
 <p><img src="img/pack_7.png" width="764" /></p>
 <p>In order to set up the required files and folders for unit testing, run the following line in the R
 console:</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="unit-tests.html#cb84-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_test</span>(<span class="st">&quot;clean_unemp&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="unit-tests.html#cb1-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_test</span>(<span class="st">&quot;clean_unemp&quot;</span>)</span></code></pre></div>
 <p>You should see a folder called <code>tests</code> appear inside the package. Inside <code>tests</code>, there is another
 folder called <code>testthat</code>, and inside this folder you should find a file called
 <code>test-clean_unemp.R</code>. This file should contain an example:</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="unit-tests.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">&quot;multiplication works&quot;</span>, {</span>
-<span id="cb85-2"><a href="unit-tests.html#cb85-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(<span class="dv">2</span> <span class="sc">*</span> <span class="dv">2</span>, <span class="dv">4</span>)</span>
-<span id="cb85-3"><a href="unit-tests.html#cb85-3" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="unit-tests.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">&quot;multiplication works&quot;</span>, {</span>
+<span id="cb2-2"><a href="unit-tests.html#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(<span class="dv">2</span> <span class="sc">*</span> <span class="dv">2</span>, <span class="dv">4</span>)</span>
+<span id="cb2-3"><a href="unit-tests.html#cb2-3" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 <p>This is quite self-explanatory; <code>test_that()</code> is the function that we are going to use to write
 tests. It takes a string as an argument, and a test. For the string write an explanatory name. This
 will make it easier to find the test if it fails. <code>expect_equal()</code> is a function that tests the
@@ -289,22 +297,22 @@ reference</a> for a complete list.</p>
 <p>Let’s start by testing if our function actually returns data for the Grand-Duchy of Luxembourg if
 the user provides a correct regular expression. Add these lines to the script (and remove the
 example test while you’re at it):</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="unit-tests.html#cb86-1" aria-hidden="true" tabindex="-1"></a>unemp_2013 <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/unemployment/unemp_2013.csv&quot;</span>)</span>
-<span id="cb86-2"><a href="unit-tests.html#cb86-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb86-3"><a href="unit-tests.html#cb86-3" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">&quot;selecting the grand duchy works&quot;</span>, {</span>
-<span id="cb86-4"><a href="unit-tests.html#cb86-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb86-5"><a href="unit-tests.html#cb86-5" aria-hidden="true" tabindex="-1"></a>  returned_value <span class="ot">&lt;-</span> <span class="fu">clean_unemp</span>(</span>
-<span id="cb86-6"><a href="unit-tests.html#cb86-6" aria-hidden="true" tabindex="-1"></a>                      unemp_2013,</span>
-<span id="cb86-7"><a href="unit-tests.html#cb86-7" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">grepl</span>(<span class="st">&quot;Grand-D.*&quot;</span>, commune),</span>
-<span id="cb86-8"><a href="unit-tests.html#cb86-8" aria-hidden="true" tabindex="-1"></a>                      active_population)</span>
-<span id="cb86-9"><a href="unit-tests.html#cb86-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb86-10"><a href="unit-tests.html#cb86-10" aria-hidden="true" tabindex="-1"></a>expected_value <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">as_tibble</span>(</span>
-<span id="cb86-11"><a href="unit-tests.html#cb86-11" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(<span class="st">&quot;year&quot;</span> <span class="ot">=</span> <span class="dv">2013</span>, </span>
-<span id="cb86-12"><a href="unit-tests.html#cb86-12" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;commune&quot;</span> <span class="ot">=</span> <span class="st">&quot;Grand-Duche de Luxembourg&quot;</span>, </span>
-<span id="cb86-13"><a href="unit-tests.html#cb86-13" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;active_population&quot;</span> <span class="ot">=</span> <span class="dv">242694</span>))</span>
-<span id="cb86-14"><a href="unit-tests.html#cb86-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb86-15"><a href="unit-tests.html#cb86-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(returned_value, expected_value)</span>
-<span id="cb86-16"><a href="unit-tests.html#cb86-16" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="unit-tests.html#cb3-1" aria-hidden="true" tabindex="-1"></a>unemp_2013 <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/unemployment/unemp_2013.csv&quot;</span>)</span>
+<span id="cb3-2"><a href="unit-tests.html#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="unit-tests.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">&quot;selecting the grand duchy works&quot;</span>, {</span>
+<span id="cb3-4"><a href="unit-tests.html#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="unit-tests.html#cb3-5" aria-hidden="true" tabindex="-1"></a>  returned_value <span class="ot">&lt;-</span> <span class="fu">clean_unemp</span>(</span>
+<span id="cb3-6"><a href="unit-tests.html#cb3-6" aria-hidden="true" tabindex="-1"></a>                      unemp_2013,</span>
+<span id="cb3-7"><a href="unit-tests.html#cb3-7" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">grepl</span>(<span class="st">&quot;Grand-D.*&quot;</span>, commune),</span>
+<span id="cb3-8"><a href="unit-tests.html#cb3-8" aria-hidden="true" tabindex="-1"></a>                      active_population)</span>
+<span id="cb3-9"><a href="unit-tests.html#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="unit-tests.html#cb3-10" aria-hidden="true" tabindex="-1"></a>expected_value <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">as_tibble</span>(</span>
+<span id="cb3-11"><a href="unit-tests.html#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(<span class="st">&quot;year&quot;</span> <span class="ot">=</span> <span class="dv">2013</span>, </span>
+<span id="cb3-12"><a href="unit-tests.html#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;commune&quot;</span> <span class="ot">=</span> <span class="st">&quot;Grand-Duche de Luxembourg&quot;</span>, </span>
+<span id="cb3-13"><a href="unit-tests.html#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;active_population&quot;</span> <span class="ot">=</span> <span class="dv">242694</span>))</span>
+<span id="cb3-14"><a href="unit-tests.html#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="unit-tests.html#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(returned_value, expected_value)</span>
+<span id="cb3-16"><a href="unit-tests.html#cb3-16" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 <p>So what’s going on here? First, I need to get the data. I load the data outside of the test, so
 it’ll be available to every test afterwards as well. Then, inside the test, I need to define two
 more variables: the actual value returned by the function, and the value that we expect. I need to
@@ -318,166 +326,166 @@ not equal. So I need to define my expected value as a tibble for the test to pas
 <p>You can now save the script, and press <code>CTRL-SHIFT-T</code> to run the test. The test should pass, if
 not, there’s either something wrong with your function, with the inputs you provided to it, or with
 the expected value. You can keep adding tests to this script, to cover every possible use case:</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="unit-tests.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">&quot;selecting cantons works&quot;</span>, {</span>
-<span id="cb87-2"><a href="unit-tests.html#cb87-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb87-3"><a href="unit-tests.html#cb87-3" aria-hidden="true" tabindex="-1"></a>  returned_value <span class="ot">&lt;-</span> <span class="fu">clean_unemp</span>(</span>
-<span id="cb87-4"><a href="unit-tests.html#cb87-4" aria-hidden="true" tabindex="-1"></a>                      unemp_2013,</span>
-<span id="cb87-5"><a href="unit-tests.html#cb87-5" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">grepl</span>(<span class="st">&quot;Canton&quot;</span>, commune),</span>
-<span id="cb87-6"><a href="unit-tests.html#cb87-6" aria-hidden="true" tabindex="-1"></a>                      active_population)</span>
-<span id="cb87-7"><a href="unit-tests.html#cb87-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb87-8"><a href="unit-tests.html#cb87-8" aria-hidden="true" tabindex="-1"></a>expected_value <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;test_data_cantons.csv&quot;</span>)</span>
-<span id="cb87-9"><a href="unit-tests.html#cb87-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb87-10"><a href="unit-tests.html#cb87-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(returned_value, expected_value)</span>
-<span id="cb87-11"><a href="unit-tests.html#cb87-11" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="unit-tests.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">&quot;selecting cantons works&quot;</span>, {</span>
+<span id="cb4-2"><a href="unit-tests.html#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="unit-tests.html#cb4-3" aria-hidden="true" tabindex="-1"></a>  returned_value <span class="ot">&lt;-</span> <span class="fu">clean_unemp</span>(</span>
+<span id="cb4-4"><a href="unit-tests.html#cb4-4" aria-hidden="true" tabindex="-1"></a>                      unemp_2013,</span>
+<span id="cb4-5"><a href="unit-tests.html#cb4-5" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">grepl</span>(<span class="st">&quot;Canton&quot;</span>, commune),</span>
+<span id="cb4-6"><a href="unit-tests.html#cb4-6" aria-hidden="true" tabindex="-1"></a>                      active_population)</span>
+<span id="cb4-7"><a href="unit-tests.html#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="unit-tests.html#cb4-8" aria-hidden="true" tabindex="-1"></a>expected_value <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;test_data_cantons.csv&quot;</span>)</span>
+<span id="cb4-9"><a href="unit-tests.html#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="unit-tests.html#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(returned_value, expected_value)</span>
+<span id="cb4-11"><a href="unit-tests.html#cb4-11" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 <p>In the test above, I cannot write the expected value by hand. So what I did instead was run my
 function in a terminal, and save the output in a csv file. I used the following code for this:</p>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="unit-tests.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">clean_unemp</span>(unemp_2013,</span>
-<span id="cb88-2"><a href="unit-tests.html#cb88-2" aria-hidden="true" tabindex="-1"></a>            <span class="fu">grepl</span>(<span class="st">&quot;Canton&quot;</span>, commune),</span>
-<span id="cb88-3"><a href="unit-tests.html#cb88-3" aria-hidden="true" tabindex="-1"></a>            active_population) <span class="sc">%&gt;%</span></span>
-<span id="cb88-4"><a href="unit-tests.html#cb88-4" aria-hidden="true" tabindex="-1"></a>  readr<span class="sc">::</span><span class="fu">write_csv</span>(<span class="st">&quot;tests/testthat/test_data_cantons.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="unit-tests.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">clean_unemp</span>(unemp_2013,</span>
+<span id="cb5-2"><a href="unit-tests.html#cb5-2" aria-hidden="true" tabindex="-1"></a>            <span class="fu">grepl</span>(<span class="st">&quot;Canton&quot;</span>, commune),</span>
+<span id="cb5-3"><a href="unit-tests.html#cb5-3" aria-hidden="true" tabindex="-1"></a>            active_population) <span class="sc">%&gt;%</span></span>
+<span id="cb5-4"><a href="unit-tests.html#cb5-4" aria-hidden="true" tabindex="-1"></a>  readr<span class="sc">::</span><span class="fu">write_csv</span>(<span class="st">&quot;tests/testthat/test_data_cantons.csv&quot;</span>)</span></code></pre></div>
 <p>I inspected this output to make sure everything was correct. I can now keep this csv file and test
 my function against it. Should my function fail when tested against it, I know that something is
 wrong. We can do the same for communes. First, save the “ground truth” in a csv file:</p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="unit-tests.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">clean_unemp</span>(unemp_2013,</span>
-<span id="cb89-2"><a href="unit-tests.html#cb89-2" aria-hidden="true" tabindex="-1"></a>            <span class="sc">!</span><span class="fu">grepl</span>(<span class="st">&quot;(Canton|Grand-D.*)&quot;</span>, commune),</span>
-<span id="cb89-3"><a href="unit-tests.html#cb89-3" aria-hidden="true" tabindex="-1"></a>            active_population) <span class="sc">%&gt;%</span></span>
-<span id="cb89-4"><a href="unit-tests.html#cb89-4" aria-hidden="true" tabindex="-1"></a>  readr<span class="sc">::</span><span class="fu">write_csv</span>(<span class="st">&quot;tests/testthat/test_data_communes.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="unit-tests.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">clean_unemp</span>(unemp_2013,</span>
+<span id="cb6-2"><a href="unit-tests.html#cb6-2" aria-hidden="true" tabindex="-1"></a>            <span class="sc">!</span><span class="fu">grepl</span>(<span class="st">&quot;(Canton|Grand-D.*)&quot;</span>, commune),</span>
+<span id="cb6-3"><a href="unit-tests.html#cb6-3" aria-hidden="true" tabindex="-1"></a>            active_population) <span class="sc">%&gt;%</span></span>
+<span id="cb6-4"><a href="unit-tests.html#cb6-4" aria-hidden="true" tabindex="-1"></a>  readr<span class="sc">::</span><span class="fu">write_csv</span>(<span class="st">&quot;tests/testthat/test_data_communes.csv&quot;</span>)</span></code></pre></div>
 <p>Then, we can use this csv file in our tests:</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="unit-tests.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">&quot;selecting communes works&quot;</span>, {</span>
-<span id="cb90-2"><a href="unit-tests.html#cb90-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb90-3"><a href="unit-tests.html#cb90-3" aria-hidden="true" tabindex="-1"></a>  returned_value <span class="ot">&lt;-</span> <span class="fu">clean_unemp</span>(</span>
-<span id="cb90-4"><a href="unit-tests.html#cb90-4" aria-hidden="true" tabindex="-1"></a>                      unemp_2013,</span>
-<span id="cb90-5"><a href="unit-tests.html#cb90-5" aria-hidden="true" tabindex="-1"></a>                      <span class="sc">!</span><span class="fu">grepl</span>(<span class="st">&quot;(Canton|Grand-D.*)&quot;</span>, commune),</span>
-<span id="cb90-6"><a href="unit-tests.html#cb90-6" aria-hidden="true" tabindex="-1"></a>                      active_population)</span>
-<span id="cb90-7"><a href="unit-tests.html#cb90-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb90-8"><a href="unit-tests.html#cb90-8" aria-hidden="true" tabindex="-1"></a>  expected_value <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;test_data_communes.csv&quot;</span>)</span>
-<span id="cb90-9"><a href="unit-tests.html#cb90-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb90-10"><a href="unit-tests.html#cb90-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(returned_value, expected_value)</span>
-<span id="cb90-11"><a href="unit-tests.html#cb90-11" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="unit-tests.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">&quot;selecting communes works&quot;</span>, {</span>
+<span id="cb7-2"><a href="unit-tests.html#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="unit-tests.html#cb7-3" aria-hidden="true" tabindex="-1"></a>  returned_value <span class="ot">&lt;-</span> <span class="fu">clean_unemp</span>(</span>
+<span id="cb7-4"><a href="unit-tests.html#cb7-4" aria-hidden="true" tabindex="-1"></a>                      unemp_2013,</span>
+<span id="cb7-5"><a href="unit-tests.html#cb7-5" aria-hidden="true" tabindex="-1"></a>                      <span class="sc">!</span><span class="fu">grepl</span>(<span class="st">&quot;(Canton|Grand-D.*)&quot;</span>, commune),</span>
+<span id="cb7-6"><a href="unit-tests.html#cb7-6" aria-hidden="true" tabindex="-1"></a>                      active_population)</span>
+<span id="cb7-7"><a href="unit-tests.html#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="unit-tests.html#cb7-8" aria-hidden="true" tabindex="-1"></a>  expected_value <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;test_data_communes.csv&quot;</span>)</span>
+<span id="cb7-9"><a href="unit-tests.html#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="unit-tests.html#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(returned_value, expected_value)</span>
+<span id="cb7-11"><a href="unit-tests.html#cb7-11" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 <p>We could even add a test for a specific commune:</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="unit-tests.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">&quot;selecting one commune works&quot;</span>, {</span>
-<span id="cb91-2"><a href="unit-tests.html#cb91-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb91-3"><a href="unit-tests.html#cb91-3" aria-hidden="true" tabindex="-1"></a>  returned_value <span class="ot">&lt;-</span> <span class="fu">clean_unemp</span>(</span>
-<span id="cb91-4"><a href="unit-tests.html#cb91-4" aria-hidden="true" tabindex="-1"></a>                      unemp_2013,</span>
-<span id="cb91-5"><a href="unit-tests.html#cb91-5" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">grepl</span>(<span class="st">&quot;Kayl&quot;</span>, commune),</span>
-<span id="cb91-6"><a href="unit-tests.html#cb91-6" aria-hidden="true" tabindex="-1"></a>                      active_population)</span>
-<span id="cb91-7"><a href="unit-tests.html#cb91-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb91-8"><a href="unit-tests.html#cb91-8" aria-hidden="true" tabindex="-1"></a>expected_value <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">as_tibble</span>(</span>
-<span id="cb91-9"><a href="unit-tests.html#cb91-9" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">list</span>(<span class="st">&quot;year&quot;</span> <span class="ot">=</span> <span class="dv">2013</span>, </span>
-<span id="cb91-10"><a href="unit-tests.html#cb91-10" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">&quot;commune&quot;</span> <span class="ot">=</span> <span class="st">&quot;Kayl&quot;</span>, </span>
-<span id="cb91-11"><a href="unit-tests.html#cb91-11" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">&quot;active_population&quot;</span> <span class="ot">=</span> <span class="dv">3863</span>))</span>
-<span id="cb91-12"><a href="unit-tests.html#cb91-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb91-13"><a href="unit-tests.html#cb91-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(returned_value, expected_value)</span>
-<span id="cb91-14"><a href="unit-tests.html#cb91-14" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="unit-tests.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">&quot;selecting one commune works&quot;</span>, {</span>
+<span id="cb8-2"><a href="unit-tests.html#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="unit-tests.html#cb8-3" aria-hidden="true" tabindex="-1"></a>  returned_value <span class="ot">&lt;-</span> <span class="fu">clean_unemp</span>(</span>
+<span id="cb8-4"><a href="unit-tests.html#cb8-4" aria-hidden="true" tabindex="-1"></a>                      unemp_2013,</span>
+<span id="cb8-5"><a href="unit-tests.html#cb8-5" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">grepl</span>(<span class="st">&quot;Kayl&quot;</span>, commune),</span>
+<span id="cb8-6"><a href="unit-tests.html#cb8-6" aria-hidden="true" tabindex="-1"></a>                      active_population)</span>
+<span id="cb8-7"><a href="unit-tests.html#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="unit-tests.html#cb8-8" aria-hidden="true" tabindex="-1"></a>expected_value <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">as_tibble</span>(</span>
+<span id="cb8-9"><a href="unit-tests.html#cb8-9" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">list</span>(<span class="st">&quot;year&quot;</span> <span class="ot">=</span> <span class="dv">2013</span>, </span>
+<span id="cb8-10"><a href="unit-tests.html#cb8-10" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">&quot;commune&quot;</span> <span class="ot">=</span> <span class="st">&quot;Kayl&quot;</span>, </span>
+<span id="cb8-11"><a href="unit-tests.html#cb8-11" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">&quot;active_population&quot;</span> <span class="ot">=</span> <span class="dv">3863</span>))</span>
+<span id="cb8-12"><a href="unit-tests.html#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="unit-tests.html#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(returned_value, expected_value)</span>
+<span id="cb8-14"><a href="unit-tests.html#cb8-14" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 <p>So your final script would look something like this:</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="unit-tests.html#cb92-1" aria-hidden="true" tabindex="-1"></a>unemp_2013 <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/unemployment/unemp_2013.csv&quot;</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb92-2"><a href="unit-tests.html#cb92-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-3"><a href="unit-tests.html#cb92-3" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">&quot;selecting the grand duchy works&quot;</span>, {</span>
-<span id="cb92-4"><a href="unit-tests.html#cb92-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-5"><a href="unit-tests.html#cb92-5" aria-hidden="true" tabindex="-1"></a>  returned_value <span class="ot">&lt;-</span> <span class="fu">clean_unemp</span>(</span>
-<span id="cb92-6"><a href="unit-tests.html#cb92-6" aria-hidden="true" tabindex="-1"></a>    unemp_2013,</span>
-<span id="cb92-7"><a href="unit-tests.html#cb92-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grepl</span>(<span class="st">&quot;Grand-D.*&quot;</span>, commune),</span>
-<span id="cb92-8"><a href="unit-tests.html#cb92-8" aria-hidden="true" tabindex="-1"></a>    active_population)</span>
-<span id="cb92-9"><a href="unit-tests.html#cb92-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-10"><a href="unit-tests.html#cb92-10" aria-hidden="true" tabindex="-1"></a>  expected_value <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">as_tibble</span>(</span>
-<span id="cb92-11"><a href="unit-tests.html#cb92-11" aria-hidden="true" tabindex="-1"></a>                              <span class="fu">list</span>(<span class="st">&quot;year&quot;</span> <span class="ot">=</span> <span class="dv">2013</span>,</span>
-<span id="cb92-12"><a href="unit-tests.html#cb92-12" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;commune&quot;</span> <span class="ot">=</span> <span class="st">&quot;Grand-Duche de Luxembourg&quot;</span>,</span>
-<span id="cb92-13"><a href="unit-tests.html#cb92-13" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;active_population&quot;</span> <span class="ot">=</span> <span class="dv">242694</span>))</span>
-<span id="cb92-14"><a href="unit-tests.html#cb92-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-15"><a href="unit-tests.html#cb92-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(returned_value, expected_value)</span>
-<span id="cb92-16"><a href="unit-tests.html#cb92-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-17"><a href="unit-tests.html#cb92-17" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb92-18"><a href="unit-tests.html#cb92-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-19"><a href="unit-tests.html#cb92-19" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">&quot;selecting cantons work&quot;</span>, {</span>
-<span id="cb92-20"><a href="unit-tests.html#cb92-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-21"><a href="unit-tests.html#cb92-21" aria-hidden="true" tabindex="-1"></a>  returned_value <span class="ot">&lt;-</span> <span class="fu">clean_unemp</span>(</span>
-<span id="cb92-22"><a href="unit-tests.html#cb92-22" aria-hidden="true" tabindex="-1"></a>    unemp_2013,</span>
-<span id="cb92-23"><a href="unit-tests.html#cb92-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grepl</span>(<span class="st">&quot;Canton&quot;</span>, commune),</span>
-<span id="cb92-24"><a href="unit-tests.html#cb92-24" aria-hidden="true" tabindex="-1"></a>    active_population)</span>
-<span id="cb92-25"><a href="unit-tests.html#cb92-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-26"><a href="unit-tests.html#cb92-26" aria-hidden="true" tabindex="-1"></a>  expected_value <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;test_data_cantons.csv&quot;</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb92-27"><a href="unit-tests.html#cb92-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-28"><a href="unit-tests.html#cb92-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(returned_value, expected_value)</span>
-<span id="cb92-29"><a href="unit-tests.html#cb92-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-30"><a href="unit-tests.html#cb92-30" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb92-31"><a href="unit-tests.html#cb92-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-32"><a href="unit-tests.html#cb92-32" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">&quot;selecting communes works&quot;</span>, {</span>
-<span id="cb92-33"><a href="unit-tests.html#cb92-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-34"><a href="unit-tests.html#cb92-34" aria-hidden="true" tabindex="-1"></a>  returned_value <span class="ot">&lt;-</span> <span class="fu">clean_unemp</span>(</span>
-<span id="cb92-35"><a href="unit-tests.html#cb92-35" aria-hidden="true" tabindex="-1"></a>    unemp_2013,</span>
-<span id="cb92-36"><a href="unit-tests.html#cb92-36" aria-hidden="true" tabindex="-1"></a>    <span class="sc">!</span><span class="fu">grepl</span>(<span class="st">&quot;(Canton|Grand-D.*)&quot;</span>, commune),</span>
-<span id="cb92-37"><a href="unit-tests.html#cb92-37" aria-hidden="true" tabindex="-1"></a>    active_population)</span>
-<span id="cb92-38"><a href="unit-tests.html#cb92-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-39"><a href="unit-tests.html#cb92-39" aria-hidden="true" tabindex="-1"></a>  expected_value <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;test_data_communes.csv&quot;</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb92-40"><a href="unit-tests.html#cb92-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-41"><a href="unit-tests.html#cb92-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(returned_value, expected_value)</span>
-<span id="cb92-42"><a href="unit-tests.html#cb92-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-43"><a href="unit-tests.html#cb92-43" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb92-44"><a href="unit-tests.html#cb92-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-45"><a href="unit-tests.html#cb92-45" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">&quot;selecting one commune works&quot;</span>, {</span>
-<span id="cb92-46"><a href="unit-tests.html#cb92-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-47"><a href="unit-tests.html#cb92-47" aria-hidden="true" tabindex="-1"></a>  returned_value <span class="ot">&lt;-</span> <span class="fu">clean_unemp</span>(</span>
-<span id="cb92-48"><a href="unit-tests.html#cb92-48" aria-hidden="true" tabindex="-1"></a>    unemp_2013,</span>
-<span id="cb92-49"><a href="unit-tests.html#cb92-49" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grepl</span>(<span class="st">&quot;Kayl&quot;</span>, commune),</span>
-<span id="cb92-50"><a href="unit-tests.html#cb92-50" aria-hidden="true" tabindex="-1"></a>    active_population)</span>
-<span id="cb92-51"><a href="unit-tests.html#cb92-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-52"><a href="unit-tests.html#cb92-52" aria-hidden="true" tabindex="-1"></a>  expected_value <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">as_tibble</span>(</span>
-<span id="cb92-53"><a href="unit-tests.html#cb92-53" aria-hidden="true" tabindex="-1"></a>                              <span class="fu">list</span>(<span class="st">&quot;year&quot;</span> <span class="ot">=</span> <span class="dv">2013</span>,</span>
-<span id="cb92-54"><a href="unit-tests.html#cb92-54" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;commune&quot;</span> <span class="ot">=</span> <span class="st">&quot;Kayl&quot;</span>,</span>
-<span id="cb92-55"><a href="unit-tests.html#cb92-55" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;active_population&quot;</span> <span class="ot">=</span> <span class="dv">3863</span>))</span>
-<span id="cb92-56"><a href="unit-tests.html#cb92-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-57"><a href="unit-tests.html#cb92-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(returned_value, expected_value)</span>
-<span id="cb92-58"><a href="unit-tests.html#cb92-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-59"><a href="unit-tests.html#cb92-59" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="unit-tests.html#cb9-1" aria-hidden="true" tabindex="-1"></a>unemp_2013 <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/unemployment/unemp_2013.csv&quot;</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb9-2"><a href="unit-tests.html#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="unit-tests.html#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">&quot;selecting the grand duchy works&quot;</span>, {</span>
+<span id="cb9-4"><a href="unit-tests.html#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="unit-tests.html#cb9-5" aria-hidden="true" tabindex="-1"></a>  returned_value <span class="ot">&lt;-</span> <span class="fu">clean_unemp</span>(</span>
+<span id="cb9-6"><a href="unit-tests.html#cb9-6" aria-hidden="true" tabindex="-1"></a>    unemp_2013,</span>
+<span id="cb9-7"><a href="unit-tests.html#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grepl</span>(<span class="st">&quot;Grand-D.*&quot;</span>, commune),</span>
+<span id="cb9-8"><a href="unit-tests.html#cb9-8" aria-hidden="true" tabindex="-1"></a>    active_population)</span>
+<span id="cb9-9"><a href="unit-tests.html#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="unit-tests.html#cb9-10" aria-hidden="true" tabindex="-1"></a>  expected_value <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">as_tibble</span>(</span>
+<span id="cb9-11"><a href="unit-tests.html#cb9-11" aria-hidden="true" tabindex="-1"></a>                              <span class="fu">list</span>(<span class="st">&quot;year&quot;</span> <span class="ot">=</span> <span class="dv">2013</span>,</span>
+<span id="cb9-12"><a href="unit-tests.html#cb9-12" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;commune&quot;</span> <span class="ot">=</span> <span class="st">&quot;Grand-Duche de Luxembourg&quot;</span>,</span>
+<span id="cb9-13"><a href="unit-tests.html#cb9-13" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;active_population&quot;</span> <span class="ot">=</span> <span class="dv">242694</span>))</span>
+<span id="cb9-14"><a href="unit-tests.html#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="unit-tests.html#cb9-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(returned_value, expected_value)</span>
+<span id="cb9-16"><a href="unit-tests.html#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-17"><a href="unit-tests.html#cb9-17" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb9-18"><a href="unit-tests.html#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-19"><a href="unit-tests.html#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">&quot;selecting cantons work&quot;</span>, {</span>
+<span id="cb9-20"><a href="unit-tests.html#cb9-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-21"><a href="unit-tests.html#cb9-21" aria-hidden="true" tabindex="-1"></a>  returned_value <span class="ot">&lt;-</span> <span class="fu">clean_unemp</span>(</span>
+<span id="cb9-22"><a href="unit-tests.html#cb9-22" aria-hidden="true" tabindex="-1"></a>    unemp_2013,</span>
+<span id="cb9-23"><a href="unit-tests.html#cb9-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grepl</span>(<span class="st">&quot;Canton&quot;</span>, commune),</span>
+<span id="cb9-24"><a href="unit-tests.html#cb9-24" aria-hidden="true" tabindex="-1"></a>    active_population)</span>
+<span id="cb9-25"><a href="unit-tests.html#cb9-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-26"><a href="unit-tests.html#cb9-26" aria-hidden="true" tabindex="-1"></a>  expected_value <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;test_data_cantons.csv&quot;</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb9-27"><a href="unit-tests.html#cb9-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-28"><a href="unit-tests.html#cb9-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(returned_value, expected_value)</span>
+<span id="cb9-29"><a href="unit-tests.html#cb9-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-30"><a href="unit-tests.html#cb9-30" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb9-31"><a href="unit-tests.html#cb9-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-32"><a href="unit-tests.html#cb9-32" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">&quot;selecting communes works&quot;</span>, {</span>
+<span id="cb9-33"><a href="unit-tests.html#cb9-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-34"><a href="unit-tests.html#cb9-34" aria-hidden="true" tabindex="-1"></a>  returned_value <span class="ot">&lt;-</span> <span class="fu">clean_unemp</span>(</span>
+<span id="cb9-35"><a href="unit-tests.html#cb9-35" aria-hidden="true" tabindex="-1"></a>    unemp_2013,</span>
+<span id="cb9-36"><a href="unit-tests.html#cb9-36" aria-hidden="true" tabindex="-1"></a>    <span class="sc">!</span><span class="fu">grepl</span>(<span class="st">&quot;(Canton|Grand-D.*)&quot;</span>, commune),</span>
+<span id="cb9-37"><a href="unit-tests.html#cb9-37" aria-hidden="true" tabindex="-1"></a>    active_population)</span>
+<span id="cb9-38"><a href="unit-tests.html#cb9-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-39"><a href="unit-tests.html#cb9-39" aria-hidden="true" tabindex="-1"></a>  expected_value <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;test_data_communes.csv&quot;</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb9-40"><a href="unit-tests.html#cb9-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-41"><a href="unit-tests.html#cb9-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(returned_value, expected_value)</span>
+<span id="cb9-42"><a href="unit-tests.html#cb9-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-43"><a href="unit-tests.html#cb9-43" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb9-44"><a href="unit-tests.html#cb9-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-45"><a href="unit-tests.html#cb9-45" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">&quot;selecting one commune works&quot;</span>, {</span>
+<span id="cb9-46"><a href="unit-tests.html#cb9-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-47"><a href="unit-tests.html#cb9-47" aria-hidden="true" tabindex="-1"></a>  returned_value <span class="ot">&lt;-</span> <span class="fu">clean_unemp</span>(</span>
+<span id="cb9-48"><a href="unit-tests.html#cb9-48" aria-hidden="true" tabindex="-1"></a>    unemp_2013,</span>
+<span id="cb9-49"><a href="unit-tests.html#cb9-49" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grepl</span>(<span class="st">&quot;Kayl&quot;</span>, commune),</span>
+<span id="cb9-50"><a href="unit-tests.html#cb9-50" aria-hidden="true" tabindex="-1"></a>    active_population)</span>
+<span id="cb9-51"><a href="unit-tests.html#cb9-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-52"><a href="unit-tests.html#cb9-52" aria-hidden="true" tabindex="-1"></a>  expected_value <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">as_tibble</span>(</span>
+<span id="cb9-53"><a href="unit-tests.html#cb9-53" aria-hidden="true" tabindex="-1"></a>                              <span class="fu">list</span>(<span class="st">&quot;year&quot;</span> <span class="ot">=</span> <span class="dv">2013</span>,</span>
+<span id="cb9-54"><a href="unit-tests.html#cb9-54" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;commune&quot;</span> <span class="ot">=</span> <span class="st">&quot;Kayl&quot;</span>,</span>
+<span id="cb9-55"><a href="unit-tests.html#cb9-55" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;active_population&quot;</span> <span class="ot">=</span> <span class="dv">3863</span>))</span>
+<span id="cb9-56"><a href="unit-tests.html#cb9-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-57"><a href="unit-tests.html#cb9-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(returned_value, expected_value)</span>
+<span id="cb9-58"><a href="unit-tests.html#cb9-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-59"><a href="unit-tests.html#cb9-59" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 </div>
 <div id="can-the-function-deal-with-all-kinds-of-input" class="section level3 hasAnchor" number="6.2.2">
 <h3><span class="header-section-number">6.2.2</span> Can the function deal with all kinds of input?<a href="unit-tests.html#can-the-function-deal-with-all-kinds-of-input" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>What <em>should</em> happen if your function gets an unexpected input? Let’s write a unit test and then see if it passes.
 For example, what if the user enters a commune name that is not in Luxembourg? We expect the data frame to be
 empty, so let’s write a test for that</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="unit-tests.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">&quot;wrong commune name&quot;</span>, {</span>
-<span id="cb93-2"><a href="unit-tests.html#cb93-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb93-3"><a href="unit-tests.html#cb93-3" aria-hidden="true" tabindex="-1"></a>returned_value <span class="ot">&lt;-</span> <span class="fu">clean_unemp</span>(</span>
-<span id="cb93-4"><a href="unit-tests.html#cb93-4" aria-hidden="true" tabindex="-1"></a>                      unemp_2013,</span>
-<span id="cb93-5"><a href="unit-tests.html#cb93-5" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">grepl</span>(<span class="st">&quot;Paris&quot;</span>, commune),</span>
-<span id="cb93-6"><a href="unit-tests.html#cb93-6" aria-hidden="true" tabindex="-1"></a>                      active_population)</span>
-<span id="cb93-7"><a href="unit-tests.html#cb93-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb93-8"><a href="unit-tests.html#cb93-8" aria-hidden="true" tabindex="-1"></a>expected_value <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">as_tibble</span>(</span>
-<span id="cb93-9"><a href="unit-tests.html#cb93-9" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(<span class="st">&quot;year&quot;</span> <span class="ot">=</span> <span class="fu">numeric</span>(<span class="dv">0</span>),</span>
-<span id="cb93-10"><a href="unit-tests.html#cb93-10" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;commune&quot;</span> <span class="ot">=</span> <span class="fu">character</span>(<span class="dv">0</span>),</span>
-<span id="cb93-11"><a href="unit-tests.html#cb93-11" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;active_population&quot;</span> <span class="ot">=</span> <span class="fu">numeric</span>(<span class="dv">0</span>)))</span>
-<span id="cb93-12"><a href="unit-tests.html#cb93-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb93-13"><a href="unit-tests.html#cb93-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb93-14"><a href="unit-tests.html#cb93-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(returned_value, expected_value)</span>
-<span id="cb93-15"><a href="unit-tests.html#cb93-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb93-16"><a href="unit-tests.html#cb93-16" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="unit-tests.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">&quot;wrong commune name&quot;</span>, {</span>
+<span id="cb10-2"><a href="unit-tests.html#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="unit-tests.html#cb10-3" aria-hidden="true" tabindex="-1"></a>returned_value <span class="ot">&lt;-</span> <span class="fu">clean_unemp</span>(</span>
+<span id="cb10-4"><a href="unit-tests.html#cb10-4" aria-hidden="true" tabindex="-1"></a>                      unemp_2013,</span>
+<span id="cb10-5"><a href="unit-tests.html#cb10-5" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">grepl</span>(<span class="st">&quot;Paris&quot;</span>, commune),</span>
+<span id="cb10-6"><a href="unit-tests.html#cb10-6" aria-hidden="true" tabindex="-1"></a>                      active_population)</span>
+<span id="cb10-7"><a href="unit-tests.html#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="unit-tests.html#cb10-8" aria-hidden="true" tabindex="-1"></a>expected_value <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">as_tibble</span>(</span>
+<span id="cb10-9"><a href="unit-tests.html#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(<span class="st">&quot;year&quot;</span> <span class="ot">=</span> <span class="fu">numeric</span>(<span class="dv">0</span>),</span>
+<span id="cb10-10"><a href="unit-tests.html#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;commune&quot;</span> <span class="ot">=</span> <span class="fu">character</span>(<span class="dv">0</span>),</span>
+<span id="cb10-11"><a href="unit-tests.html#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;active_population&quot;</span> <span class="ot">=</span> <span class="fu">numeric</span>(<span class="dv">0</span>)))</span>
+<span id="cb10-12"><a href="unit-tests.html#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="unit-tests.html#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-14"><a href="unit-tests.html#cb10-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(returned_value, expected_value)</span>
+<span id="cb10-15"><a href="unit-tests.html#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="unit-tests.html#cb10-16" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 <p>This test reveals something interesting: your function returns an empty data frame, but the user might not understand
 what’s wrong. Maybe we could add a message to inform the user? We could write something like:</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="unit-tests.html#cb94-1" aria-hidden="true" tabindex="-1"></a>clean_unemp <span class="ot">&lt;-</span> <span class="cf">function</span>(unemp_data, level, col_of_interest){</span>
-<span id="cb94-2"><a href="unit-tests.html#cb94-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb94-3"><a href="unit-tests.html#cb94-3" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> unemp_data <span class="sc">|&gt;</span></span>
-<span id="cb94-4"><a href="unit-tests.html#cb94-4" aria-hidden="true" tabindex="-1"></a>    janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">|&gt;</span></span>
-<span id="cb94-5"><a href="unit-tests.html#cb94-5" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>({{level}}) <span class="sc">|&gt;</span></span>
-<span id="cb94-6"><a href="unit-tests.html#cb94-6" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(year, commune, {{col_of_interest}})</span>
-<span id="cb94-7"><a href="unit-tests.html#cb94-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb94-8"><a href="unit-tests.html#cb94-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">nrow</span>(result) <span class="sc">==</span> <span class="dv">0</span>) {</span>
-<span id="cb94-9"><a href="unit-tests.html#cb94-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">warning</span>(<span class="st">&quot;The returned data frame is empty. This is likely because the `level` argument supplied does not match any rows in the original data.&quot;</span>)</span>
-<span id="cb94-10"><a href="unit-tests.html#cb94-10" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb94-11"><a href="unit-tests.html#cb94-11" aria-hidden="true" tabindex="-1"></a>  result</span>
-<span id="cb94-12"><a href="unit-tests.html#cb94-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="unit-tests.html#cb11-1" aria-hidden="true" tabindex="-1"></a>clean_unemp <span class="ot">&lt;-</span> <span class="cf">function</span>(unemp_data, level, col_of_interest){</span>
+<span id="cb11-2"><a href="unit-tests.html#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="unit-tests.html#cb11-3" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> unemp_data <span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a href="unit-tests.html#cb11-4" aria-hidden="true" tabindex="-1"></a>    janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">|&gt;</span></span>
+<span id="cb11-5"><a href="unit-tests.html#cb11-5" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>({{level}}) <span class="sc">|&gt;</span></span>
+<span id="cb11-6"><a href="unit-tests.html#cb11-6" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(year, commune, {{col_of_interest}})</span>
+<span id="cb11-7"><a href="unit-tests.html#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="unit-tests.html#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">nrow</span>(result) <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb11-9"><a href="unit-tests.html#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">warning</span>(<span class="st">&quot;The returned data frame is empty. This is likely because the `level` argument supplied does not match any rows in the original data.&quot;</span>)</span>
+<span id="cb11-10"><a href="unit-tests.html#cb11-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb11-11"><a href="unit-tests.html#cb11-11" aria-hidden="true" tabindex="-1"></a>  result</span>
+<span id="cb11-12"><a href="unit-tests.html#cb11-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Replace the <code>clean_unemp()</code> function from your package with this one, and rerun the tests. The test should
 still pass, but a warning will be shown. We can test for this as well; is the warning thrown? Let’s write
 the required test for it:</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="unit-tests.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">&quot;wrong commune name: warning is thrown&quot;</span>, {</span>
-<span id="cb95-2"><a href="unit-tests.html#cb95-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb95-3"><a href="unit-tests.html#cb95-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_warning</span>({</span>
-<span id="cb95-4"><a href="unit-tests.html#cb95-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">clean_unemp</span>(</span>
-<span id="cb95-5"><a href="unit-tests.html#cb95-5" aria-hidden="true" tabindex="-1"></a>      unemp_2013,</span>
-<span id="cb95-6"><a href="unit-tests.html#cb95-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">grepl</span>(<span class="st">&quot;Paris&quot;</span>, commune),</span>
-<span id="cb95-7"><a href="unit-tests.html#cb95-7" aria-hidden="true" tabindex="-1"></a>      active_population)</span>
-<span id="cb95-8"><a href="unit-tests.html#cb95-8" aria-hidden="true" tabindex="-1"></a>  }, <span class="st">&quot;This is likely&quot;</span>)</span>
-<span id="cb95-9"><a href="unit-tests.html#cb95-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb95-10"><a href="unit-tests.html#cb95-10" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="unit-tests.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">&quot;wrong commune name: warning is thrown&quot;</span>, {</span>
+<span id="cb12-2"><a href="unit-tests.html#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="unit-tests.html#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_warning</span>({</span>
+<span id="cb12-4"><a href="unit-tests.html#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">clean_unemp</span>(</span>
+<span id="cb12-5"><a href="unit-tests.html#cb12-5" aria-hidden="true" tabindex="-1"></a>      unemp_2013,</span>
+<span id="cb12-6"><a href="unit-tests.html#cb12-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">grepl</span>(<span class="st">&quot;Paris&quot;</span>, commune),</span>
+<span id="cb12-7"><a href="unit-tests.html#cb12-7" aria-hidden="true" tabindex="-1"></a>      active_population)</span>
+<span id="cb12-8"><a href="unit-tests.html#cb12-8" aria-hidden="true" tabindex="-1"></a>  }, <span class="st">&quot;This is likely&quot;</span>)</span>
+<span id="cb12-9"><a href="unit-tests.html#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="unit-tests.html#cb12-10" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 <p><code>expect_warning()</code> needs the expression that should raise the warning, and a regular expression.
 I’ve used the string “This is likely”, which appears in the warning. This is to make sure that the
 correct warning is raised. Should another warning be thrown, the test will fail, and I’ll know that
@@ -491,10 +499,10 @@ great. We are asking users to enter a regular expression to filter data, which i
 great nor user-friendly. And this is because the data we’re dealing with is actually not clean,
 because the same column mixes three different regional levels. For example, what if the users
 wants to take a look at the commune “Luxembourg”?</p>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="unit-tests.html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">clean_unemp</span>(</span>
-<span id="cb96-2"><a href="unit-tests.html#cb96-2" aria-hidden="true" tabindex="-1"></a>  unemp_2013,</span>
-<span id="cb96-3"><a href="unit-tests.html#cb96-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">grepl</span>(<span class="st">&quot;Luxembourg&quot;</span>, commune),</span>
-<span id="cb96-4"><a href="unit-tests.html#cb96-4" aria-hidden="true" tabindex="-1"></a>  active_population)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="unit-tests.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">clean_unemp</span>(</span>
+<span id="cb13-2"><a href="unit-tests.html#cb13-2" aria-hidden="true" tabindex="-1"></a>  unemp_2013,</span>
+<span id="cb13-3"><a href="unit-tests.html#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">grepl</span>(<span class="st">&quot;Luxembourg&quot;</span>, commune),</span>
+<span id="cb13-4"><a href="unit-tests.html#cb13-4" aria-hidden="true" tabindex="-1"></a>  active_population)</span></code></pre></div>
 <pre><code># A tibble: 3 × 3
  year commune                   active_population
 &lt;dbl&gt; &lt;chr&gt;                                 &lt;dbl&gt;
@@ -508,48 +516,48 @@ Of course the user can now filter again to just get the commune. But this is not
 data directly inside the package. This way users get the data “for free” once they install the
 package. Let’s do exactly that. To package data, we first need to create the <code>data-raw</code> folder.
 This can be done with the following call:</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="unit-tests.html#cb98-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_data_raw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="unit-tests.html#cb15-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_data_raw</span>()</span></code></pre></div>
 <p>There’s a script called <code>DATASET.R</code> inside the <code>data-raw</code> folder. This is the script that we
 should edit to clean the data. Let’s write the following lines in it:</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="unit-tests.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="do">## code to prepare `DATASET` dataset goes here</span></span>
-<span id="cb99-2"><a href="unit-tests.html#cb99-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb99-3"><a href="unit-tests.html#cb99-3" aria-hidden="true" tabindex="-1"></a>unemp_2013 <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/unemployment/unemp_2013.csv&quot;</span>)</span>
-<span id="cb99-4"><a href="unit-tests.html#cb99-4" aria-hidden="true" tabindex="-1"></a>unemp_2014 <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/unemployment/unemp_2014.csv&quot;</span>)</span>
-<span id="cb99-5"><a href="unit-tests.html#cb99-5" aria-hidden="true" tabindex="-1"></a>unemp_2015 <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/unemployment/unemp_2015.csv&quot;</span>)</span>
-<span id="cb99-6"><a href="unit-tests.html#cb99-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb99-7"><a href="unit-tests.html#cb99-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb99-8"><a href="unit-tests.html#cb99-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb99-9"><a href="unit-tests.html#cb99-9" aria-hidden="true" tabindex="-1"></a>clean_data <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb99-10"><a href="unit-tests.html#cb99-10" aria-hidden="true" tabindex="-1"></a>  x <span class="sc">%&gt;%</span></span>
-<span id="cb99-11"><a href="unit-tests.html#cb99-11" aria-hidden="true" tabindex="-1"></a>    janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb99-12"><a href="unit-tests.html#cb99-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">level =</span> <span class="fu">case_when</span>(</span>
-<span id="cb99-13"><a href="unit-tests.html#cb99-13" aria-hidden="true" tabindex="-1"></a>             <span class="fu">grepl</span>(<span class="st">&quot;Grand-D.*&quot;</span>, commune) <span class="sc">~</span> <span class="st">&quot;Country&quot;</span>,</span>
-<span id="cb99-14"><a href="unit-tests.html#cb99-14" aria-hidden="true" tabindex="-1"></a>             <span class="fu">grepl</span>(<span class="st">&quot;Canton&quot;</span>, commune) <span class="sc">~</span> <span class="st">&quot;Canton&quot;</span>,</span>
-<span id="cb99-15"><a href="unit-tests.html#cb99-15" aria-hidden="true" tabindex="-1"></a>             <span class="sc">!</span><span class="fu">grepl</span>(<span class="st">&quot;(Canton|Grand-D.*)&quot;</span>, commune) <span class="sc">~</span> <span class="st">&quot;Commune&quot;</span></span>
-<span id="cb99-16"><a href="unit-tests.html#cb99-16" aria-hidden="true" tabindex="-1"></a>           ),</span>
-<span id="cb99-17"><a href="unit-tests.html#cb99-17" aria-hidden="true" tabindex="-1"></a>           <span class="at">commune =</span> <span class="fu">ifelse</span>(<span class="fu">grepl</span>(<span class="st">&quot;Canton&quot;</span>, commune),</span>
-<span id="cb99-18"><a href="unit-tests.html#cb99-18" aria-hidden="true" tabindex="-1"></a>                            stringr<span class="sc">::</span><span class="fu">str_remove_all</span>(commune, <span class="st">&quot;Canton &quot;</span>),</span>
-<span id="cb99-19"><a href="unit-tests.html#cb99-19" aria-hidden="true" tabindex="-1"></a>                            commune),</span>
-<span id="cb99-20"><a href="unit-tests.html#cb99-20" aria-hidden="true" tabindex="-1"></a>           <span class="at">commune =</span> <span class="fu">ifelse</span>(<span class="fu">grepl</span>(<span class="st">&quot;Grand-D.*&quot;</span>, commune),</span>
-<span id="cb99-21"><a href="unit-tests.html#cb99-21" aria-hidden="true" tabindex="-1"></a>                            stringr<span class="sc">::</span><span class="fu">str_remove_all</span>(commune, <span class="st">&quot;Grand-Duche de &quot;</span>),</span>
-<span id="cb99-22"><a href="unit-tests.html#cb99-22" aria-hidden="true" tabindex="-1"></a>                            commune),</span>
-<span id="cb99-23"><a href="unit-tests.html#cb99-23" aria-hidden="true" tabindex="-1"></a>           ) <span class="sc">%&gt;%</span></span>
-<span id="cb99-24"><a href="unit-tests.html#cb99-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(year,</span>
-<span id="cb99-25"><a href="unit-tests.html#cb99-25" aria-hidden="true" tabindex="-1"></a>           <span class="at">place_name =</span> commune,</span>
-<span id="cb99-26"><a href="unit-tests.html#cb99-26" aria-hidden="true" tabindex="-1"></a>           level,</span>
-<span id="cb99-27"><a href="unit-tests.html#cb99-27" aria-hidden="true" tabindex="-1"></a>           <span class="fu">everything</span>())</span>
-<span id="cb99-28"><a href="unit-tests.html#cb99-28" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb99-29"><a href="unit-tests.html#cb99-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb99-30"><a href="unit-tests.html#cb99-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb99-31"><a href="unit-tests.html#cb99-31" aria-hidden="true" tabindex="-1"></a>my_datasets <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb99-32"><a href="unit-tests.html#cb99-32" aria-hidden="true" tabindex="-1"></a>  unemp_2013,</span>
-<span id="cb99-33"><a href="unit-tests.html#cb99-33" aria-hidden="true" tabindex="-1"></a>  unemp_2014,</span>
-<span id="cb99-34"><a href="unit-tests.html#cb99-34" aria-hidden="true" tabindex="-1"></a>  unemp_2015</span>
-<span id="cb99-35"><a href="unit-tests.html#cb99-35" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb99-36"><a href="unit-tests.html#cb99-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb99-37"><a href="unit-tests.html#cb99-37" aria-hidden="true" tabindex="-1"></a>unemp <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map_dfr</span>(my_datasets, clean_data)</span>
-<span id="cb99-38"><a href="unit-tests.html#cb99-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb99-39"><a href="unit-tests.html#cb99-39" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_data</span>(unemp, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="unit-tests.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="do">## code to prepare `DATASET` dataset goes here</span></span>
+<span id="cb16-2"><a href="unit-tests.html#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="unit-tests.html#cb16-3" aria-hidden="true" tabindex="-1"></a>unemp_2013 <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/unemployment/unemp_2013.csv&quot;</span>)</span>
+<span id="cb16-4"><a href="unit-tests.html#cb16-4" aria-hidden="true" tabindex="-1"></a>unemp_2014 <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/unemployment/unemp_2014.csv&quot;</span>)</span>
+<span id="cb16-5"><a href="unit-tests.html#cb16-5" aria-hidden="true" tabindex="-1"></a>unemp_2015 <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/unemployment/unemp_2015.csv&quot;</span>)</span>
+<span id="cb16-6"><a href="unit-tests.html#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="unit-tests.html#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb16-8"><a href="unit-tests.html#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="unit-tests.html#cb16-9" aria-hidden="true" tabindex="-1"></a>clean_data <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb16-10"><a href="unit-tests.html#cb16-10" aria-hidden="true" tabindex="-1"></a>  x <span class="sc">%&gt;%</span></span>
+<span id="cb16-11"><a href="unit-tests.html#cb16-11" aria-hidden="true" tabindex="-1"></a>    janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb16-12"><a href="unit-tests.html#cb16-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">level =</span> <span class="fu">case_when</span>(</span>
+<span id="cb16-13"><a href="unit-tests.html#cb16-13" aria-hidden="true" tabindex="-1"></a>             <span class="fu">grepl</span>(<span class="st">&quot;Grand-D.*&quot;</span>, commune) <span class="sc">~</span> <span class="st">&quot;Country&quot;</span>,</span>
+<span id="cb16-14"><a href="unit-tests.html#cb16-14" aria-hidden="true" tabindex="-1"></a>             <span class="fu">grepl</span>(<span class="st">&quot;Canton&quot;</span>, commune) <span class="sc">~</span> <span class="st">&quot;Canton&quot;</span>,</span>
+<span id="cb16-15"><a href="unit-tests.html#cb16-15" aria-hidden="true" tabindex="-1"></a>             <span class="sc">!</span><span class="fu">grepl</span>(<span class="st">&quot;(Canton|Grand-D.*)&quot;</span>, commune) <span class="sc">~</span> <span class="st">&quot;Commune&quot;</span></span>
+<span id="cb16-16"><a href="unit-tests.html#cb16-16" aria-hidden="true" tabindex="-1"></a>           ),</span>
+<span id="cb16-17"><a href="unit-tests.html#cb16-17" aria-hidden="true" tabindex="-1"></a>           <span class="at">commune =</span> <span class="fu">ifelse</span>(<span class="fu">grepl</span>(<span class="st">&quot;Canton&quot;</span>, commune),</span>
+<span id="cb16-18"><a href="unit-tests.html#cb16-18" aria-hidden="true" tabindex="-1"></a>                            stringr<span class="sc">::</span><span class="fu">str_remove_all</span>(commune, <span class="st">&quot;Canton &quot;</span>),</span>
+<span id="cb16-19"><a href="unit-tests.html#cb16-19" aria-hidden="true" tabindex="-1"></a>                            commune),</span>
+<span id="cb16-20"><a href="unit-tests.html#cb16-20" aria-hidden="true" tabindex="-1"></a>           <span class="at">commune =</span> <span class="fu">ifelse</span>(<span class="fu">grepl</span>(<span class="st">&quot;Grand-D.*&quot;</span>, commune),</span>
+<span id="cb16-21"><a href="unit-tests.html#cb16-21" aria-hidden="true" tabindex="-1"></a>                            stringr<span class="sc">::</span><span class="fu">str_remove_all</span>(commune, <span class="st">&quot;Grand-Duche de &quot;</span>),</span>
+<span id="cb16-22"><a href="unit-tests.html#cb16-22" aria-hidden="true" tabindex="-1"></a>                            commune),</span>
+<span id="cb16-23"><a href="unit-tests.html#cb16-23" aria-hidden="true" tabindex="-1"></a>           ) <span class="sc">%&gt;%</span></span>
+<span id="cb16-24"><a href="unit-tests.html#cb16-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(year,</span>
+<span id="cb16-25"><a href="unit-tests.html#cb16-25" aria-hidden="true" tabindex="-1"></a>           <span class="at">place_name =</span> commune,</span>
+<span id="cb16-26"><a href="unit-tests.html#cb16-26" aria-hidden="true" tabindex="-1"></a>           level,</span>
+<span id="cb16-27"><a href="unit-tests.html#cb16-27" aria-hidden="true" tabindex="-1"></a>           <span class="fu">everything</span>())</span>
+<span id="cb16-28"><a href="unit-tests.html#cb16-28" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-29"><a href="unit-tests.html#cb16-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-30"><a href="unit-tests.html#cb16-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-31"><a href="unit-tests.html#cb16-31" aria-hidden="true" tabindex="-1"></a>my_datasets <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb16-32"><a href="unit-tests.html#cb16-32" aria-hidden="true" tabindex="-1"></a>  unemp_2013,</span>
+<span id="cb16-33"><a href="unit-tests.html#cb16-33" aria-hidden="true" tabindex="-1"></a>  unemp_2014,</span>
+<span id="cb16-34"><a href="unit-tests.html#cb16-34" aria-hidden="true" tabindex="-1"></a>  unemp_2015</span>
+<span id="cb16-35"><a href="unit-tests.html#cb16-35" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-36"><a href="unit-tests.html#cb16-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-37"><a href="unit-tests.html#cb16-37" aria-hidden="true" tabindex="-1"></a>unemp <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map_dfr</span>(my_datasets, clean_data)</span>
+<span id="cb16-38"><a href="unit-tests.html#cb16-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-39"><a href="unit-tests.html#cb16-39" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_data</span>(unemp, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>Running this code creates a dataset called <code>unemp</code>, which users of your package will be able to
 load using <code>data("unemp")</code> (after having loaded your package). The now contains a new column
 called <code>level</code> which will make filtering much easier. After <code>usethis::use_data()</code> is done,
@@ -558,93 +566,93 @@ we can read following message in the R console:</p>
 • Document your data (see &#39;https://r-pkgs.org/data.html&#39;)</code></pre>
 <p>We are invited to document our data. To do so, create and edit a file called <code>data.R</code> in the <code>R</code>
 directory:</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="unit-tests.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; Unemployement in Luxembourg data</span></span>
-<span id="cb101-2"><a href="unit-tests.html#cb101-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;</span></span>
-<span id="cb101-3"><a href="unit-tests.html#cb101-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; A tidy dataset of unemployment data in Luxembourg.</span></span>
-<span id="cb101-4"><a href="unit-tests.html#cb101-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;</span></span>
-<span id="cb101-5"><a href="unit-tests.html#cb101-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @format ## `who`</span></span>
-<span id="cb101-6"><a href="unit-tests.html#cb101-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; A data frame with 7,240 rows and 60 columns:</span></span>
-<span id="cb101-7"><a href="unit-tests.html#cb101-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; \describe{</span></span>
-<span id="cb101-8"><a href="unit-tests.html#cb101-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;   \item{year}{Year}</span></span>
-<span id="cb101-9"><a href="unit-tests.html#cb101-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;   \item{place_name}{Name of commune, canton or country}</span></span>
-<span id="cb101-10"><a href="unit-tests.html#cb101-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;   \item{level}{Country, Canton, or Commune}</span></span>
-<span id="cb101-11"><a href="unit-tests.html#cb101-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;   \item{total_employed_population}{Total employed population living in `place_name`}</span></span>
-<span id="cb101-12"><a href="unit-tests.html#cb101-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;   \item{of_which_wage_earners}{... of which are wage earners living in `place_name`}</span></span>
-<span id="cb101-13"><a href="unit-tests.html#cb101-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;   \item{of_which_non_wage_earners}{... of which are non-wage earners living in `place_name`}</span></span>
-<span id="cb101-14"><a href="unit-tests.html#cb101-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;   \item{unemployed}{Total unemployed population living in `place_name`}</span></span>
-<span id="cb101-15"><a href="unit-tests.html#cb101-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;   \item{active_population}{Total active population living in `place_name`}</span></span>
-<span id="cb101-16"><a href="unit-tests.html#cb101-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;   \item{unemployement_rate_in_percent}{Unemployement rate in `place_name`}</span></span>
-<span id="cb101-17"><a href="unit-tests.html#cb101-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;   ...</span></span>
-<span id="cb101-18"><a href="unit-tests.html#cb101-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; }</span></span>
-<span id="cb101-19"><a href="unit-tests.html#cb101-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @source &lt;https://is.gd/e6wKRk&gt;</span></span>
-<span id="cb101-20"><a href="unit-tests.html#cb101-20" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;unemp&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="unit-tests.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; Unemployement in Luxembourg data</span></span>
+<span id="cb18-2"><a href="unit-tests.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;</span></span>
+<span id="cb18-3"><a href="unit-tests.html#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; A tidy dataset of unemployment data in Luxembourg.</span></span>
+<span id="cb18-4"><a href="unit-tests.html#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;</span></span>
+<span id="cb18-5"><a href="unit-tests.html#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @format ## `who`</span></span>
+<span id="cb18-6"><a href="unit-tests.html#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; A data frame with 7,240 rows and 60 columns:</span></span>
+<span id="cb18-7"><a href="unit-tests.html#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; \describe{</span></span>
+<span id="cb18-8"><a href="unit-tests.html#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;   \item{year}{Year}</span></span>
+<span id="cb18-9"><a href="unit-tests.html#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;   \item{place_name}{Name of commune, canton or country}</span></span>
+<span id="cb18-10"><a href="unit-tests.html#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;   \item{level}{Country, Canton, or Commune}</span></span>
+<span id="cb18-11"><a href="unit-tests.html#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;   \item{total_employed_population}{Total employed population living in `place_name`}</span></span>
+<span id="cb18-12"><a href="unit-tests.html#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;   \item{of_which_wage_earners}{... of which are wage earners living in `place_name`}</span></span>
+<span id="cb18-13"><a href="unit-tests.html#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;   \item{of_which_non_wage_earners}{... of which are non-wage earners living in `place_name`}</span></span>
+<span id="cb18-14"><a href="unit-tests.html#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;   \item{unemployed}{Total unemployed population living in `place_name`}</span></span>
+<span id="cb18-15"><a href="unit-tests.html#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;   \item{active_population}{Total active population living in `place_name`}</span></span>
+<span id="cb18-16"><a href="unit-tests.html#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;   \item{unemployement_rate_in_percent}{Unemployement rate in `place_name`}</span></span>
+<span id="cb18-17"><a href="unit-tests.html#cb18-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;   ...</span></span>
+<span id="cb18-18"><a href="unit-tests.html#cb18-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; }</span></span>
+<span id="cb18-19"><a href="unit-tests.html#cb18-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @source &lt;https://is.gd/e6wKRk&gt;</span></span>
+<span id="cb18-20"><a href="unit-tests.html#cb18-20" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;unemp&quot;</span></span></code></pre></div>
 <p>You can now rebuild the document using <code>CTRL-SHIFT-D</code> and reload the package using <code>CRTL-SHIFT-L</code>. You
 should now be able to load the data into your session using <code>data("unemp")</code>.</p>
 <p>We can now change our function to accommodate this new data format. Let’s edit our function like this:</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="unit-tests.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; Easily filter unemployment data for Luxembourg</span></span>
-<span id="cb102-2"><a href="unit-tests.html#cb102-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param unemp A data frame containing unemployment data for Luxembourg.</span></span>
-<span id="cb102-3"><a href="unit-tests.html#cb102-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param year_of_interest Optional: The year that should be kept. Leave empty to select every year.</span></span>
-<span id="cb102-4"><a href="unit-tests.html#cb102-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param place_name_of_interest Optional: The name of the place of interest: leave empty to select every place in `level_of_interest`.</span></span>
-<span id="cb102-5"><a href="unit-tests.html#cb102-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param level_of_interest Optional: The level of interest: one of `Country`, `Canton`, `Commune`. Leave empty to select every level with the same place name.</span></span>
-<span id="cb102-6"><a href="unit-tests.html#cb102-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param col_of_interest A column of the `unemp` data frame that you wish to select.</span></span>
-<span id="cb102-7"><a href="unit-tests.html#cb102-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @importFrom janitor clean_names</span></span>
-<span id="cb102-8"><a href="unit-tests.html#cb102-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @importFrom dplyr filter select</span></span>
-<span id="cb102-9"><a href="unit-tests.html#cb102-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @importFrom rlang quo `!!`</span></span>
-<span id="cb102-10"><a href="unit-tests.html#cb102-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @return A data frame</span></span>
-<span id="cb102-11"><a href="unit-tests.html#cb102-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @export</span></span>
-<span id="cb102-12"><a href="unit-tests.html#cb102-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @details</span></span>
-<span id="cb102-13"><a href="unit-tests.html#cb102-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; Users can filter data on two variables: the name of the place of interest, and the level of interest.</span></span>
-<span id="cb102-14"><a href="unit-tests.html#cb102-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; By leaving the argument `place_name_of_interest` empty </span></span>
-<span id="cb102-15"><a href="unit-tests.html#cb102-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @examples</span></span>
-<span id="cb102-16"><a href="unit-tests.html#cb102-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; # Filter on cantons</span></span>
-<span id="cb102-17"><a href="unit-tests.html#cb102-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; clean_unemp(unemp,</span></span>
-<span id="cb102-18"><a href="unit-tests.html#cb102-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;             level_of_interest = &quot;Canton&quot;,</span></span>
-<span id="cb102-19"><a href="unit-tests.html#cb102-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;             active_population)</span></span>
-<span id="cb102-20"><a href="unit-tests.html#cb102-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; # Filter on a specific commune</span></span>
-<span id="cb102-21"><a href="unit-tests.html#cb102-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; clean_unemp(unemp_2013,</span></span>
-<span id="cb102-22"><a href="unit-tests.html#cb102-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;             place_name_of_interest = &quot;Luxembourg&quot;,</span></span>
-<span id="cb102-23"><a href="unit-tests.html#cb102-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;             level_of_interest = &quot;Commune&quot;,</span></span>
-<span id="cb102-24"><a href="unit-tests.html#cb102-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;             active_population)</span></span>
-<span id="cb102-25"><a href="unit-tests.html#cb102-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; # Filter on every level called Luxembourg</span></span>
-<span id="cb102-26"><a href="unit-tests.html#cb102-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; clean_unemp(unemp_2013,</span></span>
-<span id="cb102-27"><a href="unit-tests.html#cb102-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;             place_name_of_interest = &quot;Luxembourg&quot;,</span></span>
-<span id="cb102-28"><a href="unit-tests.html#cb102-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;             active_population)</span></span>
-<span id="cb102-29"><a href="unit-tests.html#cb102-29" aria-hidden="true" tabindex="-1"></a>clean_unemp <span class="ot">&lt;-</span> <span class="cf">function</span>(unemp_data,</span>
-<span id="cb102-30"><a href="unit-tests.html#cb102-30" aria-hidden="true" tabindex="-1"></a>                        <span class="at">year_of_interest =</span> <span class="cn">NULL</span>,</span>
-<span id="cb102-31"><a href="unit-tests.html#cb102-31" aria-hidden="true" tabindex="-1"></a>                        <span class="at">place_name_of_interest =</span> <span class="cn">NULL</span>,</span>
-<span id="cb102-32"><a href="unit-tests.html#cb102-32" aria-hidden="true" tabindex="-1"></a>                        <span class="at">level_of_interest =</span> <span class="cn">NULL</span>,</span>
-<span id="cb102-33"><a href="unit-tests.html#cb102-33" aria-hidden="true" tabindex="-1"></a>                        col_of_interest){</span>
-<span id="cb102-34"><a href="unit-tests.html#cb102-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb102-35"><a href="unit-tests.html#cb102-35" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">is.null</span>(year_of_interest)){</span>
-<span id="cb102-36"><a href="unit-tests.html#cb102-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb102-37"><a href="unit-tests.html#cb102-37" aria-hidden="true" tabindex="-1"></a>    year_of_interest <span class="ot">&lt;-</span> <span class="fu">quo</span>(year)</span>
-<span id="cb102-38"><a href="unit-tests.html#cb102-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb102-39"><a href="unit-tests.html#cb102-39" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb102-40"><a href="unit-tests.html#cb102-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb102-41"><a href="unit-tests.html#cb102-41" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">is.null</span>(place_name_of_interest)){</span>
-<span id="cb102-42"><a href="unit-tests.html#cb102-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb102-43"><a href="unit-tests.html#cb102-43" aria-hidden="true" tabindex="-1"></a>    place_name_of_interest <span class="ot">&lt;-</span> <span class="fu">quo</span>(place_name)</span>
-<span id="cb102-44"><a href="unit-tests.html#cb102-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb102-45"><a href="unit-tests.html#cb102-45" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb102-46"><a href="unit-tests.html#cb102-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb102-47"><a href="unit-tests.html#cb102-47" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">is.null</span>(level_of_interest)){</span>
-<span id="cb102-48"><a href="unit-tests.html#cb102-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb102-49"><a href="unit-tests.html#cb102-49" aria-hidden="true" tabindex="-1"></a>    level_of_interest <span class="ot">&lt;-</span> <span class="fu">quo</span>(level)</span>
-<span id="cb102-50"><a href="unit-tests.html#cb102-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb102-51"><a href="unit-tests.html#cb102-51" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb102-52"><a href="unit-tests.html#cb102-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb102-53"><a href="unit-tests.html#cb102-53" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> unemp_data <span class="sc">|&gt;</span></span>
-<span id="cb102-54"><a href="unit-tests.html#cb102-54" aria-hidden="true" tabindex="-1"></a>    janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">|&gt;</span></span>
-<span id="cb102-55"><a href="unit-tests.html#cb102-55" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(year <span class="sc">%in%</span> <span class="sc">!!</span>year_of_interest,</span>
-<span id="cb102-56"><a href="unit-tests.html#cb102-56" aria-hidden="true" tabindex="-1"></a>                  place_name <span class="sc">%in%</span> <span class="sc">!!</span>place_name_of_interest,</span>
-<span id="cb102-57"><a href="unit-tests.html#cb102-57" aria-hidden="true" tabindex="-1"></a>                  level <span class="sc">%in%</span> <span class="sc">!!</span>level_of_interest) <span class="sc">|&gt;</span></span>
-<span id="cb102-58"><a href="unit-tests.html#cb102-58" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(year, place_name, level, {{col_of_interest}})</span>
-<span id="cb102-59"><a href="unit-tests.html#cb102-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb102-60"><a href="unit-tests.html#cb102-60" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">nrow</span>(result) <span class="sc">==</span> <span class="dv">0</span>) {</span>
-<span id="cb102-61"><a href="unit-tests.html#cb102-61" aria-hidden="true" tabindex="-1"></a>    <span class="fu">warning</span>(<span class="st">&quot;The returned data frame is empty. This is likely because the `place_name_of_interest` or `level_of_interest` argument supplied does not match any rows in the original data.&quot;</span>)</span>
-<span id="cb102-62"><a href="unit-tests.html#cb102-62" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb102-63"><a href="unit-tests.html#cb102-63" aria-hidden="true" tabindex="-1"></a>  result</span>
-<span id="cb102-64"><a href="unit-tests.html#cb102-64" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="unit-tests.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; Easily filter unemployment data for Luxembourg</span></span>
+<span id="cb19-2"><a href="unit-tests.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param unemp_data A data frame containing unemployment data for Luxembourg.</span></span>
+<span id="cb19-3"><a href="unit-tests.html#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param year_of_interest Optional: The year that should be kept. Leave empty to select every year.</span></span>
+<span id="cb19-4"><a href="unit-tests.html#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param place_name_of_interest Optional: The name of the place of interest: leave empty to select every place in `level_of_interest`.</span></span>
+<span id="cb19-5"><a href="unit-tests.html#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param level_of_interest Optional: The level of interest: one of `Country`, `Canton`, `Commune`. Leave empty to select every level with the same place name.</span></span>
+<span id="cb19-6"><a href="unit-tests.html#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param col_of_interest A column of the `unemp` data frame that you wish to select.</span></span>
+<span id="cb19-7"><a href="unit-tests.html#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @importFrom janitor clean_names</span></span>
+<span id="cb19-8"><a href="unit-tests.html#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @importFrom dplyr filter select</span></span>
+<span id="cb19-9"><a href="unit-tests.html#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @importFrom rlang quo `!!`</span></span>
+<span id="cb19-10"><a href="unit-tests.html#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @return A data frame</span></span>
+<span id="cb19-11"><a href="unit-tests.html#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @export</span></span>
+<span id="cb19-12"><a href="unit-tests.html#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @details</span></span>
+<span id="cb19-13"><a href="unit-tests.html#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; Users can filter data on two variables: the name of the place of interest, and the level of interest.</span></span>
+<span id="cb19-14"><a href="unit-tests.html#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; By leaving the argument `place_name_of_interest` empty</span></span>
+<span id="cb19-15"><a href="unit-tests.html#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @examples</span></span>
+<span id="cb19-16"><a href="unit-tests.html#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; # Filter on cantons</span></span>
+<span id="cb19-17"><a href="unit-tests.html#cb19-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; clean_unemp(unemp,</span></span>
+<span id="cb19-18"><a href="unit-tests.html#cb19-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;             level_of_interest = &quot;Canton&quot;,</span></span>
+<span id="cb19-19"><a href="unit-tests.html#cb19-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;             col_of_interest = active_population)</span></span>
+<span id="cb19-20"><a href="unit-tests.html#cb19-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; # Filter on a specific commune</span></span>
+<span id="cb19-21"><a href="unit-tests.html#cb19-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; clean_unemp(unemp,</span></span>
+<span id="cb19-22"><a href="unit-tests.html#cb19-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;             place_name_of_interest = &quot;Luxembourg&quot;,</span></span>
+<span id="cb19-23"><a href="unit-tests.html#cb19-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;             level_of_interest = &quot;Commune&quot;,</span></span>
+<span id="cb19-24"><a href="unit-tests.html#cb19-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;             col_of_interest = active_population)</span></span>
+<span id="cb19-25"><a href="unit-tests.html#cb19-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; # Filter on every level called Luxembourg</span></span>
+<span id="cb19-26"><a href="unit-tests.html#cb19-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; clean_unemp(unemp,</span></span>
+<span id="cb19-27"><a href="unit-tests.html#cb19-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;             place_name_of_interest = &quot;Luxembourg&quot;,</span></span>
+<span id="cb19-28"><a href="unit-tests.html#cb19-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;             col_of_interest = active_population)</span></span>
+<span id="cb19-29"><a href="unit-tests.html#cb19-29" aria-hidden="true" tabindex="-1"></a>clean_unemp <span class="ot">&lt;-</span> <span class="cf">function</span>(unemp_data,</span>
+<span id="cb19-30"><a href="unit-tests.html#cb19-30" aria-hidden="true" tabindex="-1"></a>                        <span class="at">year_of_interest =</span> <span class="cn">NULL</span>,</span>
+<span id="cb19-31"><a href="unit-tests.html#cb19-31" aria-hidden="true" tabindex="-1"></a>                        <span class="at">place_name_of_interest =</span> <span class="cn">NULL</span>,</span>
+<span id="cb19-32"><a href="unit-tests.html#cb19-32" aria-hidden="true" tabindex="-1"></a>                        <span class="at">level_of_interest =</span> <span class="cn">NULL</span>,</span>
+<span id="cb19-33"><a href="unit-tests.html#cb19-33" aria-hidden="true" tabindex="-1"></a>                        col_of_interest){</span>
+<span id="cb19-34"><a href="unit-tests.html#cb19-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-35"><a href="unit-tests.html#cb19-35" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">is.null</span>(year_of_interest)){</span>
+<span id="cb19-36"><a href="unit-tests.html#cb19-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-37"><a href="unit-tests.html#cb19-37" aria-hidden="true" tabindex="-1"></a>    year_of_interest <span class="ot">&lt;-</span> <span class="fu">quo</span>(year)</span>
+<span id="cb19-38"><a href="unit-tests.html#cb19-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-39"><a href="unit-tests.html#cb19-39" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb19-40"><a href="unit-tests.html#cb19-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-41"><a href="unit-tests.html#cb19-41" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">is.null</span>(place_name_of_interest)){</span>
+<span id="cb19-42"><a href="unit-tests.html#cb19-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-43"><a href="unit-tests.html#cb19-43" aria-hidden="true" tabindex="-1"></a>    place_name_of_interest <span class="ot">&lt;-</span> <span class="fu">quo</span>(place_name)</span>
+<span id="cb19-44"><a href="unit-tests.html#cb19-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-45"><a href="unit-tests.html#cb19-45" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb19-46"><a href="unit-tests.html#cb19-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-47"><a href="unit-tests.html#cb19-47" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">is.null</span>(level_of_interest)){</span>
+<span id="cb19-48"><a href="unit-tests.html#cb19-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-49"><a href="unit-tests.html#cb19-49" aria-hidden="true" tabindex="-1"></a>    level_of_interest <span class="ot">&lt;-</span> <span class="fu">quo</span>(level)</span>
+<span id="cb19-50"><a href="unit-tests.html#cb19-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-51"><a href="unit-tests.html#cb19-51" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb19-52"><a href="unit-tests.html#cb19-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-53"><a href="unit-tests.html#cb19-53" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> unemp_data <span class="sc">|&gt;</span></span>
+<span id="cb19-54"><a href="unit-tests.html#cb19-54" aria-hidden="true" tabindex="-1"></a>    janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">|&gt;</span></span>
+<span id="cb19-55"><a href="unit-tests.html#cb19-55" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(year <span class="sc">%in%</span> <span class="sc">!!</span>year_of_interest,</span>
+<span id="cb19-56"><a href="unit-tests.html#cb19-56" aria-hidden="true" tabindex="-1"></a>                  place_name <span class="sc">%in%</span> <span class="sc">!!</span>place_name_of_interest,</span>
+<span id="cb19-57"><a href="unit-tests.html#cb19-57" aria-hidden="true" tabindex="-1"></a>                  level <span class="sc">%in%</span> <span class="sc">!!</span>level_of_interest) <span class="sc">|&gt;</span></span>
+<span id="cb19-58"><a href="unit-tests.html#cb19-58" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(year, place_name, level, {{col_of_interest}})</span>
+<span id="cb19-59"><a href="unit-tests.html#cb19-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-60"><a href="unit-tests.html#cb19-60" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">nrow</span>(result) <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb19-61"><a href="unit-tests.html#cb19-61" aria-hidden="true" tabindex="-1"></a>    <span class="fu">warning</span>(<span class="st">&quot;The returned data frame is empty. This is likely because the `place_name_of_interest` or `level_of_interest` argument supplied does not match any rows in the original data.&quot;</span>)</span>
+<span id="cb19-62"><a href="unit-tests.html#cb19-62" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb19-63"><a href="unit-tests.html#cb19-63" aria-hidden="true" tabindex="-1"></a>  result</span>
+<span id="cb19-64"><a href="unit-tests.html#cb19-64" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>There’s a lot more going on now: if you don’t get everything that’s going on in this function,
 don’t worry, it is not that important for what follows. But do try to understand what’s happening,
 especially the part about the optional arguments.</p>
@@ -729,100 +737,106 @@ push once the tests have been rewritten to pass. Commit from RStudio or from a t
 choice is yours. We now have to rewrite the tests, to make them pass again. We also need
 to recreate the csv files for some of the tests, and will probably need to create others. This is
 what the script containing the tests could look like once you’re done:</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="unit-tests.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">&quot;selecting the grand duchy works&quot;</span>, {</span>
-<span id="cb104-2"><a href="unit-tests.html#cb104-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb104-3"><a href="unit-tests.html#cb104-3" aria-hidden="true" tabindex="-1"></a>  returned_value <span class="ot">&lt;-</span> <span class="fu">clean_unemp</span>(</span>
-<span id="cb104-4"><a href="unit-tests.html#cb104-4" aria-hidden="true" tabindex="-1"></a>    unemp,</span>
-<span id="cb104-5"><a href="unit-tests.html#cb104-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">year_of_interest =</span> <span class="dv">2013</span>,</span>
-<span id="cb104-6"><a href="unit-tests.html#cb104-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">level_of_interest =</span> <span class="st">&quot;Country&quot;</span>,</span>
-<span id="cb104-7"><a href="unit-tests.html#cb104-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">col_of_interest =</span> active_population)</span>
-<span id="cb104-8"><a href="unit-tests.html#cb104-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb104-9"><a href="unit-tests.html#cb104-9" aria-hidden="true" tabindex="-1"></a>  expected_value <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">as_tibble</span>(</span>
-<span id="cb104-10"><a href="unit-tests.html#cb104-10" aria-hidden="true" tabindex="-1"></a>                              <span class="fu">list</span>(<span class="st">&quot;year&quot;</span> <span class="ot">=</span> <span class="dv">2013</span>,</span>
-<span id="cb104-11"><a href="unit-tests.html#cb104-11" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;place_name&quot;</span> <span class="ot">=</span> <span class="st">&quot;Luxembourg&quot;</span>,</span>
-<span id="cb104-12"><a href="unit-tests.html#cb104-12" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;level&quot;</span> <span class="ot">=</span> <span class="st">&quot;Country&quot;</span>,</span>
-<span id="cb104-13"><a href="unit-tests.html#cb104-13" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;active_population&quot;</span> <span class="ot">=</span> <span class="dv">242694</span>))</span>
-<span id="cb104-14"><a href="unit-tests.html#cb104-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb104-15"><a href="unit-tests.html#cb104-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(returned_value, expected_value)</span>
-<span id="cb104-16"><a href="unit-tests.html#cb104-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb104-17"><a href="unit-tests.html#cb104-17" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb104-18"><a href="unit-tests.html#cb104-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb104-19"><a href="unit-tests.html#cb104-19" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">&quot;selecting cantons work&quot;</span>, {</span>
-<span id="cb104-20"><a href="unit-tests.html#cb104-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb104-21"><a href="unit-tests.html#cb104-21" aria-hidden="true" tabindex="-1"></a>  returned_value <span class="ot">&lt;-</span> <span class="fu">clean_unemp</span>(</span>
-<span id="cb104-22"><a href="unit-tests.html#cb104-22" aria-hidden="true" tabindex="-1"></a>    unemp,</span>
-<span id="cb104-23"><a href="unit-tests.html#cb104-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">year_of_interest =</span> <span class="dv">2013</span>,</span>
-<span id="cb104-24"><a href="unit-tests.html#cb104-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">level_of_interest =</span> <span class="st">&quot;Canton&quot;</span>,</span>
-<span id="cb104-25"><a href="unit-tests.html#cb104-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">col_of_interest =</span> active_population)</span>
-<span id="cb104-26"><a href="unit-tests.html#cb104-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb104-27"><a href="unit-tests.html#cb104-27" aria-hidden="true" tabindex="-1"></a>  expected_value <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;test_data_cantons.csv&quot;</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb104-28"><a href="unit-tests.html#cb104-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb104-29"><a href="unit-tests.html#cb104-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(returned_value, expected_value)</span>
-<span id="cb104-30"><a href="unit-tests.html#cb104-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb104-31"><a href="unit-tests.html#cb104-31" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb104-32"><a href="unit-tests.html#cb104-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb104-33"><a href="unit-tests.html#cb104-33" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">&quot;selecting communes works&quot;</span>, {</span>
-<span id="cb104-34"><a href="unit-tests.html#cb104-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb104-35"><a href="unit-tests.html#cb104-35" aria-hidden="true" tabindex="-1"></a>  returned_value <span class="ot">&lt;-</span> <span class="fu">clean_unemp</span>(</span>
-<span id="cb104-36"><a href="unit-tests.html#cb104-36" aria-hidden="true" tabindex="-1"></a>    unemp,</span>
-<span id="cb104-37"><a href="unit-tests.html#cb104-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">year_of_interest =</span> <span class="dv">2013</span>,</span>
-<span id="cb104-38"><a href="unit-tests.html#cb104-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">level_of_interest =</span> <span class="st">&quot;Commune&quot;</span>,</span>
-<span id="cb104-39"><a href="unit-tests.html#cb104-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">col_of_interest =</span> active_population)</span>
-<span id="cb104-40"><a href="unit-tests.html#cb104-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb104-41"><a href="unit-tests.html#cb104-41" aria-hidden="true" tabindex="-1"></a>  expected_value <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;test_data_communes.csv&quot;</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb104-42"><a href="unit-tests.html#cb104-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb104-43"><a href="unit-tests.html#cb104-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(returned_value, expected_value)</span>
-<span id="cb104-44"><a href="unit-tests.html#cb104-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb104-45"><a href="unit-tests.html#cb104-45" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb104-46"><a href="unit-tests.html#cb104-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb104-47"><a href="unit-tests.html#cb104-47" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">&quot;selecting one commune works&quot;</span>, {</span>
-<span id="cb104-48"><a href="unit-tests.html#cb104-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb104-49"><a href="unit-tests.html#cb104-49" aria-hidden="true" tabindex="-1"></a>  returned_value <span class="ot">&lt;-</span> <span class="fu">clean_unemp</span>(</span>
-<span id="cb104-50"><a href="unit-tests.html#cb104-50" aria-hidden="true" tabindex="-1"></a>    unemp,</span>
-<span id="cb104-51"><a href="unit-tests.html#cb104-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">year_of_interest =</span> <span class="dv">2013</span>,</span>
-<span id="cb104-52"><a href="unit-tests.html#cb104-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">place_name_of_interest =</span> <span class="st">&quot;Kayl&quot;</span>,</span>
-<span id="cb104-53"><a href="unit-tests.html#cb104-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">col_of_interest =</span> active_population)</span>
-<span id="cb104-54"><a href="unit-tests.html#cb104-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb104-55"><a href="unit-tests.html#cb104-55" aria-hidden="true" tabindex="-1"></a>  expected_value <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">as_tibble</span>(</span>
-<span id="cb104-56"><a href="unit-tests.html#cb104-56" aria-hidden="true" tabindex="-1"></a>                              <span class="fu">list</span>(<span class="st">&quot;year&quot;</span> <span class="ot">=</span> <span class="dv">2013</span>,</span>
-<span id="cb104-57"><a href="unit-tests.html#cb104-57" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;place_name&quot;</span> <span class="ot">=</span> <span class="st">&quot;Kayl&quot;</span>,</span>
-<span id="cb104-58"><a href="unit-tests.html#cb104-58" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;level&quot;</span> <span class="ot">=</span> <span class="st">&quot;Commune&quot;</span>,</span>
-<span id="cb104-59"><a href="unit-tests.html#cb104-59" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;active_population&quot;</span> <span class="ot">=</span> <span class="dv">3863</span>))</span>
-<span id="cb104-60"><a href="unit-tests.html#cb104-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb104-61"><a href="unit-tests.html#cb104-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(returned_value, expected_value)</span>
-<span id="cb104-62"><a href="unit-tests.html#cb104-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb104-63"><a href="unit-tests.html#cb104-63" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb104-64"><a href="unit-tests.html#cb104-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb104-65"><a href="unit-tests.html#cb104-65" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">&quot;wrong commune name&quot;</span>, {</span>
-<span id="cb104-66"><a href="unit-tests.html#cb104-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb104-67"><a href="unit-tests.html#cb104-67" aria-hidden="true" tabindex="-1"></a>  returned_value <span class="ot">&lt;-</span> <span class="fu">clean_unemp</span>(</span>
-<span id="cb104-68"><a href="unit-tests.html#cb104-68" aria-hidden="true" tabindex="-1"></a>    unemp,</span>
-<span id="cb104-69"><a href="unit-tests.html#cb104-69" aria-hidden="true" tabindex="-1"></a>    <span class="at">year_of_interest =</span> <span class="dv">2013</span>,</span>
-<span id="cb104-70"><a href="unit-tests.html#cb104-70" aria-hidden="true" tabindex="-1"></a>    <span class="at">place_name_of_interest =</span> <span class="st">&quot;Paris&quot;</span>,</span>
-<span id="cb104-71"><a href="unit-tests.html#cb104-71" aria-hidden="true" tabindex="-1"></a>    <span class="at">col_of_interest =</span> active_population)</span>
-<span id="cb104-72"><a href="unit-tests.html#cb104-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb104-73"><a href="unit-tests.html#cb104-73" aria-hidden="true" tabindex="-1"></a>  expected_value <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">as_tibble</span>(</span>
-<span id="cb104-74"><a href="unit-tests.html#cb104-74" aria-hidden="true" tabindex="-1"></a>                              <span class="fu">list</span>(<span class="st">&quot;year&quot;</span> <span class="ot">=</span> <span class="fu">numeric</span>(<span class="dv">0</span>),</span>
-<span id="cb104-75"><a href="unit-tests.html#cb104-75" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;place_name&quot;</span> <span class="ot">=</span> <span class="fu">character</span>(<span class="dv">0</span>),</span>
-<span id="cb104-76"><a href="unit-tests.html#cb104-76" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;level&quot;</span> <span class="ot">=</span> <span class="fu">character</span>(<span class="dv">0</span>),</span>
-<span id="cb104-77"><a href="unit-tests.html#cb104-77" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;active_population&quot;</span> <span class="ot">=</span> <span class="fu">numeric</span>(<span class="dv">0</span>)))</span>
-<span id="cb104-78"><a href="unit-tests.html#cb104-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb104-79"><a href="unit-tests.html#cb104-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb104-80"><a href="unit-tests.html#cb104-80" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(returned_value, expected_value)</span>
-<span id="cb104-81"><a href="unit-tests.html#cb104-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb104-82"><a href="unit-tests.html#cb104-82" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb104-83"><a href="unit-tests.html#cb104-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb104-84"><a href="unit-tests.html#cb104-84" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">&quot;wrong commune name: warning is thrown&quot;</span>, {</span>
-<span id="cb104-85"><a href="unit-tests.html#cb104-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb104-86"><a href="unit-tests.html#cb104-86" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_warning</span>({</span>
-<span id="cb104-87"><a href="unit-tests.html#cb104-87" aria-hidden="true" tabindex="-1"></a>    <span class="fu">clean_unemp</span>(</span>
-<span id="cb104-88"><a href="unit-tests.html#cb104-88" aria-hidden="true" tabindex="-1"></a>      unemp,</span>
-<span id="cb104-89"><a href="unit-tests.html#cb104-89" aria-hidden="true" tabindex="-1"></a>      <span class="at">year_of_interest =</span> <span class="dv">2013</span>,</span>
-<span id="cb104-90"><a href="unit-tests.html#cb104-90" aria-hidden="true" tabindex="-1"></a>      <span class="at">place_name_of_interest =</span> <span class="st">&quot;Paris&quot;</span>,</span>
-<span id="cb104-91"><a href="unit-tests.html#cb104-91" aria-hidden="true" tabindex="-1"></a>      <span class="at">col_of_interest =</span> active_population)</span>
-<span id="cb104-92"><a href="unit-tests.html#cb104-92" aria-hidden="true" tabindex="-1"></a>  }, <span class="st">&quot;This is likely&quot;</span>)</span>
-<span id="cb104-93"><a href="unit-tests.html#cb104-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb104-94"><a href="unit-tests.html#cb104-94" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="unit-tests.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">&quot;selecting the grand duchy works&quot;</span>, {</span>
+<span id="cb21-2"><a href="unit-tests.html#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="unit-tests.html#cb21-3" aria-hidden="true" tabindex="-1"></a>  returned_value <span class="ot">&lt;-</span> <span class="fu">clean_unemp</span>(</span>
+<span id="cb21-4"><a href="unit-tests.html#cb21-4" aria-hidden="true" tabindex="-1"></a>    unemp,</span>
+<span id="cb21-5"><a href="unit-tests.html#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">year_of_interest =</span> <span class="dv">2013</span>,</span>
+<span id="cb21-6"><a href="unit-tests.html#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">level_of_interest =</span> <span class="st">&quot;Country&quot;</span>,</span>
+<span id="cb21-7"><a href="unit-tests.html#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">col_of_interest =</span> active_population) <span class="sc">|&gt;</span></span>
+<span id="cb21-8"><a href="unit-tests.html#cb21-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">as.data.frame</span>()</span>
+<span id="cb21-9"><a href="unit-tests.html#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-10"><a href="unit-tests.html#cb21-10" aria-hidden="true" tabindex="-1"></a>  expected_value <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(</span>
+<span id="cb21-11"><a href="unit-tests.html#cb21-11" aria-hidden="true" tabindex="-1"></a>                              <span class="fu">list</span>(<span class="st">&quot;year&quot;</span> <span class="ot">=</span> <span class="dv">2013</span>,</span>
+<span id="cb21-12"><a href="unit-tests.html#cb21-12" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;place_name&quot;</span> <span class="ot">=</span> <span class="st">&quot;Luxembourg&quot;</span>,</span>
+<span id="cb21-13"><a href="unit-tests.html#cb21-13" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;level&quot;</span> <span class="ot">=</span> <span class="st">&quot;Country&quot;</span>,</span>
+<span id="cb21-14"><a href="unit-tests.html#cb21-14" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;active_population&quot;</span> <span class="ot">=</span> <span class="dv">242694</span>)</span>
+<span id="cb21-15"><a href="unit-tests.html#cb21-15" aria-hidden="true" tabindex="-1"></a>                              )</span>
+<span id="cb21-16"><a href="unit-tests.html#cb21-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-17"><a href="unit-tests.html#cb21-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(returned_value, expected_value)</span>
+<span id="cb21-18"><a href="unit-tests.html#cb21-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-19"><a href="unit-tests.html#cb21-19" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb21-20"><a href="unit-tests.html#cb21-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-21"><a href="unit-tests.html#cb21-21" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">&quot;selecting cantons work&quot;</span>, {</span>
+<span id="cb21-22"><a href="unit-tests.html#cb21-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-23"><a href="unit-tests.html#cb21-23" aria-hidden="true" tabindex="-1"></a>  returned_value <span class="ot">&lt;-</span> <span class="fu">clean_unemp</span>(</span>
+<span id="cb21-24"><a href="unit-tests.html#cb21-24" aria-hidden="true" tabindex="-1"></a>    unemp,</span>
+<span id="cb21-25"><a href="unit-tests.html#cb21-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">year_of_interest =</span> <span class="dv">2013</span>,</span>
+<span id="cb21-26"><a href="unit-tests.html#cb21-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">level_of_interest =</span> <span class="st">&quot;Canton&quot;</span>,</span>
+<span id="cb21-27"><a href="unit-tests.html#cb21-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">col_of_interest =</span> active_population) <span class="sc">|&gt;</span></span>
+<span id="cb21-28"><a href="unit-tests.html#cb21-28" aria-hidden="true" tabindex="-1"></a>      <span class="fu">as.data.frame</span>()</span>
+<span id="cb21-29"><a href="unit-tests.html#cb21-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-30"><a href="unit-tests.html#cb21-30" aria-hidden="true" tabindex="-1"></a>  expected_value <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;test_data_cantons.csv&quot;</span>)</span>
+<span id="cb21-31"><a href="unit-tests.html#cb21-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-32"><a href="unit-tests.html#cb21-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(returned_value, expected_value)</span>
+<span id="cb21-33"><a href="unit-tests.html#cb21-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-34"><a href="unit-tests.html#cb21-34" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb21-35"><a href="unit-tests.html#cb21-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-36"><a href="unit-tests.html#cb21-36" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">&quot;selecting communes works&quot;</span>, {</span>
+<span id="cb21-37"><a href="unit-tests.html#cb21-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-38"><a href="unit-tests.html#cb21-38" aria-hidden="true" tabindex="-1"></a>  returned_value <span class="ot">&lt;-</span> <span class="fu">clean_unemp</span>(</span>
+<span id="cb21-39"><a href="unit-tests.html#cb21-39" aria-hidden="true" tabindex="-1"></a>    unemp,</span>
+<span id="cb21-40"><a href="unit-tests.html#cb21-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">year_of_interest =</span> <span class="dv">2013</span>,</span>
+<span id="cb21-41"><a href="unit-tests.html#cb21-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">level_of_interest =</span> <span class="st">&quot;Commune&quot;</span>,</span>
+<span id="cb21-42"><a href="unit-tests.html#cb21-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">col_of_interest =</span> active_population) <span class="sc">|&gt;</span></span>
+<span id="cb21-43"><a href="unit-tests.html#cb21-43" aria-hidden="true" tabindex="-1"></a>      <span class="fu">as.data.frame</span>()</span>
+<span id="cb21-44"><a href="unit-tests.html#cb21-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-45"><a href="unit-tests.html#cb21-45" aria-hidden="true" tabindex="-1"></a>  expected_value <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;test_data_communes.csv&quot;</span>)</span>
+<span id="cb21-46"><a href="unit-tests.html#cb21-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-47"><a href="unit-tests.html#cb21-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(returned_value, expected_value)</span>
+<span id="cb21-48"><a href="unit-tests.html#cb21-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-49"><a href="unit-tests.html#cb21-49" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb21-50"><a href="unit-tests.html#cb21-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-51"><a href="unit-tests.html#cb21-51" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">&quot;selecting one commune works&quot;</span>, {</span>
+<span id="cb21-52"><a href="unit-tests.html#cb21-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-53"><a href="unit-tests.html#cb21-53" aria-hidden="true" tabindex="-1"></a>  returned_value <span class="ot">&lt;-</span> <span class="fu">clean_unemp</span>(</span>
+<span id="cb21-54"><a href="unit-tests.html#cb21-54" aria-hidden="true" tabindex="-1"></a>    unemp,</span>
+<span id="cb21-55"><a href="unit-tests.html#cb21-55" aria-hidden="true" tabindex="-1"></a>    <span class="at">year_of_interest =</span> <span class="dv">2013</span>,</span>
+<span id="cb21-56"><a href="unit-tests.html#cb21-56" aria-hidden="true" tabindex="-1"></a>    <span class="at">place_name_of_interest =</span> <span class="st">&quot;Kayl&quot;</span>,</span>
+<span id="cb21-57"><a href="unit-tests.html#cb21-57" aria-hidden="true" tabindex="-1"></a>    <span class="at">col_of_interest =</span> active_population) <span class="sc">|&gt;</span></span>
+<span id="cb21-58"><a href="unit-tests.html#cb21-58" aria-hidden="true" tabindex="-1"></a>      <span class="fu">as.data.frame</span>()</span>
+<span id="cb21-59"><a href="unit-tests.html#cb21-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-60"><a href="unit-tests.html#cb21-60" aria-hidden="true" tabindex="-1"></a>  expected_value <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(</span>
+<span id="cb21-61"><a href="unit-tests.html#cb21-61" aria-hidden="true" tabindex="-1"></a>                              <span class="fu">list</span>(<span class="st">&quot;year&quot;</span> <span class="ot">=</span> <span class="dv">2013</span>,</span>
+<span id="cb21-62"><a href="unit-tests.html#cb21-62" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;place_name&quot;</span> <span class="ot">=</span> <span class="st">&quot;Kayl&quot;</span>,</span>
+<span id="cb21-63"><a href="unit-tests.html#cb21-63" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;level&quot;</span> <span class="ot">=</span> <span class="st">&quot;Commune&quot;</span>,</span>
+<span id="cb21-64"><a href="unit-tests.html#cb21-64" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;active_population&quot;</span> <span class="ot">=</span> <span class="dv">3863</span>))</span>
+<span id="cb21-65"><a href="unit-tests.html#cb21-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-66"><a href="unit-tests.html#cb21-66" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(returned_value, expected_value)</span>
+<span id="cb21-67"><a href="unit-tests.html#cb21-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-68"><a href="unit-tests.html#cb21-68" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb21-69"><a href="unit-tests.html#cb21-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-70"><a href="unit-tests.html#cb21-70" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">&quot;wrong commune name&quot;</span>, {</span>
+<span id="cb21-71"><a href="unit-tests.html#cb21-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-72"><a href="unit-tests.html#cb21-72" aria-hidden="true" tabindex="-1"></a>  returned_value <span class="ot">&lt;-</span> <span class="fu">clean_unemp</span>(</span>
+<span id="cb21-73"><a href="unit-tests.html#cb21-73" aria-hidden="true" tabindex="-1"></a>    unemp,</span>
+<span id="cb21-74"><a href="unit-tests.html#cb21-74" aria-hidden="true" tabindex="-1"></a>    <span class="at">year_of_interest =</span> <span class="dv">2013</span>,</span>
+<span id="cb21-75"><a href="unit-tests.html#cb21-75" aria-hidden="true" tabindex="-1"></a>    <span class="at">place_name_of_interest =</span> <span class="st">&quot;Paris&quot;</span>,</span>
+<span id="cb21-76"><a href="unit-tests.html#cb21-76" aria-hidden="true" tabindex="-1"></a>    <span class="at">col_of_interest =</span> active_population) <span class="sc">|&gt;</span></span>
+<span id="cb21-77"><a href="unit-tests.html#cb21-77" aria-hidden="true" tabindex="-1"></a>      <span class="fu">as.data.frame</span>()</span>
+<span id="cb21-78"><a href="unit-tests.html#cb21-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-79"><a href="unit-tests.html#cb21-79" aria-hidden="true" tabindex="-1"></a>  expected_value <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(</span>
+<span id="cb21-80"><a href="unit-tests.html#cb21-80" aria-hidden="true" tabindex="-1"></a>                              <span class="fu">list</span>(<span class="st">&quot;year&quot;</span> <span class="ot">=</span> <span class="fu">numeric</span>(<span class="dv">0</span>),</span>
+<span id="cb21-81"><a href="unit-tests.html#cb21-81" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;place_name&quot;</span> <span class="ot">=</span> <span class="fu">character</span>(<span class="dv">0</span>),</span>
+<span id="cb21-82"><a href="unit-tests.html#cb21-82" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;level&quot;</span> <span class="ot">=</span> <span class="fu">character</span>(<span class="dv">0</span>),</span>
+<span id="cb21-83"><a href="unit-tests.html#cb21-83" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;active_population&quot;</span> <span class="ot">=</span> <span class="fu">numeric</span>(<span class="dv">0</span>)))</span>
+<span id="cb21-84"><a href="unit-tests.html#cb21-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-85"><a href="unit-tests.html#cb21-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-86"><a href="unit-tests.html#cb21-86" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(returned_value, expected_value)</span>
+<span id="cb21-87"><a href="unit-tests.html#cb21-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-88"><a href="unit-tests.html#cb21-88" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb21-89"><a href="unit-tests.html#cb21-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-90"><a href="unit-tests.html#cb21-90" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">&quot;wrong commune name: warning is thrown&quot;</span>, {</span>
+<span id="cb21-91"><a href="unit-tests.html#cb21-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-92"><a href="unit-tests.html#cb21-92" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_warning</span>({</span>
+<span id="cb21-93"><a href="unit-tests.html#cb21-93" aria-hidden="true" tabindex="-1"></a>    <span class="fu">clean_unemp</span>(</span>
+<span id="cb21-94"><a href="unit-tests.html#cb21-94" aria-hidden="true" tabindex="-1"></a>      unemp,</span>
+<span id="cb21-95"><a href="unit-tests.html#cb21-95" aria-hidden="true" tabindex="-1"></a>      <span class="at">year_of_interest =</span> <span class="dv">2013</span>,</span>
+<span id="cb21-96"><a href="unit-tests.html#cb21-96" aria-hidden="true" tabindex="-1"></a>      <span class="at">place_name_of_interest =</span> <span class="st">&quot;Paris&quot;</span>,</span>
+<span id="cb21-97"><a href="unit-tests.html#cb21-97" aria-hidden="true" tabindex="-1"></a>      <span class="at">col_of_interest =</span> active_population)</span>
+<span id="cb21-98"><a href="unit-tests.html#cb21-98" aria-hidden="true" tabindex="-1"></a>  }, <span class="st">&quot;This is likely&quot;</span>)</span>
+<span id="cb21-99"><a href="unit-tests.html#cb21-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-100"><a href="unit-tests.html#cb21-100" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 <p>Once you’re done, commit and push your changes.</p>
 <p>You should now have a pretty good intuition about unit tests. As you can see, unit tests are not just
 useful to make sure that changes that get introduced in our functions don’t result in regressions in
@@ -899,20 +913,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

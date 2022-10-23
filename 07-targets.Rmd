@@ -12,14 +12,13 @@ What you’ll have learned by the end of the chapter: how to set up an (almost) 
 
 `{targets}` is a build automation tool for the R programming language. *Build*, in the context of
 this course means the creation of a data product. As mentioned in the introduction, this data
-product can be anything from predictions from a model to interactive web applications.
-*Automation* means that this build automation tool will take the burden off our shoulders when
-it'll be time to run the build pipeline. Using such a tool, programmers don't need to think 
-about which parts of the code to rerun if they introduce a change somewhere. Only the parts
-affected by the change will run. These tools also run the pipeline in parallel, because they
-identify independent pats of the pipeline which are then run simultaneously. Build automation
-tools have many benefits, and because they work in a certain way, they also force you to work
-in a more structured way.
+product can be anything from predictions from a model to interactive web applications. *Automation*
+means that this build automation tool will take the burden off our shoulders when it'll be time to
+run the build pipeline. Using such a tool, programmers don't need to think about which parts of the
+code to rerun if they introduce a change somewhere. Only the parts affected by the change will run.
+These tools also run the pipeline in parallel, because they identify independent parts of the
+pipeline which are then run simultaneously. Build automation tools have many benefits, and because
+they work in a certain way, they also force you to work in a more structured way.
 
 ## Build automation with R
 
@@ -55,26 +54,32 @@ on what `{renv}` is.
 
 ## An aside on `{renv}` 
 
-Any of your projects, whether they're simple scripts to analyze some data or more complex
-reproducible analytical pipelines depend on the packages that you use for the analysis. And 
-these packages evolve and change. It can very well happen that a function that you use from
-package `{xyz}` version 1 won't be available anymore in version 2. Or maybe it's still available
-but it works slightly different. It can be something as trivial as the arguments of the function
-have been renamed. The consequence is that when you'll try to rerun your code, it won't work at all,
-or worse, it'll work, but produce a result that is not comparable to old results anymore,
-because the function got changed and the underlying algorithm isn't the same anymore.
-So we need a certain stability, and ideally keep reusing the same packages for the same project.
-If you want to update a project to use new packages version, this can of course also be done,
-but it has to be conscious choice and you will have to make sure that the updated pipeline 
-(using the updated packages) is able to reproduce old results before putting it into production.
+Whether they're simple scripts to analyze some data or more complex reproducible analytical
+pipelines, all of your projects depend on the packages that you use for the analysis. And these
+packages evolve and change. It can very well happen that a function that you use from package
+`{xyz}` version 1 won't be available anymore in version 2. Or maybe it's still available but it
+works slightly differently. It can be something as trivial as the arguments of the function have been
+renamed. The consequence is that when you'll try to rerun your code, it won't work at all, or
+worse, it'll work, but produce a result that is not comparable to old results anymore, because the
+function got changed and the underlying algorithm isn't the same anymore. So we need a certain
+stability, and ideally keep reusing the same packages for the same project. If you want to update a
+project to use new packages version, this can of course also be done, but it has to be conscious
+choice and you will have to make sure that the updated pipeline (using the updated packages) is
+able to reproduce old results before putting it into production.
 
-`{renv}` creates separate package libraries, one per project. The idea is quite simple; start
-your project with `{renv}` enabled (if you're using RStudio, you can check the box 
-"Use renv with this project" when starting a new project, if you're not using RStudio, you can
-run `renv::init()`). This will create a file in the root of your project called `renv.lock`.
-You can open this file in a text editor, and you should see that the R version you're 
-currently using is recorded (and the version of `{renv}` itself). It should look something 
-like this:
+It must be noted however that in my experience, it is usually possible to rerun old R code
+without much hassle. But that's what makes it worse; you get so used to this stability that you
+don't think about a way to keep your projects reproducible, because issues rarely happen with R.
+It is thus best to get into the habit to use a tool like `{renv}`, which offers a certain stability
+to your projects.
+
+`{renv}` creates separate package libraries, one per project. The idea is quite simple; start your
+project with `{renv}` enabled (if you're using RStudio, you can check the box *Use renv with this project* 
+when starting a new project, if you're not using RStudio, you can run `renv::init()`, on the root of
+the folder's project).
+This will create a file in the root of your project called `renv.lock`. You can open this file in a
+text editor, and you should see that the R version you're currently using is recorded (and the
+version of `{renv}` itself). It should look something like this:
 
 ```
 {
@@ -100,10 +105,9 @@ like this:
 }
 ```
 
-You can then work as usual.
-It doesn't matter if you're simply writing a script with an analysis, or doing something more
-complex like a RAP. You will likely need to re-install packages though; remember, `{renv}`
-sets up a library per project! 
+You can then work as usual. It doesn't matter if you're simply writing a script to perform a
+"simple" analysis, or doing something more complex like a RAP. You will likely need to re-install
+packages though; remember, `{renv}` sets up a library per project!
 
 Once you're done and satisfied, run `renv::snapshot()`. As you might have guessed from the name
 this will take a snapshot of the project and write the current status to the `renv.lock` file:
@@ -379,74 +383,146 @@ get_data <- function(){
 }
 ```
 
-This function is as simple as it gets; it doesn’t take any arguments and returns the data that we defined in our package.
+This function is as simple as it gets; it doesn’t take any arguments and returns the data that we
+added to our package. This function could of course just as well read data from your computer, or 
+from the Internet, and return it. The fact our data is inside our package is just for convenience. 
 We can now go back to `_targets.R` and first of all, add a line to source this file, and then define new targets:
 
 ```{r, eval = F}
 library(targets)
+library(myPackage)
+library(dplyr)
+library(ggplot2)
 source("functions.R")
-
-tar_option_set(packages = c("myPackage", "dplyr", "ggplot2"))
 
 list(
   tar_target(unemp_data, get_data())
 )
 ```
 
-You can now run the pipeline using `tar_make()`. This will not create any output, but this way you can at least test that
-it’s running. Also, remember `tar_load()` and `tar_read()` from the walkthrough? First try to run `tar_read(unemp_data)`, 
-this should print the data in your console. You can then run `tar_load(unemp_data)`, which this time loads the data in your 
-global environment. You can now access it interactively. This is quite useful if you need to inspect intermediary outputs.
+You can now run the pipeline using `tar_make()`... and you should get immediately an error:
 
-Let’s now add intermediary outputs; we need data for Luxebmourg, data for the cantons and data for some communes:
+```
+> targets::tar_make()
+• start target unemp_data
+✖ error target unemp_data
+• end pipeline [0.198 seconds]
+```
+
+This is because our package is not in the `renv.lock` file. Remember that `{renv}` creates
+a new library per project, and as such we now need to install `{myPackage}` from github.com into
+our project. For this, run the following line (you might need to install `{devtools}` beforehand):
+
+```{r, eval = F}
+devtools::install_github("b-rodrigues/myPackage",
+                         ref = "c65b748014de03f848248599b5e53c604c6ca91d")
+```
+
+The provided hash will make sure that the right version of the package gets installed for this project.
+This way, if I continue to work on the package, users will be able to still install the correct version.
+Since we've installed some new packages, run `renv::snapshot()` to rewrite the `renv.lock` file:
+
+```
+> renv::snapshot()
+The following package(s) will be updated in the lockfile:
+
+# CRAN ===============================
+- Matrix       [* -> 1.4-1]
+- backports    [* -> 1.4.1]
+- base64url    [* -> 1.4]
+- callr        [* -> 3.7.2]
+- codetools    [* -> 0.2-18]
+- data.table   [* -> 1.14.4]
+- digest       [* -> 0.6.30]
+- evaluate     [* -> 0.17]
+- highr        [* -> 0.9]
+- igraph       [* -> 1.3.5]
+- knitr        [* -> 1.40]
+- lattice      [* -> 0.20-45]
+- processx     [* -> 3.7.0]
+- ps           [* -> 1.7.1]
+- stringi      [* -> 1.7.8]
+- stringr      [* -> 1.4.1]
+- targets      [* -> 0.13.5]
+- xfun         [* -> 0.34]
+- yaml         [* -> 2.3.6]
+
+# GitHub =============================
+- myPackage    [* -> b-rodrigues/myPackage@c65b748014de03f848248599b5e53c604c6ca91d]
+
+Do you want to proceed? [y/N]: 
+```
+
+Ok, now we should be able to run our pipeline with `targets::tar_make()`.
+
+This will not create any output, but this way you can at least test that it’s running. Also,
+remember `tar_load()` and `tar_read()` from the walkthrough? First try to run
+`tar_read(unemp_data)`, this should print the data in your console. You can then run
+`tar_load(unemp_data)`, which this time loads the data in your global environment. You can now
+access it interactively. This is quite useful if you need to inspect intermediary outputs.
+
+Let’s now add intermediary outputs; we need data for Luxebmourg, data for the cantons and data for some communes. This is
+where the function `clean_unemp()` from our package will come into play:
 
 ```{r, eval = F}
 library(targets)
+library(myPackage)
+library(dplyr)
+library(ggplot2)
 source("functions.R")
-
-tar_option_set(packages = c("myPackage", "dplyr", "ggplot2"))
 
 list(
   tar_target(
-    unemp_data, 
+    unemp_data,
     get_data()
-    ),
-  
+  ),
+
   tar_target(
-    lux_data, 
+    lux_data,
     clean_unemp(unemp_data,
                 place_name_of_interest = "Luxembourg",
                 level_of_interest = "Country",
-                active_population)
-    ),
-    
+                col_of_interest = active_population)
+  ),
+
   tar_target(
-    lux_data, 
+    canton_data,
     clean_unemp(unemp_data,
-                level_of_interest = "Cantons",
-                active_population)
-    ),
-    
+                level_of_interest = "Canton",
+                col_of_interest = active_population)
+  ),
+
   tar_target(
-    lux_data, 
+    commune_data,
     clean_unemp(unemp_data,
                 place_name_of_interest = c("Luxembourg", "Dippach", "Wiltz", "Esch/Alzette", "Mersch"),
-                level_of_interest = "Cantons",
-                active_population)
-    ),
+                col_of_interest = active_population)
+  )
 )
+
+
 ```
 
-At this stage it might be interesting to take a look at the network. Call `tar_visnetwork()` and take a look at 
-the pipeline:
+At this stage it might be interesting to take a look at the network. Call `tar_visnetwork()` (you might get
+prompted to install yet another package) and take a look at the pipeline:
 
-All that’s missing now is to write a function to create plots. Since we didn’t learn how to make them using `{ggplot2}`,
+```{r, echo = F}
+knitr::include_graphics("img/pipeline_2.png")
+```
+
+All that’s missing now is to write a function to create plots. Since we didn't learn how to make them using `{ggplot2}`,
 simply copy the code below into the `functions.R` script:
 
 ```{r, eval = F}
 make_plot <- function(data){
-  ggplot(data) + 
-    geom_line(aes(y = active_population, x = year, group = place_name, colour = place_name)) + 
+  ggplot(data) +
+    geom_col(
+      aes(
+        y = active_population,
+        x = year,
+        fill = place_name
+      )
+    ) +
     theme(legend.position = "bottom",
           legend.title = element_blank())
 }
@@ -456,65 +532,76 @@ We can now use this function to define new targets in our `_targets.R` file:
 
 ```{r, eval = F}
 library(targets)
+library(myPackage)
+library(dplyr)
+library(ggplot2)
 source("functions.R")
 
-tar_option_set(packages = c("myPackage", "dplyr", "ggplot2"))
 
 list(
-  tar_target(
-    unemp_data, 
-    get_data()
+    tar_target(
+        unemp_data,
+        get_data()
     ),
-  
-  tar_target(
-    lux_data, 
-    clean_unemp(unemp_data,
-                place_name_of_interest = "Luxembourg",
-                level_of_interest = "Country",
-                active_population)
+
+    tar_target(
+        lux_data,
+        clean_unemp(unemp_data,
+                    place_name_of_interest = "Luxembourg",
+                    level_of_interest = "Country",
+                    col_of_interest = active_population)
     ),
-    
-  tar_target(
-    canton_data, 
-    clean_unemp(unemp_data,
-                level_of_interest = "Cantons",
-                active_population)
+
+    tar_target(
+        canton_data,
+        clean_unemp(unemp_data,
+                    level_of_interest = "Canton",
+                    col_of_interest = active_population)
     ),
-    
-  tar_target(
-    commune_data, 
-    clean_unemp(unemp_data,
-                place_name_of_interest = c("Luxembourg", "Dippach", "Wiltz", "Esch/Alzette", "Mersch"),
-                level_of_interest = "Cantons",
-                active_population)
+
+    tar_target(
+        commune_data,
+        clean_unemp(unemp_data,
+                    place_name_of_interest = c("Luxembourg", "Dippach", "Wiltz", "Esch/Alzette", "Mersch"),
+                    col_of_interest = active_population)
     ),
-    
-  tar_target(
-    luxembourg_plot,
-    make_plot(luxembourg_data)
-  ),
-      
-  tar_target(
-    canton_plot,
-    make_plot(canton_data)
-  ),
-      
-  tar_target(
-    commune_plot,
-    make_plot(commune_data)
-  )
-  
+
+    tar_target(
+        lux_plot,
+        make_plot(lux_data)
+    ),
+
+    tar_target(
+        canton_plot,
+        make_plot(canton_data)
+    ),
+
+    tar_target(
+        commune_plot,
+        make_plot(commune_data)
+    )
+
 )
+
 ```
 
-Let’s now take a look at the pipeline again with `tar_visnetwork()`, and then run the pipeline using `tar_make()`. If everything
-went well, we can now take a look at our plots using `tar_read(luxembourg_plot)`.
+Let’s now take a look at the pipeline again with `tar_visnetwork()`:
 
-Finally, let’s write these plots to disk. The way to save a `ggplot` to disk is to use the `ggsave()` function. But targets have
-to return something, so [side-effects](https://books.ropensci.org/targets/targets.html#side-effects) like writing to disk
-must be handled in a specific way. What we’re going to do is write a wrapper around `ggsave()` that will take the path where
-the plot should be save to disk, save the plot to the specified path, and then return the plot. This way, we have a function
-that does not only have a side-effect. Let’s go back to `functions.R` and add the following lines:
+```{r, echo = F}
+knitr::include_graphics("img/pipeline_3.png")
+```
+
+We see that new targets are outdated, and we need to run the pipeline to build them, so run the
+pipeline using `tar_make()`. If everything went well, we can now take a look at our plots using
+`tar_read(luxembourg_plot)`.
+
+Finally, let’s write these plots to disk. The way to save a `ggplot` to disk is to use the
+`ggsave()` function. But targets have to return something, so
+[side-effects](https://books.ropensci.org/targets/targets.html#side-effects) like writing to disk
+must be handled in a specific way. What we’re going to do is write a wrapper around `ggsave()` that
+will take the path where the plot should be save to disk, save the plot to the specified path, and
+then return the plot. This way, we have a function that does not only have a side-effect, but also
+a return value. Let’s go back to `functions.R` and add the following lines:
 
 ```{r, eval = F}
 save_plot <- function(save_path, plot){
@@ -525,107 +612,124 @@ save_plot <- function(save_path, plot){
 
 We can now define these additional targets:
 
-
 ```{r, eval = F}
 library(targets)
+library(myPackage)
+library(dplyr)
+library(ggplot2)
 source("functions.R")
 
-tar_option_set(packages = c("myPackage", "dplyr", "ggplot2"))
 
 list(
-  tar_target(
-    unemp_data, 
-    get_data()
+    tar_target(
+        unemp_data,
+        get_data()
     ),
-  
-  tar_target(
-    lux_data, 
-    clean_unemp(unemp_data,
-                place_name_of_interest = "Luxembourg",
-                level_of_interest = "Country",
-                active_population)
+
+    tar_target(
+        lux_data,
+        clean_unemp(unemp_data,
+                    place_name_of_interest = "Luxembourg",
+                    level_of_interest = "Country",
+                    col_of_interest = active_population)
     ),
-    
-  tar_target(
-    canton_data, 
-    clean_unemp(unemp_data,
-                level_of_interest = "Cantons",
-                active_population)
+
+    tar_target(
+        canton_data,
+        clean_unemp(unemp_data,
+                    level_of_interest = "Canton",
+                    col_of_interest = active_population)
     ),
-    
-  tar_target(
-    commune_data, 
-    clean_unemp(unemp_data,
-                place_name_of_interest = c("Luxembourg", "Dippach", "Wiltz", "Esch/Alzette", "Mersch"),
-                level_of_interest = "Cantons",
-                active_population)
+
+    tar_target(
+        commune_data,
+        clean_unemp(unemp_data,
+                    place_name_of_interest = c("Luxembourg", "Dippach", "Wiltz", "Esch/Alzette", "Mersch"),
+                    col_of_interest = active_population)
     ),
-    
-  tar_target(
-    luxembourg_plot,
-    make_plot(luxembourg_data)
-  ),
-      
- tar_target(
-    luxembourg_saved_plot,
-    save_plot("fig/luxembourg.png", luxembourg_plot),
-    format = "file"
-  ),
-      
-  tar_target(
-    canton_plot,
-    make_plot(canton_data)
-  ),
-  
-  tar_target(
-    canton_saved_plot,
-    save_plot("fig/canton.png", canton_plot),
-    format = "file"
-  ),
-  
-  tar_target(
-    commune_plot,
-    make_plot(commune_data)
-  ),
-  
-  tar_target(
-    commune_saved_plot,
-    save_plot("fig/commune.png", commune_plot),
-    format = "file"
-  )
-  
+
+    tar_target(
+        lux_plot,
+        make_plot(lux_data)
+    ),
+
+    tar_target(
+        canton_plot,
+        make_plot(canton_data)
+    ),
+
+    tar_target(
+        commune_plot,
+        make_plot(commune_data)
+    ),
+
+    tar_target(
+        luxembourg_saved_plot,
+        save_plot("fig/luxembourg.png", lux_plot),
+        format = "file"
+    ),
+
+    tar_target(
+        canton_saved_plot,
+        save_plot("fig/canton.png", canton_plot),
+        format = "file"
+    ),
+
+    tar_target(
+        commune_saved_plot,
+        save_plot("fig/commune.png", commune_plot),
+        format = "file"
+    )
+
+
 )
+
+
+```
+
+Let's take a look at the network again:
+
+```{r, echo = F}
+knitr::include_graphics("img/pipeline_4.png")
 ```
 
 Because we are saving a file to disk, we must add the `format = "file"` argument to the target definiton. This way, `{targets}` watches
-this files for changes as well, and reruns the pipeline if a change is detected. Run the pipeline now with `tar_make()` and watch the plots
+these files for changes as well, and reruns the pipeline if a change is detected. Run the pipeline now with `tar_make()` and watch the plots
 appear in the `fig` folder (which you may have to create before running the pipeline).
 
 Let’s now change `make_plot()` function like this:
 
 ```{r, eval = F}
 make_plot <- function(data){
-  ggplot(data) + 
-    geom_line(aes(y = active_population, x = year, group = place_name, colour = place_name)) + 
+  ggplot(data) +
+    geom_col(
+      aes(
+        y = active_population,
+        x = year,
+        fill = place_name
+      )
+    ) +
     theme(legend.position = "bottom",
           legend.title = element_blank()) +
-    labs(title = paste0("Unemployement for ", paste(data$place_name, collapse = ", "))
+    labs(title = paste0("Unemployement for ", paste(unique(data$place_name), collapse = ", ")))
 }
 ```
 
 If you know save the script, and check the pipeline with `tar_visnetwork()`, you will see that some targets are not out of date:
 
+
+```{r, echo = F}
+knitr::include_graphics("img/pipeline_5.png")
 ```
 
-```
+Every targets that gets made by `make_plot()` must be recomputed, and every targets that depends on
+the intemediary outputs of `make_plot()` as well. Reloading the data is not necessary, since the
+edits on `make_plot()` do not affect these targets. This is an incredible cognitive load that is
+taken off the shoulders of data scientists; no need to keep track of outputs that are outdated, and
+no need to re-run everything either, saving lots of time and processing power.
 
-Every targets that gets made by `make_plot()` must be recomputed, and every targets that depends on the intemediary outputs of 
-`make_plot()` as well. Reloading the data is not necessary, since the edits on `make_plot()` do not affect these targets. This is
-an incredible cognitive load that is taken off the data scientists; no need to keep track of outputs that are outdated, and no need
-to re-run everything either, saving lots of time and processing power.
-
-You now know the basics of setting up a reproducible (well, almost, as you’ll see) analytical pipeline. Let’s now move
-to running someone else’s pipeline.
+You now know the basics of setting up a reproducible (well, almost, as you’ll see) analytical
+pipeline. Let’s now move to running someone else’s pipeline.
 
 ## Running someone else's pipeline
 

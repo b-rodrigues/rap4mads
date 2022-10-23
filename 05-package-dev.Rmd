@@ -507,6 +507,21 @@ In the previous section I've linked to a vignette from my `{chronicler}` package
 using the [pkgdown](https://pkgdown.r-lib.org/) package. We are not going to discuss how
 it works in detail here, but you should know this exists, and is actually quite easy to use.
 
+### Checking your package
+
+Before sharing your package with the world, you might want to run `devtools::check()` to make sure
+everything is alright. `devtools::check()` will make sure that you didn't forget something crucial,
+like declaring a dependency in the DESCRIPTION file for example. The goal is to see something
+like this at the end of `devtools::check()`:
+
+```
+0 errors ✔ | 0 warnings ✔ | 3 notes ✖
+```
+
+If you want to release your package on CRAN, it's a good idea to address the notes as well, but 
+what you must absolutely deal with are errors and warnings, even if you're keeping this package
+for yourself.
+
 ### Installing your package
 
 Once you're done working on your package, you can install it with `CRTL-SHIFT-B`. This way
@@ -515,12 +530,12 @@ can use `devtools::install_github()` to install it from github.com. You might wa
 a specific commit hash to your users, so they install a fixed version of your package, and not
 the latest development version. For example, let’s suppose that I have been working on my package,
 but would prefer my potential users to install the package as it stood at the commit with the
-hash `"e27597409d0992dd8339"`. I can write this in the README of the package:
+hash `"c65b748014de03f848248599b5e53c604c6ca91d"`. I can write this in the README of the package:
 
 ```
 To install the package, please use the following line
 
-devtools::install_github("b-rodrigues/myPackage", ref = "e27597409d0992dd8339")
+devtools::install_github("b-rodrigues/myPackage", ref = "c65b748014de03f848248599b5e53c604c6ca91d")
 ```
 
 This will install the `{myPackage}` package as it looked like at this particular commit. You could

@@ -23,7 +23,7 @@
 <meta name="author" content="Bruno Rodrigues" />
 
 
-<meta name="date" content="2022-10-20" />
+<meta name="date" content="2022-10-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -54,6 +54,70 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -80,6 +144,9 @@
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#machine-learning"><i class="fa fa-check"></i><b>1.4</b> Machine learning?</a></li>
 <li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#why-r-why-not-insert-your-favourite-programming-language"><i class="fa fa-check"></i><b>1.5</b> Why R? Why not [insert your favourite programming language]</a></li>
 <li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#pre-requisites"><i class="fa fa-check"></i><b>1.6</b> Pre-requisites</a></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#jargon"><i class="fa fa-check"></i><b>1.7</b> Jargon</a></li>
+<li class="chapter" data-level="1.8" data-path="index.html"><a href="index.html#further-reading"><i class="fa fa-check"></i><b>1.8</b> Further reading</a></li>
+<li class="chapter" data-level="1.9" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i><b>1.9</b> License</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>2</b> Introduction to R</a>
 <ul>
@@ -87,12 +154,14 @@
 <li class="chapter" data-level="2.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#a-little-aside-on-pipes"><i class="fa fa-check"></i><b>2.2</b> A little aside on pipes</a></li>
 <li class="chapter" data-level="2.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#exploring-and-cleaning-data-with-r"><i class="fa fa-check"></i><b>2.3</b> Exploring and cleaning data with R</a></li>
 <li class="chapter" data-level="2.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#data-visualization"><i class="fa fa-check"></i><b>2.4</b> Data visualization</a></li>
+<li class="chapter" data-level="2.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#further-reading-1"><i class="fa fa-check"></i><b>2.5</b> Further reading</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="a-primer-on-functional-programming.html"><a href="a-primer-on-functional-programming.html"><i class="fa fa-check"></i><b>3</b> A primer on functional programming</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="a-primer-on-functional-programming.html"><a href="a-primer-on-functional-programming.html#introduction-1"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
 <li class="chapter" data-level="3.2" data-path="a-primer-on-functional-programming.html"><a href="a-primer-on-functional-programming.html#defining-your-own-functions"><i class="fa fa-check"></i><b>3.2</b> Defining your own functions</a></li>
 <li class="chapter" data-level="3.3" data-path="a-primer-on-functional-programming.html"><a href="a-primer-on-functional-programming.html#functional-programming"><i class="fa fa-check"></i><b>3.3</b> Functional programming</a></li>
+<li class="chapter" data-level="3.4" data-path="a-primer-on-functional-programming.html"><a href="a-primer-on-functional-programming.html#further-reading-2"><i class="fa fa-check"></i><b>3.4</b> Further reading</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>4</b> Git</a>
 <ul>
@@ -116,7 +185,8 @@
 <ul>
 <li class="chapter" data-level="5.4.1" data-path="package-development.html"><a href="package-development.html#documenting-functions"><i class="fa fa-check"></i><b>5.4.1</b> Documenting functions</a></li>
 <li class="chapter" data-level="5.4.2" data-path="package-development.html"><a href="package-development.html#documenting-the-package"><i class="fa fa-check"></i><b>5.4.2</b> Documenting the package</a></li>
-<li class="chapter" data-level="5.4.3" data-path="package-development.html"><a href="package-development.html#installing-your-package"><i class="fa fa-check"></i><b>5.4.3</b> Installing your package</a></li>
+<li class="chapter" data-level="5.4.3" data-path="package-development.html"><a href="package-development.html#checking-your-package"><i class="fa fa-check"></i><b>5.4.3</b> Checking your package</a></li>
+<li class="chapter" data-level="5.4.4" data-path="package-development.html"><a href="package-development.html#installing-your-package"><i class="fa fa-check"></i><b>5.4.4</b> Installing your package</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="unit-tests.html"><a href="unit-tests.html"><i class="fa fa-check"></i><b>6</b> Unit tests</a>
@@ -137,7 +207,9 @@
 <li class="chapter" data-level="7.3" data-path="setting-up-pipelines-with-targets.html"><a href="setting-up-pipelines-with-targets.html#an-aside-on-renv"><i class="fa fa-check"></i><b>7.3</b> An aside on <code>{renv}</code></a></li>
 <li class="chapter" data-level="7.4" data-path="setting-up-pipelines-with-targets.html"><a href="setting-up-pipelines-with-targets.html#our-actual-first-pipeline"><i class="fa fa-check"></i><b>7.4</b> Our actual first pipeline</a></li>
 <li class="chapter" data-level="7.5" data-path="setting-up-pipelines-with-targets.html"><a href="setting-up-pipelines-with-targets.html#running-someone-elses-pipeline"><i class="fa fa-check"></i><b>7.5</b> Running someone else’s pipeline</a></li>
-<li class="chapter" data-level="7.6" data-path="setting-up-pipelines-with-targets.html"><a href="setting-up-pipelines-with-targets.html#why-we-need-more"><i class="fa fa-check"></i><b>7.6</b> Why we need more</a></li>
+<li class="chapter" data-level="7.6" data-path="setting-up-pipelines-with-targets.html"><a href="setting-up-pipelines-with-targets.html#running-any-code-with-older-packages"><i class="fa fa-check"></i><b>7.6</b> Running any code with older packages</a></li>
+<li class="chapter" data-level="7.7" data-path="setting-up-pipelines-with-targets.html"><a href="setting-up-pipelines-with-targets.html#why-we-need-more"><i class="fa fa-check"></i><b>7.7</b> Why we need more</a></li>
+<li class="chapter" data-level="7.8" data-path="setting-up-pipelines-with-targets.html"><a href="setting-up-pipelines-with-targets.html#further-reading-3"><i class="fa fa-check"></i><b>7.8</b> Further reading</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="data-products-1.html"><a href="data-products-1.html"><i class="fa fa-check"></i><b>8</b> Data products</a>
 <ul>
@@ -178,14 +250,13 @@
 <h2><span class="header-section-number">7.1</span> Introduction<a href="setting-up-pipelines-with-targets.html#introduction-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><code>{targets}</code> is a build automation tool for the R programming language. <em>Build</em>, in the context of
 this course means the creation of a data product. As mentioned in the introduction, this data
-product can be anything from predictions from a model to interactive web applications.
-<em>Automation</em> means that this build automation tool will take the burden off our shoulders when
-it’ll be time to run the build pipeline. Using such a tool, programmers don’t need to think
-about which parts of the code to rerun if they introduce a change somewhere. Only the parts
-affected by the change will run. These tools also run the pipeline in parallel, because they
-identify independent pats of the pipeline which are then run simultaneously. Build automation
-tools have many benefits, and because they work in a certain way, they also force you to work
-in a more structured way.</p>
+product can be anything from predictions from a model to interactive web applications. <em>Automation</em>
+means that this build automation tool will take the burden off our shoulders when it’ll be time to
+run the build pipeline. Using such a tool, programmers don’t need to think about which parts of the
+code to rerun if they introduce a change somewhere. Only the parts affected by the change will run.
+These tools also run the pipeline in parallel, because they identify independent parts of the
+pipeline which are then run simultaneously. Build automation tools have many benefits, and because
+they work in a certain way, they also force you to work in a more structured way.</p>
 </div>
 <div id="build-automation-with-r" class="section level2 hasAnchor" number="7.2">
 <h2><span class="header-section-number">7.2</span> Build automation with R<a href="setting-up-pipelines-with-targets.html#build-automation-with-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -213,25 +284,30 @@ on what <code>{renv}</code> is.</p>
 </div>
 <div id="an-aside-on-renv" class="section level2 hasAnchor" number="7.3">
 <h2><span class="header-section-number">7.3</span> An aside on <code>{renv}</code><a href="setting-up-pipelines-with-targets.html#an-aside-on-renv" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Any of your projects, whether they’re simple scripts to analyze some data or more complex
-reproducible analytical pipelines depend on the packages that you use for the analysis. And
-these packages evolve and change. It can very well happen that a function that you use from
-package <code>{xyz}</code> version 1 won’t be available anymore in version 2. Or maybe it’s still available
-but it works slightly different. It can be something as trivial as the arguments of the function
-have been renamed. The consequence is that when you’ll try to rerun your code, it won’t work at all,
-or worse, it’ll work, but produce a result that is not comparable to old results anymore,
-because the function got changed and the underlying algorithm isn’t the same anymore.
-So we need a certain stability, and ideally keep reusing the same packages for the same project.
-If you want to update a project to use new packages version, this can of course also be done,
-but it has to be conscious choice and you will have to make sure that the updated pipeline
-(using the updated packages) is able to reproduce old results before putting it into production.</p>
-<p><code>{renv}</code> creates separate package libraries, one per project. The idea is quite simple; start
-your project with <code>{renv}</code> enabled (if you’re using RStudio, you can check the box
-“Use renv with this project” when starting a new project, if you’re not using RStudio, you can
-run <code>renv::init()</code>). This will create a file in the root of your project called <code>renv.lock</code>.
-You can open this file in a text editor, and you should see that the R version you’re
-currently using is recorded (and the version of <code>{renv}</code> itself). It should look something
-like this:</p>
+<p>Whether they’re simple scripts to analyze some data or more complex reproducible analytical
+pipelines, all of your projects depend on the packages that you use for the analysis. And these
+packages evolve and change. It can very well happen that a function that you use from package
+<code>{xyz}</code> version 1 won’t be available anymore in version 2. Or maybe it’s still available but it
+works slightly differently. It can be something as trivial as the arguments of the function have been
+renamed. The consequence is that when you’ll try to rerun your code, it won’t work at all, or
+worse, it’ll work, but produce a result that is not comparable to old results anymore, because the
+function got changed and the underlying algorithm isn’t the same anymore. So we need a certain
+stability, and ideally keep reusing the same packages for the same project. If you want to update a
+project to use new packages version, this can of course also be done, but it has to be conscious
+choice and you will have to make sure that the updated pipeline (using the updated packages) is
+able to reproduce old results before putting it into production.</p>
+<p>It must be noted however that in my experience, it is usually possible to rerun old R code
+without much hassle. But that’s what makes it worse; you get so used to this stability that you
+don’t think about a way to keep your projects reproducible, because issues rarely happen with R.
+It is thus best to get into the habit to use a tool like <code>{renv}</code>, which offers a certain stability
+to your projects.</p>
+<p><code>{renv}</code> creates separate package libraries, one per project. The idea is quite simple; start your
+project with <code>{renv}</code> enabled (if you’re using RStudio, you can check the box <em>Use renv with this project</em>
+when starting a new project, if you’re not using RStudio, you can run <code>renv::init()</code>, on the root of
+the folder’s project).
+This will create a file in the root of your project called <code>renv.lock</code>. You can open this file in a
+text editor, and you should see that the R version you’re currently using is recorded (and the
+version of <code>{renv}</code> itself). It should look something like this:</p>
 <pre><code>{
   &quot;R&quot;: {
     &quot;Version&quot;: &quot;4.2.1&quot;,
@@ -253,10 +329,9 @@ like this:</p>
     }
   }
 }</code></pre>
-<p>You can then work as usual.
-It doesn’t matter if you’re simply writing a script with an analysis, or doing something more
-complex like a RAP. You will likely need to re-install packages though; remember, <code>{renv}</code>
-sets up a library per project!</p>
+<p>You can then work as usual. It doesn’t matter if you’re simply writing a script to perform a
+“simple” analysis, or doing something more complex like a RAP. You will likely need to re-install
+packages though; remember, <code>{renv}</code> sets up a library per project!</p>
 <p>Once you’re done and satisfied, run <code>renv::snapshot()</code>. As you might have guessed from the name
 this will take a snapshot of the project and write the current status to the <code>renv.lock</code> file:</p>
 <pre><code>&gt; renv::snapshot()
@@ -488,9 +563,320 @@ with the required libraries and the right versions.</p>
 </div>
 <div id="our-actual-first-pipeline" class="section level2 hasAnchor" number="7.4">
 <h2><span class="header-section-number">7.4</span> Our actual first pipeline<a href="setting-up-pipelines-with-targets.html#our-actual-first-pipeline" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s start by building our very first pipeline. Our goal is the following: start with the unemployment
+data for Luxembourg, and build a series of graphs. We want one graph for Luxembourg, one graph for
+cantons, and one graph for selected communes. This series of graphs will be our data product; let’s not
+focus too much on the data product itself, the focus here is on building the pipeline. In the next
+chapter we are going to build more interesting data products.</p>
+<p>I’ve been mentioning pipelines for some time now, but what is it actually? Nothing more than a script.
+Let’s go back to the project we started at the beginning of the chapter. We can now create a <code>_targets.R</code>
+file on the root of the project. Insert the following lines in the script, we will then go through each
+of them:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="setting-up-pipelines-with-targets.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(targets)</span>
+<span id="cb5-2"><a href="setting-up-pipelines-with-targets.html#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="setting-up-pipelines-with-targets.html#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tar_option_set</span>(<span class="at">packages =</span> <span class="fu">c</span>(<span class="st">&quot;myPackage&quot;</span>, <span class="st">&quot;dplyr&quot;</span>, <span class="st">&quot;ggplot2&quot;</span>))</span>
+<span id="cb5-4"><a href="setting-up-pipelines-with-targets.html#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="setting-up-pipelines-with-targets.html#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(</span>
+<span id="cb5-6"><a href="setting-up-pipelines-with-targets.html#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tar_target</span>(unemp_data, <span class="fu">get_data</span>())</span>
+<span id="cb5-7"><a href="setting-up-pipelines-with-targets.html#cb5-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p>The first line simply loads the <code>{targets}</code> package, the second line sets the packages required for the pipeline
+to actually run. This is equivalent to having a series of calls to <code>library()</code> in a normal script.
+Then comes a list. Inside this list is where we will define the targets, or the (intemediary) outputs of
+the pipeline. We defined <code>unemp_data</code> as being the output of the function <code>get_data()</code>… but where does this
+function come from? Well, we need to create another script called <code>functions.R</code> where we will define every
+function the we need for this pipeline. Let’s create an empty script and put the following lines in it:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="setting-up-pipelines-with-targets.html#cb6-1" aria-hidden="true" tabindex="-1"></a>get_data <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
+<span id="cb6-2"><a href="setting-up-pipelines-with-targets.html#cb6-2" aria-hidden="true" tabindex="-1"></a>  myPackage<span class="sc">::</span>unemp</span>
+<span id="cb6-3"><a href="setting-up-pipelines-with-targets.html#cb6-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>This function is as simple as it gets; it doesn’t take any arguments and returns the data that we
+added to our package. This function could of course just as well read data from your computer, or
+from the Internet, and return it. The fact our data is inside our package is just for convenience.
+We can now go back to <code>_targets.R</code> and first of all, add a line to source this file, and then define new targets:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="setting-up-pipelines-with-targets.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(targets)</span>
+<span id="cb7-2"><a href="setting-up-pipelines-with-targets.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(myPackage)</span>
+<span id="cb7-3"><a href="setting-up-pipelines-with-targets.html#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb7-4"><a href="setting-up-pipelines-with-targets.html#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb7-5"><a href="setting-up-pipelines-with-targets.html#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;functions.R&quot;</span>)</span>
+<span id="cb7-6"><a href="setting-up-pipelines-with-targets.html#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="setting-up-pipelines-with-targets.html#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(</span>
+<span id="cb7-8"><a href="setting-up-pipelines-with-targets.html#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tar_target</span>(unemp_data, <span class="fu">get_data</span>())</span>
+<span id="cb7-9"><a href="setting-up-pipelines-with-targets.html#cb7-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p>You can now run the pipeline using <code>tar_make()</code>… and you should get immediately an error:</p>
+<pre><code>&gt; targets::tar_make()
+• start target unemp_data
+✖ error target unemp_data
+• end pipeline [0.198 seconds]</code></pre>
+<p>This is because our package is not in the <code>renv.lock</code> file. Remember that <code>{renv}</code> creates
+a new library per project, and as such we now need to install <code>{myPackage}</code> from github.com into
+our project. For this, run the following line (you might need to install <code>{devtools}</code> beforehand):</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="setting-up-pipelines-with-targets.html#cb9-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;b-rodrigues/myPackage&quot;</span>,</span>
+<span id="cb9-2"><a href="setting-up-pipelines-with-targets.html#cb9-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">ref =</span> <span class="st">&quot;c65b748014de03f848248599b5e53c604c6ca91d&quot;</span>)</span></code></pre></div>
+<p>The provided hash will make sure that the right version of the package gets installed for this project.
+This way, if I continue to work on the package, users will be able to still install the correct version.
+Since we’ve installed some new packages, run <code>renv::snapshot()</code> to rewrite the <code>renv.lock</code> file:</p>
+<pre><code>&gt; renv::snapshot()
+The following package(s) will be updated in the lockfile:
+
+# CRAN ===============================
+- Matrix       [* -&gt; 1.4-1]
+- backports    [* -&gt; 1.4.1]
+- base64url    [* -&gt; 1.4]
+- callr        [* -&gt; 3.7.2]
+- codetools    [* -&gt; 0.2-18]
+- data.table   [* -&gt; 1.14.4]
+- digest       [* -&gt; 0.6.30]
+- evaluate     [* -&gt; 0.17]
+- highr        [* -&gt; 0.9]
+- igraph       [* -&gt; 1.3.5]
+- knitr        [* -&gt; 1.40]
+- lattice      [* -&gt; 0.20-45]
+- processx     [* -&gt; 3.7.0]
+- ps           [* -&gt; 1.7.1]
+- stringi      [* -&gt; 1.7.8]
+- stringr      [* -&gt; 1.4.1]
+- targets      [* -&gt; 0.13.5]
+- xfun         [* -&gt; 0.34]
+- yaml         [* -&gt; 2.3.6]
+
+# GitHub =============================
+- myPackage    [* -&gt; b-rodrigues/myPackage@c65b748014de03f848248599b5e53c604c6ca91d]
+
+Do you want to proceed? [y/N]: </code></pre>
+<p>Ok, now we should be able to run our pipeline with <code>targets::tar_make()</code>.</p>
+<p>This will not create any output, but this way you can at least test that it’s running. Also,
+remember <code>tar_load()</code> and <code>tar_read()</code> from the walkthrough? First try to run
+<code>tar_read(unemp_data)</code>, this should print the data in your console. You can then run
+<code>tar_load(unemp_data)</code>, which this time loads the data in your global environment. You can now
+access it interactively. This is quite useful if you need to inspect intermediary outputs.</p>
+<p>Let’s now add intermediary outputs; we need data for Luxebmourg, data for the cantons and data for some communes. This is
+where the function <code>clean_unemp()</code> from our package will come into play:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="setting-up-pipelines-with-targets.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(targets)</span>
+<span id="cb11-2"><a href="setting-up-pipelines-with-targets.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(myPackage)</span>
+<span id="cb11-3"><a href="setting-up-pipelines-with-targets.html#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb11-4"><a href="setting-up-pipelines-with-targets.html#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb11-5"><a href="setting-up-pipelines-with-targets.html#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;functions.R&quot;</span>)</span>
+<span id="cb11-6"><a href="setting-up-pipelines-with-targets.html#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="setting-up-pipelines-with-targets.html#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(</span>
+<span id="cb11-8"><a href="setting-up-pipelines-with-targets.html#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tar_target</span>(</span>
+<span id="cb11-9"><a href="setting-up-pipelines-with-targets.html#cb11-9" aria-hidden="true" tabindex="-1"></a>    unemp_data,</span>
+<span id="cb11-10"><a href="setting-up-pipelines-with-targets.html#cb11-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">get_data</span>()</span>
+<span id="cb11-11"><a href="setting-up-pipelines-with-targets.html#cb11-11" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb11-12"><a href="setting-up-pipelines-with-targets.html#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="setting-up-pipelines-with-targets.html#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tar_target</span>(</span>
+<span id="cb11-14"><a href="setting-up-pipelines-with-targets.html#cb11-14" aria-hidden="true" tabindex="-1"></a>    lux_data,</span>
+<span id="cb11-15"><a href="setting-up-pipelines-with-targets.html#cb11-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">clean_unemp</span>(unemp_data,</span>
+<span id="cb11-16"><a href="setting-up-pipelines-with-targets.html#cb11-16" aria-hidden="true" tabindex="-1"></a>                <span class="at">place_name_of_interest =</span> <span class="st">&quot;Luxembourg&quot;</span>,</span>
+<span id="cb11-17"><a href="setting-up-pipelines-with-targets.html#cb11-17" aria-hidden="true" tabindex="-1"></a>                <span class="at">level_of_interest =</span> <span class="st">&quot;Country&quot;</span>,</span>
+<span id="cb11-18"><a href="setting-up-pipelines-with-targets.html#cb11-18" aria-hidden="true" tabindex="-1"></a>                <span class="at">col_of_interest =</span> active_population)</span>
+<span id="cb11-19"><a href="setting-up-pipelines-with-targets.html#cb11-19" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb11-20"><a href="setting-up-pipelines-with-targets.html#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-21"><a href="setting-up-pipelines-with-targets.html#cb11-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tar_target</span>(</span>
+<span id="cb11-22"><a href="setting-up-pipelines-with-targets.html#cb11-22" aria-hidden="true" tabindex="-1"></a>    canton_data,</span>
+<span id="cb11-23"><a href="setting-up-pipelines-with-targets.html#cb11-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">clean_unemp</span>(unemp_data,</span>
+<span id="cb11-24"><a href="setting-up-pipelines-with-targets.html#cb11-24" aria-hidden="true" tabindex="-1"></a>                <span class="at">level_of_interest =</span> <span class="st">&quot;Canton&quot;</span>,</span>
+<span id="cb11-25"><a href="setting-up-pipelines-with-targets.html#cb11-25" aria-hidden="true" tabindex="-1"></a>                <span class="at">col_of_interest =</span> active_population)</span>
+<span id="cb11-26"><a href="setting-up-pipelines-with-targets.html#cb11-26" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb11-27"><a href="setting-up-pipelines-with-targets.html#cb11-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-28"><a href="setting-up-pipelines-with-targets.html#cb11-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tar_target</span>(</span>
+<span id="cb11-29"><a href="setting-up-pipelines-with-targets.html#cb11-29" aria-hidden="true" tabindex="-1"></a>    commune_data,</span>
+<span id="cb11-30"><a href="setting-up-pipelines-with-targets.html#cb11-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">clean_unemp</span>(unemp_data,</span>
+<span id="cb11-31"><a href="setting-up-pipelines-with-targets.html#cb11-31" aria-hidden="true" tabindex="-1"></a>                <span class="at">place_name_of_interest =</span> <span class="fu">c</span>(<span class="st">&quot;Luxembourg&quot;</span>, <span class="st">&quot;Dippach&quot;</span>, <span class="st">&quot;Wiltz&quot;</span>, <span class="st">&quot;Esch/Alzette&quot;</span>, <span class="st">&quot;Mersch&quot;</span>),</span>
+<span id="cb11-32"><a href="setting-up-pipelines-with-targets.html#cb11-32" aria-hidden="true" tabindex="-1"></a>                <span class="at">col_of_interest =</span> active_population)</span>
+<span id="cb11-33"><a href="setting-up-pipelines-with-targets.html#cb11-33" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb11-34"><a href="setting-up-pipelines-with-targets.html#cb11-34" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p>At this stage it might be interesting to take a look at the network. Call <code>tar_visnetwork()</code> (you might get
+prompted to install yet another package) and take a look at the pipeline:</p>
+<p><img src="img/pipeline_2.png" width="740" /></p>
+<p>All that’s missing now is to write a function to create plots. Since we didn’t learn how to make them using <code>{ggplot2}</code>,
+simply copy the code below into the <code>functions.R</code> script:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="setting-up-pipelines-with-targets.html#cb12-1" aria-hidden="true" tabindex="-1"></a>make_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(data){</span>
+<span id="cb12-2"><a href="setting-up-pipelines-with-targets.html#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(data) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="setting-up-pipelines-with-targets.html#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>(</span>
+<span id="cb12-4"><a href="setting-up-pipelines-with-targets.html#cb12-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">aes</span>(</span>
+<span id="cb12-5"><a href="setting-up-pipelines-with-targets.html#cb12-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> active_population,</span>
+<span id="cb12-6"><a href="setting-up-pipelines-with-targets.html#cb12-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> year,</span>
+<span id="cb12-7"><a href="setting-up-pipelines-with-targets.html#cb12-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">fill =</span> place_name</span>
+<span id="cb12-8"><a href="setting-up-pipelines-with-targets.html#cb12-8" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb12-9"><a href="setting-up-pipelines-with-targets.html#cb12-9" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb12-10"><a href="setting-up-pipelines-with-targets.html#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>,</span>
+<span id="cb12-11"><a href="setting-up-pipelines-with-targets.html#cb12-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.title =</span> <span class="fu">element_blank</span>())</span>
+<span id="cb12-12"><a href="setting-up-pipelines-with-targets.html#cb12-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>We can now use this function to define new targets in our <code>_targets.R</code> file:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="setting-up-pipelines-with-targets.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(targets)</span>
+<span id="cb13-2"><a href="setting-up-pipelines-with-targets.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(myPackage)</span>
+<span id="cb13-3"><a href="setting-up-pipelines-with-targets.html#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb13-4"><a href="setting-up-pipelines-with-targets.html#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb13-5"><a href="setting-up-pipelines-with-targets.html#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;functions.R&quot;</span>)</span>
+<span id="cb13-6"><a href="setting-up-pipelines-with-targets.html#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="setting-up-pipelines-with-targets.html#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="setting-up-pipelines-with-targets.html#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(</span>
+<span id="cb13-9"><a href="setting-up-pipelines-with-targets.html#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tar_target</span>(</span>
+<span id="cb13-10"><a href="setting-up-pipelines-with-targets.html#cb13-10" aria-hidden="true" tabindex="-1"></a>        unemp_data,</span>
+<span id="cb13-11"><a href="setting-up-pipelines-with-targets.html#cb13-11" aria-hidden="true" tabindex="-1"></a>        <span class="fu">get_data</span>()</span>
+<span id="cb13-12"><a href="setting-up-pipelines-with-targets.html#cb13-12" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb13-13"><a href="setting-up-pipelines-with-targets.html#cb13-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="setting-up-pipelines-with-targets.html#cb13-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tar_target</span>(</span>
+<span id="cb13-15"><a href="setting-up-pipelines-with-targets.html#cb13-15" aria-hidden="true" tabindex="-1"></a>        lux_data,</span>
+<span id="cb13-16"><a href="setting-up-pipelines-with-targets.html#cb13-16" aria-hidden="true" tabindex="-1"></a>        <span class="fu">clean_unemp</span>(unemp_data,</span>
+<span id="cb13-17"><a href="setting-up-pipelines-with-targets.html#cb13-17" aria-hidden="true" tabindex="-1"></a>                    <span class="at">place_name_of_interest =</span> <span class="st">&quot;Luxembourg&quot;</span>,</span>
+<span id="cb13-18"><a href="setting-up-pipelines-with-targets.html#cb13-18" aria-hidden="true" tabindex="-1"></a>                    <span class="at">level_of_interest =</span> <span class="st">&quot;Country&quot;</span>,</span>
+<span id="cb13-19"><a href="setting-up-pipelines-with-targets.html#cb13-19" aria-hidden="true" tabindex="-1"></a>                    <span class="at">col_of_interest =</span> active_population)</span>
+<span id="cb13-20"><a href="setting-up-pipelines-with-targets.html#cb13-20" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb13-21"><a href="setting-up-pipelines-with-targets.html#cb13-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-22"><a href="setting-up-pipelines-with-targets.html#cb13-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tar_target</span>(</span>
+<span id="cb13-23"><a href="setting-up-pipelines-with-targets.html#cb13-23" aria-hidden="true" tabindex="-1"></a>        canton_data,</span>
+<span id="cb13-24"><a href="setting-up-pipelines-with-targets.html#cb13-24" aria-hidden="true" tabindex="-1"></a>        <span class="fu">clean_unemp</span>(unemp_data,</span>
+<span id="cb13-25"><a href="setting-up-pipelines-with-targets.html#cb13-25" aria-hidden="true" tabindex="-1"></a>                    <span class="at">level_of_interest =</span> <span class="st">&quot;Canton&quot;</span>,</span>
+<span id="cb13-26"><a href="setting-up-pipelines-with-targets.html#cb13-26" aria-hidden="true" tabindex="-1"></a>                    <span class="at">col_of_interest =</span> active_population)</span>
+<span id="cb13-27"><a href="setting-up-pipelines-with-targets.html#cb13-27" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb13-28"><a href="setting-up-pipelines-with-targets.html#cb13-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-29"><a href="setting-up-pipelines-with-targets.html#cb13-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tar_target</span>(</span>
+<span id="cb13-30"><a href="setting-up-pipelines-with-targets.html#cb13-30" aria-hidden="true" tabindex="-1"></a>        commune_data,</span>
+<span id="cb13-31"><a href="setting-up-pipelines-with-targets.html#cb13-31" aria-hidden="true" tabindex="-1"></a>        <span class="fu">clean_unemp</span>(unemp_data,</span>
+<span id="cb13-32"><a href="setting-up-pipelines-with-targets.html#cb13-32" aria-hidden="true" tabindex="-1"></a>                    <span class="at">place_name_of_interest =</span> <span class="fu">c</span>(<span class="st">&quot;Luxembourg&quot;</span>, <span class="st">&quot;Dippach&quot;</span>, <span class="st">&quot;Wiltz&quot;</span>, <span class="st">&quot;Esch/Alzette&quot;</span>, <span class="st">&quot;Mersch&quot;</span>),</span>
+<span id="cb13-33"><a href="setting-up-pipelines-with-targets.html#cb13-33" aria-hidden="true" tabindex="-1"></a>                    <span class="at">col_of_interest =</span> active_population)</span>
+<span id="cb13-34"><a href="setting-up-pipelines-with-targets.html#cb13-34" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb13-35"><a href="setting-up-pipelines-with-targets.html#cb13-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-36"><a href="setting-up-pipelines-with-targets.html#cb13-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tar_target</span>(</span>
+<span id="cb13-37"><a href="setting-up-pipelines-with-targets.html#cb13-37" aria-hidden="true" tabindex="-1"></a>        lux_plot,</span>
+<span id="cb13-38"><a href="setting-up-pipelines-with-targets.html#cb13-38" aria-hidden="true" tabindex="-1"></a>        <span class="fu">make_plot</span>(lux_data)</span>
+<span id="cb13-39"><a href="setting-up-pipelines-with-targets.html#cb13-39" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb13-40"><a href="setting-up-pipelines-with-targets.html#cb13-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-41"><a href="setting-up-pipelines-with-targets.html#cb13-41" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tar_target</span>(</span>
+<span id="cb13-42"><a href="setting-up-pipelines-with-targets.html#cb13-42" aria-hidden="true" tabindex="-1"></a>        canton_plot,</span>
+<span id="cb13-43"><a href="setting-up-pipelines-with-targets.html#cb13-43" aria-hidden="true" tabindex="-1"></a>        <span class="fu">make_plot</span>(canton_data)</span>
+<span id="cb13-44"><a href="setting-up-pipelines-with-targets.html#cb13-44" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb13-45"><a href="setting-up-pipelines-with-targets.html#cb13-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-46"><a href="setting-up-pipelines-with-targets.html#cb13-46" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tar_target</span>(</span>
+<span id="cb13-47"><a href="setting-up-pipelines-with-targets.html#cb13-47" aria-hidden="true" tabindex="-1"></a>        commune_plot,</span>
+<span id="cb13-48"><a href="setting-up-pipelines-with-targets.html#cb13-48" aria-hidden="true" tabindex="-1"></a>        <span class="fu">make_plot</span>(commune_data)</span>
+<span id="cb13-49"><a href="setting-up-pipelines-with-targets.html#cb13-49" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb13-50"><a href="setting-up-pipelines-with-targets.html#cb13-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-51"><a href="setting-up-pipelines-with-targets.html#cb13-51" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p>Let’s now take a look at the pipeline again with <code>tar_visnetwork()</code>:</p>
+<p><img src="img/pipeline_3.png" width="862" /></p>
+<p>We see that new targets are outdated, and we need to run the pipeline to build them, so run the
+pipeline using <code>tar_make()</code>. If everything went well, we can now take a look at our plots using
+<code>tar_read(luxembourg_plot)</code>.</p>
+<p>Finally, let’s write these plots to disk. The way to save a <code>ggplot</code> to disk is to use the
+<code>ggsave()</code> function. But targets have to return something, so
+<a href="https://books.ropensci.org/targets/targets.html#side-effects">side-effects</a> like writing to disk
+must be handled in a specific way. What we’re going to do is write a wrapper around <code>ggsave()</code> that
+will take the path where the plot should be save to disk, save the plot to the specified path, and
+then return the plot. This way, we have a function that does not only have a side-effect, but also
+a return value. Let’s go back to <code>functions.R</code> and add the following lines:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="setting-up-pipelines-with-targets.html#cb14-1" aria-hidden="true" tabindex="-1"></a>save_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(save_path, plot){</span>
+<span id="cb14-2"><a href="setting-up-pipelines-with-targets.html#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggsave</span>(save_path, plot)</span>
+<span id="cb14-3"><a href="setting-up-pipelines-with-targets.html#cb14-3" aria-hidden="true" tabindex="-1"></a>  save_path</span>
+<span id="cb14-4"><a href="setting-up-pipelines-with-targets.html#cb14-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>We can now define these additional targets:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="setting-up-pipelines-with-targets.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(targets)</span>
+<span id="cb15-2"><a href="setting-up-pipelines-with-targets.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(myPackage)</span>
+<span id="cb15-3"><a href="setting-up-pipelines-with-targets.html#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb15-4"><a href="setting-up-pipelines-with-targets.html#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb15-5"><a href="setting-up-pipelines-with-targets.html#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;functions.R&quot;</span>)</span>
+<span id="cb15-6"><a href="setting-up-pipelines-with-targets.html#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="setting-up-pipelines-with-targets.html#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="setting-up-pipelines-with-targets.html#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(</span>
+<span id="cb15-9"><a href="setting-up-pipelines-with-targets.html#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tar_target</span>(</span>
+<span id="cb15-10"><a href="setting-up-pipelines-with-targets.html#cb15-10" aria-hidden="true" tabindex="-1"></a>        unemp_data,</span>
+<span id="cb15-11"><a href="setting-up-pipelines-with-targets.html#cb15-11" aria-hidden="true" tabindex="-1"></a>        <span class="fu">get_data</span>()</span>
+<span id="cb15-12"><a href="setting-up-pipelines-with-targets.html#cb15-12" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb15-13"><a href="setting-up-pipelines-with-targets.html#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="setting-up-pipelines-with-targets.html#cb15-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tar_target</span>(</span>
+<span id="cb15-15"><a href="setting-up-pipelines-with-targets.html#cb15-15" aria-hidden="true" tabindex="-1"></a>        lux_data,</span>
+<span id="cb15-16"><a href="setting-up-pipelines-with-targets.html#cb15-16" aria-hidden="true" tabindex="-1"></a>        <span class="fu">clean_unemp</span>(unemp_data,</span>
+<span id="cb15-17"><a href="setting-up-pipelines-with-targets.html#cb15-17" aria-hidden="true" tabindex="-1"></a>                    <span class="at">place_name_of_interest =</span> <span class="st">&quot;Luxembourg&quot;</span>,</span>
+<span id="cb15-18"><a href="setting-up-pipelines-with-targets.html#cb15-18" aria-hidden="true" tabindex="-1"></a>                    <span class="at">level_of_interest =</span> <span class="st">&quot;Country&quot;</span>,</span>
+<span id="cb15-19"><a href="setting-up-pipelines-with-targets.html#cb15-19" aria-hidden="true" tabindex="-1"></a>                    <span class="at">col_of_interest =</span> active_population)</span>
+<span id="cb15-20"><a href="setting-up-pipelines-with-targets.html#cb15-20" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb15-21"><a href="setting-up-pipelines-with-targets.html#cb15-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-22"><a href="setting-up-pipelines-with-targets.html#cb15-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tar_target</span>(</span>
+<span id="cb15-23"><a href="setting-up-pipelines-with-targets.html#cb15-23" aria-hidden="true" tabindex="-1"></a>        canton_data,</span>
+<span id="cb15-24"><a href="setting-up-pipelines-with-targets.html#cb15-24" aria-hidden="true" tabindex="-1"></a>        <span class="fu">clean_unemp</span>(unemp_data,</span>
+<span id="cb15-25"><a href="setting-up-pipelines-with-targets.html#cb15-25" aria-hidden="true" tabindex="-1"></a>                    <span class="at">level_of_interest =</span> <span class="st">&quot;Canton&quot;</span>,</span>
+<span id="cb15-26"><a href="setting-up-pipelines-with-targets.html#cb15-26" aria-hidden="true" tabindex="-1"></a>                    <span class="at">col_of_interest =</span> active_population)</span>
+<span id="cb15-27"><a href="setting-up-pipelines-with-targets.html#cb15-27" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb15-28"><a href="setting-up-pipelines-with-targets.html#cb15-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-29"><a href="setting-up-pipelines-with-targets.html#cb15-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tar_target</span>(</span>
+<span id="cb15-30"><a href="setting-up-pipelines-with-targets.html#cb15-30" aria-hidden="true" tabindex="-1"></a>        commune_data,</span>
+<span id="cb15-31"><a href="setting-up-pipelines-with-targets.html#cb15-31" aria-hidden="true" tabindex="-1"></a>        <span class="fu">clean_unemp</span>(unemp_data,</span>
+<span id="cb15-32"><a href="setting-up-pipelines-with-targets.html#cb15-32" aria-hidden="true" tabindex="-1"></a>                    <span class="at">place_name_of_interest =</span> <span class="fu">c</span>(<span class="st">&quot;Luxembourg&quot;</span>, <span class="st">&quot;Dippach&quot;</span>, <span class="st">&quot;Wiltz&quot;</span>, <span class="st">&quot;Esch/Alzette&quot;</span>, <span class="st">&quot;Mersch&quot;</span>),</span>
+<span id="cb15-33"><a href="setting-up-pipelines-with-targets.html#cb15-33" aria-hidden="true" tabindex="-1"></a>                    <span class="at">col_of_interest =</span> active_population)</span>
+<span id="cb15-34"><a href="setting-up-pipelines-with-targets.html#cb15-34" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb15-35"><a href="setting-up-pipelines-with-targets.html#cb15-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-36"><a href="setting-up-pipelines-with-targets.html#cb15-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tar_target</span>(</span>
+<span id="cb15-37"><a href="setting-up-pipelines-with-targets.html#cb15-37" aria-hidden="true" tabindex="-1"></a>        lux_plot,</span>
+<span id="cb15-38"><a href="setting-up-pipelines-with-targets.html#cb15-38" aria-hidden="true" tabindex="-1"></a>        <span class="fu">make_plot</span>(lux_data)</span>
+<span id="cb15-39"><a href="setting-up-pipelines-with-targets.html#cb15-39" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb15-40"><a href="setting-up-pipelines-with-targets.html#cb15-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-41"><a href="setting-up-pipelines-with-targets.html#cb15-41" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tar_target</span>(</span>
+<span id="cb15-42"><a href="setting-up-pipelines-with-targets.html#cb15-42" aria-hidden="true" tabindex="-1"></a>        canton_plot,</span>
+<span id="cb15-43"><a href="setting-up-pipelines-with-targets.html#cb15-43" aria-hidden="true" tabindex="-1"></a>        <span class="fu">make_plot</span>(canton_data)</span>
+<span id="cb15-44"><a href="setting-up-pipelines-with-targets.html#cb15-44" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb15-45"><a href="setting-up-pipelines-with-targets.html#cb15-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-46"><a href="setting-up-pipelines-with-targets.html#cb15-46" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tar_target</span>(</span>
+<span id="cb15-47"><a href="setting-up-pipelines-with-targets.html#cb15-47" aria-hidden="true" tabindex="-1"></a>        commune_plot,</span>
+<span id="cb15-48"><a href="setting-up-pipelines-with-targets.html#cb15-48" aria-hidden="true" tabindex="-1"></a>        <span class="fu">make_plot</span>(commune_data)</span>
+<span id="cb15-49"><a href="setting-up-pipelines-with-targets.html#cb15-49" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb15-50"><a href="setting-up-pipelines-with-targets.html#cb15-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-51"><a href="setting-up-pipelines-with-targets.html#cb15-51" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tar_target</span>(</span>
+<span id="cb15-52"><a href="setting-up-pipelines-with-targets.html#cb15-52" aria-hidden="true" tabindex="-1"></a>        luxembourg_saved_plot,</span>
+<span id="cb15-53"><a href="setting-up-pipelines-with-targets.html#cb15-53" aria-hidden="true" tabindex="-1"></a>        <span class="fu">save_plot</span>(<span class="st">&quot;fig/luxembourg.png&quot;</span>, lux_plot),</span>
+<span id="cb15-54"><a href="setting-up-pipelines-with-targets.html#cb15-54" aria-hidden="true" tabindex="-1"></a>        <span class="at">format =</span> <span class="st">&quot;file&quot;</span></span>
+<span id="cb15-55"><a href="setting-up-pipelines-with-targets.html#cb15-55" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb15-56"><a href="setting-up-pipelines-with-targets.html#cb15-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-57"><a href="setting-up-pipelines-with-targets.html#cb15-57" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tar_target</span>(</span>
+<span id="cb15-58"><a href="setting-up-pipelines-with-targets.html#cb15-58" aria-hidden="true" tabindex="-1"></a>        canton_saved_plot,</span>
+<span id="cb15-59"><a href="setting-up-pipelines-with-targets.html#cb15-59" aria-hidden="true" tabindex="-1"></a>        <span class="fu">save_plot</span>(<span class="st">&quot;fig/canton.png&quot;</span>, canton_plot),</span>
+<span id="cb15-60"><a href="setting-up-pipelines-with-targets.html#cb15-60" aria-hidden="true" tabindex="-1"></a>        <span class="at">format =</span> <span class="st">&quot;file&quot;</span></span>
+<span id="cb15-61"><a href="setting-up-pipelines-with-targets.html#cb15-61" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb15-62"><a href="setting-up-pipelines-with-targets.html#cb15-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-63"><a href="setting-up-pipelines-with-targets.html#cb15-63" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tar_target</span>(</span>
+<span id="cb15-64"><a href="setting-up-pipelines-with-targets.html#cb15-64" aria-hidden="true" tabindex="-1"></a>        commune_saved_plot,</span>
+<span id="cb15-65"><a href="setting-up-pipelines-with-targets.html#cb15-65" aria-hidden="true" tabindex="-1"></a>        <span class="fu">save_plot</span>(<span class="st">&quot;fig/commune.png&quot;</span>, commune_plot),</span>
+<span id="cb15-66"><a href="setting-up-pipelines-with-targets.html#cb15-66" aria-hidden="true" tabindex="-1"></a>        <span class="at">format =</span> <span class="st">&quot;file&quot;</span></span>
+<span id="cb15-67"><a href="setting-up-pipelines-with-targets.html#cb15-67" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb15-68"><a href="setting-up-pipelines-with-targets.html#cb15-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-69"><a href="setting-up-pipelines-with-targets.html#cb15-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-70"><a href="setting-up-pipelines-with-targets.html#cb15-70" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p>Let’s take a look at the network again:</p>
+<p><img src="img/pipeline_4.png" width="897" /></p>
+<p>Because we are saving a file to disk, we must add the <code>format = "file"</code> argument to the target definiton. This way, <code>{targets}</code> watches
+these files for changes as well, and reruns the pipeline if a change is detected. Run the pipeline now with <code>tar_make()</code> and watch the plots
+appear in the <code>fig</code> folder (which you may have to create before running the pipeline).</p>
+<p>Let’s now change <code>make_plot()</code> function like this:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="setting-up-pipelines-with-targets.html#cb16-1" aria-hidden="true" tabindex="-1"></a>make_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(data){</span>
+<span id="cb16-2"><a href="setting-up-pipelines-with-targets.html#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(data) <span class="sc">+</span></span>
+<span id="cb16-3"><a href="setting-up-pipelines-with-targets.html#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>(</span>
+<span id="cb16-4"><a href="setting-up-pipelines-with-targets.html#cb16-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">aes</span>(</span>
+<span id="cb16-5"><a href="setting-up-pipelines-with-targets.html#cb16-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> active_population,</span>
+<span id="cb16-6"><a href="setting-up-pipelines-with-targets.html#cb16-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> year,</span>
+<span id="cb16-7"><a href="setting-up-pipelines-with-targets.html#cb16-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">fill =</span> place_name</span>
+<span id="cb16-8"><a href="setting-up-pipelines-with-targets.html#cb16-8" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb16-9"><a href="setting-up-pipelines-with-targets.html#cb16-9" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb16-10"><a href="setting-up-pipelines-with-targets.html#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>,</span>
+<span id="cb16-11"><a href="setting-up-pipelines-with-targets.html#cb16-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.title =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb16-12"><a href="setting-up-pipelines-with-targets.html#cb16-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste0</span>(<span class="st">&quot;Unemployement for &quot;</span>, <span class="fu">paste</span>(<span class="fu">unique</span>(data<span class="sc">$</span>place_name), <span class="at">collapse =</span> <span class="st">&quot;, &quot;</span>)))</span>
+<span id="cb16-13"><a href="setting-up-pipelines-with-targets.html#cb16-13" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>If you know save the script, and check the pipeline with <code>tar_visnetwork()</code>, you will see that some targets are not out of date:</p>
+<p><img src="img/pipeline_5.png" width="904" /></p>
+<p>Every targets that gets made by <code>make_plot()</code> must be recomputed, and every targets that depends on
+the intemediary outputs of <code>make_plot()</code> as well. Reloading the data is not necessary, since the
+edits on <code>make_plot()</code> do not affect these targets. This is an incredible cognitive load that is
+taken off the shoulders of data scientists; no need to keep track of outputs that are outdated, and
+no need to re-run everything either, saving lots of time and processing power.</p>
+<p>You now know the basics of setting up a reproducible (well, almost, as you’ll see) analytical
+pipeline. Let’s now move to running someone else’s pipeline.</p>
 </div>
 <div id="running-someone-elses-pipeline" class="section level2 hasAnchor" number="7.5">
 <h2><span class="header-section-number">7.5</span> Running someone else’s pipeline<a href="setting-up-pipelines-with-targets.html#running-someone-elses-pipeline" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s now suppose that we want to run someone else’s pipeline, and let’s assume that that person
+did a good job and used <code>{renv}</code> to lock the dependencies of the pipeline, and also made the pipeline
+available on github.com.</p>
+<p>As an example, we are going to use <a href="https://github.com/wlandau/targets-minimal">this repository</a> from the
+author of <code>{targets}</code>. To start clone this repository, and open an R session in the root of the folder.</p>
+<p>Then call <code>renv::restore()</code>. You should see this:</p>
 <pre><code>&gt; renv::restore()
 
 Welcome to renv!
@@ -521,10 +907,64 @@ In addition, renv will update files within your project directory, including:
 
 Please read the introduction vignette with `vignette(&quot;renv&quot;)` for more information.
 You can browse the package documentation online at https://rstudio.github.io/renv/.
+Do you want to proceed? [y/N]: </code></pre>
+<p>Press the <code>y</code> key on your keyboard to continue. The packages to run this pipeline will get installed
+in a new library, separate from the default library you’ve been using:</p>
+<pre><code>* &quot;~/.cache/R/renv&quot; has been created.
+
+This project has not yet been activated.
+Activating this project will ensure the project library is used during restore.
+Please see `?renv::activate` for more details.
+
+Would you like to activate this project before restore? [Y/n]: 
 </code></pre>
+<p>Once again, answer <code>y</code>. A list of packages to install will appear. For the last time press <code>y</code> to install
+all the packages. As you can see from the screenshot below, because the packages used for this pipeline
+are not old(ish), they get either download from MRAN or from CRAN’s archive (MRAN is the Microsoft
+R Archive Network, a mirror of CRAN maintained by Microsoft, which gets snapshotted every day. It is thus
+possible to download old packages from there):</p>
+<p>Before running the pipeline, load the <code>{tidyr}</code> package and then call <code>sessionInfo()</code>:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="setting-up-pipelines-with-targets.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb19-2"><a href="setting-up-pipelines-with-targets.html#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="setting-up-pipelines-with-targets.html#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<p>And take note of the <code>{tidyr}</code> version:</p>
+<p>Now, open a completely fresh R session, and do the same. You should see that <code>{tidyr}</code>’s version is
+different:</p>
+<p>This is because the version of <code>{tidyr}</code> needed for the pipeline is older, and gets loaded correctly
+for the pipeline.</p>
 </div>
-<div id="why-we-need-more" class="section level2 hasAnchor" number="7.6">
-<h2><span class="header-section-number">7.6</span> Why we need more<a href="setting-up-pipelines-with-targets.html#why-we-need-more" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="running-any-code-with-older-packages" class="section level2 hasAnchor" number="7.6">
+<h2><span class="header-section-number">7.6</span> Running any code with older packages<a href="setting-up-pipelines-with-targets.html#running-any-code-with-older-packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>What do you do if you need to run code with older packages, but the original developer did not use <code>{renv}</code>?
+In such cases it is still possible to run that code with older packages. What you would need to know however
+is the rough date where this code was written. Let’s say that you want to run an old script from 2019, and
+you want to make sure that the results you will obtain are as close, if not absolutely equal, to the results
+you would have obtained then. Let’s further assume that the script was last modified on October 31st 2019.</p>
+<p>You can rerun this script with a library that looks like one from that same date using a package made
+by Microsoft, called <code>{checkpoint}</code>. This package helps install packages from their repository, MRAN
+(which was already mentioned before), and is quite easy to use. Simply add the following line at the top
+of the script:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="setting-up-pipelines-with-targets.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">checkpoint</span>(<span class="st">&quot;2019-10-31&quot;</span>)</span></code></pre></div>
+<p>You can read more about checkpoint <a href="https://cran.microsoft.com/web/packages/checkpoint/vignettes/checkpoint.html">here</a>.</p>
+</div>
+<div id="why-we-need-more" class="section level2 hasAnchor" number="7.7">
+<h2><span class="header-section-number">7.7</span> Why we need more<a href="setting-up-pipelines-with-targets.html#why-we-need-more" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>While <code>{renv}</code> is a huge step towards the right direction, there are at least four problems with it:</p>
+<ul>
+<li><code>{renv}</code> doesn’t do anything about R itself: a pipeline made to run on R version 3 (for example) could still produce different results when run on R 4, even if the packages are the same. In practice, however, R is quite stable, and breaking changes between versions are very rare; most code is retrocompatible for many versions.</li>
+<li><code>{renv}</code> doesn’t do anything about the operating system the pipeline is running on. Results can even be different between <a href="https://www.frontiersin.org/articles/10.3389/fninf.2015.00012/full">different versions of the same operating system</a>, but in practice, that should only affect you in very specific businesses were very high precision floating point arithmetic is required.</li>
+<li><code>{renv}</code> can sometimes fail to install packages. I tried running William Landau’s demo pipeline on two computers, one running OpenSuse Linux and one running Windows 10. It ran successfully on Linux, but not on Windows.</li>
+<li><code>{renv}</code> relies on MRAN and CRAN. While it is unlikely that CRAN will ever be offline, as there are many, many mirrors around the world, <a href="https://en.wikipedia.org/wiki/Lindy_effect">and it could be argued that the longer CRAN is online, the likelier it is it’ll stay online</a>, the same cannot (yet) be said from MRAN. However, <code>{renv}</code> could be made to rely entirely on CRAN, so this last point might not be an issue.</li>
+</ul>
+<p>We are going to solve these issues in chapter 9, but for now, let’s be grateful for <code>{renv}</code>, <code>{targets}</code> and CRAN (and MRAN), for they allow us to quite easily
+build (almost) reproducible pipelines quite easily! In the next chapter, we will continue building pipelines and build our very first data products.</p>
+</div>
+<div id="further-reading-3" class="section level2 hasAnchor" number="7.8">
+<h2><span class="header-section-number">7.8</span> Further reading<a href="setting-up-pipelines-with-targets.html#further-reading-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>The <code>{targets}</code> <a href="https://books.ropensci.org/targets/">manual</a></li>
+<li>The <code>{renv}</code> <a href="https://rstudio.github.io/renv/articles/renv.html">website</a></li>
+</ul>
 
 </div>
 </div>

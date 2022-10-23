@@ -104,7 +104,7 @@ knitr::include_graphics("img/dependency_hell.png")
 
 That doesn’t mean that R does not have any issues. Quite the contrary, R sometimes behaves in seemingly truly
 bizarre ways (as an example, try running `nchar("123456789")` and then `nchar(123456789)` and try to make sense
-of it). To know more about such bizarre behavour, I recommend you read *The R Inferno* (linked at the end 
+of it). To know more about such bizarre behaviour, I recommend you read *The R Inferno* (linked at the end 
 of this chapter). So, yes, R is far from perfect, but it sucks less than the alternatives 
 (again, in my absolutely objective opinion). 
 
@@ -136,10 +136,17 @@ There’s some jargon that is helpful to know when working with R. Here’s a no
 - tidyverse: a collection of packages created by Posit that offer a common language and syntax to perform any task required for data science — from reading in data, to cleaning data, up to machine learning and visualisation;
 - base R: refers to a vanilla installation (and vanilla capabilities) of R. Often used to contrast a *tidyverse* specific approach to a problem (for example, using base R’s `lapply()` in constrast to the *tidyverse* `purrr::map()`).
 - `package::function()`: Functions can be accessed in several ways in R, either by loading an entire package at the start of a script with `library(dplyr)` or by using `dplyr::select()`. 
-
 ## Further reading
 
 [An Introduction to R (from the R team themselves)](https://cran.r-project.org/doc/manuals/r-release/R-intro.html)
 [What is CRAN?](https://cran.r-project.org/doc/FAQ/R-FAQ.html#What-is-CRAN_003f)
 [The R Inferno](https://www.burns-stat.com/pages/Tutor/R_inferno.pdf)
 [Reproducible Analytical Pipelines (RAP)](https://analysisfunction.civilservice.gov.uk/support/reproducible-analytical-pipelines/)
+
+## License
+
+This course is licensed under the [WTFPL](http://www.wtfpl.net/txt/copying/).
+
+<a href="http://www.wtfpl.net/"><img
+       src="http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-4.png"
+       width="80" height="15" alt="WTFPL" /></a>

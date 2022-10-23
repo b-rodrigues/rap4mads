@@ -443,7 +443,7 @@ We can now change our function to accommodate this new data format. Let's edit o
 
 ```{r, eval = F}
 #' Easily filter unemployment data for Luxembourg
-#' @param unemp A data frame containing unemployment data for Luxembourg.
+#' @param unemp_data A data frame containing unemployment data for Luxembourg.
 #' @param year_of_interest Optional: The year that should be kept. Leave empty to select every year.
 #' @param place_name_of_interest Optional: The name of the place of interest: leave empty to select every place in `level_of_interest`.
 #' @param level_of_interest Optional: The level of interest: one of `Country`, `Canton`, `Commune`. Leave empty to select every level with the same place name.
@@ -455,21 +455,21 @@ We can now change our function to accommodate this new data format. Let's edit o
 #' @export
 #' @details
 #' Users can filter data on two variables: the name of the place of interest, and the level of interest.
-#' By leaving the argument `place_name_of_interest` empty 
+#' By leaving the argument `place_name_of_interest` empty
 #' @examples
 #' # Filter on cantons
 #' clean_unemp(unemp,
 #'             level_of_interest = "Canton",
-#'             active_population)
+#'             col_of_interest = active_population)
 #' # Filter on a specific commune
-#' clean_unemp(unemp_2013,
+#' clean_unemp(unemp,
 #'             place_name_of_interest = "Luxembourg",
 #'             level_of_interest = "Commune",
-#'             active_population)
+#'             col_of_interest = active_population)
 #' # Filter on every level called Luxembourg
-#' clean_unemp(unemp_2013,
+#' clean_unemp(unemp,
 #'             place_name_of_interest = "Luxembourg",
-#'             active_population)
+#'             col_of_interest = active_population)
 clean_unemp <- function(unemp_data,
                         year_of_interest = NULL,
                         place_name_of_interest = NULL,
@@ -506,6 +506,7 @@ clean_unemp <- function(unemp_data,
   }
   result
 }
+
 ```
 
 There's a lot more going on now: if you don't get everything that's going on in this function,
@@ -604,13 +605,15 @@ test_that("selecting the grand duchy works", {
     unemp,
     year_of_interest = 2013,
     level_of_interest = "Country",
-    col_of_interest = active_population)
+    col_of_interest = active_population) |>
+      as.data.frame()
 
-  expected_value <- tibble::as_tibble(
+  expected_value <- as.data.frame(
                               list("year" = 2013,
                                    "place_name" = "Luxembourg",
                                    "level" = "Country",
-                                   "active_population" = 242694))
+                                   "active_population" = 242694)
+                              )
 
   expect_equal(returned_value, expected_value)
 
@@ -622,9 +625,10 @@ test_that("selecting cantons work", {
     unemp,
     year_of_interest = 2013,
     level_of_interest = "Canton",
-    col_of_interest = active_population)
+    col_of_interest = active_population) |>
+      as.data.frame()
 
-  expected_value <- readr::read_csv("test_data_cantons.csv", show_col_types = FALSE)
+  expected_value <- read.csv("test_data_cantons.csv")
 
   expect_equal(returned_value, expected_value)
 
@@ -636,9 +640,10 @@ test_that("selecting communes works", {
     unemp,
     year_of_interest = 2013,
     level_of_interest = "Commune",
-    col_of_interest = active_population)
+    col_of_interest = active_population) |>
+      as.data.frame()
 
-  expected_value <- readr::read_csv("test_data_communes.csv", show_col_types = FALSE)
+  expected_value <- read.csv("test_data_communes.csv")
 
   expect_equal(returned_value, expected_value)
 
@@ -650,9 +655,10 @@ test_that("selecting one commune works", {
     unemp,
     year_of_interest = 2013,
     place_name_of_interest = "Kayl",
-    col_of_interest = active_population)
+    col_of_interest = active_population) |>
+      as.data.frame()
 
-  expected_value <- tibble::as_tibble(
+  expected_value <- as.data.frame(
                               list("year" = 2013,
                                    "place_name" = "Kayl",
                                    "level" = "Commune",
@@ -668,9 +674,10 @@ test_that("wrong commune name", {
     unemp,
     year_of_interest = 2013,
     place_name_of_interest = "Paris",
-    col_of_interest = active_population)
+    col_of_interest = active_population) |>
+      as.data.frame()
 
-  expected_value <- tibble::as_tibble(
+  expected_value <- as.data.frame(
                               list("year" = numeric(0),
                                    "place_name" = character(0),
                                    "level" = character(0),
@@ -692,6 +699,7 @@ test_that("wrong commune name: warning is thrown", {
   }, "This is likely")
 
 })
+
 ```
 
 Once you're done, commit and push your changes.
