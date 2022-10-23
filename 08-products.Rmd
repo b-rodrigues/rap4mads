@@ -1,11 +1,21 @@
 # Data products
 
-What you’ll have learned by the end of the chapter:
+<div style="text-align:center;">
+```{r, echo = F}
+knitr::include_graphics("img/product.png")
+```
+</div>
 
-## Static Documents
+What you’ll have learned by the end of the chapter: create a multitude of data products using the R programming language using a RAP.
+
+## Static products
 
 ### Word, PDF and PPTX Documents
 
 ### HTML documents
 
-## Using your package in a `{targets}` pipeline
+## Dynamic products
+
+### HTML documents redux
+
+### Interactive web applications

@@ -1,0 +1,7 @@
+# CI/CD with Github Actions
+
+<div style="text-align:center;">
+```{r, echo = F}
+knitr::include_graphics("img/octopus.png")
+```
+</div>

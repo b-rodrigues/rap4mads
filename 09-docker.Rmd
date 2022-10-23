@@ -1,0 +1,7 @@
+# Self-contained RAPs with Docker
+
+<div style="text-align:center;">
+```{r, echo = F}
+knitr::include_graphics("img/container.png")
+```
+</div>

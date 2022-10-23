@@ -17,12 +17,12 @@ site: bookdown::bookdown_site
 
 - 2022/10/25, morning: Introduction and data exploration with R
 - 2022/10/25, afternoon: Functional programming
-- 2022/10/31, afternoon: Git
+- 2022/10/31, afternoon: Git (optional?)
 - 2022/11/07, afternoon: Package development and unit testing
-- 2022/11/08, morning: Literate programming and `{shiny}`
-- 2022/11/08, afternoon: Build automation with `{targets}`
-- 2022/11/21, afternoon: A self-contained pipeline with Docker
-- 2022/11/22, morning: Github Actions
+- 2022/11/08, morning: Build automation
+- 2022/11/08, afternoon: Building Data products
+- 2022/11/21, afternoon: Self-contained pipelines with Docker
+- 2022/11/22, morning: CI/CD with Github Actions
 
 ## Reproducible analytical pipelines?
 
@@ -125,6 +125,25 @@ The beginning of this course will likely be the toughest part, especially if you
 I will need to bring you up to speed in 6 hours. Only after can we actually start talking about 
 RAPs. What's important is to never give up and work together with me.
 
+## Grading
+
+The way grading works in this course is as follows: during lecture hours you will follow along. At home,
+you'll be working on setting up your own pipeline. If time allows, I'll leave some time during lecture hours
+for you to work on it and ask me and your colleagues for help. At the end of the semester, I will need to 
+download your code and get it running. The less effort this takes me, the better your score. Here is a tentative
+breakdown:
+
+- Code is on github.com and I can pull it: 2 points;
+- Data and functions to run pipeline are in a tested, documented package? 3 points;
+- I don't need to do anything to load data: 5 points;
+- I can download and install your pipeline's dependencies in one command line: 5 points;
+- I can run your pipeline in one command line: 5 points
+
+- Extra points: pipeline is dockerized and uses github actions to run? 5 points 
+
+The way to fail this class is to write an undocumented script that only runs on your machine and expect me to debug
+it to get it to run.
+
 ## Jargon
 
 There’s some jargon that is helpful to know when working with R. Here’s a non-exhaustive list to get you started:
@@ -138,15 +157,15 @@ There’s some jargon that is helpful to know when working with R. Here’s a no
 - `package::function()`: Functions can be accessed in several ways in R, either by loading an entire package at the start of a script with `library(dplyr)` or by using `dplyr::select()`. 
 ## Further reading
 
-[An Introduction to R (from the R team themselves)](https://cran.r-project.org/doc/manuals/r-release/R-intro.html)
-[What is CRAN?](https://cran.r-project.org/doc/FAQ/R-FAQ.html#What-is-CRAN_003f)
-[The R Inferno](https://www.burns-stat.com/pages/Tutor/R_inferno.pdf)
-[Reproducible Analytical Pipelines (RAP)](https://analysisfunction.civilservice.gov.uk/support/reproducible-analytical-pipelines/)
+- [An Introduction to R (from the R team themselves)](https://cran.r-project.org/doc/manuals/r-release/R-intro.html)
+- [What is CRAN?](https://cran.r-project.org/doc/FAQ/R-FAQ.html#What-is-CRAN_003f)
+- [The R Inferno](https://www.burns-stat.com/pages/Tutor/R_inferno.pdf)
+- [Reproducible Analytical Pipelines (RAP)](https://analysisfunction.civilservice.gov.uk/support/reproducible-analytical-pipelines/)
 
 ## License
 
 This course is licensed under the [WTFPL](http://www.wtfpl.net/txt/copying/).
 
 <a href="http://www.wtfpl.net/"><img
-       src="http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-4.png"
+       src="img/wtfpl-badge-4.png"
        width="80" height="15" alt="WTFPL" /></a>

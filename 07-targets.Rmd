@@ -355,27 +355,28 @@ cantons, and one graph for selected communes. This series of graphs will be our 
 focus too much on the data product itself, the focus here is on building the pipeline. In the next
 chapter we are going to build more interesting data products.
 
-I’ve been mentioning pipelines for some time now, but what is it actually? Nothing more than a script. 
+I’ve been mentioning pipelines for some time now, but what is it actually? Nothing more than a script.
 Let’s go back to the project we started at the beginning of the chapter. We can now create a `_targets.R`
 file on the root of the project. Insert the following lines in the script, we will then go through each
 of them:
 
 ```{r, eval = F}
 library(targets)
-
-tar_option_set(packages = c("myPackage", "dplyr", "ggplot2"))
+library(myPackage)
+library(dplyr)
+library(ggplot2)
 
 list(
   tar_target(unemp_data, get_data())
 )
 ```
 
-The first line simply loads the `{targets}` package, the second line sets the packages required for the pipeline
-to actually run. This is equivalent to having a series of calls to `library()` in a normal script.
-Then comes a list. Inside this list is where we will define the targets, or the (intemediary) outputs of
-the pipeline. We defined `unemp_data` as being the output of the function `get_data()`... but where does this
-function come from? Well, we need to create another script called `functions.R` where we will define every
-function the we need for this pipeline. Let’s create an empty script and put the following lines in it:
+The first line simply loads the `{targets}` package, the second to fourth lines load the packages
+required for the pipeline to actually run. Then comes a list. Inside this list is where we will define the
+targets, or the (intermediary) outputs of the pipeline. We defined `unemp_data` as being the output
+of the function `get_data()`... but where does this function come from? Well, we need to create
+another script called `functions.R` where we will define every function the we need for this
+pipeline. Let’s create an empty script and put the following lines in it:
 
 ```{r, eval = F}
 get_data <- function(){
@@ -738,79 +739,63 @@ did a good job and used `{renv}` to lock the dependencies of the pipeline, and a
 available on github.com. 
 
 As an example, we are going to use [this repository](https://github.com/wlandau/targets-minimal) from the
-author of `{targets}`. To start clone this repository, and open an R session in the root of the folder.
+author of `{targets}`. To start clone this repository:
 
-Then call `renv::restore()`. You should see this:
+```{r, eval = F}
+git clone git@github.com:wlandau/targets-minimal.git
+```
+and open an R session in the root of the folder (or open the `targets-minimal.rproj` file in the folder
+you just cloned to open the project in RStudio), then call `renv::restore()`. 
+You should see this:
 
 ```
 > renv::restore()
-
-Welcome to renv!
-
-It looks like this is your first time using renv. This is a one-time message,
-briefly describing some of renv's functionality.
-
-renv maintains a local cache of data on the filesystem, located at:
-
-  - "~/.cache/R/renv"
-
-This path can be customized: please see the documentation in `?renv::paths`.
-
-renv will also write to files within the active project folder, including:
-
-  - A folder 'renv' in the project directory, and
-  - A lockfile called 'renv.lock' in the project directory.
-
-In particular, projects using renv will normally use a private, per-project
-R library, in which new packages will be installed. This project library is
-isolated from other R libraries on your system.
-
-In addition, renv will update files within your project directory, including:
-
-  - .gitignore
-  - .Rbuildignore
-  - .Rprofile
-
-Please read the introduction vignette with `vignette("renv")` for more information.
-You can browse the package documentation online at https://rstudio.github.io/renv/.
-Do you want to proceed? [y/N]: 
 ```
 
-Press the `y` key on your keyboard to continue. The packages to run this pipeline will get installed
-in a new library, separate from the default library you’ve been using:
 
 ```
-* "~/.cache/R/renv" has been created.
-
 This project has not yet been activated.
 Activating this project will ensure the project library is used during restore.
 Please see `?renv::activate` for more details.
 
 Would you like to activate this project before restore? [Y/n]: 
-
 ```
 
-Once again, answer `y`. A list of packages to install will appear. For the last time press `y` to install 
-all the packages. As you can see from the screenshot below, because the packages used for this pipeline
+Press the `y` key on your keyboard to continue. The packages to run this pipeline will get installed
+in a new library, separate from the default library as usual with `{renv}`:
+
+```
+ℹ Using R 4.2.1 (lockfile was generated with R 4.1.0)
+* Project '~/targets-minimal' loaded. [renv 0.16.0]
+* The project library is out of sync with the lockfile.
+* Use `renv::restore()` to install packages recorded in the lockfile.
+The following package(s) will be updated:
+
+# CRAN ===============================
+...very long list of packages I'm not showing here...
+Do you want to proceed? [y/N]: 
+```
+
+Press Y to install the packages in the separate library.
+
+As you can see from the screenshot below, because the packages used for this pipeline
 are not old(ish), they get either download from MRAN or from CRAN’s archive (MRAN is the Microsoft
 R Archive Network, a mirror of CRAN maintained by Microsoft, which gets snapshotted every day. It is thus
 possible to download old packages from there):
 
-Before running the pipeline, load the `{tidyr}` package and then call `sessionInfo()`:
-
-```{r, eval = F}
-library(tidyr)
-
-sessionInfo()
+```{r, echo = F}
+knitr::include_graphics("img/pipeline_6.png")
 ```
 
-And take note of the `{tidyr}` version:
+You should now restart your R session for good measure (go to `Session -> Restart Session`). You can now run
+the pipeline simply with:
 
-Now, open a completely fresh R session, and do the same. You should see that `{tidyr}`’s version is 
-different:
+```{r, eval = F}
+targets::tar_make()
+```
 
-This is because the version of `{tidyr}` needed for the pipeline is older, and gets loaded correctly 
-for the pipeline.
+The data product (or output) from this pipeline is the `index.html` file that appeared on the root folder
+of your project.
 
 ## Running any code with older packages
 
