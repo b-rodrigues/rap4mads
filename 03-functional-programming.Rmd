@@ -107,6 +107,12 @@ pure_rnorm(10, seed = 1234)
 `pure_rnorm()` is now self-contained, and does not pollute the global environment. We’re going to learn
 how to write functions in just a bit, so don’t worry if the code above does not make sense yet.
 
+<div style="text-align:center;">
+```{r, echo = F}
+knitr::include_graphics("img/cat_loops.png")
+```
+</div>
+
 A very practical consequence of using functional programming is that loops are not used, because
 loops are imperative and imperative programming is all about manipulating state. However, there are
 situations where loops are more efficient than the alternative (in R at least). So we will still

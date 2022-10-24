@@ -349,6 +349,12 @@ In a coming section we are actually going to do just that, but for now, let's go
 
 ## Our actual first pipeline
 
+<div style="text-align:center;">
+```{r, echo = F}
+knitr::include_graphics("img/mario.png")
+```
+</div>
+
 Let’s start by building our very first pipeline. Our goal is the following: start with the unemployment
 data for Luxembourg, and build a series of graphs. We want one graph for Luxembourg, one graph for 
 cantons, and one graph for selected communes. This series of graphs will be our data product; let’s not
@@ -798,6 +804,12 @@ The data product (or output) from this pipeline is the `index.html` file that ap
 of your project.
 
 ## Running any code with older packages
+
+<div style="text-align:center;">
+```{r, echo = F}
+knitr::include_graphics("img/calendar.png")
+```
+</div>
 
 What do you do if you need to run code with older packages, but the original developer did not use `{renv}`?
 In such cases it is still possible to run that code with older packages. What you would need to know however 

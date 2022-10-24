@@ -112,7 +112,26 @@ of this chapter). So, yes, R is far from perfect, but it sucks less than the alt
 
 I will assume basic programming knowledge, and not much more. If you need to set up R on your computer
 you can read the intro to my other book [Modern R with the tidyverse](https://b-rodrigues.github.io/modern_R/index.html#prerequisites).
-Follow the pre-requisites there: install R, Rstudio and the listed packages.
+Follow the pre-requisites there: install R, RStudio and these packages:
+
+```{r, eval = F}
+install.packages(c(
+  "Ecdat",
+  "janitor",
+  "plm",
+  "pwt9",
+  "quarto",
+  "renv",
+  "rio",
+  "shiny"
+  "targets",
+  "testthat",
+  "tidyverse",
+  "tribble",
+  "usethis",
+))
+
+```
 
 The course will be very, very hands-on. I'll give general hints and steps, and ask you to do stuff.
 It will not always be 100% simple and obvious, and you will need to also think a bit by yourself.
@@ -127,11 +146,13 @@ RAPs. What's important is to never give up and work together with me.
 
 ## Grading
 
-The way grading works in this course is as follows: during lecture hours you will follow along. At home,
-you'll be working on setting up your own pipeline. If time allows, I'll leave some time during lecture hours
-for you to work on it and ask me and your colleagues for help. At the end of the semester, I will need to 
-download your code and get it running. The less effort this takes me, the better your score. Here is a tentative
-breakdown:
+The way grading works in this course is as follows: during lecture hours you will follow along. At
+home, you'll be working on setting up your own pipeline. For this, choose a dataset that ideally
+would need some cleaning and/or tweaking to be usable. We are going first to learn how to package
+this dataset alongside some functions to make it clean. If time allows, I'll leave some time
+during lecture hours for you to work on it and ask me and your colleagues for help. At the end of
+the semester, I will need to download your code and get it running. The less effort this takes me,
+the better your score. Here is a tentative breakdown:
 
 - Code is on github.com and I can pull it: 2 points;
 - Data and functions to run pipeline are in a tested, documented package? 3 points;
@@ -141,12 +162,13 @@ breakdown:
 
 - Extra points: pipeline is dockerized and uses github actions to run? 5 points 
 
-The way to fail this class is to write an undocumented script that only runs on your machine and expect me to debug
-it to get it to run.
+The way to fail this class is to write an undocumented script that only runs on your machine and
+expect me to debug it to get it to run.
 
 ## Jargon
 
-There’s some jargon that is helpful to know when working with R. Here’s a non-exhaustive list to get you started:
+There’s some jargon that is helpful to know when working with R. Here’s a non-exhaustive list to
+get you started:
 
 - CRAN: the Comprehensive R Archive Network. This is a curated online repository of packages and R installers. When you type `install.packages("package_name")` in an R console, the package gets downloaded from there;
 - Library: the collection of R packages installed on your machine;
@@ -155,6 +177,10 @@ There’s some jargon that is helpful to know when working with R. Here’s a no
 - tidyverse: a collection of packages created by Posit that offer a common language and syntax to perform any task required for data science — from reading in data, to cleaning data, up to machine learning and visualisation;
 - base R: refers to a vanilla installation (and vanilla capabilities) of R. Often used to contrast a *tidyverse* specific approach to a problem (for example, using base R’s `lapply()` in constrast to the *tidyverse* `purrr::map()`).
 - `package::function()`: Functions can be accessed in several ways in R, either by loading an entire package at the start of a script with `library(dplyr)` or by using `dplyr::select()`. 
+- Function factory (sometimes adverb): a function that returns a function.
+- Variable: the variable of a function (as in `x` in `f(x)`) or the variable from statistical modeling (synonym of feature)
+- `<-` vs `=`: in practice, you can use `<-` and `=` interchangeably. I prefer `<-`, but feel free to use `=` if you wish.
+
 ## Further reading
 
 - [An Introduction to R (from the R team themselves)](https://cran.r-project.org/doc/manuals/r-release/R-intro.html)

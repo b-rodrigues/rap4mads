@@ -71,38 +71,48 @@ you to interact with github.com, and you'll see in what ways soon enough. For no
 your github.com account, and create a new repository by clicking on the 'plus' sign in the top
 right corner of your profile page and then choose 'New repository':
 
+<div style="text-align:center;">
 ```{r, echo = F}
 knitr::include_graphics("img/github_1.png")
 ```
+</div>
 
 In the next screen, choose a nice name for your repository and ignore the other options, they're 
 not important for now. Then click on 'Create repository':
 
+<div style="text-align:center;">
 ```{r, echo = F}
 knitr::include_graphics("img/github_2.png")
 ```
+</div>
 
 Ok, we're almost done with the easy part. The next screen tells us we can start interacting with the 
 repository. For this, we're first going to click on 'README': 
 
+<div style="text-align:center;">
 ```{r, echo = F}
 knitr::include_graphics("img/github_3.png")
 ```
+</div>
 
 This will add a `README` file that we can also edit from github.com directly:
 
+<div style="text-align:center;">
 ```{r, echo = F}
 knitr::include_graphics("img/github_4.png")
 ```
+</div>
 
 Add some lines to the file, and then click on 'Commit new file'. You'll end up on the main page of
 your freshly created repository. We are now done with setting up the repository on github.com. We
 can now *clone* the repository onto our machines. For this, click on 'Code', then 'SSH' and then 
 on the copy icon:
 
+<div style="text-align:center;">
 ```{r, echo = F}
 knitr::include_graphics("img/github_5.png")
 ```
+</div>
 
 Now, to make things easier on you, we're going to use Rstudio as an interface
 for Git. But you should know that Git can be used independently from a terminal
@@ -118,29 +128,37 @@ have to use the terminal instead anyways...).
 
 Start Rstudio and click on 'new project' and then 'Version Control':
 
+<div style="text-align:center;">
 ```{r, echo = F}
 knitr::include_graphics("img/github_6.png")
 ```
+</div>
 
 Then choose 'Git':
 
+<div style="text-align:center;">
 ```{r, echo = F}
 knitr::include_graphics("img/github_7.png")
 ```
+</div>
 
 Then paste the link from before into the 'Repository URL' field, the 'project directory name' 
 will fill out automatically, choose where to save the repository in your computer, click on
 'Open in new session' and then on 'Create Project':
 
+<div style="text-align:center;">
 ```{r, echo = F}
 knitr::include_graphics("img/github_8.png")
 ```
+</div>
 
 A new Rstudio window should open. There are several things that you should pay attention to now:
 
+<div style="text-align:center;">
 ```{r, echo = F}
 knitr::include_graphics("img/github_9.png")
 ```
+</div>
 
 Icon (1) indicates that this project is *git-enabled* so to speak. (2) shows you that Rstudio is open
 inside the `example_repo` (or whatever you named your repo to) project, and (3) shows you the actual
@@ -152,16 +170,20 @@ repository that was downloaded from github.com at the path you chose before. You
 Let's now create a simple script and add some lines of code to it, and save it. Check out the `Git`
 tab now, you should see your script there, alongside a `?` icon:
 
+<div style="text-align:center;">
 ```{r, echo = F}
 knitr::include_graphics("img/github_10.png")
 ```
+</div>
 
 We are now ready to commit the file, but first let's check out what actually changed. If you click
 on `Diff`, a new window will open with the different files that changed since last time:
 
+<div style="text-align:center;">
 ```{r, echo = F}
 knitr::include_graphics("img/github_11.png")
 ```
+</div>
 
 Icon (1) shows you the list of files that changed. We only created the file called `my_script.R`, but two
 other files are listed as well. These files are automatically generated when starting a new project.
@@ -181,9 +203,11 @@ be included in this commit. You can only stage one file, several files, or all f
 our first commit, let's stage everything we've got, by simply clicking on the checkboxes below the 
 column `Staged` in (1).
 
+<div style="text-align:center;">
 ```{r, echo = F}
 knitr::include_graphics("img/github_12.png")
 ```
+</div>
 
 The status of the files now changed: they've been added for this commit. We can now click on the 
 `Commit` button. Now these changes have been committed there are no unstaged files anymore. We have
@@ -195,9 +219,11 @@ this later on). But it is a much better idea to push our commit now. This makes 
 available to colleagues (who need to pull the changes from github.com) and should our computer
 spontaneously combust, at least or work is now securely saved on github.com. So let's `Push`:
 
+<div style="text-align:center;">
 ```{r, echo = F}
 knitr::include_graphics("img/github_13.png")
 ```
+</div>
 
 Ooooooops! Something's wrong! Apparently, we do not have access rights to the repo? This can sound
 weird, because after all, we created the repo with our account and then cloned it. So what's going
@@ -223,61 +249,77 @@ you will get the error from before.
 So let's now generate an ssh key pair. For this, go to `Tools > Global Options > Git/Svn`, and then
 click on the `Create RSA Key...`
 
+<div style="text-align:center;">
 ```{r, echo = F}
 knitr::include_graphics("img/github_14.png")
 ```
+</div>
 
 Icon (1) shows you the path where the keys will be saved. This is only useful if
 you have reasons to worry that your private key might be compromised, but without physical access
 to your machine, an attacker would have a lot of trouble retrieving it (if you keep your OS updated...).
 Finally click on `Create`: 
 
+<div style="text-align:center;">
 ```{r, echo = F}
 knitr::include_graphics("img/github_15.png")
 ```
+</div>
 
 Ok so now that you have generated these keys, let's copy the public key in
 our clipboard (because we need to paste the key into github.com). You should be able to find this
 key from RStudio. Go back to `Tools > Global Options > Git/Svn`, and then click on `View public key`:
 
+<div style="text-align:center;">
 ```{r, echo = F}
 knitr::include_graphics("img/github_18.png")
 ```
+</div>
 
 A new window will open showing you your public key. You can now copy and paste it into github.com.
 For this, first go to your profile, then `Settings` then `SSH and GPG keys`:
 
+<div style="text-align:center;">
 ```{r, echo = F}
 knitr::include_graphics("img/github_16.png")
 ```
+</div>
 
 Then, on the new screen click on `New SSH key`:
 
+<div style="text-align:center;">
 ```{r, echo = F}
 knitr::include_graphics("img/github_17.png")
 ```
+</div>
 
 You can now add your key. Add a title, for example `home` for your home
 computer, or `work` for your work laptop. Paste the key from RStudio
 into the field (2), and then click on `Add SSH key`:
 
+<div style="text-align:center;">
 ```{r, echo = F}
 knitr::include_graphics("img/github_19.png")
 ```
+</div>
 
 Ok, now that github.com has your public key, you can now push your commits
 without any error. Go back to RStudio, to the `Git` tab and click on 
 `Push`:
 
+<div style="text-align:center;">
 ```{r, echo = F}
 knitr::include_graphics("img/github_20.png")
 ```
+</div>
 
 A new window will open, this time showing you that the upload went through:
 
+<div style="text-align:center;">
 ```{r, echo = F}
 knitr::include_graphics("img/github_21.png")
 ```
+</div>
 
 You will need to add one public key per computer you use on github.com. 
 In the past, it was possible to push your commits by providing a password
@@ -301,9 +343,11 @@ a commit message that explain what you did. Once you're done, go back
 to the `Git` tab of Rstudio, and click on the `History` button (the 
 icon is a clock):
 
+<div style="text-align:center;">
 ```{r, echo = F}
 knitr::include_graphics("img/github_22.png")
 ```
+</div>
 
 As you can see from the picture above, clicking on `History` shows every commit since the beginning
 of the repo. It also shows you who pushed that particular commit, and when. For now, you will only
@@ -315,18 +359,22 @@ before, who pushed the commit, when, the commit message (under **Subject**), and
 **SHA**. This is a unique sequence of characters that identifies the commit. If you select another
 commit, you will notice that its SHA is different:
 
+<div style="text-align:center;">
 ```{r, echo = F}
 knitr::include_graphics("img/github_23.png")
 ```
+</div>
 
 The SHA identifier (called a *hash*) is what we're going to use to revert to a previous state of
 the code base. But because this is a bit advanced, there is no way of doing it from RStudio. You
 will need to open a terminal and use Git from there. On Windows, go to the folder of your project,
 right-click on some white space and select `Git Bash Here`:
 
+<div style="text-align:center;">
 ```{r, echo = F}
 knitr::include_graphics("img/github_24.png")
 ```
+</div>
 
 A similar approach can be used for most Linux distributions (but simply open
 a terminal, Git Bash is Windows only), and you can apparently do something
@@ -509,16 +557,20 @@ So for this section you will need to form teams of at least 2 people. One of you
 invite the other to collaborate by going on github.com and then following the instructions
 in the picture below:
 
+<div style="text-align:center;">
 ```{r, echo = F}
 knitr::include_graphics("img/github_25.png")
 ```
+</div>
 
 Type the username of your colleague to find him/her. In my case I'm inviting my 
 good friend David Solito:
 
+<div style="text-align:center;">
 ```{r, echo = F}
 knitr::include_graphics("img/github_26.png")
 ```
+</div>
 
 David now essentially owns the repository as well! So he can contribute to it, just like me.
 Now, let's suppose that I continue working on my end, and don't coordinate with David.
@@ -586,15 +638,19 @@ to integrate the changes, and then we can push again.
 At this point, if we want, we can first go to github.com and see the commit history there to
 see what David did. Go to your repo, and click on the commit history icon:
 
+<div style="text-align:center;">
 ```{r, echo = F}
 knitr::include_graphics("img/github_27.png")
 ```
+</div>
 
 Doing so will list the commit history, as currently on github.com:
 
+<div style="text-align:center;">
 ```{r, echo = F}
 knitr::include_graphics("img/github_28.png")
 ```
+</div>
 
 While I was working, David pushed 2 commits to the repository. If you compare to your local history,
 using `git log` you will see that these commits are not there, but instead, however many
@@ -670,9 +726,11 @@ Could not apply d2ab909... Remade plot with ggplot2
 Once again, it is important to read what Git is telling us. There is a merge conflict
 in the `my_script.R` file. Let's open it, and see what's going on:
 
+<div style="text-align:center;">
 ```{r, echo = F}
 knitr::include_graphics("img/github_29.png")
 ```
+</div>
 
 We can see two things: the lines that David changed in (1), and the lines I've added
 in (2). This happened because we changed the same lines. Had I added lines instead of
@@ -684,9 +742,11 @@ he replaced the `hp` variable by `cyl`, and added a linear regression as well. S
 seems sensible to me, I will adapt the script in a way that gracefully merges both
 contributions. So the file looks like this now:
 
+<div style="text-align:center;">
 ```{r, echo = F}
 knitr::include_graphics("img/github_30.png")
 ```
+</div>
 
 We can now save, and continue following the hints from Git, namely, adding the changed 
 file to the next commit and then use `git rebase --continue`:
@@ -705,17 +765,21 @@ git push origin main
 and we're done! Let's go back to github.com to see the commit history. You can click on the
 hash to see the details of how the file changed (you can do so from RStudio as well):
 
+<div style="text-align:center;">
 ```{r, echo = F}
 knitr::include_graphics("img/github_31.png")
 ```
+</div>
 
 In green, you see lines that were added, and in red, lines that were removed. The lines
 where the linear model was defined are not impacted, because David wrote them at the bottom
 of the script, and I did not write anything there:
 
+<div style="text-align:center;">
 ```{r, echo = F}
 knitr::include_graphics("img/github_32.png")
 ```
+</div>
 
 Ok, so this wraps up this chapter. Git is incredibly feature rich and complex, but as 
 already discussed, it is NOT optional to know about Git in our trade. So now that you

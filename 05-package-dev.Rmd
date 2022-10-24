@@ -58,17 +58,21 @@ repository.
 
 Let's first start by opening RStudio, and start a new project:
 
+<div style="text-align:center;">
 <video width="640" height="480" controls>
   <source src="img/new_package.mp4" type="video/mp4">
 </video>
+</div>
 
 Following these steps creates a folder in the specified path that already contains
 some scaffolding for our package. This also opens a new RStudio session with the
 default script `hello.R` opened:
 
+<div style="text-align:center;">
 ```{r, echo = F}
 knitr::include_graphics("img/pack_1.png")
 ```
+</div>
 
 We can remove this script, but do take note of the following sentence:
 
@@ -87,9 +91,11 @@ will suffice.
 Ok, so now let's take a look inside the folder you just created and take a look at the package's 
 structure. You can do so easily from within RStudio:
 
+<div style="text-align:center;">
 ```{r, echo = F}
 knitr::include_graphics("img/pack_2.png")
 ```
+</div>
 
 But you can also navigate to the folder from inside a file explorer. The folder that will 
 matter to us the most for now is the `R` folder. This folder will contain your scripts, which
@@ -99,17 +105,21 @@ will contain your package's functions. Let's start by adding a new script.
 
 To add a new script, simply create a new script, and while we're at it, let's add some code to it:
 
+<div style="text-align:center;">
 <video width="640" height="480" controls>
   <source src="img/pack_adding_script.mp4" type="video/mp4">
 </video>
+</div>
 
 and that's it! Well, this example is incredibly easy; there will be more subtleties later on,
 but these are the basics: simply write your script as usual. Now let's load the package with 
 `CTRL-SHIFT-L`. Loading the package makes it available in your current R session:
 
+<div style="text-align:center;">
 ```{r, echo = F}
 knitr::include_graphics("img/pack_3.png")
 ```
+</div>
 
 As you can see, the package is loaded, and RStudio's autocomplete even suggest the function's name
 already. So now that we have already a function, let's push our code to github.com (you remember that
@@ -118,17 +128,21 @@ let's go back to github.com and create a new repository. Give it the same name a
 on your computer, just to avoid confusion. Once the repo is created, you will see this familiar
 screen:
 
+<div style="text-align:center;">
 ```{r, echo = F}
 knitr::include_graphics("img/pack_4.png")
 ```
+</div>
 
 We will start from an existing repository, because our repository already exists. So we can 
 use the terminal to enter the commands suggested here. We can also use the terminal
 from RStudio:
 
+<div style="text-align:center;">
 <video width="640" height="480" controls>
   <source src="img/adding_remote.mp4" type="video/mp4">
 </video>
+</div>
 
 
 The steps above are a way to link your local repository to the remote repository living
@@ -159,9 +173,11 @@ use here is `dplyr::filter()`, so the one from the `{dplyr}` package. However, t
 functions called `filter()`. If you start typing `filter` inside a fresh R session, this is 
 what autocomplete suggests:
 
+<div style="text-align:center;">
 ```{r, echo = F}
 knitr::include_graphics("img/pack_5.png")
 ```
+</div>
 
 So there's a `filter()` function from the `{stats}` package (which gets loaded automatically 
 with every new R session), and there's a capital F `Filter()` function from the `{base}` 
@@ -367,15 +383,19 @@ can always reach deep into the package and use private functions by using `:::`,
 
 You can now save the script and press `CRTL-SHIFT-D`. This will generate the help file for your function:
 
+<div style="text-align:center;">
 ```{r, echo = F}
 knitr::include_graphics("img/pack_6.png")
 ```
+</div>
 
 Now, writing `?clean_unemp` in the console shows the documentation for `clean_unemp`:
 
+<div style="text-align:center;">
 <video width="640" height="480" controls>
   <source src="img/help_clean_unemp.mp4" type="video/mp4">
 </video>
+</div>
 
 Now, let's document the package.
 
@@ -389,9 +409,11 @@ with the NAMESPACE. This file gets generated automatically, but sometimes it can
 gets stuck in a state where it doesn't get generated anymore. In these cases, you should simply
 delete it, and then document your package again:
 
+<div style="text-align:center;">
 <video width="640" height="480" controls>
   <source src="img/namespace.mp4" type="video/mp4">
 </video>
+</div>
 
 As you can see from the video, the NAMESPACE defines some interesting stuff. First, it says which
 of our functions are exported, and should be available to the users. Then, it defines the imports.
