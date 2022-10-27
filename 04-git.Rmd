@@ -781,11 +781,321 @@ knitr::include_graphics("img/github_32.png")
 ```
 </div>
 
-Ok, so this wraps up this chapter. Git is incredibly feature rich and complex, but as 
-already discussed, it is NOT optional to know about Git in our trade. So now that you
-have some understanding of how it works, I suggest that you read the manual
-[here](https://git-scm.com/book/tr/v2/Git-Basics-Getting-a-Git-Repository). 
 
+## Branches
+
+It is possible to create new branches and continue working on these branches without impacting 
+the code in the main branch. This is useful if you want to experiment and explore new ideas. 
+The `main` or `master` branch can thus be used only to have code that is ready to get shipped
+and distributed, while you can keep working on a development branch. Let's create a branch called
+`dev` by using the `git checkout` command, and let's also add the `-b` flag to immediately switch
+to it:
+
+```{bash, eval = F}
+➤ git checkout -b dev 
+Switched to a new branch 'dev'
+```
+
+It is possible to list the existing branches using `git branch`:
+
+```{bash, eval = F}
+➤ git branch
+* dev
+main
+```
+
+As a little aside, if you're working inside a terminal instead of RStudio or another GUI
+application, it might be a good idea to configure your terminal a little bit to do two things:
+
+- change the branch you're currently on
+- show if some files got changed.
+
+If you want to keep it simple, following [this tutorial](https://thucnc.medium.com/how-to-show-current-git-branch-with-colors-in-bash-prompt-380d05a24745)
+should be enough. If you want something more fancy, 
+use [this other tutorial](https://www.pragmaticlinux.com/2022/06/show-the-git-branch-in-your-bash-terminal-prompt/).
+I have not followed either, so I don't know if they work, but by the looks of it they should, and it should work on both Linux
+and macOS I believe. If these don't work, just google for "showing git branch in terminal". This is entirely optional, and
+you can use `git branch` to check which branch you're currently working on.
+
+Ok so now that we are on the `dev` branch, let's change the files a little bit. Change some lines, then commit, then add some 
+new files and commit again. Then push to `dev` using:
+
+```{bash, eval = F}
+➤ git push origin dev
+
+```
+
+This is what you should see on github.com after all is done:
+
+```{r, echo = F}
+knitr::include_graphics("img/github_33.png")
+```
+
+The video below shows you how you can switch between branches and check
+the commit history of both:
+
+<div style="text-align:center;">
+  <video width="640" height="480" controls>
+    <source src="img/github_branches.mp4" type="video/mp4">
+  </video>
+</div>
+
+Let's suppose that we are happy with our experiments on the `dev` branch, and are
+ready to add them to the `master` or `main` branch. For this, checkout the main branch:
+
+```{bash, eval = F}
+➤ git checkout main
+
+```
+
+You can now pull from `dev`. This will update your local `main` branch with the changes from `dev`. 
+Depending on what changes you introduced, you might need to solve some conflicts. Try to use the `rebase`
+strategy, and then solve the conflict. In my case, the merge didn't cause an issue:
+
+```{bash, eval = F}
+➤ git pull origin dev
+From github.com:b-rodrigues/example_repo
+ * branch            dev        -> FETCH_HEAD
+Updating a9a417f..8b2f04f
+Fast-forward
+ my_script.R  | 8 +++-----
+ new_script.R | 1 +
+ 2 files changed, 4 insertions(+), 5 deletions(-)
+ create mode 100644 new_script.R
+
+```
+
+Now if you run git status, this is what you'll see:
+
+```{bash, eval = F}
+➤ git status
+On branch main
+Your branch and 'origin/main' have diverged,
+and have 2 and 2 different commits each, respectively.
+  (use "git pull" to merge the remote branch into yours)
+
+```
+
+Now, remember that I've pulled from `dev` into `main`. But `git status` complains that the remote
+`main` and local `main` branches have diverged. In these situations, git suggests to pull. This time
+we're pulling from `main`:
+
+```{bash, eval = F}
+➤ git pull
+
+```
+
+This will likely result in the following message:
+
+```{bash, eval = F}
+hint: You have divergent branches and need to specify how to reconcile them.
+hint: You can do so by running one of the following commands sometime before
+hint: your next pull:
+hint: 
+hint:   git config pull.rebase false  # merge
+hint:   git config pull.rebase true   # rebase
+hint:   git config pull.ff only       # fast-forward only
+hint: 
+hint: You can replace "git config" with "git config --global" to set a default
+hint: preference for all repositories. You can also pass --rebase, --no-rebase,
+hint: or --ff-only on the command line to override the configured default per
+hint: invocation.
+fatal: Need to specify how to reconcile divergent branches.
+```
+
+Because there are conflicts, I need to specify how the pulling should be done. For this,
+I'm using once again the `rebase` flag:
+
+```{bash, eval = F}
+➤ git pull --rebase
+Auto-merging my_script.R
+CONFLICT (content): Merge conflict in my_script.R
+error: could not apply b240566... lm -> rf
+hint: Resolve all conflicts manually, mark them as resolved with
+hint: "git add/rm <conflicted_files>", then run "git rebase --continue".
+hint: You can instead skip this commit: run "git rebase --skip".
+hint: To abort and get back to the state before "git rebase", run "git rebase --abort".
+Could not apply b240566... lm -> rf
+
+```
+
+So now I have conflicts. This is how the `my_script.R` file looks like:
+
+```{r, eval = F}
+library(ggplot2)
+library(randomForest)
+
+data(mtcars)
+
+ggplot(data = mtcars) +
+  geom_point(aes(y = cyl, x = mpg))
+
+rf <- randomForest(hp ~ mpg, data = mtcars)
+
+<<<<<<< HEAD
+data(iris)
+
+head(iris)
+=======
+plot(rf)
+>>>>>>> b240566 (lm -> rf)
+```
+
+I need to solve the conflicts, and will do so by keeping the following lines:
+
+```{r, eval = F}
+library(ggplot2)
+library(randomForest)
+
+data(mtcars)
+
+ggplot(data = mtcars) +
+  geom_point(aes(y = cyl, x = mpg))
+
+rf <- randomForest(hp ~ mpg, data = mtcars)
+
+plot(rf)
+```
+
+Let's save the script, and call `git rebase --continue`. You might see something like this:
+
+```{bash, eval = F}
+➤ git rebase --continue
+[detached HEAD 929f4ab] lm -> rf
+ 1 file changed, 4 insertions(+), 9 deletions(-)
+Auto-merging new_script.R
+CONFLICT (add/add): Merge conflict in new_script.R
+error: could not apply 8b2f04f... new file
+
+```
+
+There's another conflict: this time, this is because of the commit `8b2f04f`, where I added a new file.
+This one is easy to solve: I simply want to keep this file, so I simply keep track of it with 
+`git add new_script.R` and then, once again, call `git rebase --continue`:
+
+```{bash, eval = F}
+➤ git rebase --continue
+[detached HEAD 20c04f8] new file
+ 1 file changed, 4 insertions(+)
+Successfully rebased and updated refs/heads/main.
+```
+
+I'm now done and can push to main:
+
+```{bash, eval = F}
+➤ git push origin main
+Enumerating objects: 9, done.
+Counting objects: 100% (9/9), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (6/6), done.
+Writing objects: 100% (6/6), 660 bytes | 660.00 KiB/s, done.
+Total 6 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (2/2), completed with 1 local object.
+To github.com:b-rodrigues/example_repo.git
+   83691c2..20c04f8  main -> main
+
+```
+
+There are other ways to achieve this. So let's go back to `dev` and continue working:
+
+```{bash, eval = F}
+➤ git checkout dev
+```
+
+Add some lines to `my_script.R` and then commit and push:
+
+```{bash, eval = F}
+➤ git add .
+➤ git commit -am "more models"
+[dev a0fa9fa] more models
+ 1 file changed, 4 insertions(+)
+
+➤ git push origin dev
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 329 bytes | 329.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To github.com:b-rodrigues/example_repo.git
+   8b2f04f..a0fa9fa  dev -> dev
+
+```
+
+Let's suppose we're done with adding features to `dev`. Let's checkout `main`:
+
+```{bash, eval = F}
+➤ git checkout main
+
+```
+
+and now, let's not pull from `dev`, but merge:
+
+```{bash, eval = F}
+➤ git merge dev
+Auto-merging my_script.R
+CONFLICT (content): Merge conflict in my_script.R
+Auto-merging new_script.R
+CONFLICT (add/add): Merge conflict in new_script.R
+Automatic merge failed; fix conflicts and then commit the result.
+
+```
+
+Some conflicts are in the file. Let's take a look (because I'm in the terminal, I use `cat` to 
+print the file to the terminal, but you can open it in RStudio):
+
+```{bash, eval = F}
+➤ cat my_script.R 
+library(ggplot2)
+library(randomForest)
+
+data(mtcars)
+
+ggplot(data = mtcars) +
+  geom_point(aes(y = cyl, x = mpg))
+
+rf <- randomForest(hp ~ mpg, data = mtcars)
+<<<<<<< HEAD
+
+plot(rf)
+=======
+
+plot(rf)
+
+rf2 <- randomForest(hp ~ mpg + am + cyl, data = mtcars)
+
+plot(rf2)
+>>>>>>> dev
+
+```
+
+Looks like I somehow added some newline somewhere and this caused the conflict. This
+is quite easy to solve, let's make the script look like this:
+
+```{r, eval = F}
+library(ggplot2)
+library(randomForest)
+
+data(mtcars)
+
+ggplot(data = mtcars) +
+  geom_point(aes(y = cyl, x = mpg))
+
+rf <- randomForest(hp ~ mpg, data = mtcars)
+
+plot(rf)
+
+rf2 <- randomForest(hp ~ mpg + am + cyl, data = mtcars)
+
+plot(rf2)
+
+```
+
+We can now simply commit and push. Merging can be simpler than pulling and rebasing, especially if 
+you exclusively worked on `dev` and master has not seen any activity.
+
+ 
 ## Contributing to someone else's repository
 
 It is also possible to contribute to someone else's repository; by this I mean
@@ -796,3 +1106,11 @@ push to it.
 This is outside the scope of this course, but it is crucial that you understand
 this as well. For this reason, I highly recommend reading this 
 [link](https://opensource.com/article/19/7/create-pull-request-github).
+
+
+Ok, so this wraps up this chapter. Git is incredibly feature rich and complex, but as 
+already discussed, it is NOT optional to know about Git in our trade. So now that you
+have some understanding of how it works, I suggest that you read the manual
+[here](https://git-scm.com/book/tr/v2/Git-Basics-Getting-a-Git-Repository). 
+
+W3Schools has a great tutorial [as well](https://www.w3schools.com/git/default.asp?remote=github).

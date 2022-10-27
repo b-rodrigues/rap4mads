@@ -123,12 +123,12 @@ install.packages(c(
   "quarto",
   "renv",
   "rio",
-  "shiny"
+  "shiny",
   "targets",
   "testthat",
   "tidyverse",
   "tribble",
-  "usethis",
+  "usethis"
 ))
 
 ```

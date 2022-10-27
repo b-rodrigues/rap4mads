@@ -6,16 +6,342 @@ knitr::include_graphics("img/product.png")
 ```
 </div>
 
-What you’ll have learned by the end of the chapter: create a multitude of data products using the R programming language using a RAP.
+What you’ll have learned by the end of the chapter: you'll know how to build data products using Quarto and Shiny.
 
-## Static products
+## Introduction
 
-### Word, PDF and PPTX Documents
+We are going to start by building data products using Quarto.
 
-### HTML documents
+Quarto is a tool created by Posit, the company behind RStudio and Shiny. Quarto leverages pandoc to
+convert between many document formats (for example, from `.md` to `.docx`) and makes it possible to
+embed R, Python, Julia and Observable JS code into documents. It is not an R-specific tool, so it is
+a program that you must install on your computer. So go to this 
+[link](https://quarto.org/docs/get-started/) and download and install Quarto.
+
+We are going to start simple, with "static" data products. By static I mean products without any
+sort of interactivity, so the user can look at them, read them, but not change them in any way.
+These products are essentially going to be documents in the `.docx`, `.pptx` and `.pdf` formats,
+but also `.html`. Thanks to Quarto, it is thus possible to programmatically create documents.
+
+
+## A first taste of Quarto
+
+A Quarto file looks very close to a standard Markdown file. So if you know Markdown, you will not have
+many problems to switch to Quarto. If you don't know Markdown, no worries, its syntax is quite simple
+and can be very quickly picked up.
+
+Let's start with a basic Quarto source. Open your favorite text editor (doesn't have to be RStudio) and
+create a file called `example.qmd` and copy the following lines in it:
+
+````{verbatim}
+---
+title: "My Title"
+author: "My name"
+date: today
+---
+
+## This is a simple quarto document
+```{r}
+n <- 10
+rnorm(n)
+```
+````
+
+[This is the output](https://tiny-melomakarona-b87385.netlify.app/).
+
+The first few lines of the document is where you can define the title of the document, the name of the author
+and the date. For the date, I've use the `today` keyword to get today's date
+but you could use a string to set the date to a specific day (for example, "2022-10-28").
+The content in the document consists of a level 2 title (`## This is a simple quarto document`) and of an 
+R code chunk. Code chunks is were you will write code that gets then evaluated at render (compile) time.
+To compile this file, run the following inside a terminal:
+
+```
+➤ quarto render example.qmd
+```
+
+If you're inside RStudio, you can also render the document by pressing `CTRL-SHIFT-K` or run the command:
+
+```{r, eval = F}
+quarto::quarto_render("example.qmd")
+```
+
+There are various ways to integrate Quarto with different editors:
+
+- [VS Code](https://quarto.org/docs/get-started/hello/vscode.html)
+- [RStudio](https://quarto.org/docs/get-started/hello/rstudio.html)
+- [Jupyter](https://quarto.org/docs/get-started/hello/jupyter.html)
+- [(Neo)Vim, Emacs, Sublime](https://quarto.org/docs/get-started/hello/text-editor.html#editor-modes)
+
+Once the file is done rendering, you should find an `html` file in the same folder. 
+Open this html file inside a web browser and see the output. It is possible to run arbitrary R code
+inside the code chunks:
+
+
+````{verbatim}
+---
+title: "My Title"
+author: "My name"
+date: today
+---
+
+## This is a simple quarto document
+
+```{r}
+library(dplyr)
+library(tidyr)
+library(purrr)
+library(ggplot2)
+library(myPackage)
+
+data("unemp")
+
+unemp %>% 
+  janitor::clean_names() %>% 
+  filter(level == "Commune",
+         place_name %in% c("Luxembourg", "Esch-sur-Alzette", "Wiltz")) %>% 
+  group_by(place_name) %>%
+  nest() %>% 
+  mutate(plots = map2(.x = data, .y = place_name, ~ggplot(data = .x) +
+                                                theme_minimal() +
+                                                geom_line(aes(year, unemployment_rate_in_percent, group = 1)) +
+                                                labs(title = paste("Unemployment in", .y)))) %>%
+  pull(plots)
+```
+````
+
+[This is what the output looks like.](https://scintillating-crostata-2df896.netlify.app/)
+
+As you can see, it is quite easy to create a document with potentially hundreds of plots using what we've learned 
+until now. However, our document does not look great; for starters, we see the source code there, which we would like to hide.
+People that will read this document might not be interested in the source code, but only in the plots. The other issue
+is that when loading the `{dplyr}` package, users get some message informing them about some functions that get masked.
+We would like to hide all of this. It turns out that code chunks have options, and we can use them to hide source code
+and warning messages:
+
+
+````{verbatim}
+---
+title: "My Title"
+author: "My name"
+date: today
+---
+
+## This is a simple quarto document
+
+```{r}
+#| echo: false
+#| warning: false
+
+library(dplyr)
+library(tidyr)
+library(purrr)
+library(ggplot2)
+library(myPackage)
+
+data("unemp")
+
+unemp %>%
+  janitor::clean_names() %>%
+  filter(level == "Commune",
+         place_name %in% c("Luxembourg", "Esch-sur-Alzette", "Wiltz")) %>%
+  group_by(place_name) %>%
+  nest() %>%
+  mutate(plots = map2(.x = data, .y = place_name, ~ggplot(data = .x) +
+                                                theme_minimal() +
+                                                geom_line(aes(year, unemployment_rate_in_percent, group = 1)) +
+                                                labs(title = paste("Unemployment in", .y)))) %>%
+  pull(plots)
+```
+````
+
+[This is what the output looks like.](https://velvety-taffy-93cb66.netlify.app/)
+
+Rendering this document will result in something nicer. We could also fold the code instead of completely removing
+it. This is useful if we need to send the document to collaborators who might be interested in the source code as well.
+However, code folding is something that only works in `html` outputs, and thus we need to specify the output format in the
+header of the document (look at the three new lines after we define the data), and also remove the `echo: false` option
+from the R chunk:
+
+````{verbatim}
+---
+title: "My Title"
+author: "My name"
+date: today
+format: 
+  html:
+    code-fold: true
+---
+
+## This is a simple quarto document
+
+```{r}
+#| warning: false
+
+library(dplyr)
+library(tidyr)
+library(purrr)
+library(ggplot2)
+library(myPackage)
+
+data("unemp")
+
+unemp %>%
+  janitor::clean_names() %>%
+  filter(level == "Commune",
+         place_name %in% c("Luxembourg", "Esch-sur-Alzette", "Wiltz")) %>%
+  group_by(place_name) %>%
+  nest() %>%
+  mutate(plots = map2(.x = data, .y = place_name, ~ggplot(data = .x) +
+                                                theme_minimal() +
+                                                geom_line(aes(year, unemployment_rate_in_percent, group = 1)) +
+                                                labs(title = paste("Unemployment in", .y)))) %>%
+  pull(plots)
+```
+````
+
+[This is what the output looks like.](https://voluble-choux-674399.netlify.app/)
+
+
+It is of course possible to write several R chunks:
+
+````{verbatim}
+---
+title: "My Title"
+author: "My name"
+date: today
+format: 
+  html:
+    code-fold: true
+---
+
+## This is a simple quarto document
+
+```{r}
+#| warning: false
+
+library(dplyr)
+library(tidyr)
+library(purrr)
+library(ggplot2)
+library(myPackage)
+
+data("unemp")
+
+unemp <- unemp %>%
+  janitor::clean_names() %>%
+  filter(level == "Commune")
+```
+
+There are `r length(unique(unemp$place_name))` communes in the dataset.
+Below we plot the unemployment rate for 3 communes:
+
+```{r}
+unemp %>%
+  filter(place_name %in% c("Luxembourg", "Esch-sur-Alzette", "Wiltz")) %>%
+  group_by(place_name) %>%
+  nest() %>%
+  mutate(plots = map2(.x = data, .y = place_name, ~ggplot(data = .x) +
+                                                theme_minimal() +
+                                                geom_line(aes(year, unemployment_rate_in_percent, group = 1)) +
+                                                labs(title = paste("Unemployment in", .y)))) %>%
+  pull(plots)
+```
+````
+
+[This is what the output looks like](https://relaxed-concha-89be95.netlify.app/).
+
+### Python and Julia code chunks
+
+It is possible, inside the same Quarto document, to define code chunks that run Python (or even Julia) code.
+Put the following lines inside a file called `example2.qmd`
+(to run the example below, you will need to have Python installed):
+
+````{verbatim}
+---
+title: "R and Python"
+author: "Bruno Rodrigues"
+date: today
+---
+
+## This is a simple quarto document
+
+```{r}
+#| warning: false
+
+library(dplyr)
+library(tidyr)
+library(purrr)
+library(ggplot2)
+library(myPackage)
+
+data("unemp")
+
+unemp <- unemp %>%
+  janitor::clean_names() %>%
+  filter(level == "Commune")
+```
+
+
+```{python}
+print("hello from Python")
+import sys
+print(sys.version)
+```
+
+````
+
+[This is what the output looks like.](https://phenomenal-clafoutis-2b05c1.netlify.app/)
+
+If you have trouble rendering this line, make sure that you have the `jupyter` and `jupyterlab` modules installed.
+
+It is also possible to pass objects from R to Python (and vice-versa):
+
+````{verbatim}
+---
+title: "R and Python"
+author: "Bruno Rodrigues"
+date: today
+---
+
+## This is a simple quarto document
+
+```{r}
+#| warning: false
+
+library(dplyr)
+library(tidyr)
+library(purrr)
+library(ggplot2)
+library(myPackage)
+
+data("unemp")
+
+unemp <- unemp %>%
+  janitor::clean_names() %>%
+  filter(level == "Commune")
+```
+
+The data that was loaded and cleaned from R can be accessed from Python using `r.unemp`:
+
+```{python}
+import pandas as pd
+unemp_pd = pd.DataFrame(r.unemp)
+unemp_pd.head
+```
+
+````
+
+[This is what the output looks like.](https://endearing-gnome-80e9df.netlify.app/)
+
+### Other output formats
+
+#### Word
 
 ## Dynamic products
 
 ### HTML documents redux
 
 ### Interactive web applications
+
+## `{targets}` and Quarto

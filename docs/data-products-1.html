@@ -23,7 +23,7 @@
 <meta name="author" content="Bruno Rodrigues" />
 
 
-<meta name="date" content="2022-10-24" />
+<meta name="date" content="2022-10-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -172,7 +172,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.4" data-path="git.html"><a href="git.html#cloning-the-repository-onto-your-computer"><i class="fa fa-check"></i><b>4.4</b> Cloning the repository onto your computer</a></li>
 <li class="chapter" data-level="4.5" data-path="git.html"><a href="git.html#your-first-commit"><i class="fa fa-check"></i><b>4.5</b> Your first commit</a></li>
 <li class="chapter" data-level="4.6" data-path="git.html"><a href="git.html#collaborating"><i class="fa fa-check"></i><b>4.6</b> Collaborating</a></li>
-<li class="chapter" data-level="4.7" data-path="git.html"><a href="git.html#contributing-to-someone-elses-repository"><i class="fa fa-check"></i><b>4.7</b> Contributing to someone else’s repository</a></li>
+<li class="chapter" data-level="4.7" data-path="git.html"><a href="git.html#branches"><i class="fa fa-check"></i><b>4.7</b> Branches</a></li>
+<li class="chapter" data-level="4.8" data-path="git.html"><a href="git.html#contributing-to-someone-elses-repository"><i class="fa fa-check"></i><b>4.8</b> Contributing to someone else’s repository</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="package-development.html"><a href="package-development.html"><i class="fa fa-check"></i><b>5</b> Package development</a>
 <ul>
@@ -214,16 +215,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8" data-path="data-products-1.html"><a href="data-products-1.html"><i class="fa fa-check"></i><b>8</b> Data products</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="data-products-1.html"><a href="data-products-1.html#static-products"><i class="fa fa-check"></i><b>8.1</b> Static products</a>
+<li class="chapter" data-level="8.1" data-path="data-products-1.html"><a href="data-products-1.html#introduction-6"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
+<li class="chapter" data-level="8.2" data-path="data-products-1.html"><a href="data-products-1.html#a-first-taste-of-quarto"><i class="fa fa-check"></i><b>8.2</b> A first taste of Quarto</a>
 <ul>
-<li class="chapter" data-level="8.1.1" data-path="data-products-1.html"><a href="data-products-1.html#word-pdf-and-pptx-documents"><i class="fa fa-check"></i><b>8.1.1</b> Word, PDF and PPTX Documents</a></li>
-<li class="chapter" data-level="8.1.2" data-path="data-products-1.html"><a href="data-products-1.html#html-documents"><i class="fa fa-check"></i><b>8.1.2</b> HTML documents</a></li>
+<li class="chapter" data-level="8.2.1" data-path="data-products-1.html"><a href="data-products-1.html#python-and-julia-code-chunks"><i class="fa fa-check"></i><b>8.2.1</b> Python and Julia code chunks</a></li>
+<li class="chapter" data-level="8.2.2" data-path="data-products-1.html"><a href="data-products-1.html#other-output-formats"><i class="fa fa-check"></i><b>8.2.2</b> Other output formats</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="data-products-1.html"><a href="data-products-1.html#dynamic-products"><i class="fa fa-check"></i><b>8.2</b> Dynamic products</a>
+<li class="chapter" data-level="8.3" data-path="data-products-1.html"><a href="data-products-1.html#dynamic-products"><i class="fa fa-check"></i><b>8.3</b> Dynamic products</a>
 <ul>
-<li class="chapter" data-level="8.2.1" data-path="data-products-1.html"><a href="data-products-1.html#html-documents-redux"><i class="fa fa-check"></i><b>8.2.1</b> HTML documents redux</a></li>
-<li class="chapter" data-level="8.2.2" data-path="data-products-1.html"><a href="data-products-1.html#interactive-web-applications"><i class="fa fa-check"></i><b>8.2.2</b> Interactive web applications</a></li>
+<li class="chapter" data-level="8.3.1" data-path="data-products-1.html"><a href="data-products-1.html#html-documents-redux"><i class="fa fa-check"></i><b>8.3.1</b> HTML documents redux</a></li>
+<li class="chapter" data-level="8.3.2" data-path="data-products-1.html"><a href="data-products-1.html#interactive-web-applications"><i class="fa fa-check"></i><b>8.3.2</b> Interactive web applications</a></li>
 </ul></li>
+<li class="chapter" data-level="8.4" data-path="data-products-1.html"><a href="data-products-1.html#targets-and-quarto"><i class="fa fa-check"></i><b>8.4</b> <code>{targets}</code> and Quarto</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="self-contained-raps-with-docker.html"><a href="self-contained-raps-with-docker.html"><i class="fa fa-check"></i><b>9</b> Self-contained RAPs with Docker</a></li>
 <li class="chapter" data-level="10" data-path="cicd-with-github-actions.html"><a href="cicd-with-github-actions.html"><i class="fa fa-check"></i><b>10</b> CI/CD with Github Actions</a></li>
@@ -252,25 +255,299 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div style="text-align:center;">
 <p><img src="img/product.png" width="512" /></p>
 </div>
-<p>What you’ll have learned by the end of the chapter: create a multitude of data products using the R programming language using a RAP.</p>
-<div id="static-products" class="section level2 hasAnchor" number="8.1">
-<h2><span class="header-section-number">8.1</span> Static products<a href="data-products-1.html#static-products" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="word-pdf-and-pptx-documents" class="section level3 hasAnchor" number="8.1.1">
-<h3><span class="header-section-number">8.1.1</span> Word, PDF and PPTX Documents<a href="data-products-1.html#word-pdf-and-pptx-documents" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>What you’ll have learned by the end of the chapter: you’ll know how to build data products using Quarto and Shiny.</p>
+<div id="introduction-6" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Introduction<a href="data-products-1.html#introduction-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We are going to start by building data products using Quarto.</p>
+<p>Quarto is a tool created by Posit, the company behind RStudio and Shiny. Quarto leverages pandoc to
+convert between many document formats (for example, from <code>.md</code> to <code>.docx</code>) and makes it possible to
+embed R, Python, Julia and Observable JS code into documents. It is not an R-specific tool, so it is
+a program that you must install on your computer. So go to this
+<a href="https://quarto.org/docs/get-started/">link</a> and download and install Quarto.</p>
+<p>We are going to start simple, with “static” data products. By static I mean products without any
+sort of interactivity, so the user can look at them, read them, but not change them in any way.
+These products are essentially going to be documents in the <code>.docx</code>, <code>.pptx</code> and <code>.pdf</code> formats,
+but also <code>.html</code>. Thanks to Quarto, it is thus possible to programmatically create documents.</p>
 </div>
-<div id="html-documents" class="section level3 hasAnchor" number="8.1.2">
-<h3><span class="header-section-number">8.1.2</span> HTML documents<a href="data-products-1.html#html-documents" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="a-first-taste-of-quarto" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> A first taste of Quarto<a href="data-products-1.html#a-first-taste-of-quarto" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A Quarto file looks very close to a standard Markdown file. So if you know Markdown, you will not have
+many problems to switch to Quarto. If you don’t know Markdown, no worries, its syntax is quite simple
+and can be very quickly picked up.</p>
+<p>Let’s start with a basic Quarto source. Open your favorite text editor (doesn’t have to be RStudio) and
+create a file called <code>example.qmd</code> and copy the following lines in it:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb1-1"><a href="data-products-1.html#cb1-1" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-2"><a href="data-products-1.html#cb1-2" aria-hidden="true" tabindex="-1"></a>title: &quot;My Title&quot;</span>
+<span id="cb1-3"><a href="data-products-1.html#cb1-3" aria-hidden="true" tabindex="-1"></a>author: &quot;My name&quot;</span>
+<span id="cb1-4"><a href="data-products-1.html#cb1-4" aria-hidden="true" tabindex="-1"></a>date: today</span>
+<span id="cb1-5"><a href="data-products-1.html#cb1-5" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-6"><a href="data-products-1.html#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="data-products-1.html#cb1-7" aria-hidden="true" tabindex="-1"></a>## This is a simple quarto document</span>
+<span id="cb1-8"><a href="data-products-1.html#cb1-8" aria-hidden="true" tabindex="-1"></a>```{r}</span>
+<span id="cb1-9"><a href="data-products-1.html#cb1-9" aria-hidden="true" tabindex="-1"></a>n &lt;- 10</span>
+<span id="cb1-10"><a href="data-products-1.html#cb1-10" aria-hidden="true" tabindex="-1"></a>rnorm(n)</span>
+<span id="cb1-11"><a href="data-products-1.html#cb1-11" aria-hidden="true" tabindex="-1"></a>```</span></code></pre></div>
+<p><a href="https://tiny-melomakarona-b87385.netlify.app/">This is the output</a>.</p>
+<p>The first few lines of the document is where you can define the title of the document, the name of the author
+and the date. For the date, I’ve use the <code>today</code> keyword to get today’s date
+but you could use a string to set the date to a specific day (for example, “2022-10-28”).
+The content in the document consists of a level 2 title (<code>## This is a simple quarto document</code>) and of an
+R code chunk. Code chunks is were you will write code that gets then evaluated at render (compile) time.
+To compile this file, run the following inside a terminal:</p>
+<pre><code>➤ quarto render example.qmd</code></pre>
+<p>If you’re inside RStudio, you can also render the document by pressing <code>CTRL-SHIFT-K</code> or run the command:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="data-products-1.html#cb3-1" aria-hidden="true" tabindex="-1"></a>quarto<span class="sc">::</span><span class="fu">quarto_render</span>(<span class="st">&quot;example.qmd&quot;</span>)</span></code></pre></div>
+<p>There are various ways to integrate Quarto with different editors:</p>
+<ul>
+<li><a href="https://quarto.org/docs/get-started/hello/vscode.html">VS Code</a></li>
+<li><a href="https://quarto.org/docs/get-started/hello/rstudio.html">RStudio</a></li>
+<li><a href="https://quarto.org/docs/get-started/hello/jupyter.html">Jupyter</a></li>
+<li><a href="https://quarto.org/docs/get-started/hello/text-editor.html#editor-modes">(Neo)Vim, Emacs, Sublime</a></li>
+</ul>
+<p>Once the file is done rendering, you should find an <code>html</code> file in the same folder.
+Open this html file inside a web browser and see the output. It is possible to run arbitrary R code
+inside the code chunks:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb4-1"><a href="data-products-1.html#cb4-1" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-2"><a href="data-products-1.html#cb4-2" aria-hidden="true" tabindex="-1"></a>title: &quot;My Title&quot;</span>
+<span id="cb4-3"><a href="data-products-1.html#cb4-3" aria-hidden="true" tabindex="-1"></a>author: &quot;My name&quot;</span>
+<span id="cb4-4"><a href="data-products-1.html#cb4-4" aria-hidden="true" tabindex="-1"></a>date: today</span>
+<span id="cb4-5"><a href="data-products-1.html#cb4-5" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-6"><a href="data-products-1.html#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="data-products-1.html#cb4-7" aria-hidden="true" tabindex="-1"></a>## This is a simple quarto document</span>
+<span id="cb4-8"><a href="data-products-1.html#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="data-products-1.html#cb4-9" aria-hidden="true" tabindex="-1"></a>```{r}</span>
+<span id="cb4-10"><a href="data-products-1.html#cb4-10" aria-hidden="true" tabindex="-1"></a>library(dplyr)</span>
+<span id="cb4-11"><a href="data-products-1.html#cb4-11" aria-hidden="true" tabindex="-1"></a>library(tidyr)</span>
+<span id="cb4-12"><a href="data-products-1.html#cb4-12" aria-hidden="true" tabindex="-1"></a>library(purrr)</span>
+<span id="cb4-13"><a href="data-products-1.html#cb4-13" aria-hidden="true" tabindex="-1"></a>library(ggplot2)</span>
+<span id="cb4-14"><a href="data-products-1.html#cb4-14" aria-hidden="true" tabindex="-1"></a>library(myPackage)</span>
+<span id="cb4-15"><a href="data-products-1.html#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="data-products-1.html#cb4-16" aria-hidden="true" tabindex="-1"></a>data(&quot;unemp&quot;)</span>
+<span id="cb4-17"><a href="data-products-1.html#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="data-products-1.html#cb4-18" aria-hidden="true" tabindex="-1"></a>unemp %&gt;% </span>
+<span id="cb4-19"><a href="data-products-1.html#cb4-19" aria-hidden="true" tabindex="-1"></a>  janitor::clean_names() %&gt;% </span>
+<span id="cb4-20"><a href="data-products-1.html#cb4-20" aria-hidden="true" tabindex="-1"></a>  filter(level == &quot;Commune&quot;,</span>
+<span id="cb4-21"><a href="data-products-1.html#cb4-21" aria-hidden="true" tabindex="-1"></a>         place_name %in% c(&quot;Luxembourg&quot;, &quot;Esch-sur-Alzette&quot;, &quot;Wiltz&quot;)) %&gt;% </span>
+<span id="cb4-22"><a href="data-products-1.html#cb4-22" aria-hidden="true" tabindex="-1"></a>  group_by(place_name) %&gt;%</span>
+<span id="cb4-23"><a href="data-products-1.html#cb4-23" aria-hidden="true" tabindex="-1"></a>  nest() %&gt;% </span>
+<span id="cb4-24"><a href="data-products-1.html#cb4-24" aria-hidden="true" tabindex="-1"></a>  mutate(plots = map2(.x = data, .y = place_name, ~ggplot(data = .x) +</span>
+<span id="cb4-25"><a href="data-products-1.html#cb4-25" aria-hidden="true" tabindex="-1"></a>                                                theme_minimal() +</span>
+<span id="cb4-26"><a href="data-products-1.html#cb4-26" aria-hidden="true" tabindex="-1"></a>                                                geom_line(aes(year, unemployment_rate_in_percent, group = 1)) +</span>
+<span id="cb4-27"><a href="data-products-1.html#cb4-27" aria-hidden="true" tabindex="-1"></a>                                                labs(title = paste(&quot;Unemployment in&quot;, .y)))) %&gt;%</span>
+<span id="cb4-28"><a href="data-products-1.html#cb4-28" aria-hidden="true" tabindex="-1"></a>  pull(plots)</span>
+<span id="cb4-29"><a href="data-products-1.html#cb4-29" aria-hidden="true" tabindex="-1"></a>```</span></code></pre></div>
+<p><a href="https://scintillating-crostata-2df896.netlify.app/">This is what the output looks like.</a></p>
+<p>As you can see, it is quite easy to create a document with potentially hundreds of plots using what we’ve learned
+until now. However, our document does not look great; for starters, we see the source code there, which we would like to hide.
+People that will read this document might not be interested in the source code, but only in the plots. The other issue
+is that when loading the <code>{dplyr}</code> package, users get some message informing them about some functions that get masked.
+We would like to hide all of this. It turns out that code chunks have options, and we can use them to hide source code
+and warning messages:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb5-1"><a href="data-products-1.html#cb5-1" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb5-2"><a href="data-products-1.html#cb5-2" aria-hidden="true" tabindex="-1"></a>title: &quot;My Title&quot;</span>
+<span id="cb5-3"><a href="data-products-1.html#cb5-3" aria-hidden="true" tabindex="-1"></a>author: &quot;My name&quot;</span>
+<span id="cb5-4"><a href="data-products-1.html#cb5-4" aria-hidden="true" tabindex="-1"></a>date: today</span>
+<span id="cb5-5"><a href="data-products-1.html#cb5-5" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb5-6"><a href="data-products-1.html#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="data-products-1.html#cb5-7" aria-hidden="true" tabindex="-1"></a>## This is a simple quarto document</span>
+<span id="cb5-8"><a href="data-products-1.html#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="data-products-1.html#cb5-9" aria-hidden="true" tabindex="-1"></a>```{r}</span>
+<span id="cb5-10"><a href="data-products-1.html#cb5-10" aria-hidden="true" tabindex="-1"></a>#| echo: false</span>
+<span id="cb5-11"><a href="data-products-1.html#cb5-11" aria-hidden="true" tabindex="-1"></a>#| warning: false</span>
+<span id="cb5-12"><a href="data-products-1.html#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="data-products-1.html#cb5-13" aria-hidden="true" tabindex="-1"></a>library(dplyr)</span>
+<span id="cb5-14"><a href="data-products-1.html#cb5-14" aria-hidden="true" tabindex="-1"></a>library(tidyr)</span>
+<span id="cb5-15"><a href="data-products-1.html#cb5-15" aria-hidden="true" tabindex="-1"></a>library(purrr)</span>
+<span id="cb5-16"><a href="data-products-1.html#cb5-16" aria-hidden="true" tabindex="-1"></a>library(ggplot2)</span>
+<span id="cb5-17"><a href="data-products-1.html#cb5-17" aria-hidden="true" tabindex="-1"></a>library(myPackage)</span>
+<span id="cb5-18"><a href="data-products-1.html#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="data-products-1.html#cb5-19" aria-hidden="true" tabindex="-1"></a>data(&quot;unemp&quot;)</span>
+<span id="cb5-20"><a href="data-products-1.html#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="data-products-1.html#cb5-21" aria-hidden="true" tabindex="-1"></a>unemp %&gt;%</span>
+<span id="cb5-22"><a href="data-products-1.html#cb5-22" aria-hidden="true" tabindex="-1"></a>  janitor::clean_names() %&gt;%</span>
+<span id="cb5-23"><a href="data-products-1.html#cb5-23" aria-hidden="true" tabindex="-1"></a>  filter(level == &quot;Commune&quot;,</span>
+<span id="cb5-24"><a href="data-products-1.html#cb5-24" aria-hidden="true" tabindex="-1"></a>         place_name %in% c(&quot;Luxembourg&quot;, &quot;Esch-sur-Alzette&quot;, &quot;Wiltz&quot;)) %&gt;%</span>
+<span id="cb5-25"><a href="data-products-1.html#cb5-25" aria-hidden="true" tabindex="-1"></a>  group_by(place_name) %&gt;%</span>
+<span id="cb5-26"><a href="data-products-1.html#cb5-26" aria-hidden="true" tabindex="-1"></a>  nest() %&gt;%</span>
+<span id="cb5-27"><a href="data-products-1.html#cb5-27" aria-hidden="true" tabindex="-1"></a>  mutate(plots = map2(.x = data, .y = place_name, ~ggplot(data = .x) +</span>
+<span id="cb5-28"><a href="data-products-1.html#cb5-28" aria-hidden="true" tabindex="-1"></a>                                                theme_minimal() +</span>
+<span id="cb5-29"><a href="data-products-1.html#cb5-29" aria-hidden="true" tabindex="-1"></a>                                                geom_line(aes(year, unemployment_rate_in_percent, group = 1)) +</span>
+<span id="cb5-30"><a href="data-products-1.html#cb5-30" aria-hidden="true" tabindex="-1"></a>                                                labs(title = paste(&quot;Unemployment in&quot;, .y)))) %&gt;%</span>
+<span id="cb5-31"><a href="data-products-1.html#cb5-31" aria-hidden="true" tabindex="-1"></a>  pull(plots)</span>
+<span id="cb5-32"><a href="data-products-1.html#cb5-32" aria-hidden="true" tabindex="-1"></a>```</span></code></pre></div>
+<p><a href="https://velvety-taffy-93cb66.netlify.app/">This is what the output looks like.</a></p>
+<p>Rendering this document will result in something nicer. We could also fold the code instead of completely removing
+it. This is useful if we need to send the document to collaborators who might be interested in the source code as well.
+However, code folding is something that only works in <code>html</code> outputs, and thus we need to specify the output format in the
+header of the document (look at the three new lines after we define the data), and also remove the <code>echo: false</code> option
+from the R chunk:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb6-1"><a href="data-products-1.html#cb6-1" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb6-2"><a href="data-products-1.html#cb6-2" aria-hidden="true" tabindex="-1"></a>title: &quot;My Title&quot;</span>
+<span id="cb6-3"><a href="data-products-1.html#cb6-3" aria-hidden="true" tabindex="-1"></a>author: &quot;My name&quot;</span>
+<span id="cb6-4"><a href="data-products-1.html#cb6-4" aria-hidden="true" tabindex="-1"></a>date: today</span>
+<span id="cb6-5"><a href="data-products-1.html#cb6-5" aria-hidden="true" tabindex="-1"></a>format: </span>
+<span id="cb6-6"><a href="data-products-1.html#cb6-6" aria-hidden="true" tabindex="-1"></a>  html:</span>
+<span id="cb6-7"><a href="data-products-1.html#cb6-7" aria-hidden="true" tabindex="-1"></a>    code-fold: true</span>
+<span id="cb6-8"><a href="data-products-1.html#cb6-8" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb6-9"><a href="data-products-1.html#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="data-products-1.html#cb6-10" aria-hidden="true" tabindex="-1"></a>## This is a simple quarto document</span>
+<span id="cb6-11"><a href="data-products-1.html#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="data-products-1.html#cb6-12" aria-hidden="true" tabindex="-1"></a>```{r}</span>
+<span id="cb6-13"><a href="data-products-1.html#cb6-13" aria-hidden="true" tabindex="-1"></a>#| warning: false</span>
+<span id="cb6-14"><a href="data-products-1.html#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="data-products-1.html#cb6-15" aria-hidden="true" tabindex="-1"></a>library(dplyr)</span>
+<span id="cb6-16"><a href="data-products-1.html#cb6-16" aria-hidden="true" tabindex="-1"></a>library(tidyr)</span>
+<span id="cb6-17"><a href="data-products-1.html#cb6-17" aria-hidden="true" tabindex="-1"></a>library(purrr)</span>
+<span id="cb6-18"><a href="data-products-1.html#cb6-18" aria-hidden="true" tabindex="-1"></a>library(ggplot2)</span>
+<span id="cb6-19"><a href="data-products-1.html#cb6-19" aria-hidden="true" tabindex="-1"></a>library(myPackage)</span>
+<span id="cb6-20"><a href="data-products-1.html#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-21"><a href="data-products-1.html#cb6-21" aria-hidden="true" tabindex="-1"></a>data(&quot;unemp&quot;)</span>
+<span id="cb6-22"><a href="data-products-1.html#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-23"><a href="data-products-1.html#cb6-23" aria-hidden="true" tabindex="-1"></a>unemp %&gt;%</span>
+<span id="cb6-24"><a href="data-products-1.html#cb6-24" aria-hidden="true" tabindex="-1"></a>  janitor::clean_names() %&gt;%</span>
+<span id="cb6-25"><a href="data-products-1.html#cb6-25" aria-hidden="true" tabindex="-1"></a>  filter(level == &quot;Commune&quot;,</span>
+<span id="cb6-26"><a href="data-products-1.html#cb6-26" aria-hidden="true" tabindex="-1"></a>         place_name %in% c(&quot;Luxembourg&quot;, &quot;Esch-sur-Alzette&quot;, &quot;Wiltz&quot;)) %&gt;%</span>
+<span id="cb6-27"><a href="data-products-1.html#cb6-27" aria-hidden="true" tabindex="-1"></a>  group_by(place_name) %&gt;%</span>
+<span id="cb6-28"><a href="data-products-1.html#cb6-28" aria-hidden="true" tabindex="-1"></a>  nest() %&gt;%</span>
+<span id="cb6-29"><a href="data-products-1.html#cb6-29" aria-hidden="true" tabindex="-1"></a>  mutate(plots = map2(.x = data, .y = place_name, ~ggplot(data = .x) +</span>
+<span id="cb6-30"><a href="data-products-1.html#cb6-30" aria-hidden="true" tabindex="-1"></a>                                                theme_minimal() +</span>
+<span id="cb6-31"><a href="data-products-1.html#cb6-31" aria-hidden="true" tabindex="-1"></a>                                                geom_line(aes(year, unemployment_rate_in_percent, group = 1)) +</span>
+<span id="cb6-32"><a href="data-products-1.html#cb6-32" aria-hidden="true" tabindex="-1"></a>                                                labs(title = paste(&quot;Unemployment in&quot;, .y)))) %&gt;%</span>
+<span id="cb6-33"><a href="data-products-1.html#cb6-33" aria-hidden="true" tabindex="-1"></a>  pull(plots)</span>
+<span id="cb6-34"><a href="data-products-1.html#cb6-34" aria-hidden="true" tabindex="-1"></a>```</span></code></pre></div>
+<p><a href="https://voluble-choux-674399.netlify.app/">This is what the output looks like.</a></p>
+<p>It is of course possible to write several R chunks:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb7-1"><a href="data-products-1.html#cb7-1" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb7-2"><a href="data-products-1.html#cb7-2" aria-hidden="true" tabindex="-1"></a>title: &quot;My Title&quot;</span>
+<span id="cb7-3"><a href="data-products-1.html#cb7-3" aria-hidden="true" tabindex="-1"></a>author: &quot;My name&quot;</span>
+<span id="cb7-4"><a href="data-products-1.html#cb7-4" aria-hidden="true" tabindex="-1"></a>date: today</span>
+<span id="cb7-5"><a href="data-products-1.html#cb7-5" aria-hidden="true" tabindex="-1"></a>format: </span>
+<span id="cb7-6"><a href="data-products-1.html#cb7-6" aria-hidden="true" tabindex="-1"></a>  html:</span>
+<span id="cb7-7"><a href="data-products-1.html#cb7-7" aria-hidden="true" tabindex="-1"></a>    code-fold: true</span>
+<span id="cb7-8"><a href="data-products-1.html#cb7-8" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb7-9"><a href="data-products-1.html#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="data-products-1.html#cb7-10" aria-hidden="true" tabindex="-1"></a>## This is a simple quarto document</span>
+<span id="cb7-11"><a href="data-products-1.html#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="data-products-1.html#cb7-12" aria-hidden="true" tabindex="-1"></a>```{r}</span>
+<span id="cb7-13"><a href="data-products-1.html#cb7-13" aria-hidden="true" tabindex="-1"></a>#| warning: false</span>
+<span id="cb7-14"><a href="data-products-1.html#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="data-products-1.html#cb7-15" aria-hidden="true" tabindex="-1"></a>library(dplyr)</span>
+<span id="cb7-16"><a href="data-products-1.html#cb7-16" aria-hidden="true" tabindex="-1"></a>library(tidyr)</span>
+<span id="cb7-17"><a href="data-products-1.html#cb7-17" aria-hidden="true" tabindex="-1"></a>library(purrr)</span>
+<span id="cb7-18"><a href="data-products-1.html#cb7-18" aria-hidden="true" tabindex="-1"></a>library(ggplot2)</span>
+<span id="cb7-19"><a href="data-products-1.html#cb7-19" aria-hidden="true" tabindex="-1"></a>library(myPackage)</span>
+<span id="cb7-20"><a href="data-products-1.html#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="data-products-1.html#cb7-21" aria-hidden="true" tabindex="-1"></a>data(&quot;unemp&quot;)</span>
+<span id="cb7-22"><a href="data-products-1.html#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-23"><a href="data-products-1.html#cb7-23" aria-hidden="true" tabindex="-1"></a>unemp &lt;- unemp %&gt;%</span>
+<span id="cb7-24"><a href="data-products-1.html#cb7-24" aria-hidden="true" tabindex="-1"></a>  janitor::clean_names() %&gt;%</span>
+<span id="cb7-25"><a href="data-products-1.html#cb7-25" aria-hidden="true" tabindex="-1"></a>  filter(level == &quot;Commune&quot;)</span>
+<span id="cb7-26"><a href="data-products-1.html#cb7-26" aria-hidden="true" tabindex="-1"></a>```</span>
+<span id="cb7-27"><a href="data-products-1.html#cb7-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-28"><a href="data-products-1.html#cb7-28" aria-hidden="true" tabindex="-1"></a>There are `r length(unique(unemp$place_name))` communes in the dataset.</span>
+<span id="cb7-29"><a href="data-products-1.html#cb7-29" aria-hidden="true" tabindex="-1"></a>Below we plot the unemployment rate for 3 communes:</span>
+<span id="cb7-30"><a href="data-products-1.html#cb7-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-31"><a href="data-products-1.html#cb7-31" aria-hidden="true" tabindex="-1"></a>```{r}</span>
+<span id="cb7-32"><a href="data-products-1.html#cb7-32" aria-hidden="true" tabindex="-1"></a>unemp %&gt;%</span>
+<span id="cb7-33"><a href="data-products-1.html#cb7-33" aria-hidden="true" tabindex="-1"></a>  filter(place_name %in% c(&quot;Luxembourg&quot;, &quot;Esch-sur-Alzette&quot;, &quot;Wiltz&quot;)) %&gt;%</span>
+<span id="cb7-34"><a href="data-products-1.html#cb7-34" aria-hidden="true" tabindex="-1"></a>  group_by(place_name) %&gt;%</span>
+<span id="cb7-35"><a href="data-products-1.html#cb7-35" aria-hidden="true" tabindex="-1"></a>  nest() %&gt;%</span>
+<span id="cb7-36"><a href="data-products-1.html#cb7-36" aria-hidden="true" tabindex="-1"></a>  mutate(plots = map2(.x = data, .y = place_name, ~ggplot(data = .x) +</span>
+<span id="cb7-37"><a href="data-products-1.html#cb7-37" aria-hidden="true" tabindex="-1"></a>                                                theme_minimal() +</span>
+<span id="cb7-38"><a href="data-products-1.html#cb7-38" aria-hidden="true" tabindex="-1"></a>                                                geom_line(aes(year, unemployment_rate_in_percent, group = 1)) +</span>
+<span id="cb7-39"><a href="data-products-1.html#cb7-39" aria-hidden="true" tabindex="-1"></a>                                                labs(title = paste(&quot;Unemployment in&quot;, .y)))) %&gt;%</span>
+<span id="cb7-40"><a href="data-products-1.html#cb7-40" aria-hidden="true" tabindex="-1"></a>  pull(plots)</span>
+<span id="cb7-41"><a href="data-products-1.html#cb7-41" aria-hidden="true" tabindex="-1"></a>```</span></code></pre></div>
+<p><a href="https://relaxed-concha-89be95.netlify.app/">This is what the output looks like</a>.</p>
+<div id="python-and-julia-code-chunks" class="section level3 hasAnchor" number="8.2.1">
+<h3><span class="header-section-number">8.2.1</span> Python and Julia code chunks<a href="data-products-1.html#python-and-julia-code-chunks" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>It is possible, inside the same Quarto document, to define code chunks that run Python (or even Julia) code.
+Put the following lines inside a file called <code>example2.qmd</code>
+(to run the example below, you will need to have Python installed):</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb8-1"><a href="data-products-1.html#cb8-1" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb8-2"><a href="data-products-1.html#cb8-2" aria-hidden="true" tabindex="-1"></a>title: &quot;R and Python&quot;</span>
+<span id="cb8-3"><a href="data-products-1.html#cb8-3" aria-hidden="true" tabindex="-1"></a>author: &quot;Bruno Rodrigues&quot;</span>
+<span id="cb8-4"><a href="data-products-1.html#cb8-4" aria-hidden="true" tabindex="-1"></a>date: today</span>
+<span id="cb8-5"><a href="data-products-1.html#cb8-5" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb8-6"><a href="data-products-1.html#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="data-products-1.html#cb8-7" aria-hidden="true" tabindex="-1"></a>## This is a simple quarto document</span>
+<span id="cb8-8"><a href="data-products-1.html#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="data-products-1.html#cb8-9" aria-hidden="true" tabindex="-1"></a>```{r}</span>
+<span id="cb8-10"><a href="data-products-1.html#cb8-10" aria-hidden="true" tabindex="-1"></a>#| warning: false</span>
+<span id="cb8-11"><a href="data-products-1.html#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="data-products-1.html#cb8-12" aria-hidden="true" tabindex="-1"></a>library(dplyr)</span>
+<span id="cb8-13"><a href="data-products-1.html#cb8-13" aria-hidden="true" tabindex="-1"></a>library(tidyr)</span>
+<span id="cb8-14"><a href="data-products-1.html#cb8-14" aria-hidden="true" tabindex="-1"></a>library(purrr)</span>
+<span id="cb8-15"><a href="data-products-1.html#cb8-15" aria-hidden="true" tabindex="-1"></a>library(ggplot2)</span>
+<span id="cb8-16"><a href="data-products-1.html#cb8-16" aria-hidden="true" tabindex="-1"></a>library(myPackage)</span>
+<span id="cb8-17"><a href="data-products-1.html#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-18"><a href="data-products-1.html#cb8-18" aria-hidden="true" tabindex="-1"></a>data(&quot;unemp&quot;)</span>
+<span id="cb8-19"><a href="data-products-1.html#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-20"><a href="data-products-1.html#cb8-20" aria-hidden="true" tabindex="-1"></a>unemp &lt;- unemp %&gt;%</span>
+<span id="cb8-21"><a href="data-products-1.html#cb8-21" aria-hidden="true" tabindex="-1"></a>  janitor::clean_names() %&gt;%</span>
+<span id="cb8-22"><a href="data-products-1.html#cb8-22" aria-hidden="true" tabindex="-1"></a>  filter(level == &quot;Commune&quot;)</span>
+<span id="cb8-23"><a href="data-products-1.html#cb8-23" aria-hidden="true" tabindex="-1"></a>```</span>
+<span id="cb8-24"><a href="data-products-1.html#cb8-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-25"><a href="data-products-1.html#cb8-25" aria-hidden="true" tabindex="-1"></a>```{python}</span>
+<span id="cb8-26"><a href="data-products-1.html#cb8-26" aria-hidden="true" tabindex="-1"></a>print(&quot;hello from Python&quot;)</span>
+<span id="cb8-27"><a href="data-products-1.html#cb8-27" aria-hidden="true" tabindex="-1"></a>import sys</span>
+<span id="cb8-28"><a href="data-products-1.html#cb8-28" aria-hidden="true" tabindex="-1"></a>print(sys.version)</span>
+<span id="cb8-29"><a href="data-products-1.html#cb8-29" aria-hidden="true" tabindex="-1"></a>```</span></code></pre></div>
+<p><a href="https://phenomenal-clafoutis-2b05c1.netlify.app/">This is what the output looks like.</a></p>
+<p>If you have trouble rendering this line, make sure that you have the <code>jupyter</code> and <code>jupyterlab</code> modules installed.</p>
+<p>It is also possible to pass objects from R to Python (and vice-versa):</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb9-1"><a href="data-products-1.html#cb9-1" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb9-2"><a href="data-products-1.html#cb9-2" aria-hidden="true" tabindex="-1"></a>title: &quot;R and Python&quot;</span>
+<span id="cb9-3"><a href="data-products-1.html#cb9-3" aria-hidden="true" tabindex="-1"></a>author: &quot;Bruno Rodrigues&quot;</span>
+<span id="cb9-4"><a href="data-products-1.html#cb9-4" aria-hidden="true" tabindex="-1"></a>date: today</span>
+<span id="cb9-5"><a href="data-products-1.html#cb9-5" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb9-6"><a href="data-products-1.html#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="data-products-1.html#cb9-7" aria-hidden="true" tabindex="-1"></a>## This is a simple quarto document</span>
+<span id="cb9-8"><a href="data-products-1.html#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="data-products-1.html#cb9-9" aria-hidden="true" tabindex="-1"></a>```{r}</span>
+<span id="cb9-10"><a href="data-products-1.html#cb9-10" aria-hidden="true" tabindex="-1"></a>#| warning: false</span>
+<span id="cb9-11"><a href="data-products-1.html#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="data-products-1.html#cb9-12" aria-hidden="true" tabindex="-1"></a>library(dplyr)</span>
+<span id="cb9-13"><a href="data-products-1.html#cb9-13" aria-hidden="true" tabindex="-1"></a>library(tidyr)</span>
+<span id="cb9-14"><a href="data-products-1.html#cb9-14" aria-hidden="true" tabindex="-1"></a>library(purrr)</span>
+<span id="cb9-15"><a href="data-products-1.html#cb9-15" aria-hidden="true" tabindex="-1"></a>library(ggplot2)</span>
+<span id="cb9-16"><a href="data-products-1.html#cb9-16" aria-hidden="true" tabindex="-1"></a>library(myPackage)</span>
+<span id="cb9-17"><a href="data-products-1.html#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="data-products-1.html#cb9-18" aria-hidden="true" tabindex="-1"></a>data(&quot;unemp&quot;)</span>
+<span id="cb9-19"><a href="data-products-1.html#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="data-products-1.html#cb9-20" aria-hidden="true" tabindex="-1"></a>unemp &lt;- unemp %&gt;%</span>
+<span id="cb9-21"><a href="data-products-1.html#cb9-21" aria-hidden="true" tabindex="-1"></a>  janitor::clean_names() %&gt;%</span>
+<span id="cb9-22"><a href="data-products-1.html#cb9-22" aria-hidden="true" tabindex="-1"></a>  filter(level == &quot;Commune&quot;)</span>
+<span id="cb9-23"><a href="data-products-1.html#cb9-23" aria-hidden="true" tabindex="-1"></a>```</span>
+<span id="cb9-24"><a href="data-products-1.html#cb9-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-25"><a href="data-products-1.html#cb9-25" aria-hidden="true" tabindex="-1"></a>The data that was loaded and cleaned from R can be accessed from Python using `r.unemp`:</span>
+<span id="cb9-26"><a href="data-products-1.html#cb9-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-27"><a href="data-products-1.html#cb9-27" aria-hidden="true" tabindex="-1"></a>```{python}</span>
+<span id="cb9-28"><a href="data-products-1.html#cb9-28" aria-hidden="true" tabindex="-1"></a>import pandas as pd</span>
+<span id="cb9-29"><a href="data-products-1.html#cb9-29" aria-hidden="true" tabindex="-1"></a>unemp_pd = pd.DataFrame(r.unemp)</span>
+<span id="cb9-30"><a href="data-products-1.html#cb9-30" aria-hidden="true" tabindex="-1"></a>unemp_pd.head</span>
+<span id="cb9-31"><a href="data-products-1.html#cb9-31" aria-hidden="true" tabindex="-1"></a>```</span></code></pre></div>
+<p><a href="https://endearing-gnome-80e9df.netlify.app/">This is what the output looks like.</a></p>
+</div>
+<div id="other-output-formats" class="section level3 hasAnchor" number="8.2.2">
+<h3><span class="header-section-number">8.2.2</span> Other output formats<a href="data-products-1.html#other-output-formats" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="word" class="section level4 hasAnchor" number="8.2.2.1">
+<h4><span class="header-section-number">8.2.2.1</span> Word<a href="data-products-1.html#word" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 </div>
 </div>
-<div id="dynamic-products" class="section level2 hasAnchor" number="8.2">
-<h2><span class="header-section-number">8.2</span> Dynamic products<a href="data-products-1.html#dynamic-products" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="html-documents-redux" class="section level3 hasAnchor" number="8.2.1">
-<h3><span class="header-section-number">8.2.1</span> HTML documents redux<a href="data-products-1.html#html-documents-redux" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 </div>
-<div id="interactive-web-applications" class="section level3 hasAnchor" number="8.2.2">
-<h3><span class="header-section-number">8.2.2</span> Interactive web applications<a href="data-products-1.html#interactive-web-applications" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="dynamic-products" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> Dynamic products<a href="data-products-1.html#dynamic-products" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="html-documents-redux" class="section level3 hasAnchor" number="8.3.1">
+<h3><span class="header-section-number">8.3.1</span> HTML documents redux<a href="data-products-1.html#html-documents-redux" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="interactive-web-applications" class="section level3 hasAnchor" number="8.3.2">
+<h3><span class="header-section-number">8.3.2</span> Interactive web applications<a href="data-products-1.html#interactive-web-applications" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+</div>
+<div id="targets-and-quarto" class="section level2 hasAnchor" number="8.4">
+<h2><span class="header-section-number">8.4</span> <code>{targets}</code> and Quarto<a href="data-products-1.html#targets-and-quarto" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 
-</div>
 </div>
 </div>
             </section>
@@ -333,20 +610,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

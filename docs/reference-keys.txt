@@ -27,6 +27,7 @@ setting-up-a-repo
 cloning-the-repository-onto-your-computer
 your-first-commit
 collaborating
+branches
 contributing-to-someone-elses-repository
 package-development
 introduction-3
@@ -68,3 +69,11 @@ interactive-web-applications
 self-contained-raps-with-docker
 cicd-with-github-actions
 what-else-should-you-learn
+introduction-6
+word
+pdf
+pptx
+targets-and-quarto
+other-output-formats
+a-first-taste-of-quarto
+python-and-julia-code-chunks

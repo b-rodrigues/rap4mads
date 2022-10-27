@@ -23,7 +23,7 @@
 <meta name="author" content="Bruno Rodrigues" />
 
 
-<meta name="date" content="2022-10-24" />
+<meta name="date" content="2022-10-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -172,7 +172,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.4" data-path="git.html"><a href="git.html#cloning-the-repository-onto-your-computer"><i class="fa fa-check"></i><b>4.4</b> Cloning the repository onto your computer</a></li>
 <li class="chapter" data-level="4.5" data-path="git.html"><a href="git.html#your-first-commit"><i class="fa fa-check"></i><b>4.5</b> Your first commit</a></li>
 <li class="chapter" data-level="4.6" data-path="git.html"><a href="git.html#collaborating"><i class="fa fa-check"></i><b>4.6</b> Collaborating</a></li>
-<li class="chapter" data-level="4.7" data-path="git.html"><a href="git.html#contributing-to-someone-elses-repository"><i class="fa fa-check"></i><b>4.7</b> Contributing to someone else’s repository</a></li>
+<li class="chapter" data-level="4.7" data-path="git.html"><a href="git.html#branches"><i class="fa fa-check"></i><b>4.7</b> Branches</a></li>
+<li class="chapter" data-level="4.8" data-path="git.html"><a href="git.html#contributing-to-someone-elses-repository"><i class="fa fa-check"></i><b>4.8</b> Contributing to someone else’s repository</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="package-development.html"><a href="package-development.html"><i class="fa fa-check"></i><b>5</b> Package development</a>
 <ul>
@@ -260,7 +261,7 @@ some functions that we will write to analyze some data.
 Don’t focus too much on what these functions do or don’t do, that’s not really important.
 What matters is that you understand how to build your own package, and why that’s useful.</p>
 <p>R, as you know, has many many packages. When you type something like</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="package-development.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;dplyr&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="package-development.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;dplyr&quot;</span>)</span></code></pre></div>
 <p>This installs the <code>{dplyr}</code> package. The package gets downloaded from a repository called
 CRAN - The Comprehensive R Archive Network (or from one of its mirrors). Developers thus
 work on their packages and once they feel the package is ready for production they submit
@@ -282,7 +283,7 @@ we are not going to publish it on CRAN. Instead, we will be using github.com as 
 for CRAN. This has the advantage that we do not have to be so strict and disciplined when
 writing our package, and other users can install the package almost just as easily from
 github.com, with the following command:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="package-development.html#cb2-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;github_username/some_package&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="package-development.html#cb59-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;github_username/some_package&quot;</span>)</span></code></pre></div>
 <p>It is also possible to build the package and send it as a file per email for example, and then
 install a local copy. This is more cumbersome, that’s why we’re going to use github.com as a
 repository.</p>
@@ -357,10 +358,10 @@ to github.com!</p>
 <div id="functions-dependencies" class="section level3 hasAnchor" number="5.3.1">
 <h3><span class="header-section-number">5.3.1</span> Functions dependencies<a href="package-development.html#functions-dependencies" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In the same script, add the following code:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="package-development.html#cb4-1" aria-hidden="true" tabindex="-1"></a>only_automatics <span class="ot">&lt;-</span> <span class="cf">function</span>(dataset){</span>
-<span id="cb4-2"><a href="package-development.html#cb4-2" aria-hidden="true" tabindex="-1"></a>  dataset <span class="sc">|&gt;</span></span>
-<span id="cb4-3"><a href="package-development.html#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(am <span class="sc">==</span> <span class="dv">1</span>)</span>
-<span id="cb4-4"><a href="package-development.html#cb4-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="package-development.html#cb61-1" aria-hidden="true" tabindex="-1"></a>only_automatics <span class="ot">&lt;-</span> <span class="cf">function</span>(dataset){</span>
+<span id="cb61-2"><a href="package-development.html#cb61-2" aria-hidden="true" tabindex="-1"></a>  dataset <span class="sc">|&gt;</span></span>
+<span id="cb61-3"><a href="package-development.html#cb61-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(am <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb61-4"><a href="package-development.html#cb61-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>This creates a function that takes a dataset as an argument, and filters the <code>am</code> variable.
 This function is not great: it is not documented, so the user might not know that the dataset
 that is meant here is the <code>mtcars</code> dataset (which is included with R by default). So we will
@@ -379,24 +380,24 @@ package (R is case sensitive, so <code>filter()</code> and <code>Filter()</code>
 So how can the developer specify the correct <code>filter()</code> function? Simply by using the following
 notation: <code>dplyr::filter()</code> (which we have already encountered). So let’s rewrite the function
 correctly:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="package-development.html#cb5-1" aria-hidden="true" tabindex="-1"></a>only_automatics <span class="ot">&lt;-</span> <span class="cf">function</span>(dataset){</span>
-<span id="cb5-2"><a href="package-development.html#cb5-2" aria-hidden="true" tabindex="-1"></a>  dataset <span class="sc">|&gt;</span></span>
-<span id="cb5-3"><a href="package-development.html#cb5-3" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(am <span class="sc">==</span> <span class="dv">1</span>)</span>
-<span id="cb5-4"><a href="package-development.html#cb5-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="package-development.html#cb62-1" aria-hidden="true" tabindex="-1"></a>only_automatics <span class="ot">&lt;-</span> <span class="cf">function</span>(dataset){</span>
+<span id="cb62-2"><a href="package-development.html#cb62-2" aria-hidden="true" tabindex="-1"></a>  dataset <span class="sc">|&gt;</span></span>
+<span id="cb62-3"><a href="package-development.html#cb62-3" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(am <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb62-4"><a href="package-development.html#cb62-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Great, so now <code>only_automatics()</code> at least knows which <code>filter</code> function to use, but this function
 could be improved a lot more. In general, what you want is to have a function that is general enough
 that it could work with any variable (if the dataset is supposed to be fixed), or that could work
 with any combination of dataset and variable. Let’s make our function a bit more general,
 by making it work on any variable from any dataset:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="package-development.html#cb6-1" aria-hidden="true" tabindex="-1"></a>my_filter <span class="ot">&lt;-</span> <span class="cf">function</span>(dataset, condition){</span>
-<span id="cb6-2"><a href="package-development.html#cb6-2" aria-hidden="true" tabindex="-1"></a>  dataset <span class="sc">|&gt;</span></span>
-<span id="cb6-3"><a href="package-development.html#cb6-3" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(condition)</span>
-<span id="cb6-4"><a href="package-development.html#cb6-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="package-development.html#cb63-1" aria-hidden="true" tabindex="-1"></a>my_filter <span class="ot">&lt;-</span> <span class="cf">function</span>(dataset, condition){</span>
+<span id="cb63-2"><a href="package-development.html#cb63-2" aria-hidden="true" tabindex="-1"></a>  dataset <span class="sc">|&gt;</span></span>
+<span id="cb63-3"><a href="package-development.html#cb63-3" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(condition)</span>
+<span id="cb63-4"><a href="package-development.html#cb63-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>I renamed the function to <code>my_filter()</code> because now this function can work on any dataset and
 with any predicate condition (of course this function is not really useful, since it’s only a
 wrapper around <code>filter()</code>. But that’s not important). Let’s save the script and reload the
 package with <code>CRTL-SHIFT-L</code> and try out the function:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="package-development.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">my_filter</span>(mtcars, am <span class="sc">==</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="package-development.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">my_filter</span>(mtcars, am <span class="sc">==</span> <span class="dv">1</span>)</span></code></pre></div>
 <p>You will get this output:</p>
 <pre><code>Error in `dplyr::filter()` at myPackage/R/functions.R:6:4:
 ! Problem while computing `..1 = condition`.
@@ -405,8 +406,8 @@ Caused by error in `mask$eval_all_filter()`:
 Run `rlang::last_error()` to see where the error occurred.</code></pre>
 <p>so what’s going on? R complains that it cannot find <code>am</code>.
 What is wrong with our function? After all, if I call the following, it works:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="package-development.html#cb9-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">|&gt;</span></span>
-<span id="cb9-2"><a href="package-development.html#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(am <span class="sc">==</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="package-development.html#cb66-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">|&gt;</span></span>
+<span id="cb66-2"><a href="package-development.html#cb66-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(am <span class="sc">==</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>##                 mpg cyl  disp  hp drat    wt  qsec vs am gear carb
 ## Mazda RX4      21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
 ## Mazda RX4 Wag  21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
@@ -430,13 +431,13 @@ We need to program our function in the same way. Remember in chapter 3, where
 we learned about functions that take columns of data frames as arguments? This
 is exactly the same situtation here. So, let’s simply enclose
 references to columns of data frames inside <code>{{}}</code>, like so:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="package-development.html#cb11-1" aria-hidden="true" tabindex="-1"></a>my_filter <span class="ot">&lt;-</span> <span class="cf">function</span>(dataset, condition){</span>
-<span id="cb11-2"><a href="package-development.html#cb11-2" aria-hidden="true" tabindex="-1"></a>  dataset <span class="sc">|&gt;</span></span>
-<span id="cb11-3"><a href="package-development.html#cb11-3" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>({{condition}})</span>
-<span id="cb11-4"><a href="package-development.html#cb11-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="package-development.html#cb68-1" aria-hidden="true" tabindex="-1"></a>my_filter <span class="ot">&lt;-</span> <span class="cf">function</span>(dataset, condition){</span>
+<span id="cb68-2"><a href="package-development.html#cb68-2" aria-hidden="true" tabindex="-1"></a>  dataset <span class="sc">|&gt;</span></span>
+<span id="cb68-3"><a href="package-development.html#cb68-3" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>({{condition}})</span>
+<span id="cb68-4"><a href="package-development.html#cb68-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Now, R knows where to look. So reload the package with <code>CTRL-SHIFT-L</code> and
 try again:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="package-development.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">my_filter</span>(mtcars, am <span class="sc">==</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="package-development.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">my_filter</span>(mtcars, am <span class="sc">==</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>##                 mpg cyl  disp  hp drat    wt  qsec vs am gear carb
 ## Mazda RX4      21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
 ## Mazda RX4 Wag  21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
@@ -460,13 +461,13 @@ keep using <code>{{}}</code>.</p>
 I’m thinking about the ones <a href="https://rap4mads.eu/introduction-to-r.html#reading-in-data-with-r">here</a>,
 <code>unemp_2013.csv</code>, <code>unemp_2014.csv</code>, etc.</p>
 <p>Let’s write a function that does some basic transformations on these files:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="package-development.html#cb14-1" aria-hidden="true" tabindex="-1"></a>clean_unemp <span class="ot">&lt;-</span> <span class="cf">function</span>(unemp_data, level, col_of_interest){</span>
-<span id="cb14-2"><a href="package-development.html#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="package-development.html#cb14-3" aria-hidden="true" tabindex="-1"></a>  unemp_data <span class="sc">|&gt;</span></span>
-<span id="cb14-4"><a href="package-development.html#cb14-4" aria-hidden="true" tabindex="-1"></a>    janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">|&gt;</span></span>
-<span id="cb14-5"><a href="package-development.html#cb14-5" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>({{level}}) <span class="sc">|&gt;</span></span>
-<span id="cb14-6"><a href="package-development.html#cb14-6" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(year, commune, {{col_of_interest}})</span>
-<span id="cb14-7"><a href="package-development.html#cb14-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="package-development.html#cb71-1" aria-hidden="true" tabindex="-1"></a>clean_unemp <span class="ot">&lt;-</span> <span class="cf">function</span>(unemp_data, level, col_of_interest){</span>
+<span id="cb71-2"><a href="package-development.html#cb71-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-3"><a href="package-development.html#cb71-3" aria-hidden="true" tabindex="-1"></a>  unemp_data <span class="sc">|&gt;</span></span>
+<span id="cb71-4"><a href="package-development.html#cb71-4" aria-hidden="true" tabindex="-1"></a>    janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">|&gt;</span></span>
+<span id="cb71-5"><a href="package-development.html#cb71-5" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>({{level}}) <span class="sc">|&gt;</span></span>
+<span id="cb71-6"><a href="package-development.html#cb71-6" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(year, commune, {{col_of_interest}})</span>
+<span id="cb71-7"><a href="package-development.html#cb71-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>This function does 3 things:</p>
 <ul>
 <li>using <code>janitor::clean_names()</code>, it cleans the column names;</li>
@@ -474,26 +475,26 @@ I’m thinking about the ones <a href="https://rap4mads.eu/introduction-to-r.htm
 <li>it selects the columns that interest us (with year and commune hardcoded, because we always want those)</li>
 </ul>
 <p>So save the script, and reload your package using <code>CTRL-SHIFT-L</code>, and try with the following lines:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="package-development.html#cb15-1" aria-hidden="true" tabindex="-1"></a>unemp_2013 <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/unemployment/unemp_2013.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="package-development.html#cb72-1" aria-hidden="true" tabindex="-1"></a>unemp_2013 <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/unemployment/unemp_2013.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## Rows: 118 Columns: 8
-## ── Column specification ──────────────────────────────────────────────────────────────────────────────────────────────
+## ── Column specification ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
 ## chr (1): Commune
 ## dbl (7): Total employed population, of which: Wage-earners, of which: Non-wa...
 ## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="package-development.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">clean_unemp</span>(unemp_2013,</span>
-<span id="cb17-2"><a href="package-development.html#cb17-2" aria-hidden="true" tabindex="-1"></a>            <span class="fu">grepl</span>(<span class="st">&quot;Grand-D.*&quot;</span>, commune),</span>
-<span id="cb17-3"><a href="package-development.html#cb17-3" aria-hidden="true" tabindex="-1"></a>            active_population)</span></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="package-development.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">clean_unemp</span>(unemp_2013,</span>
+<span id="cb74-2"><a href="package-development.html#cb74-2" aria-hidden="true" tabindex="-1"></a>            <span class="fu">grepl</span>(<span class="st">&quot;Grand-D.*&quot;</span>, commune),</span>
+<span id="cb74-3"><a href="package-development.html#cb74-3" aria-hidden="true" tabindex="-1"></a>            active_population)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 3
 ##    year commune                   active_population
 ##   &lt;dbl&gt; &lt;chr&gt;                                 &lt;dbl&gt;
 ## 1  2013 Grand-Duche de Luxembourg            242694</code></pre>
 <p>This selects the columns for the whole country. Let’s try for cantons:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="package-development.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">clean_unemp</span>(unemp_2013,</span>
-<span id="cb19-2"><a href="package-development.html#cb19-2" aria-hidden="true" tabindex="-1"></a>            <span class="fu">grepl</span>(<span class="st">&quot;Canton&quot;</span>, commune),</span>
-<span id="cb19-3"><a href="package-development.html#cb19-3" aria-hidden="true" tabindex="-1"></a>            active_population)</span></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="package-development.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">clean_unemp</span>(unemp_2013,</span>
+<span id="cb76-2"><a href="package-development.html#cb76-2" aria-hidden="true" tabindex="-1"></a>            <span class="fu">grepl</span>(<span class="st">&quot;Canton&quot;</span>, commune),</span>
+<span id="cb76-3"><a href="package-development.html#cb76-3" aria-hidden="true" tabindex="-1"></a>            active_population)</span></code></pre></div>
 <pre><code>## # A tibble: 12 × 3
 ##     year commune             active_population
 ##    &lt;dbl&gt; &lt;chr&gt;                           &lt;dbl&gt;
@@ -510,9 +511,9 @@ I’m thinking about the ones <a href="https://rap4mads.eu/introduction-to-r.htm
 ## 11  2013 Canton Grevenmacher             12254
 ## 12  2013 Canton Remich                    9551</code></pre>
 <p>And to select for communes, we need to not select cantons nor the whole country:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="package-development.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">clean_unemp</span>(unemp_2013,</span>
-<span id="cb21-2"><a href="package-development.html#cb21-2" aria-hidden="true" tabindex="-1"></a>            <span class="sc">!</span><span class="fu">grepl</span>(<span class="st">&quot;(Canton|Grand-D.*)&quot;</span>, commune),</span>
-<span id="cb21-3"><a href="package-development.html#cb21-3" aria-hidden="true" tabindex="-1"></a>            active_population)</span></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="package-development.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">clean_unemp</span>(unemp_2013,</span>
+<span id="cb78-2"><a href="package-development.html#cb78-2" aria-hidden="true" tabindex="-1"></a>            <span class="sc">!</span><span class="fu">grepl</span>(<span class="st">&quot;(Canton|Grand-D.*)&quot;</span>, commune),</span>
+<span id="cb78-3"><a href="package-development.html#cb78-3" aria-hidden="true" tabindex="-1"></a>            active_population)</span></code></pre></div>
 <pre><code>## # A tibble: 105 × 3
 ##     year commune       active_population
 ##    &lt;dbl&gt; &lt;chr&gt;                     &lt;dbl&gt;
@@ -544,36 +545,36 @@ do, which is documenting functions.</p>
 <p>As you’ll know, comments in R start with <code>#</code>. Documenting functions consists in commenting
 them with a special kind of comments that start with <code>#'</code>. Let’s try on our <code>clean_unemp()</code>
 function:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="package-development.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; Easily filter unemployment data for Luxembourg</span></span>
-<span id="cb23-2"><a href="package-development.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param unemp_data A data frame containing unemployment data for Luxembourg.</span></span>
-<span id="cb23-3"><a href="package-development.html#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param level A predicate condition indicating the regional level of interest. See details for more.</span></span>
-<span id="cb23-4"><a href="package-development.html#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param col_of_interest A column of the `unemp_data` data frame that you wish to select.</span></span>
-<span id="cb23-5"><a href="package-development.html#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @importFrom janitor clean_names</span></span>
-<span id="cb23-6"><a href="package-development.html#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @importFrom dplyr filter select</span></span>
-<span id="cb23-7"><a href="package-development.html#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @export</span></span>
-<span id="cb23-8"><a href="package-development.html#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @return A data frame</span></span>
-<span id="cb23-9"><a href="package-development.html#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @details</span></span>
-<span id="cb23-10"><a href="package-development.html#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; This function allows the user to create a data frame for several regional levels. The first level</span></span>
-<span id="cb23-11"><a href="package-development.html#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; is the complete country. The second level are cantons, and the third level are neither cantons</span></span>
-<span id="cb23-12"><a href="package-development.html#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; nor the whole country, so the communes. Individual communes can be selected as well.</span></span>
-<span id="cb23-13"><a href="package-development.html#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; `level` must be predicate condition passed down to dplyr::filter. See the examples below</span></span>
-<span id="cb23-14"><a href="package-development.html#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; for its usage.</span></span>
-<span id="cb23-15"><a href="package-development.html#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @examples</span></span>
-<span id="cb23-16"><a href="package-development.html#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; # Filter on cantons</span></span>
-<span id="cb23-17"><a href="package-development.html#cb23-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; clean_unemp(unemp_2013,</span></span>
-<span id="cb23-18"><a href="package-development.html#cb23-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;             grepl(&quot;Canton&quot;, commune),</span></span>
-<span id="cb23-19"><a href="package-development.html#cb23-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;             active_population)</span></span>
-<span id="cb23-20"><a href="package-development.html#cb23-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; # Filter on a specific commune</span></span>
-<span id="cb23-21"><a href="package-development.html#cb23-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; clean_unemp(unemp_2013,</span></span>
-<span id="cb23-22"><a href="package-development.html#cb23-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;             grepl(&quot;Kayl&quot;, commune),</span></span>
-<span id="cb23-23"><a href="package-development.html#cb23-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;             active_population)</span></span>
-<span id="cb23-24"><a href="package-development.html#cb23-24" aria-hidden="true" tabindex="-1"></a>clean_unemp <span class="ot">&lt;-</span> <span class="cf">function</span>(unemp_data, level, col_of_interest){</span>
-<span id="cb23-25"><a href="package-development.html#cb23-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-26"><a href="package-development.html#cb23-26" aria-hidden="true" tabindex="-1"></a>  unemp_data <span class="sc">|&gt;</span></span>
-<span id="cb23-27"><a href="package-development.html#cb23-27" aria-hidden="true" tabindex="-1"></a>    janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">|&gt;</span></span>
-<span id="cb23-28"><a href="package-development.html#cb23-28" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>({{level}}) <span class="sc">|&gt;</span></span>
-<span id="cb23-29"><a href="package-development.html#cb23-29" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(year, commune, {{col_of_interest}})</span>
-<span id="cb23-30"><a href="package-development.html#cb23-30" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="package-development.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; Easily filter unemployment data for Luxembourg</span></span>
+<span id="cb80-2"><a href="package-development.html#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param unemp_data A data frame containing unemployment data for Luxembourg.</span></span>
+<span id="cb80-3"><a href="package-development.html#cb80-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param level A predicate condition indicating the regional level of interest. See details for more.</span></span>
+<span id="cb80-4"><a href="package-development.html#cb80-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param col_of_interest A column of the `unemp_data` data frame that you wish to select.</span></span>
+<span id="cb80-5"><a href="package-development.html#cb80-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @importFrom janitor clean_names</span></span>
+<span id="cb80-6"><a href="package-development.html#cb80-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @importFrom dplyr filter select</span></span>
+<span id="cb80-7"><a href="package-development.html#cb80-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @export</span></span>
+<span id="cb80-8"><a href="package-development.html#cb80-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @return A data frame</span></span>
+<span id="cb80-9"><a href="package-development.html#cb80-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @details</span></span>
+<span id="cb80-10"><a href="package-development.html#cb80-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; This function allows the user to create a data frame for several regional levels. The first level</span></span>
+<span id="cb80-11"><a href="package-development.html#cb80-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; is the complete country. The second level are cantons, and the third level are neither cantons</span></span>
+<span id="cb80-12"><a href="package-development.html#cb80-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; nor the whole country, so the communes. Individual communes can be selected as well.</span></span>
+<span id="cb80-13"><a href="package-development.html#cb80-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; `level` must be predicate condition passed down to dplyr::filter. See the examples below</span></span>
+<span id="cb80-14"><a href="package-development.html#cb80-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; for its usage.</span></span>
+<span id="cb80-15"><a href="package-development.html#cb80-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @examples</span></span>
+<span id="cb80-16"><a href="package-development.html#cb80-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; # Filter on cantons</span></span>
+<span id="cb80-17"><a href="package-development.html#cb80-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; clean_unemp(unemp_2013,</span></span>
+<span id="cb80-18"><a href="package-development.html#cb80-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;             grepl(&quot;Canton&quot;, commune),</span></span>
+<span id="cb80-19"><a href="package-development.html#cb80-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;             active_population)</span></span>
+<span id="cb80-20"><a href="package-development.html#cb80-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; # Filter on a specific commune</span></span>
+<span id="cb80-21"><a href="package-development.html#cb80-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; clean_unemp(unemp_2013,</span></span>
+<span id="cb80-22"><a href="package-development.html#cb80-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;             grepl(&quot;Kayl&quot;, commune),</span></span>
+<span id="cb80-23"><a href="package-development.html#cb80-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;             active_population)</span></span>
+<span id="cb80-24"><a href="package-development.html#cb80-24" aria-hidden="true" tabindex="-1"></a>clean_unemp <span class="ot">&lt;-</span> <span class="cf">function</span>(unemp_data, level, col_of_interest){</span>
+<span id="cb80-25"><a href="package-development.html#cb80-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-26"><a href="package-development.html#cb80-26" aria-hidden="true" tabindex="-1"></a>  unemp_data <span class="sc">|&gt;</span></span>
+<span id="cb80-27"><a href="package-development.html#cb80-27" aria-hidden="true" tabindex="-1"></a>    janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">|&gt;</span></span>
+<span id="cb80-28"><a href="package-development.html#cb80-28" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>({{level}}) <span class="sc">|&gt;</span></span>
+<span id="cb80-29"><a href="package-development.html#cb80-29" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(year, commune, {{col_of_interest}})</span>
+<span id="cb80-30"><a href="package-development.html#cb80-30" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>The special comments that start with <code>#'</code> will be compiled into a nice looking document that users
 can then read. You can add sections to the documentation by using keywords that start
 with <code>@</code>. The example above shows essentially everything you need to know to
@@ -692,9 +693,9 @@ They are written in the RMarkdown format, which we will learn about in chapter 8
 To see an example of a vignette, you can take a look at this vignette titled
 <a href="https://b-rodrigues.github.io/chronicler/articles/advanced-topics.html">A non-mathematician’s introduction to monads</a>
 from my <code>{chronicler}</code> package, or you could also type:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="package-development.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vignette</span>(<span class="at">package =</span> <span class="st">&quot;dplyr&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="package-development.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vignette</span>(<span class="at">package =</span> <span class="st">&quot;dplyr&quot;</span>)</span></code></pre></div>
 <p>to see the list of available vignettes for the <code>{dplyr}</code> package, and then write:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="package-development.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vignette</span>(<span class="st">&quot;programming&quot;</span>, <span class="st">&quot;dplyr&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="package-development.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vignette</span>(<span class="st">&quot;programming&quot;</span>, <span class="st">&quot;dplyr&quot;</span>)</span></code></pre></div>
 <p>to open the vignette locally.</p>
 </div>
 <div id="packages-website" class="section level4 hasAnchor" number="5.4.2.4">
@@ -798,6 +799,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
