@@ -709,6 +709,8 @@ walk(sym_codes, return_section)
 ```
 ````
 
+[You can download the output here.](https://github.com/b-rodrigues/rap4mads/blob/master/img/ex10.docx?raw=true)
+
 Unlike with HTML outputs, it is also not possible to enable code folding, but you could hide the code completely using the "#| echo = false" 
 chunk option. If you wan to hide all the code without having to specify "#| echo = false" on each chunk you can also add the `execute` option
 to the document header:
@@ -723,6 +725,34 @@ execute:
   echo: false
 ---
 ```
+
+You can use a document as a template for Word documents generated with Quarto. For this, you must create a new Word file, and update the
+styles. This document, with the updated styles, can then be referenced in the header to act as a template:
+
+```
+---
+title: "Using a custom Word style"
+author: "Bruno Rodrigues"
+date: today
+format: 
+  docx: 
+    reference-doc: fancy_template.docx
+execute:
+  echo: false
+---
+
+# Introduction
+
+## MS Word is great (lol)
+
+This is normal text that is unreadable.
+
+```
+
+Just put `fancy_template.docx` in the same folder as your source qmd file. You can download the template I’ve used from 
+[here](https://github.com/b-rodrigues/rap4mads/blob/master/img/fancy_template.docx?raw=true) to test things out.
+
+For more details, visit this [page](https://quarto.org/docs/output-formats/ms-word-templates.html).
 
 ### Presentations
 
