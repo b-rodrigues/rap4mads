@@ -334,9 +334,178 @@ unemp_pd.head
 
 [This is what the output looks like.](https://endearing-gnome-80e9df.netlify.app/)
 
-### Other output formats
+The HTML output is quite flexible, as it is possible to also integrate JS libraries. The following
+example uses the `{g2r}` library (an R wrapper around the g2 javascript library) for creating
+visualisations. To run the following code, make sure that you have the `{g2r}` package installed
+(can only be install from github):
 
-#### Word
+```{r, eval = F}
+devtools::install_github("devOpifex/g2r")
+```
+
+The source file looks like this:
+
+````{verbatim}
+---
+title: "Quarto and JS libraries"
+author: "My name"
+date: today
+format: 
+  html:
+    code-fold: true
+---
+
+## This is a simple quarto document showing basic plot interactivity using {g2r}
+
+```{r}
+#| warning: false
+
+library(dplyr)
+library(tidyr)
+library(purrr)
+library(g2r)
+library(myPackage)
+
+data("unemp")
+
+unemp <- unemp %>%
+  janitor::clean_names() %>%
+  filter(level == "Commune")
+```
+
+There are `r length(unique(unemp$place_name))` communes in the dataset. Below we plot the unemployment rate for 3 communes:
+
+```{r}
+unemp %>%
+  filter(place_name %in% c("Luxembourg", "Esch-sur-Alzette", "Wiltz")) %>%
+  g2(data = .) %>% 
+  fig_line(asp(year, unemployment_rate_in_percent, color = place_name)) 
+```
+
+````
+
+[This is what the output looks like.](https://timely-marzipan-6380f0.netlify.app/)
+
+It is possible to use other JS libraries, like here `DataTables`, wrapped inside the `{DT}` package:
+
+````{verbatim}
+---
+title: "Quarto and JS libraries"
+author: "My name"
+date: today
+format: 
+  html:
+    toc: true
+    code-fold: true
+---
+
+## Basic plot interactivity using {g2r}
+
+```{r}
+#| warning: false
+
+library(dplyr)
+library(tidyr)
+library(purrr)
+library(g2r)
+library(DT)
+library(myPackage)
+
+data("unemp")
+
+unemp <- unemp %>%
+  mutate(year = as.character(year)) %>% 
+  janitor::clean_names() %>%
+  filter(level == "Commune")
+```
+
+There are `r length(unique(unemp$place_name))` communes in the dataset. Below we plot the unemployment rate for 3 communes:
+
+```{r}
+unemp %>%
+  filter(place_name %in% c("Luxembourg", "Esch-sur-Alzette", "Wiltz")) %>%
+  g2(data = .) %>% 
+  fig_line(asp(year, unemployment_rate_in_percent, color = place_name)) 
+```
+
+## Interactive tables with {DT}
+
+```{r}
+unemp %>%
+  DT::datatable(filter = "top") 
+```
+
+## Others
+
+You can find more widgets over [here](http://gallery.htmlwidgets.org/).
+
+````
+
+[This is what the output looks like.](https://playful-cucurucho-5cdcbb.netlify.app/)
+
+The final example illustrates templating. It is possible to write code that generates qmd code:
+
+````{verbatim}
+---
+title: "Quarto and JS libraries"
+author: "My name"
+date: today
+format: 
+  html:
+    toc: true
+    code-fold: true
+---
+
+## Basic plot interactivity using {g2r}
+
+```{r}
+#| warning: false
+
+library(dplyr)
+library(tidyr)
+library(purrr)
+library(g2r)
+library(DT)
+library(myPackage)
+
+data("unemp")
+
+unemp <- unemp %>%
+  mutate(year = as.character(year)) %>% 
+  janitor::clean_names() %>%
+  filter(level == "Commune")
+```
+
+There are `r length(unique(unemp$place_name))` communes in the dataset. Below we plot the unemployment rate for 3 communes:
+
+```{r}
+unemp %>%
+  filter(place_name %in% c("Luxembourg", "Esch-sur-Alzette", "Wiltz")) %>%
+  g2(data = .) %>% 
+  fig_line(asp(year, unemployment_rate_in_percent, color = place_name)) 
+```
+
+## Interactive tables with {DT}
+
+```{r}
+unemp %>%
+  DT::datatable(filter = "top") 
+```
+
+## Others
+
+You can find more widgets over [here](http://gallery.htmlwidgets.org/).
+
+````
+
+
+[This is what the output looks like.](https://startling-shortbread-bc36ea.netlify.app/).
+
+
+
+## Other output formats
+
+### Word
 
 ## Dynamic products
 
