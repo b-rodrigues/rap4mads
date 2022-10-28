@@ -447,54 +447,126 @@ The final example illustrates templating. It is possible to write code that gene
 
 ````{verbatim}
 ---
-title: "Quarto and JS libraries"
-author: "My name"
+title: "Templating with Quarto"
+author: "Bruno Rodrigues"
 date: today
 format: 
   html:
     toc: true
-    code-fold: true
 ---
 
-## Basic plot interactivity using {g2r}
+
+# Set up
+The goal is to have a frequency table for each question in a survey. But we
+do not want to have to do it by hand, so we define a function to create a 
+table, and then, using the templating capabilities of Quarto, write some
+code to generate valid qmarkdown code. In the example below our survey only
+has 4 questions, but the solution described trivially scales to an infinity
+of questions. This is not the case if you’re solving this problem by hand.
+
+Start by loading the data and defining some needed variables:
 
 ```{r}
 #| warning: false
-
+library(lubridate)
 library(dplyr)
-library(tidyr)
 library(purrr)
-library(g2r)
+library(rlang)
 library(DT)
-library(myPackage)
+survey_data <- read.csv(
+"https://gist.githubusercontent.com/b-rodrigues/0c2249dec5a9c9477e0d1ad9964a1340/raw/873bcc7532b8bad613235f029884df1d0b947c90/survey_example.csv"
+)
 
-data("unemp")
 
-unemp <- unemp %>%
-  mutate(year = as.character(year)) %>% 
-  janitor::clean_names() %>%
-  filter(level == "Commune")
 ```
 
-There are `r length(unique(unemp$place_name))` communes in the dataset. Below we plot the unemployment rate for 3 communes:
+Let’s take a look at the data:
 
 ```{r}
-unemp %>%
-  filter(place_name %in% c("Luxembourg", "Esch-sur-Alzette", "Wiltz")) %>%
-  g2(data = .) %>% 
-  fig_line(asp(year, unemployment_rate_in_percent, color = place_name)) 
+datatable(survey_data)
 ```
 
-## Interactive tables with {DT}
+The column names are actually questions, so we save those in a variable:
 
 ```{r}
-unemp %>%
-  DT::datatable(filter = "top") 
+questions <- colnames(survey_data)
+
+questions
 ```
 
-## Others
+Now we define question codes:
 
-You can find more widgets over [here](http://gallery.htmlwidgets.org/).
+```{r}
+codes <- paste0("var_", seq(1, 4))
+
+codes
+```
+
+We create a lookup table that links questions to their codes:
+
+```{r}
+lookup <- bind_cols("codes" = codes, "questions" = questions)
+
+datatable(lookup)
+```
+
+Finally, we replace the question names in the dataset by the code:
+
+```{r}
+colnames(survey_data) <- codes
+
+datatable(survey_data)
+```
+
+Now, we define a function that creates a frequency table. This function has
+two arguments: `dataset` and `var`. It uses the `dplyr::count()` function to
+count each instance of the levels of `var` in `dataset`. Then it uses the 
+`knitr::kable()` function. This functions takes a data frame as an argument
+and returns a table formatted in markdown code:
+
+```{r}
+create_table <- function(dataset, var){
+  dataset %>%
+    count(!!var) %>%
+    knitr::kable()
+}
+```
+
+The next function is the one that does the magic: it takes only one argument
+as an input, and generates valid markdown code using the `knitr::knit_expand()`
+function. Any variable between `{{}}` gets replaced by its value (so 
+`{{question}}` gets replaced by the question that gets fetched from the 
+lookup table defined above). Using this function, we can now loop over 
+question codes, and what we get in return is valid markdown code that defines
+a section with the question as the title, and our table.
+
+```{r}
+return_section <- function(var){
+  a <- knitr::knit_expand(text = c("## {{question}}",   create_table(survey_data, var)),
+                          question = lookup$questions[grepl(quo_name(var), lookup$codes)])
+  cat(a, sep = "\n")
+}
+```
+
+Our codes are strings, so to be able to use them inside of `dplyr::count()`
+we need to define them as bare string, or symbols. This can be done using the
+`rlang::sym()` function. If this is confusing, try running `count(mtcars, "am")` 
+and you will see that it will not return what you want (compare to `count(mtcars, am)`). 
+This is also why we needed `rlang::quo_name()` in the function above, to convert
+the symbol back to a string, which is what `grepl()` requires:
+
+```{r}
+sym_codes <- map(codes, sym)
+```
+
+Finally, we can create the sections. The line below uses `purrr::walk()`, which
+is equivalent to `purrr::map()`, the difference being that we use `purrr::walk()`
+when we are interested in the side effects of a function:
+
+```{r, results="asis"}
+walk(sym_codes, return_section)
+```
+
 
 ````
 
@@ -502,15 +574,158 @@ You can find more widgets over [here](http://gallery.htmlwidgets.org/).
 [This is what the output looks like.](https://startling-shortbread-bc36ea.netlify.app/).
 
 
-
 ## Other output formats
 
 ### Word
 
-## Dynamic products
+Let’s now generate a Word document using Quarto. As you will see, this will be quite easy; but keep in mind that the basic
+interactivity that we have seen with HTML outputs won’t be possible here (but templating will work). Render the following
+source file to get back a `.docx` document (you don’t even need to have MS Word installed for it to work), and 
+take of what we changed from the previous file:
 
-### HTML documents redux
+- Output changed from `html` to `docx`;
+- No more `{DT}`, but `{pander}` instead to generated `.docx` tables
 
-### Interactive web applications
+Here is the file:
+
+````{verbatim}
+---
+title: "Templating with Quarto"
+author: "Bruno Rodrigues"
+date: today
+format: docx
+---
+
+
+# Set up
+The goal is to have a frequency table for each question in a survey. But we
+do not want to have to do it by hand, so we define a function to create a 
+table, and then, using the templating capabilities of Quarto, write some
+code to generate valid qmarkdown code. In the example below our survey only
+has 4 questions, but the solution described trivially scales to an infinity
+of questions. This is not the case if you’re solving this problem by hand.
+
+Start by loading the data and defining some needed variables:
+
+```{r}
+#| warning: false
+library(lubridate)
+library(dplyr)
+library(purrr)
+library(pander)
+library(rlang)
+survey_data <- read.csv(
+"https://gist.githubusercontent.com/b-rodrigues/0c2249dec5a9c9477e0d1ad9964a1340/raw/873bcc7532b8bad613235f029884df1d0b947c90/survey_example.csv"
+)
+
+
+```
+
+Let’s take a look at the data:
+
+```{r}
+pander(head(survey_data))
+```
+
+The column names are actually questions, so we save those in a variable:
+
+```{r}
+questions <- colnames(survey_data)
+
+questions
+```
+
+Now we define question codes:
+
+```{r}
+codes <- paste0("var_", seq(1, 4))
+
+codes
+```
+
+We create a lookup table that links questions to their codes:
+
+```{r}
+lookup <- bind_cols("codes" = codes, "questions" = questions)
+
+pander(lookup)
+```
+
+Finally, we replace the question names in the dataset by the code:
+
+```{r}
+colnames(survey_data) <- codes
+
+pander(survey_data)
+```
+
+Now, we define a function that creates a frequency table. This function has
+two arguments: `dataset` and `var`. It uses the `dplyr::count()` function to
+count each instance of the levels of `var` in `dataset`. Then it uses the 
+`knitr::kable()` function. This functions takes a data frame as an argument
+and returns a table formatted in markdown code:
+
+```{r}
+create_table <- function(dataset, var){
+  dataset %>%
+    count(!!var) %>%
+    knitr::kable()
+}
+```
+
+The next function is the one that does the magic: it takes only one argument
+as an input, and generates valid markdown code using the `knitr::knit_expand()`
+function. Any variable between `{{}}` gets replaced by its value (so 
+`{{question}}` gets replaced by the question that gets fetched from the 
+lookup table defined above). Using this function, we can now loop over 
+question codes, and what we get in return is valid markdown code that defines
+a section with the question as the title, and our table.
+
+```{r}
+return_section <- function(var){
+  a <- knitr::knit_expand(text = c("## {{question}}",   create_table(survey_data, var)),
+                          question = lookup$questions[grepl(quo_name(var), lookup$codes)])
+  cat(a, sep = "\n")
+}
+```
+
+Our codes are strings, so to be able to use them inside of `dplyr::count()`
+we need to define them as bare string, or symbols. This can be done using the
+`rlang::sym()` function. If this is confusing, try running `count(mtcars, "am")` 
+and you will see that it will not return what you want (compare to `count(mtcars, am)`). 
+This is also why we needed `rlang::quo_name()` in the function above, to convert
+the symbol back to a string, which is what `grepl()` requires:
+
+```{r}
+sym_codes <- map(codes, sym)
+```
+
+Finally, we can create the sections. The line below uses `purrr::walk()`, which
+is equivalent to `purrr::map()`, the difference being that we use `purrr::walk()`
+when we are interested in the side effects of a function:
+
+```{r, results="asis"}
+walk(sym_codes, return_section)
+```
+````
+
+Unlike with HTML outputs, it is also not possible to enable code folding, but you could hide the code completely using the "#| echo = false" 
+chunk option. If you wan to hide all the code without having to specify "#| echo = false" on each chunk you can also add the `execute` option
+to the document header:
+
+```
+---
+title: "Templating with Quarto"
+author: "Bruno Rodrigues"
+date: today
+format: docx
+execute:
+  echo: false
+---
+```
+
+### Presentations
+
+## Interactive web applications
 
 ## `{targets}` and Quarto
