@@ -715,7 +715,7 @@ Unlike with HTML outputs, it is also not possible to enable code folding, but yo
 chunk option. If you wan to hide all the code without having to specify "#| echo = false" on each chunk you can also add the `execute` option
 to the document header:
 
-```
+````{verbatim}
 ---
 title: "Templating with Quarto"
 author: "Bruno Rodrigues"
@@ -724,12 +724,12 @@ format: docx
 execute:
   echo: false
 ---
-```
+````
 
 You can use a document as a template for Word documents generated with Quarto. For this, you must create a new Word file, and update the
 styles. This document, with the updated styles, can then be referenced in the header to act as a template:
 
-```
+````{verbatim}
 ---
 title: "Using a custom Word style"
 author: "Bruno Rodrigues"
@@ -747,7 +747,7 @@ execute:
 
 This is normal text that is unreadable.
 
-```
+````
 
 Just put `fancy_template.docx` in the same folder as your source qmd file. You can download the template I’ve used from 
 [here](https://github.com/b-rodrigues/rap4mads/blob/master/img/fancy_template.docx?raw=true) to test things out.
@@ -756,6 +756,75 @@ For more details, visit this [page](https://quarto.org/docs/output-formats/ms-wo
 
 ### Presentations
 
-## Interactive web applications
+It is also possible to create presentations using Quarto. There are output formats as well: HTML, PDF and Powerpoint. I will
+not discuss this here, because it is quite easy to get started, simply [follow along](https://quarto.org/docs/presentations/).
 
-## `{targets}` and Quarto
+### PDF
+
+I do need to discuss the PDF output a little bit. In order to generate PDF files, Quarto uses the `pdflatex` compiler (or rather
+pandoc, called by Quarto, uses `pdflatex`). `pdflatex` compiles `.tex` source files to PDF, so what Quarto does (by leveraging pandoc)
+is first converting a `.qmd` file to a `.tex` file, and then call `pdflatex` to compile it. `.tex` files are the file extension of the
+Latex typesetting language, extensively used in science. It makes it easy to write complex mathematical formulas, like this one:
+
+\begin{align*}
+S(\omega) 
+&= \frac{\alpha g^2}{\omega^5} e^{[ -0.74\bigl\{\frac{\omega U_\omega 19.5}{g}\bigr\}^{\!-4}\,]} \\
+&= \frac{\alpha g^2}{\omega^5} \exp\Bigl[ -0.74\Bigl\{\frac{\omega U_\omega 19.5}{g}\Bigr\}^{\!-4}\,\Bigr] 
+\end{align*}
+
+Latex is a bit unwieldly, so using Markdown to write scientific documents is becoming more and more popular. However, Latex still 
+has an edge when it comes to tables. But thankfully, it is possible to simply embed the Latex code that produces these tables in Markdown,
+and there are packages that export regression table directly to PDF. In any case, in order to compile to PDF, you need to install 
+Texlive. Installing Texlive is frankly a mess, but thankfully there is a very simple alternative called TinyTex. TinyTex is both
+available as an R package or as a standalone installation, and was put together by the author of RMarkdown (in a sense, Quarto is
+a spiritual successor to RMarkdown). This package installs a self-contained Texlive installation locally, which can then be used 
+to compile PDF documents (from, or outside of R/RStudio). I highly recommend you use Tinytex. Instructions can be found
+[here](https://yihui.org/tinytex/). Once you’ve installed TinyTex, you can try to compile the following example document 
+(the first time you run this, it might take some time, as the required packages get installed):
+
+````{verbatim}
+---
+title: "PDF example with table"
+format: pdf
+---
+
+## A PDF document using Quarto
+
+In the code below, we fit several models and then use the `{modelsummary}`
+package to print a nicely formatted table with minimal effort:
+
+```{r}
+library(modelsummary)
+
+url <- 'https://vincentarelbundock.github.io/Rdatasets/csv/HistData/Guerry.csv'
+dat <- read.csv(url)
+
+models <- list(
+  "OLS 1"     = lm(Donations ~ Literacy + Clergy, data = dat),
+  "Poisson 1" = glm(Donations ~ Literacy + Commerce, family = poisson, data = dat),
+  "OLS 2"     = lm(Crime_pers ~ Literacy + Clergy, data = dat),
+  "Poisson 2" = glm(Crime_pers ~ Literacy + Commerce, family = poisson, data = dat),
+  "OLS 3"     = lm(Crime_prop ~ Literacy + Clergy, data = dat)
+)
+
+modelsummary(models)
+```
+And an equation, for good measure:
+
+\begin{align*}
+S(\omega) 
+&= \frac{\alpha g^2}{\omega^5} e^{[ -0.74\bigl\{\frac{\omega U_\omega 19.5}{g}\bigr\}^{\!-4}\,]} \\
+&= \frac{\alpha g^2}{\omega^5} \exp\Bigl[ -0.74\Bigl\{\frac{\omega U_\omega 19.5}{g}\Bigr\}^{\!-4}\,\Bigr] 
+\end{align*}
+````
+
+[This is what the output looks like (scroll down to page 2).](https://github.com/b-rodrigues/rap4mads/blob/master/img/ex12.pdf?raw=TRUE).
+
+It is possible to author, many, many, different types of documents using Quarto. For more formats, consult this 
+[page](https://quarto.org/docs/gallery/). Quarto is still very new -- it was officially anounced in July of 2022 by Posit-- so
+much more content will arrive. There are still many features of Quarto that we have not explored, so take your time to read
+its documentation in detail.
+
+## Interactive web applications with {shiny}
+
+## How to build data products using `{targets}`
