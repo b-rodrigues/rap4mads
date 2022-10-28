@@ -827,4 +827,161 @@ its documentation in detail.
 
 ## Interactive web applications with {shiny}
 
+`{shiny}` is a package developed by Posit to build interactive web applications. These apps can be quite "simple" 
+(for example, an app that shows a graph but in which the user can choose the variable to plot), but can be arbitrarily
+complex. Some people even go as far as make [games with {shiny}](https://shiny.rstudio.com/gallery/hex-memory.html).
+[A version for Python](https://shiny.rstudio.com/py/) is also in alpha, and you can already experiment with it.
+
+In this section, I will give a very, very short introduction to `{shiny}`. This is because `{shiny}` is so feature-rich,
+that I could spend 20 hours teaching you and even then we would not have seen everything. That being said, we can with
+only some cursory knowledge build some useful apps. These apps can run locally on your machine, but they're really only
+useful if deploy them on a server, so that users can then use these web apps on their browsers.
+
+### The basic structure of a Shiny app
+
+Shiny apps are always made of at least 2 parts: a *server* and a *ui*. In general, each of these parts are in separate
+scripts called `server.R` and `ui.R`. It is possible to have another script, called `global.R`, where you can define
+variables that you want to be available for both the server and the ui, and to every user of your app.
+
+Let's start by building a very basic app. This app will allow users to visualize unemployment data for Luxembourg. 
+For now, let's say that we want users only to be able to select communes, but not variables. The example code
+below is based on this [official example](https://shiny.rstudio.com/gallery/telephones-by-region.html) 
+(this is how I recommend you learn by the way. Take a look at the different example there are and adapt them 
+to suit your needs! You can find the examples [here](https://shiny.rstudio.com/gallery/#demos)). 
+Create a folder called something like `my_app` and then create three scripts in it:
+
+- `global.R`
+- `server.R`
+- `ui.R`
+
+Let's start with `global.R`:
+
+```{r, eval = F}
+library(myPackage)
+library(dplyr)
+library(ggplot2)
+
+data("unemp")
+```
+
+In the `global.R` file, we load the required packages and data. This is now available everywhere. Let's 
+continue with the `server.R` script:
+
+```{r, eval = F}
+server <- function(session, input, output) {
+
+  filtered_data <- reactive(
+    unemp %>%
+    filter(place_name %in% input$place_name_selected)
+  )
+
+  output$unemp_plot <- renderPlot({
+
+    ggplot(data = filtered_data()) +
+      theme_minimal() +
+      geom_line(aes(year, unemployment_rate_in_percent, color = place_name)) +
+      labs(title = paste("Unemployment in", paste(input$place_name_selected, collapse = ", ")))
+
+
+  })
+}
+```
+
+Several things need to be commented here: first, the script contains a single function, called
+`server()`. This function take three arguments, `session`, `input` and `output`. I won't go into
+details here, but you should know that you will never call the `server()` function yourself, and
+that these arguments are required so the function can... function. I will leave a reference at the
+end of this section with more details. The next important thing is that we defined an object called
+`filtered_data`. This is a reactive object. What this means is that this object should get
+recomputed every time the user interacts with it. But how does the user interact with it? By
+choosing the `place_name` he or she wants to see! The predicate inside `filter()` is `place_name
+%in% input$place_name_selected`. Where does that `input$place_name_selected` come from? This comes
+from the `ui` (that we have not written yet). But the idea is that the user will be able to chose
+place names from a list, and this list will be called `place_name_selected` and will contain the
+place names that the user wants to see.
+
+Finally, we define a new object called `output$unemp_plot`. The goal of the `server()` function is
+to compute things that will be part of the `output` list. This list, and the objects it contains, 
+get then rendered in the `ui`. `unemp_plot` is a ggplot graph that uses the reactive data set
+we defined first. Notice the `()` after `filtered_data` inside the ggplot call. These are required; 
+this is how we say that the reactive object must be recomputed. If the plot does not get rendered,
+the reactive data set does not get computed, since it never gets called.
+
+Ok so now to the ui. Let's take inspiration from the same example again:
+
+```{r, eval = F}
+ui <- function(request){
+  fluidPage(
+
+    titlePanel("Unemployment in Luxembourg"),
+
+    sidebarLayout(
+
+      sidebarPanel(
+        selectizeInput("place_name_selected", "Select place:",
+                    choices=unique(unemp$place_name),
+                    multiple = TRUE,
+                    selected = c("Rumelange", "Dudelange"),
+                    options = list(
+                      plugins = list("remove_button"),
+                      create = TRUE,
+                      persist = FALSE # keep created choices in dropdown
+                    )
+                    ),
+        hr(),
+        helpText("Original data from STATEC")
+      ),
+
+      mainPanel(
+        plotOutput("unemp_plot")
+      )
+    )
+  )
+
+}
+```
+
+I've added some useful things to the ui. First of all, I made it a function of an argument,
+`request`. This is useful for bookmarking the state of the variable. We'll add a bookmark button
+later. The ui is divided into two parts, a sidebar panel, and a main panel. The sidebar panel is
+where you will typically add dropdown menus, checkboxes, radio buttons, etc, for the users to make
+various selections. In the main panel, you will show the result of their selections. In the sidebar
+panel I add a `selectizeInput()` to create a dynamic dropdown list using the `selectize` JS
+library, included with `{shiny}`. The available choices are all the unique place names contained in
+our data, I allow users to select multiple place names, by default two communes are selected and
+using the `options` argument I need little "remove" buttons in the selected commune names. Finally,
+in the main panel I use the `plotOutput()` function to render the plot. Notice that I use the name
+of the plot defined in the server, "unemp_plot". Finally, to run this, add a new script, called 
+`app.R` and add the following line in it:
+
+```{r, eval = F}
+shiny::runApp(".")
+```
+
+You can now run this script in RStudio, or from any R console, and this should open a web browser
+with your app.
+
+<div style="text-align:center;">
+<video width="640" height="480" controls>
+  <source src="img/shiny_1.mp4" type="video/mp4">
+</video>
+</div>
+
+Believe it or not, but this app contains almost every ingredient you need to know to build shiny apps.
+But of course, there are many, many other widgets that you can use to give your users even more
+ways to interact with applications. I will give you another example, and then we will need to move on.
+
+### Slightly more advanced shiny
+
+- users can choose which variable they want to see
+- users can choose position of legend
+- switching from line plot to polygon plot
+- action button to plot
+- bookmark button
+- replace ggplot with g2r
+
+### References
+
+- [The server function](https://mastering-shiny.org/basic-reactivity.html?q=input#the-server-function)
+
 ## How to build data products using `{targets}`

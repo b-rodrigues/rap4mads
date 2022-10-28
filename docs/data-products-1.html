@@ -23,7 +23,7 @@
 <meta name="author" content="Bruno Rodrigues" />
 
 
-<meta name="date" content="2022-10-27" />
+<meta name="date" content="2022-10-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -219,18 +219,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.2" data-path="data-products-1.html"><a href="data-products-1.html#a-first-taste-of-quarto"><i class="fa fa-check"></i><b>8.2</b> A first taste of Quarto</a>
 <ul>
 <li class="chapter" data-level="8.2.1" data-path="data-products-1.html"><a href="data-products-1.html#python-and-julia-code-chunks"><i class="fa fa-check"></i><b>8.2.1</b> Python and Julia code chunks</a></li>
-<li class="chapter" data-level="8.2.2" data-path="data-products-1.html"><a href="data-products-1.html#other-output-formats"><i class="fa fa-check"></i><b>8.2.2</b> Other output formats</a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="data-products-1.html"><a href="data-products-1.html#dynamic-products"><i class="fa fa-check"></i><b>8.3</b> Dynamic products</a>
+<li class="chapter" data-level="8.3" data-path="data-products-1.html"><a href="data-products-1.html#other-output-formats"><i class="fa fa-check"></i><b>8.3</b> Other output formats</a>
 <ul>
-<li class="chapter" data-level="8.3.1" data-path="data-products-1.html"><a href="data-products-1.html#html-documents-redux"><i class="fa fa-check"></i><b>8.3.1</b> HTML documents redux</a></li>
-<li class="chapter" data-level="8.3.2" data-path="data-products-1.html"><a href="data-products-1.html#interactive-web-applications"><i class="fa fa-check"></i><b>8.3.2</b> Interactive web applications</a></li>
+<li class="chapter" data-level="8.3.1" data-path="data-products-1.html"><a href="data-products-1.html#word"><i class="fa fa-check"></i><b>8.3.1</b> Word</a></li>
+<li class="chapter" data-level="8.3.2" data-path="data-products-1.html"><a href="data-products-1.html#presentations"><i class="fa fa-check"></i><b>8.3.2</b> Presentations</a></li>
+<li class="chapter" data-level="8.3.3" data-path="data-products-1.html"><a href="data-products-1.html#pdf"><i class="fa fa-check"></i><b>8.3.3</b> PDF</a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="data-products-1.html"><a href="data-products-1.html#targets-and-quarto"><i class="fa fa-check"></i><b>8.4</b> <code>{targets}</code> and Quarto</a></li>
+<li class="chapter" data-level="8.4" data-path="data-products-1.html"><a href="data-products-1.html#interactive-web-applications-with-shiny"><i class="fa fa-check"></i><b>8.4</b> Interactive web applications with {shiny}</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="data-products-1.html"><a href="data-products-1.html#the-basic-structure-of-a-shiny-app"><i class="fa fa-check"></i><b>8.4.1</b> The basic structure of a Shiny app</a></li>
+<li class="chapter" data-level="8.4.2" data-path="data-products-1.html"><a href="data-products-1.html#slightly-more-advanced-shiny"><i class="fa fa-check"></i><b>8.4.2</b> Slightly more advanced shiny</a></li>
+<li class="chapter" data-level="8.4.3" data-path="data-products-1.html"><a href="data-products-1.html#references"><i class="fa fa-check"></i><b>8.4.3</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="data-products-1.html"><a href="data-products-1.html#how-to-build-data-products-using-targets"><i class="fa fa-check"></i><b>8.5</b> How to build data products using <code>{targets}</code></a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="self-contained-raps-with-docker.html"><a href="self-contained-raps-with-docker.html"><i class="fa fa-check"></i><b>9</b> Self-contained RAPs with Docker</a></li>
 <li class="chapter" data-level="10" data-path="cicd-with-github-actions.html"><a href="cicd-with-github-actions.html"><i class="fa fa-check"></i><b>10</b> CI/CD with Github Actions</a></li>
 <li class="chapter" data-level="11" data-path="what-else-should-you-learn.html"><a href="what-else-should-you-learn.html"><i class="fa fa-check"></i><b>11</b> What else should you learn?</a></li>
+<li class="chapter" data-level="12" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>12</b> Conclusion</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="conclusion.html"><a href="conclusion.html#why-bother"><i class="fa fa-check"></i><b>12.1</b> Why bother</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/b-rodrigues/rap4mads" target="blank">Published with bookdown</a></li>
 </ul>
@@ -528,25 +538,593 @@ Put the following lines inside a file called <code>example2.qmd</code>
 <span id="cb9-30"><a href="data-products-1.html#cb9-30" aria-hidden="true" tabindex="-1"></a>unemp_pd.head</span>
 <span id="cb9-31"><a href="data-products-1.html#cb9-31" aria-hidden="true" tabindex="-1"></a>```</span></code></pre></div>
 <p><a href="https://endearing-gnome-80e9df.netlify.app/">This is what the output looks like.</a></p>
+<p>The HTML output is quite flexible, as it is possible to also integrate JS libraries. The following
+example uses the <code>{g2r}</code> library (an R wrapper around the g2 javascript library) for creating
+visualisations. To run the following code, make sure that you have the <code>{g2r}</code> package installed
+(can only be install from github):</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="data-products-1.html#cb10-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;devOpifex/g2r&quot;</span>)</span></code></pre></div>
+<p>The source file looks like this:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb11-1"><a href="data-products-1.html#cb11-1" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb11-2"><a href="data-products-1.html#cb11-2" aria-hidden="true" tabindex="-1"></a>title: &quot;Quarto and JS libraries&quot;</span>
+<span id="cb11-3"><a href="data-products-1.html#cb11-3" aria-hidden="true" tabindex="-1"></a>author: &quot;My name&quot;</span>
+<span id="cb11-4"><a href="data-products-1.html#cb11-4" aria-hidden="true" tabindex="-1"></a>date: today</span>
+<span id="cb11-5"><a href="data-products-1.html#cb11-5" aria-hidden="true" tabindex="-1"></a>format: </span>
+<span id="cb11-6"><a href="data-products-1.html#cb11-6" aria-hidden="true" tabindex="-1"></a>  html:</span>
+<span id="cb11-7"><a href="data-products-1.html#cb11-7" aria-hidden="true" tabindex="-1"></a>    code-fold: true</span>
+<span id="cb11-8"><a href="data-products-1.html#cb11-8" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb11-9"><a href="data-products-1.html#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="data-products-1.html#cb11-10" aria-hidden="true" tabindex="-1"></a>## This is a simple quarto document showing basic plot interactivity using {g2r}</span>
+<span id="cb11-11"><a href="data-products-1.html#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="data-products-1.html#cb11-12" aria-hidden="true" tabindex="-1"></a>```{r}</span>
+<span id="cb11-13"><a href="data-products-1.html#cb11-13" aria-hidden="true" tabindex="-1"></a>#| warning: false</span>
+<span id="cb11-14"><a href="data-products-1.html#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-15"><a href="data-products-1.html#cb11-15" aria-hidden="true" tabindex="-1"></a>library(dplyr)</span>
+<span id="cb11-16"><a href="data-products-1.html#cb11-16" aria-hidden="true" tabindex="-1"></a>library(tidyr)</span>
+<span id="cb11-17"><a href="data-products-1.html#cb11-17" aria-hidden="true" tabindex="-1"></a>library(purrr)</span>
+<span id="cb11-18"><a href="data-products-1.html#cb11-18" aria-hidden="true" tabindex="-1"></a>library(g2r)</span>
+<span id="cb11-19"><a href="data-products-1.html#cb11-19" aria-hidden="true" tabindex="-1"></a>library(myPackage)</span>
+<span id="cb11-20"><a href="data-products-1.html#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-21"><a href="data-products-1.html#cb11-21" aria-hidden="true" tabindex="-1"></a>data(&quot;unemp&quot;)</span>
+<span id="cb11-22"><a href="data-products-1.html#cb11-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-23"><a href="data-products-1.html#cb11-23" aria-hidden="true" tabindex="-1"></a>unemp &lt;- unemp %&gt;%</span>
+<span id="cb11-24"><a href="data-products-1.html#cb11-24" aria-hidden="true" tabindex="-1"></a>  janitor::clean_names() %&gt;%</span>
+<span id="cb11-25"><a href="data-products-1.html#cb11-25" aria-hidden="true" tabindex="-1"></a>  filter(level == &quot;Commune&quot;)</span>
+<span id="cb11-26"><a href="data-products-1.html#cb11-26" aria-hidden="true" tabindex="-1"></a>```</span>
+<span id="cb11-27"><a href="data-products-1.html#cb11-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-28"><a href="data-products-1.html#cb11-28" aria-hidden="true" tabindex="-1"></a>There are `r length(unique(unemp$place_name))` communes in the dataset. Below we plot the unemployment rate for 3 communes:</span>
+<span id="cb11-29"><a href="data-products-1.html#cb11-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-30"><a href="data-products-1.html#cb11-30" aria-hidden="true" tabindex="-1"></a>```{r}</span>
+<span id="cb11-31"><a href="data-products-1.html#cb11-31" aria-hidden="true" tabindex="-1"></a>unemp %&gt;%</span>
+<span id="cb11-32"><a href="data-products-1.html#cb11-32" aria-hidden="true" tabindex="-1"></a>  filter(place_name %in% c(&quot;Luxembourg&quot;, &quot;Esch-sur-Alzette&quot;, &quot;Wiltz&quot;)) %&gt;%</span>
+<span id="cb11-33"><a href="data-products-1.html#cb11-33" aria-hidden="true" tabindex="-1"></a>  g2(data = .) %&gt;% </span>
+<span id="cb11-34"><a href="data-products-1.html#cb11-34" aria-hidden="true" tabindex="-1"></a>  fig_line(asp(year, unemployment_rate_in_percent, color = place_name)) </span>
+<span id="cb11-35"><a href="data-products-1.html#cb11-35" aria-hidden="true" tabindex="-1"></a>```</span></code></pre></div>
+<p><a href="https://timely-marzipan-6380f0.netlify.app/">This is what the output looks like.</a></p>
+<p>It is possible to use other JS libraries, like here <code>DataTables</code>, wrapped inside the <code>{DT}</code> package:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb12-1"><a href="data-products-1.html#cb12-1" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb12-2"><a href="data-products-1.html#cb12-2" aria-hidden="true" tabindex="-1"></a>title: &quot;Quarto and JS libraries&quot;</span>
+<span id="cb12-3"><a href="data-products-1.html#cb12-3" aria-hidden="true" tabindex="-1"></a>author: &quot;My name&quot;</span>
+<span id="cb12-4"><a href="data-products-1.html#cb12-4" aria-hidden="true" tabindex="-1"></a>date: today</span>
+<span id="cb12-5"><a href="data-products-1.html#cb12-5" aria-hidden="true" tabindex="-1"></a>format: </span>
+<span id="cb12-6"><a href="data-products-1.html#cb12-6" aria-hidden="true" tabindex="-1"></a>  html:</span>
+<span id="cb12-7"><a href="data-products-1.html#cb12-7" aria-hidden="true" tabindex="-1"></a>    toc: true</span>
+<span id="cb12-8"><a href="data-products-1.html#cb12-8" aria-hidden="true" tabindex="-1"></a>    code-fold: true</span>
+<span id="cb12-9"><a href="data-products-1.html#cb12-9" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb12-10"><a href="data-products-1.html#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="data-products-1.html#cb12-11" aria-hidden="true" tabindex="-1"></a>## Basic plot interactivity using {g2r}</span>
+<span id="cb12-12"><a href="data-products-1.html#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="data-products-1.html#cb12-13" aria-hidden="true" tabindex="-1"></a>```{r}</span>
+<span id="cb12-14"><a href="data-products-1.html#cb12-14" aria-hidden="true" tabindex="-1"></a>#| warning: false</span>
+<span id="cb12-15"><a href="data-products-1.html#cb12-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-16"><a href="data-products-1.html#cb12-16" aria-hidden="true" tabindex="-1"></a>library(dplyr)</span>
+<span id="cb12-17"><a href="data-products-1.html#cb12-17" aria-hidden="true" tabindex="-1"></a>library(tidyr)</span>
+<span id="cb12-18"><a href="data-products-1.html#cb12-18" aria-hidden="true" tabindex="-1"></a>library(purrr)</span>
+<span id="cb12-19"><a href="data-products-1.html#cb12-19" aria-hidden="true" tabindex="-1"></a>library(g2r)</span>
+<span id="cb12-20"><a href="data-products-1.html#cb12-20" aria-hidden="true" tabindex="-1"></a>library(DT)</span>
+<span id="cb12-21"><a href="data-products-1.html#cb12-21" aria-hidden="true" tabindex="-1"></a>library(myPackage)</span>
+<span id="cb12-22"><a href="data-products-1.html#cb12-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-23"><a href="data-products-1.html#cb12-23" aria-hidden="true" tabindex="-1"></a>data(&quot;unemp&quot;)</span>
+<span id="cb12-24"><a href="data-products-1.html#cb12-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-25"><a href="data-products-1.html#cb12-25" aria-hidden="true" tabindex="-1"></a>unemp &lt;- unemp %&gt;%</span>
+<span id="cb12-26"><a href="data-products-1.html#cb12-26" aria-hidden="true" tabindex="-1"></a>  mutate(year = as.character(year)) %&gt;% </span>
+<span id="cb12-27"><a href="data-products-1.html#cb12-27" aria-hidden="true" tabindex="-1"></a>  janitor::clean_names() %&gt;%</span>
+<span id="cb12-28"><a href="data-products-1.html#cb12-28" aria-hidden="true" tabindex="-1"></a>  filter(level == &quot;Commune&quot;)</span>
+<span id="cb12-29"><a href="data-products-1.html#cb12-29" aria-hidden="true" tabindex="-1"></a>```</span>
+<span id="cb12-30"><a href="data-products-1.html#cb12-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-31"><a href="data-products-1.html#cb12-31" aria-hidden="true" tabindex="-1"></a>There are `r length(unique(unemp$place_name))` communes in the dataset. Below we plot the unemployment rate for 3 communes:</span>
+<span id="cb12-32"><a href="data-products-1.html#cb12-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-33"><a href="data-products-1.html#cb12-33" aria-hidden="true" tabindex="-1"></a>```{r}</span>
+<span id="cb12-34"><a href="data-products-1.html#cb12-34" aria-hidden="true" tabindex="-1"></a>unemp %&gt;%</span>
+<span id="cb12-35"><a href="data-products-1.html#cb12-35" aria-hidden="true" tabindex="-1"></a>  filter(place_name %in% c(&quot;Luxembourg&quot;, &quot;Esch-sur-Alzette&quot;, &quot;Wiltz&quot;)) %&gt;%</span>
+<span id="cb12-36"><a href="data-products-1.html#cb12-36" aria-hidden="true" tabindex="-1"></a>  g2(data = .) %&gt;% </span>
+<span id="cb12-37"><a href="data-products-1.html#cb12-37" aria-hidden="true" tabindex="-1"></a>  fig_line(asp(year, unemployment_rate_in_percent, color = place_name)) </span>
+<span id="cb12-38"><a href="data-products-1.html#cb12-38" aria-hidden="true" tabindex="-1"></a>```</span>
+<span id="cb12-39"><a href="data-products-1.html#cb12-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-40"><a href="data-products-1.html#cb12-40" aria-hidden="true" tabindex="-1"></a>## Interactive tables with {DT}</span>
+<span id="cb12-41"><a href="data-products-1.html#cb12-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-42"><a href="data-products-1.html#cb12-42" aria-hidden="true" tabindex="-1"></a>```{r}</span>
+<span id="cb12-43"><a href="data-products-1.html#cb12-43" aria-hidden="true" tabindex="-1"></a>unemp %&gt;%</span>
+<span id="cb12-44"><a href="data-products-1.html#cb12-44" aria-hidden="true" tabindex="-1"></a>  DT::datatable(filter = &quot;top&quot;) </span>
+<span id="cb12-45"><a href="data-products-1.html#cb12-45" aria-hidden="true" tabindex="-1"></a>```</span>
+<span id="cb12-46"><a href="data-products-1.html#cb12-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-47"><a href="data-products-1.html#cb12-47" aria-hidden="true" tabindex="-1"></a>## Others</span>
+<span id="cb12-48"><a href="data-products-1.html#cb12-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-49"><a href="data-products-1.html#cb12-49" aria-hidden="true" tabindex="-1"></a>You can find more widgets over [here](http://gallery.htmlwidgets.org/).</span></code></pre></div>
+<p><a href="https://playful-cucurucho-5cdcbb.netlify.app/">This is what the output looks like.</a></p>
+<p>The final example illustrates templating. It is possible to write code that generates qmd code:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb13-1"><a href="data-products-1.html#cb13-1" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb13-2"><a href="data-products-1.html#cb13-2" aria-hidden="true" tabindex="-1"></a>title: &quot;Templating with Quarto&quot;</span>
+<span id="cb13-3"><a href="data-products-1.html#cb13-3" aria-hidden="true" tabindex="-1"></a>author: &quot;Bruno Rodrigues&quot;</span>
+<span id="cb13-4"><a href="data-products-1.html#cb13-4" aria-hidden="true" tabindex="-1"></a>date: today</span>
+<span id="cb13-5"><a href="data-products-1.html#cb13-5" aria-hidden="true" tabindex="-1"></a>format: </span>
+<span id="cb13-6"><a href="data-products-1.html#cb13-6" aria-hidden="true" tabindex="-1"></a>  html:</span>
+<span id="cb13-7"><a href="data-products-1.html#cb13-7" aria-hidden="true" tabindex="-1"></a>    toc: true</span>
+<span id="cb13-8"><a href="data-products-1.html#cb13-8" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb13-9"><a href="data-products-1.html#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="data-products-1.html#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="data-products-1.html#cb13-11" aria-hidden="true" tabindex="-1"></a># Set up</span>
+<span id="cb13-12"><a href="data-products-1.html#cb13-12" aria-hidden="true" tabindex="-1"></a>The goal is to have a frequency table for each question in a survey. But we</span>
+<span id="cb13-13"><a href="data-products-1.html#cb13-13" aria-hidden="true" tabindex="-1"></a>do not want to have to do it by hand, so we define a function to create a </span>
+<span id="cb13-14"><a href="data-products-1.html#cb13-14" aria-hidden="true" tabindex="-1"></a>table, and then, using the templating capabilities of Quarto, write some</span>
+<span id="cb13-15"><a href="data-products-1.html#cb13-15" aria-hidden="true" tabindex="-1"></a>code to generate valid qmarkdown code. In the example below our survey only</span>
+<span id="cb13-16"><a href="data-products-1.html#cb13-16" aria-hidden="true" tabindex="-1"></a>has 4 questions, but the solution described trivially scales to an infinity</span>
+<span id="cb13-17"><a href="data-products-1.html#cb13-17" aria-hidden="true" tabindex="-1"></a>of questions. This is not the case if you’re solving this problem by hand.</span>
+<span id="cb13-18"><a href="data-products-1.html#cb13-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-19"><a href="data-products-1.html#cb13-19" aria-hidden="true" tabindex="-1"></a>Start by loading the data and defining some needed variables:</span>
+<span id="cb13-20"><a href="data-products-1.html#cb13-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-21"><a href="data-products-1.html#cb13-21" aria-hidden="true" tabindex="-1"></a>```{r}</span>
+<span id="cb13-22"><a href="data-products-1.html#cb13-22" aria-hidden="true" tabindex="-1"></a>#| warning: false</span>
+<span id="cb13-23"><a href="data-products-1.html#cb13-23" aria-hidden="true" tabindex="-1"></a>library(lubridate)</span>
+<span id="cb13-24"><a href="data-products-1.html#cb13-24" aria-hidden="true" tabindex="-1"></a>library(dplyr)</span>
+<span id="cb13-25"><a href="data-products-1.html#cb13-25" aria-hidden="true" tabindex="-1"></a>library(purrr)</span>
+<span id="cb13-26"><a href="data-products-1.html#cb13-26" aria-hidden="true" tabindex="-1"></a>library(rlang)</span>
+<span id="cb13-27"><a href="data-products-1.html#cb13-27" aria-hidden="true" tabindex="-1"></a>library(DT)</span>
+<span id="cb13-28"><a href="data-products-1.html#cb13-28" aria-hidden="true" tabindex="-1"></a>survey_data &lt;- read.csv(</span>
+<span id="cb13-29"><a href="data-products-1.html#cb13-29" aria-hidden="true" tabindex="-1"></a>&quot;https://gist.githubusercontent.com/b-rodrigues/0c2249dec5a9c9477e0d1ad9964a1340/raw/873bcc7532b8bad613235f029884df1d0b947c90/survey_example.csv&quot;</span>
+<span id="cb13-30"><a href="data-products-1.html#cb13-30" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-31"><a href="data-products-1.html#cb13-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-32"><a href="data-products-1.html#cb13-32" aria-hidden="true" tabindex="-1"></a>```</span>
+<span id="cb13-33"><a href="data-products-1.html#cb13-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-34"><a href="data-products-1.html#cb13-34" aria-hidden="true" tabindex="-1"></a>Let’s take a look at the data:</span>
+<span id="cb13-35"><a href="data-products-1.html#cb13-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-36"><a href="data-products-1.html#cb13-36" aria-hidden="true" tabindex="-1"></a>```{r}</span>
+<span id="cb13-37"><a href="data-products-1.html#cb13-37" aria-hidden="true" tabindex="-1"></a>datatable(survey_data)</span>
+<span id="cb13-38"><a href="data-products-1.html#cb13-38" aria-hidden="true" tabindex="-1"></a>```</span>
+<span id="cb13-39"><a href="data-products-1.html#cb13-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-40"><a href="data-products-1.html#cb13-40" aria-hidden="true" tabindex="-1"></a>The column names are actually questions, so we save those in a variable:</span>
+<span id="cb13-41"><a href="data-products-1.html#cb13-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-42"><a href="data-products-1.html#cb13-42" aria-hidden="true" tabindex="-1"></a>```{r}</span>
+<span id="cb13-43"><a href="data-products-1.html#cb13-43" aria-hidden="true" tabindex="-1"></a>questions &lt;- colnames(survey_data)</span>
+<span id="cb13-44"><a href="data-products-1.html#cb13-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-45"><a href="data-products-1.html#cb13-45" aria-hidden="true" tabindex="-1"></a>questions</span>
+<span id="cb13-46"><a href="data-products-1.html#cb13-46" aria-hidden="true" tabindex="-1"></a>```</span>
+<span id="cb13-47"><a href="data-products-1.html#cb13-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-48"><a href="data-products-1.html#cb13-48" aria-hidden="true" tabindex="-1"></a>Now we define question codes:</span>
+<span id="cb13-49"><a href="data-products-1.html#cb13-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-50"><a href="data-products-1.html#cb13-50" aria-hidden="true" tabindex="-1"></a>```{r}</span>
+<span id="cb13-51"><a href="data-products-1.html#cb13-51" aria-hidden="true" tabindex="-1"></a>codes &lt;- paste0(&quot;var_&quot;, seq(1, 4))</span>
+<span id="cb13-52"><a href="data-products-1.html#cb13-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-53"><a href="data-products-1.html#cb13-53" aria-hidden="true" tabindex="-1"></a>codes</span>
+<span id="cb13-54"><a href="data-products-1.html#cb13-54" aria-hidden="true" tabindex="-1"></a>```</span>
+<span id="cb13-55"><a href="data-products-1.html#cb13-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-56"><a href="data-products-1.html#cb13-56" aria-hidden="true" tabindex="-1"></a>We create a lookup table that links questions to their codes:</span>
+<span id="cb13-57"><a href="data-products-1.html#cb13-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-58"><a href="data-products-1.html#cb13-58" aria-hidden="true" tabindex="-1"></a>```{r}</span>
+<span id="cb13-59"><a href="data-products-1.html#cb13-59" aria-hidden="true" tabindex="-1"></a>lookup &lt;- bind_cols(&quot;codes&quot; = codes, &quot;questions&quot; = questions)</span>
+<span id="cb13-60"><a href="data-products-1.html#cb13-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-61"><a href="data-products-1.html#cb13-61" aria-hidden="true" tabindex="-1"></a>datatable(lookup)</span>
+<span id="cb13-62"><a href="data-products-1.html#cb13-62" aria-hidden="true" tabindex="-1"></a>```</span>
+<span id="cb13-63"><a href="data-products-1.html#cb13-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-64"><a href="data-products-1.html#cb13-64" aria-hidden="true" tabindex="-1"></a>Finally, we replace the question names in the dataset by the code:</span>
+<span id="cb13-65"><a href="data-products-1.html#cb13-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-66"><a href="data-products-1.html#cb13-66" aria-hidden="true" tabindex="-1"></a>```{r}</span>
+<span id="cb13-67"><a href="data-products-1.html#cb13-67" aria-hidden="true" tabindex="-1"></a>colnames(survey_data) &lt;- codes</span>
+<span id="cb13-68"><a href="data-products-1.html#cb13-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-69"><a href="data-products-1.html#cb13-69" aria-hidden="true" tabindex="-1"></a>datatable(survey_data)</span>
+<span id="cb13-70"><a href="data-products-1.html#cb13-70" aria-hidden="true" tabindex="-1"></a>```</span>
+<span id="cb13-71"><a href="data-products-1.html#cb13-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-72"><a href="data-products-1.html#cb13-72" aria-hidden="true" tabindex="-1"></a>Now, we define a function that creates a frequency table. This function has</span>
+<span id="cb13-73"><a href="data-products-1.html#cb13-73" aria-hidden="true" tabindex="-1"></a>two arguments: `dataset` and `var`. It uses the `dplyr::count()` function to</span>
+<span id="cb13-74"><a href="data-products-1.html#cb13-74" aria-hidden="true" tabindex="-1"></a>count each instance of the levels of `var` in `dataset`. Then it uses the </span>
+<span id="cb13-75"><a href="data-products-1.html#cb13-75" aria-hidden="true" tabindex="-1"></a>`knitr::kable()` function. This functions takes a data frame as an argument</span>
+<span id="cb13-76"><a href="data-products-1.html#cb13-76" aria-hidden="true" tabindex="-1"></a>and returns a table formatted in markdown code:</span>
+<span id="cb13-77"><a href="data-products-1.html#cb13-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-78"><a href="data-products-1.html#cb13-78" aria-hidden="true" tabindex="-1"></a>```{r}</span>
+<span id="cb13-79"><a href="data-products-1.html#cb13-79" aria-hidden="true" tabindex="-1"></a>create_table &lt;- function(dataset, var){</span>
+<span id="cb13-80"><a href="data-products-1.html#cb13-80" aria-hidden="true" tabindex="-1"></a>  dataset %&gt;%</span>
+<span id="cb13-81"><a href="data-products-1.html#cb13-81" aria-hidden="true" tabindex="-1"></a>    count(!!var) %&gt;%</span>
+<span id="cb13-82"><a href="data-products-1.html#cb13-82" aria-hidden="true" tabindex="-1"></a>    knitr::kable()</span>
+<span id="cb13-83"><a href="data-products-1.html#cb13-83" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-84"><a href="data-products-1.html#cb13-84" aria-hidden="true" tabindex="-1"></a>```</span>
+<span id="cb13-85"><a href="data-products-1.html#cb13-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-86"><a href="data-products-1.html#cb13-86" aria-hidden="true" tabindex="-1"></a>The next function is the one that does the magic: it takes only one argument</span>
+<span id="cb13-87"><a href="data-products-1.html#cb13-87" aria-hidden="true" tabindex="-1"></a>as an input, and generates valid markdown code using the `knitr::knit_expand()`</span>
+<span id="cb13-88"><a href="data-products-1.html#cb13-88" aria-hidden="true" tabindex="-1"></a>function. Any variable between `{{}}` gets replaced by its value (so </span>
+<span id="cb13-89"><a href="data-products-1.html#cb13-89" aria-hidden="true" tabindex="-1"></a>`{{question}}` gets replaced by the question that gets fetched from the </span>
+<span id="cb13-90"><a href="data-products-1.html#cb13-90" aria-hidden="true" tabindex="-1"></a>lookup table defined above). Using this function, we can now loop over </span>
+<span id="cb13-91"><a href="data-products-1.html#cb13-91" aria-hidden="true" tabindex="-1"></a>question codes, and what we get in return is valid markdown code that defines</span>
+<span id="cb13-92"><a href="data-products-1.html#cb13-92" aria-hidden="true" tabindex="-1"></a>a section with the question as the title, and our table.</span>
+<span id="cb13-93"><a href="data-products-1.html#cb13-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-94"><a href="data-products-1.html#cb13-94" aria-hidden="true" tabindex="-1"></a>```{r}</span>
+<span id="cb13-95"><a href="data-products-1.html#cb13-95" aria-hidden="true" tabindex="-1"></a>return_section &lt;- function(var){</span>
+<span id="cb13-96"><a href="data-products-1.html#cb13-96" aria-hidden="true" tabindex="-1"></a>  a &lt;- knitr::knit_expand(text = c(&quot;## {{question}}&quot;,   create_table(survey_data, var)),</span>
+<span id="cb13-97"><a href="data-products-1.html#cb13-97" aria-hidden="true" tabindex="-1"></a>                          question = lookup$questions[grepl(quo_name(var), lookup$codes)])</span>
+<span id="cb13-98"><a href="data-products-1.html#cb13-98" aria-hidden="true" tabindex="-1"></a>  cat(a, sep = &quot;\n&quot;)</span>
+<span id="cb13-99"><a href="data-products-1.html#cb13-99" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-100"><a href="data-products-1.html#cb13-100" aria-hidden="true" tabindex="-1"></a>```</span>
+<span id="cb13-101"><a href="data-products-1.html#cb13-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-102"><a href="data-products-1.html#cb13-102" aria-hidden="true" tabindex="-1"></a>Our codes are strings, so to be able to use them inside of `dplyr::count()`</span>
+<span id="cb13-103"><a href="data-products-1.html#cb13-103" aria-hidden="true" tabindex="-1"></a>we need to define them as bare string, or symbols. This can be done using the</span>
+<span id="cb13-104"><a href="data-products-1.html#cb13-104" aria-hidden="true" tabindex="-1"></a>`rlang::sym()` function. If this is confusing, try running `count(mtcars, &quot;am&quot;)` </span>
+<span id="cb13-105"><a href="data-products-1.html#cb13-105" aria-hidden="true" tabindex="-1"></a>and you will see that it will not return what you want (compare to `count(mtcars, am)`). </span>
+<span id="cb13-106"><a href="data-products-1.html#cb13-106" aria-hidden="true" tabindex="-1"></a>This is also why we needed `rlang::quo_name()` in the function above, to convert</span>
+<span id="cb13-107"><a href="data-products-1.html#cb13-107" aria-hidden="true" tabindex="-1"></a>the symbol back to a string, which is what `grepl()` requires:</span>
+<span id="cb13-108"><a href="data-products-1.html#cb13-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-109"><a href="data-products-1.html#cb13-109" aria-hidden="true" tabindex="-1"></a>```{r}</span>
+<span id="cb13-110"><a href="data-products-1.html#cb13-110" aria-hidden="true" tabindex="-1"></a>sym_codes &lt;- map(codes, sym)</span>
+<span id="cb13-111"><a href="data-products-1.html#cb13-111" aria-hidden="true" tabindex="-1"></a>```</span>
+<span id="cb13-112"><a href="data-products-1.html#cb13-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-113"><a href="data-products-1.html#cb13-113" aria-hidden="true" tabindex="-1"></a>Finally, we can create the sections. The line below uses `purrr::walk()`, which</span>
+<span id="cb13-114"><a href="data-products-1.html#cb13-114" aria-hidden="true" tabindex="-1"></a>is equivalent to `purrr::map()`, the difference being that we use `purrr::walk()`</span>
+<span id="cb13-115"><a href="data-products-1.html#cb13-115" aria-hidden="true" tabindex="-1"></a>when we are interested in the side effects of a function:</span>
+<span id="cb13-116"><a href="data-products-1.html#cb13-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-117"><a href="data-products-1.html#cb13-117" aria-hidden="true" tabindex="-1"></a>```{r, results=&quot;asis&quot;}</span>
+<span id="cb13-118"><a href="data-products-1.html#cb13-118" aria-hidden="true" tabindex="-1"></a>walk(sym_codes, return_section)</span>
+<span id="cb13-119"><a href="data-products-1.html#cb13-119" aria-hidden="true" tabindex="-1"></a>```</span></code></pre></div>
+<p><a href="https://startling-shortbread-bc36ea.netlify.app/">This is what the output looks like.</a>.</p>
 </div>
-<div id="other-output-formats" class="section level3 hasAnchor" number="8.2.2">
-<h3><span class="header-section-number">8.2.2</span> Other output formats<a href="data-products-1.html#other-output-formats" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="word" class="section level4 hasAnchor" number="8.2.2.1">
-<h4><span class="header-section-number">8.2.2.1</span> Word<a href="data-products-1.html#word" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+<div id="other-output-formats" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> Other output formats<a href="data-products-1.html#other-output-formats" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="word" class="section level3 hasAnchor" number="8.3.1">
+<h3><span class="header-section-number">8.3.1</span> Word<a href="data-products-1.html#word" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s now generate a Word document using Quarto. As you will see, this will be quite easy; but keep in mind that the basic
+interactivity that we have seen with HTML outputs won’t be possible here (but templating will work). Render the following
+source file to get back a <code>.docx</code> document (you don’t even need to have MS Word installed for it to work), and
+take of what we changed from the previous file:</p>
+<ul>
+<li>Output changed from <code>html</code> to <code>docx</code>;</li>
+<li>No more <code>{DT}</code>, but <code>{pander}</code> instead to generated <code>.docx</code> tables</li>
+</ul>
+<p>Here is the file:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb14-1"><a href="data-products-1.html#cb14-1" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb14-2"><a href="data-products-1.html#cb14-2" aria-hidden="true" tabindex="-1"></a>title: &quot;Templating with Quarto&quot;</span>
+<span id="cb14-3"><a href="data-products-1.html#cb14-3" aria-hidden="true" tabindex="-1"></a>author: &quot;Bruno Rodrigues&quot;</span>
+<span id="cb14-4"><a href="data-products-1.html#cb14-4" aria-hidden="true" tabindex="-1"></a>date: today</span>
+<span id="cb14-5"><a href="data-products-1.html#cb14-5" aria-hidden="true" tabindex="-1"></a>format: docx</span>
+<span id="cb14-6"><a href="data-products-1.html#cb14-6" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb14-7"><a href="data-products-1.html#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="data-products-1.html#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="data-products-1.html#cb14-9" aria-hidden="true" tabindex="-1"></a># Set up</span>
+<span id="cb14-10"><a href="data-products-1.html#cb14-10" aria-hidden="true" tabindex="-1"></a>The goal is to have a frequency table for each question in a survey. But we</span>
+<span id="cb14-11"><a href="data-products-1.html#cb14-11" aria-hidden="true" tabindex="-1"></a>do not want to have to do it by hand, so we define a function to create a </span>
+<span id="cb14-12"><a href="data-products-1.html#cb14-12" aria-hidden="true" tabindex="-1"></a>table, and then, using the templating capabilities of Quarto, write some</span>
+<span id="cb14-13"><a href="data-products-1.html#cb14-13" aria-hidden="true" tabindex="-1"></a>code to generate valid qmarkdown code. In the example below our survey only</span>
+<span id="cb14-14"><a href="data-products-1.html#cb14-14" aria-hidden="true" tabindex="-1"></a>has 4 questions, but the solution described trivially scales to an infinity</span>
+<span id="cb14-15"><a href="data-products-1.html#cb14-15" aria-hidden="true" tabindex="-1"></a>of questions. This is not the case if you’re solving this problem by hand.</span>
+<span id="cb14-16"><a href="data-products-1.html#cb14-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-17"><a href="data-products-1.html#cb14-17" aria-hidden="true" tabindex="-1"></a>Start by loading the data and defining some needed variables:</span>
+<span id="cb14-18"><a href="data-products-1.html#cb14-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-19"><a href="data-products-1.html#cb14-19" aria-hidden="true" tabindex="-1"></a>```{r}</span>
+<span id="cb14-20"><a href="data-products-1.html#cb14-20" aria-hidden="true" tabindex="-1"></a>#| warning: false</span>
+<span id="cb14-21"><a href="data-products-1.html#cb14-21" aria-hidden="true" tabindex="-1"></a>library(lubridate)</span>
+<span id="cb14-22"><a href="data-products-1.html#cb14-22" aria-hidden="true" tabindex="-1"></a>library(dplyr)</span>
+<span id="cb14-23"><a href="data-products-1.html#cb14-23" aria-hidden="true" tabindex="-1"></a>library(purrr)</span>
+<span id="cb14-24"><a href="data-products-1.html#cb14-24" aria-hidden="true" tabindex="-1"></a>library(pander)</span>
+<span id="cb14-25"><a href="data-products-1.html#cb14-25" aria-hidden="true" tabindex="-1"></a>library(rlang)</span>
+<span id="cb14-26"><a href="data-products-1.html#cb14-26" aria-hidden="true" tabindex="-1"></a>survey_data &lt;- read.csv(</span>
+<span id="cb14-27"><a href="data-products-1.html#cb14-27" aria-hidden="true" tabindex="-1"></a>&quot;https://gist.githubusercontent.com/b-rodrigues/0c2249dec5a9c9477e0d1ad9964a1340/raw/873bcc7532b8bad613235f029884df1d0b947c90/survey_example.csv&quot;</span>
+<span id="cb14-28"><a href="data-products-1.html#cb14-28" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-29"><a href="data-products-1.html#cb14-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-30"><a href="data-products-1.html#cb14-30" aria-hidden="true" tabindex="-1"></a>```</span>
+<span id="cb14-31"><a href="data-products-1.html#cb14-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-32"><a href="data-products-1.html#cb14-32" aria-hidden="true" tabindex="-1"></a>Let’s take a look at the data:</span>
+<span id="cb14-33"><a href="data-products-1.html#cb14-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-34"><a href="data-products-1.html#cb14-34" aria-hidden="true" tabindex="-1"></a>```{r}</span>
+<span id="cb14-35"><a href="data-products-1.html#cb14-35" aria-hidden="true" tabindex="-1"></a>pander(head(survey_data))</span>
+<span id="cb14-36"><a href="data-products-1.html#cb14-36" aria-hidden="true" tabindex="-1"></a>```</span>
+<span id="cb14-37"><a href="data-products-1.html#cb14-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-38"><a href="data-products-1.html#cb14-38" aria-hidden="true" tabindex="-1"></a>The column names are actually questions, so we save those in a variable:</span>
+<span id="cb14-39"><a href="data-products-1.html#cb14-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-40"><a href="data-products-1.html#cb14-40" aria-hidden="true" tabindex="-1"></a>```{r}</span>
+<span id="cb14-41"><a href="data-products-1.html#cb14-41" aria-hidden="true" tabindex="-1"></a>questions &lt;- colnames(survey_data)</span>
+<span id="cb14-42"><a href="data-products-1.html#cb14-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-43"><a href="data-products-1.html#cb14-43" aria-hidden="true" tabindex="-1"></a>questions</span>
+<span id="cb14-44"><a href="data-products-1.html#cb14-44" aria-hidden="true" tabindex="-1"></a>```</span>
+<span id="cb14-45"><a href="data-products-1.html#cb14-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-46"><a href="data-products-1.html#cb14-46" aria-hidden="true" tabindex="-1"></a>Now we define question codes:</span>
+<span id="cb14-47"><a href="data-products-1.html#cb14-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-48"><a href="data-products-1.html#cb14-48" aria-hidden="true" tabindex="-1"></a>```{r}</span>
+<span id="cb14-49"><a href="data-products-1.html#cb14-49" aria-hidden="true" tabindex="-1"></a>codes &lt;- paste0(&quot;var_&quot;, seq(1, 4))</span>
+<span id="cb14-50"><a href="data-products-1.html#cb14-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-51"><a href="data-products-1.html#cb14-51" aria-hidden="true" tabindex="-1"></a>codes</span>
+<span id="cb14-52"><a href="data-products-1.html#cb14-52" aria-hidden="true" tabindex="-1"></a>```</span>
+<span id="cb14-53"><a href="data-products-1.html#cb14-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-54"><a href="data-products-1.html#cb14-54" aria-hidden="true" tabindex="-1"></a>We create a lookup table that links questions to their codes:</span>
+<span id="cb14-55"><a href="data-products-1.html#cb14-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-56"><a href="data-products-1.html#cb14-56" aria-hidden="true" tabindex="-1"></a>```{r}</span>
+<span id="cb14-57"><a href="data-products-1.html#cb14-57" aria-hidden="true" tabindex="-1"></a>lookup &lt;- bind_cols(&quot;codes&quot; = codes, &quot;questions&quot; = questions)</span>
+<span id="cb14-58"><a href="data-products-1.html#cb14-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-59"><a href="data-products-1.html#cb14-59" aria-hidden="true" tabindex="-1"></a>pander(lookup)</span>
+<span id="cb14-60"><a href="data-products-1.html#cb14-60" aria-hidden="true" tabindex="-1"></a>```</span>
+<span id="cb14-61"><a href="data-products-1.html#cb14-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-62"><a href="data-products-1.html#cb14-62" aria-hidden="true" tabindex="-1"></a>Finally, we replace the question names in the dataset by the code:</span>
+<span id="cb14-63"><a href="data-products-1.html#cb14-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-64"><a href="data-products-1.html#cb14-64" aria-hidden="true" tabindex="-1"></a>```{r}</span>
+<span id="cb14-65"><a href="data-products-1.html#cb14-65" aria-hidden="true" tabindex="-1"></a>colnames(survey_data) &lt;- codes</span>
+<span id="cb14-66"><a href="data-products-1.html#cb14-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-67"><a href="data-products-1.html#cb14-67" aria-hidden="true" tabindex="-1"></a>pander(survey_data)</span>
+<span id="cb14-68"><a href="data-products-1.html#cb14-68" aria-hidden="true" tabindex="-1"></a>```</span>
+<span id="cb14-69"><a href="data-products-1.html#cb14-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-70"><a href="data-products-1.html#cb14-70" aria-hidden="true" tabindex="-1"></a>Now, we define a function that creates a frequency table. This function has</span>
+<span id="cb14-71"><a href="data-products-1.html#cb14-71" aria-hidden="true" tabindex="-1"></a>two arguments: `dataset` and `var`. It uses the `dplyr::count()` function to</span>
+<span id="cb14-72"><a href="data-products-1.html#cb14-72" aria-hidden="true" tabindex="-1"></a>count each instance of the levels of `var` in `dataset`. Then it uses the </span>
+<span id="cb14-73"><a href="data-products-1.html#cb14-73" aria-hidden="true" tabindex="-1"></a>`knitr::kable()` function. This functions takes a data frame as an argument</span>
+<span id="cb14-74"><a href="data-products-1.html#cb14-74" aria-hidden="true" tabindex="-1"></a>and returns a table formatted in markdown code:</span>
+<span id="cb14-75"><a href="data-products-1.html#cb14-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-76"><a href="data-products-1.html#cb14-76" aria-hidden="true" tabindex="-1"></a>```{r}</span>
+<span id="cb14-77"><a href="data-products-1.html#cb14-77" aria-hidden="true" tabindex="-1"></a>create_table &lt;- function(dataset, var){</span>
+<span id="cb14-78"><a href="data-products-1.html#cb14-78" aria-hidden="true" tabindex="-1"></a>  dataset %&gt;%</span>
+<span id="cb14-79"><a href="data-products-1.html#cb14-79" aria-hidden="true" tabindex="-1"></a>    count(!!var) %&gt;%</span>
+<span id="cb14-80"><a href="data-products-1.html#cb14-80" aria-hidden="true" tabindex="-1"></a>    knitr::kable()</span>
+<span id="cb14-81"><a href="data-products-1.html#cb14-81" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb14-82"><a href="data-products-1.html#cb14-82" aria-hidden="true" tabindex="-1"></a>```</span>
+<span id="cb14-83"><a href="data-products-1.html#cb14-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-84"><a href="data-products-1.html#cb14-84" aria-hidden="true" tabindex="-1"></a>The next function is the one that does the magic: it takes only one argument</span>
+<span id="cb14-85"><a href="data-products-1.html#cb14-85" aria-hidden="true" tabindex="-1"></a>as an input, and generates valid markdown code using the `knitr::knit_expand()`</span>
+<span id="cb14-86"><a href="data-products-1.html#cb14-86" aria-hidden="true" tabindex="-1"></a>function. Any variable between `{{}}` gets replaced by its value (so </span>
+<span id="cb14-87"><a href="data-products-1.html#cb14-87" aria-hidden="true" tabindex="-1"></a>`{{question}}` gets replaced by the question that gets fetched from the </span>
+<span id="cb14-88"><a href="data-products-1.html#cb14-88" aria-hidden="true" tabindex="-1"></a>lookup table defined above). Using this function, we can now loop over </span>
+<span id="cb14-89"><a href="data-products-1.html#cb14-89" aria-hidden="true" tabindex="-1"></a>question codes, and what we get in return is valid markdown code that defines</span>
+<span id="cb14-90"><a href="data-products-1.html#cb14-90" aria-hidden="true" tabindex="-1"></a>a section with the question as the title, and our table.</span>
+<span id="cb14-91"><a href="data-products-1.html#cb14-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-92"><a href="data-products-1.html#cb14-92" aria-hidden="true" tabindex="-1"></a>```{r}</span>
+<span id="cb14-93"><a href="data-products-1.html#cb14-93" aria-hidden="true" tabindex="-1"></a>return_section &lt;- function(var){</span>
+<span id="cb14-94"><a href="data-products-1.html#cb14-94" aria-hidden="true" tabindex="-1"></a>  a &lt;- knitr::knit_expand(text = c(&quot;## {{question}}&quot;,   create_table(survey_data, var)),</span>
+<span id="cb14-95"><a href="data-products-1.html#cb14-95" aria-hidden="true" tabindex="-1"></a>                          question = lookup$questions[grepl(quo_name(var), lookup$codes)])</span>
+<span id="cb14-96"><a href="data-products-1.html#cb14-96" aria-hidden="true" tabindex="-1"></a>  cat(a, sep = &quot;\n&quot;)</span>
+<span id="cb14-97"><a href="data-products-1.html#cb14-97" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb14-98"><a href="data-products-1.html#cb14-98" aria-hidden="true" tabindex="-1"></a>```</span>
+<span id="cb14-99"><a href="data-products-1.html#cb14-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-100"><a href="data-products-1.html#cb14-100" aria-hidden="true" tabindex="-1"></a>Our codes are strings, so to be able to use them inside of `dplyr::count()`</span>
+<span id="cb14-101"><a href="data-products-1.html#cb14-101" aria-hidden="true" tabindex="-1"></a>we need to define them as bare string, or symbols. This can be done using the</span>
+<span id="cb14-102"><a href="data-products-1.html#cb14-102" aria-hidden="true" tabindex="-1"></a>`rlang::sym()` function. If this is confusing, try running `count(mtcars, &quot;am&quot;)` </span>
+<span id="cb14-103"><a href="data-products-1.html#cb14-103" aria-hidden="true" tabindex="-1"></a>and you will see that it will not return what you want (compare to `count(mtcars, am)`). </span>
+<span id="cb14-104"><a href="data-products-1.html#cb14-104" aria-hidden="true" tabindex="-1"></a>This is also why we needed `rlang::quo_name()` in the function above, to convert</span>
+<span id="cb14-105"><a href="data-products-1.html#cb14-105" aria-hidden="true" tabindex="-1"></a>the symbol back to a string, which is what `grepl()` requires:</span>
+<span id="cb14-106"><a href="data-products-1.html#cb14-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-107"><a href="data-products-1.html#cb14-107" aria-hidden="true" tabindex="-1"></a>```{r}</span>
+<span id="cb14-108"><a href="data-products-1.html#cb14-108" aria-hidden="true" tabindex="-1"></a>sym_codes &lt;- map(codes, sym)</span>
+<span id="cb14-109"><a href="data-products-1.html#cb14-109" aria-hidden="true" tabindex="-1"></a>```</span>
+<span id="cb14-110"><a href="data-products-1.html#cb14-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-111"><a href="data-products-1.html#cb14-111" aria-hidden="true" tabindex="-1"></a>Finally, we can create the sections. The line below uses `purrr::walk()`, which</span>
+<span id="cb14-112"><a href="data-products-1.html#cb14-112" aria-hidden="true" tabindex="-1"></a>is equivalent to `purrr::map()`, the difference being that we use `purrr::walk()`</span>
+<span id="cb14-113"><a href="data-products-1.html#cb14-113" aria-hidden="true" tabindex="-1"></a>when we are interested in the side effects of a function:</span>
+<span id="cb14-114"><a href="data-products-1.html#cb14-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-115"><a href="data-products-1.html#cb14-115" aria-hidden="true" tabindex="-1"></a>```{r, results=&quot;asis&quot;}</span>
+<span id="cb14-116"><a href="data-products-1.html#cb14-116" aria-hidden="true" tabindex="-1"></a>walk(sym_codes, return_section)</span>
+<span id="cb14-117"><a href="data-products-1.html#cb14-117" aria-hidden="true" tabindex="-1"></a>```</span></code></pre></div>
+<p><a href="https://github.com/b-rodrigues/rap4mads/blob/master/img/ex10.docx?raw=true">You can download the output here.</a></p>
+<p>Unlike with HTML outputs, it is also not possible to enable code folding, but you could hide the code completely using the “#| echo = false”
+chunk option. If you wan to hide all the code without having to specify “#| echo = false” on each chunk you can also add the <code>execute</code> option
+to the document header:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb15-1"><a href="data-products-1.html#cb15-1" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb15-2"><a href="data-products-1.html#cb15-2" aria-hidden="true" tabindex="-1"></a>title: &quot;Templating with Quarto&quot;</span>
+<span id="cb15-3"><a href="data-products-1.html#cb15-3" aria-hidden="true" tabindex="-1"></a>author: &quot;Bruno Rodrigues&quot;</span>
+<span id="cb15-4"><a href="data-products-1.html#cb15-4" aria-hidden="true" tabindex="-1"></a>date: today</span>
+<span id="cb15-5"><a href="data-products-1.html#cb15-5" aria-hidden="true" tabindex="-1"></a>format: docx</span>
+<span id="cb15-6"><a href="data-products-1.html#cb15-6" aria-hidden="true" tabindex="-1"></a>execute:</span>
+<span id="cb15-7"><a href="data-products-1.html#cb15-7" aria-hidden="true" tabindex="-1"></a>  echo: false</span>
+<span id="cb15-8"><a href="data-products-1.html#cb15-8" aria-hidden="true" tabindex="-1"></a>---</span></code></pre></div>
+<p>You can use a document as a template for Word documents generated with Quarto. For this, you must create a new Word file, and update the
+styles. This document, with the updated styles, can then be referenced in the header to act as a template:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb16-1"><a href="data-products-1.html#cb16-1" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb16-2"><a href="data-products-1.html#cb16-2" aria-hidden="true" tabindex="-1"></a>title: &quot;Using a custom Word style&quot;</span>
+<span id="cb16-3"><a href="data-products-1.html#cb16-3" aria-hidden="true" tabindex="-1"></a>author: &quot;Bruno Rodrigues&quot;</span>
+<span id="cb16-4"><a href="data-products-1.html#cb16-4" aria-hidden="true" tabindex="-1"></a>date: today</span>
+<span id="cb16-5"><a href="data-products-1.html#cb16-5" aria-hidden="true" tabindex="-1"></a>format: </span>
+<span id="cb16-6"><a href="data-products-1.html#cb16-6" aria-hidden="true" tabindex="-1"></a>  docx: </span>
+<span id="cb16-7"><a href="data-products-1.html#cb16-7" aria-hidden="true" tabindex="-1"></a>    reference-doc: fancy_template.docx</span>
+<span id="cb16-8"><a href="data-products-1.html#cb16-8" aria-hidden="true" tabindex="-1"></a>execute:</span>
+<span id="cb16-9"><a href="data-products-1.html#cb16-9" aria-hidden="true" tabindex="-1"></a>  echo: false</span>
+<span id="cb16-10"><a href="data-products-1.html#cb16-10" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb16-11"><a href="data-products-1.html#cb16-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-12"><a href="data-products-1.html#cb16-12" aria-hidden="true" tabindex="-1"></a># Introduction</span>
+<span id="cb16-13"><a href="data-products-1.html#cb16-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-14"><a href="data-products-1.html#cb16-14" aria-hidden="true" tabindex="-1"></a>## MS Word is great (lol)</span>
+<span id="cb16-15"><a href="data-products-1.html#cb16-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-16"><a href="data-products-1.html#cb16-16" aria-hidden="true" tabindex="-1"></a>This is normal text that is unreadable.</span></code></pre></div>
+<p>Just put <code>fancy_template.docx</code> in the same folder as your source qmd file. You can download the template I’ve used from
+<a href="https://github.com/b-rodrigues/rap4mads/blob/master/img/fancy_template.docx?raw=true">here</a> to test things out.</p>
+<p>For more details, visit this <a href="https://quarto.org/docs/output-formats/ms-word-templates.html">page</a>.</p>
+</div>
+<div id="presentations" class="section level3 hasAnchor" number="8.3.2">
+<h3><span class="header-section-number">8.3.2</span> Presentations<a href="data-products-1.html#presentations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>It is also possible to create presentations using Quarto. There are output formats as well: HTML, PDF and Powerpoint. I will
+not discuss this here, because it is quite easy to get started, simply <a href="https://quarto.org/docs/presentations/">follow along</a>.</p>
+</div>
+<div id="pdf" class="section level3 hasAnchor" number="8.3.3">
+<h3><span class="header-section-number">8.3.3</span> PDF<a href="data-products-1.html#pdf" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>I do need to discuss the PDF output a little bit. In order to generate PDF files, Quarto uses the <code>pdflatex</code> compiler (or rather
+pandoc, called by Quarto, uses <code>pdflatex</code>). <code>pdflatex</code> compiles <code>.tex</code> source files to PDF, so what Quarto does (by leveraging pandoc)
+is first converting a <code>.qmd</code> file to a <code>.tex</code> file, and then call <code>pdflatex</code> to compile it. <code>.tex</code> files are the file extension of the
+Latex typesetting language, extensively used in science. It makes it easy to write complex mathematical formulas, like this one:</p>
+<p><span class="math display">\[\begin{align*}
+S(\omega)
+&amp;= \frac{\alpha g^2}{\omega^5} e^{[ -0.74\bigl\{\frac{\omega U_\omega 19.5}{g}\bigr\}^{\!-4}\,]} \\
+&amp;= \frac{\alpha g^2}{\omega^5} \exp\Bigl[ -0.74\Bigl\{\frac{\omega U_\omega 19.5}{g}\Bigr\}^{\!-4}\,\Bigr]
+\end{align*}\]</span></p>
+<p>Latex is a bit unwieldly, so using Markdown to write scientific documents is becoming more and more popular. However, Latex still
+has an edge when it comes to tables. But thankfully, it is possible to simply embed the Latex code that produces these tables in Markdown,
+and there are packages that export regression table directly to PDF. In any case, in order to compile to PDF, you need to install
+Texlive. Installing Texlive is frankly a mess, but thankfully there is a very simple alternative called TinyTex. TinyTex is both
+available as an R package or as a standalone installation, and was put together by the author of RMarkdown (in a sense, Quarto is
+a spiritual successor to RMarkdown). This package installs a self-contained Texlive installation locally, which can then be used
+to compile PDF documents (from, or outside of R/RStudio). I highly recommend you use Tinytex. Instructions can be found
+<a href="https://yihui.org/tinytex/">here</a>. Once you’ve installed TinyTex, you can try to compile the following example document
+(the first time you run this, it might take some time, as the required packages get installed):</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb17-1"><a href="data-products-1.html#cb17-1" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb17-2"><a href="data-products-1.html#cb17-2" aria-hidden="true" tabindex="-1"></a>title: &quot;PDF example with table&quot;</span>
+<span id="cb17-3"><a href="data-products-1.html#cb17-3" aria-hidden="true" tabindex="-1"></a>format: pdf</span>
+<span id="cb17-4"><a href="data-products-1.html#cb17-4" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb17-5"><a href="data-products-1.html#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="data-products-1.html#cb17-6" aria-hidden="true" tabindex="-1"></a>## A PDF document using Quarto</span>
+<span id="cb17-7"><a href="data-products-1.html#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="data-products-1.html#cb17-8" aria-hidden="true" tabindex="-1"></a>In the code below, we fit several models and then use the `{modelsummary}`</span>
+<span id="cb17-9"><a href="data-products-1.html#cb17-9" aria-hidden="true" tabindex="-1"></a>package to print a nicely formatted table with minimal effort:</span>
+<span id="cb17-10"><a href="data-products-1.html#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="data-products-1.html#cb17-11" aria-hidden="true" tabindex="-1"></a>```{r}</span>
+<span id="cb17-12"><a href="data-products-1.html#cb17-12" aria-hidden="true" tabindex="-1"></a>library(modelsummary)</span>
+<span id="cb17-13"><a href="data-products-1.html#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-14"><a href="data-products-1.html#cb17-14" aria-hidden="true" tabindex="-1"></a>url &lt;- &#39;https://vincentarelbundock.github.io/Rdatasets/csv/HistData/Guerry.csv&#39;</span>
+<span id="cb17-15"><a href="data-products-1.html#cb17-15" aria-hidden="true" tabindex="-1"></a>dat &lt;- read.csv(url)</span>
+<span id="cb17-16"><a href="data-products-1.html#cb17-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-17"><a href="data-products-1.html#cb17-17" aria-hidden="true" tabindex="-1"></a>models &lt;- list(</span>
+<span id="cb17-18"><a href="data-products-1.html#cb17-18" aria-hidden="true" tabindex="-1"></a>  &quot;OLS 1&quot;     = lm(Donations ~ Literacy + Clergy, data = dat),</span>
+<span id="cb17-19"><a href="data-products-1.html#cb17-19" aria-hidden="true" tabindex="-1"></a>  &quot;Poisson 1&quot; = glm(Donations ~ Literacy + Commerce, family = poisson, data = dat),</span>
+<span id="cb17-20"><a href="data-products-1.html#cb17-20" aria-hidden="true" tabindex="-1"></a>  &quot;OLS 2&quot;     = lm(Crime_pers ~ Literacy + Clergy, data = dat),</span>
+<span id="cb17-21"><a href="data-products-1.html#cb17-21" aria-hidden="true" tabindex="-1"></a>  &quot;Poisson 2&quot; = glm(Crime_pers ~ Literacy + Commerce, family = poisson, data = dat),</span>
+<span id="cb17-22"><a href="data-products-1.html#cb17-22" aria-hidden="true" tabindex="-1"></a>  &quot;OLS 3&quot;     = lm(Crime_prop ~ Literacy + Clergy, data = dat)</span>
+<span id="cb17-23"><a href="data-products-1.html#cb17-23" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-24"><a href="data-products-1.html#cb17-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-25"><a href="data-products-1.html#cb17-25" aria-hidden="true" tabindex="-1"></a>modelsummary(models)</span>
+<span id="cb17-26"><a href="data-products-1.html#cb17-26" aria-hidden="true" tabindex="-1"></a>```</span>
+<span id="cb17-27"><a href="data-products-1.html#cb17-27" aria-hidden="true" tabindex="-1"></a>And an equation, for good measure:</span>
+<span id="cb17-28"><a href="data-products-1.html#cb17-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-29"><a href="data-products-1.html#cb17-29" aria-hidden="true" tabindex="-1"></a>\begin{align*}</span>
+<span id="cb17-30"><a href="data-products-1.html#cb17-30" aria-hidden="true" tabindex="-1"></a>S(\omega) </span>
+<span id="cb17-31"><a href="data-products-1.html#cb17-31" aria-hidden="true" tabindex="-1"></a>&amp;= \frac{\alpha g^2}{\omega^5} e^{[ -0.74\bigl\{\frac{\omega U_\omega 19.5}{g}\bigr\}^{\!-4}\,]} \\</span>
+<span id="cb17-32"><a href="data-products-1.html#cb17-32" aria-hidden="true" tabindex="-1"></a>&amp;= \frac{\alpha g^2}{\omega^5} \exp\Bigl[ -0.74\Bigl\{\frac{\omega U_\omega 19.5}{g}\Bigr\}^{\!-4}\,\Bigr] </span>
+<span id="cb17-33"><a href="data-products-1.html#cb17-33" aria-hidden="true" tabindex="-1"></a>\end{align*}</span></code></pre></div>
+<p><a href="https://github.com/b-rodrigues/rap4mads/blob/master/img/ex12.pdf?raw=TRUE">This is what the output looks like (scroll down to page 2).</a>.</p>
+<p>It is possible to author, many, many, different types of documents using Quarto. For more formats, consult this
+<a href="https://quarto.org/docs/gallery/">page</a>. Quarto is still very new – it was officially anounced in July of 2022 by Posit– so
+much more content will arrive. There are still many features of Quarto that we have not explored, so take your time to read
+its documentation in detail.</p>
 </div>
 </div>
+<div id="interactive-web-applications-with-shiny" class="section level2 hasAnchor" number="8.4">
+<h2><span class="header-section-number">8.4</span> Interactive web applications with {shiny}<a href="data-products-1.html#interactive-web-applications-with-shiny" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>{shiny}</code> is a package developed by Posit to build interactive web applications. These apps can be quite “simple”
+(for example, an app that shows a graph but in which the user can choose the variable to plot), but can be arbitrarily
+complex. Some people even go as far as make <a href="https://shiny.rstudio.com/gallery/hex-memory.html">games with {shiny}</a>.
+<a href="https://shiny.rstudio.com/py/">A version for Python</a> is also in alpha, and you can already experiment with it.</p>
+<p>In this section, I will give a very, very short introduction to <code>{shiny}</code>. This is because <code>{shiny}</code> is so feature-rich,
+that I could spend 20 hours teaching you and even then we would not have seen everything. That being said, we can with
+only some cursory knowledge build some useful apps. These apps can run locally on your machine, but they’re really only
+useful if deploy them on a server, so that users can then use these web apps on their browsers.</p>
+<div id="the-basic-structure-of-a-shiny-app" class="section level3 hasAnchor" number="8.4.1">
+<h3><span class="header-section-number">8.4.1</span> The basic structure of a Shiny app<a href="data-products-1.html#the-basic-structure-of-a-shiny-app" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Shiny apps are always made of at least 2 parts: a <em>server</em> and a <em>ui</em>. In general, each of these parts are in separate
+scripts called <code>server.R</code> and <code>ui.R</code>. It is possible to have another script, called <code>global.R</code>, where you can define
+variables that you want to be available for both the server and the ui, and to every user of your app.</p>
+<p>Let’s start by building a very basic app. This app will allow users to visualize unemployment data for Luxembourg.
+For now, let’s say that we want users only to be able to select communes, but not variables. The example code
+below is based on this <a href="https://shiny.rstudio.com/gallery/telephones-by-region.html">official example</a>
+(this is how I recommend you learn by the way. Take a look at the different example there are and adapt them
+to suit your needs! You can find the examples <a href="https://shiny.rstudio.com/gallery/#demos">here</a>).
+Create a folder called something like <code>my_app</code> and then create three scripts in it:</p>
+<ul>
+<li><code>global.R</code></li>
+<li><code>server.R</code></li>
+<li><code>ui.R</code></li>
+</ul>
+<p>Let’s start with <code>global.R</code>:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="data-products-1.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(myPackage)</span>
+<span id="cb18-2"><a href="data-products-1.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb18-3"><a href="data-products-1.html#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb18-4"><a href="data-products-1.html#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="data-products-1.html#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;unemp&quot;</span>)</span></code></pre></div>
+<p>In the <code>global.R</code> file, we load the required packages and data. This is now available everywhere. Let’s
+continue with the <code>server.R</code> script:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="data-products-1.html#cb19-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(session, input, output) {</span>
+<span id="cb19-2"><a href="data-products-1.html#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="data-products-1.html#cb19-3" aria-hidden="true" tabindex="-1"></a>  filtered_data <span class="ot">&lt;-</span> <span class="fu">reactive</span>(</span>
+<span id="cb19-4"><a href="data-products-1.html#cb19-4" aria-hidden="true" tabindex="-1"></a>    unemp <span class="sc">%&gt;%</span></span>
+<span id="cb19-5"><a href="data-products-1.html#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(place_name <span class="sc">%in%</span> input<span class="sc">$</span>place_name_selected)</span>
+<span id="cb19-6"><a href="data-products-1.html#cb19-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb19-7"><a href="data-products-1.html#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="data-products-1.html#cb19-8" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>unemp_plot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb19-9"><a href="data-products-1.html#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-10"><a href="data-products-1.html#cb19-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">filtered_data</span>()) <span class="sc">+</span></span>
+<span id="cb19-11"><a href="data-products-1.html#cb19-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb19-12"><a href="data-products-1.html#cb19-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_line</span>(<span class="fu">aes</span>(year, unemployment_rate_in_percent, <span class="at">color =</span> place_name)) <span class="sc">+</span></span>
+<span id="cb19-13"><a href="data-products-1.html#cb19-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste</span>(<span class="st">&quot;Unemployment in&quot;</span>, <span class="fu">paste</span>(input<span class="sc">$</span>place_name_selected, <span class="at">collapse =</span> <span class="st">&quot;, &quot;</span>)))</span>
+<span id="cb19-14"><a href="data-products-1.html#cb19-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-15"><a href="data-products-1.html#cb19-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-16"><a href="data-products-1.html#cb19-16" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb19-17"><a href="data-products-1.html#cb19-17" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Several things need to be commented here: first, the script contains a single function, called
+<code>server()</code>. This function take three arguments, <code>session</code>, <code>input</code> and <code>output</code>. I won’t go into
+details here, but you should know that you will never call the <code>server()</code> function yourself, and
+that these arguments are required so the function can… function. I will leave a reference at the
+end of this section with more details. The next important thing is that we defined an object called
+<code>filtered_data</code>. This is a reactive object. What this means is that this object should get
+recomputed every time the user interacts with it. But how does the user interact with it? By
+choosing the <code>place_name</code> he or she wants to see! The predicate inside <code>filter()</code> is <code>place_name %in% input$place_name_selected</code>. Where does that <code>input$place_name_selected</code> come from? This comes
+from the <code>ui</code> (that we have not written yet). But the idea is that the user will be able to chose
+place names from a list, and this list will be called <code>place_name_selected</code> and will contain the
+place names that the user wants to see.</p>
+<p>Finally, we define a new object called <code>output$unemp_plot</code>. The goal of the <code>server()</code> function is
+to compute things that will be part of the <code>output</code> list. This list, and the objects it contains,
+get then rendered in the <code>ui</code>. <code>unemp_plot</code> is a ggplot graph that uses the reactive data set
+we defined first. Notice the <code>()</code> after <code>filtered_data</code> inside the ggplot call. These are required;
+this is how we say that the reactive object must be recomputed. If the plot does not get rendered,
+the reactive data set does not get computed, since it never gets called.</p>
+<p>Ok so now to the ui. Let’s take inspiration from the same example again:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="data-products-1.html#cb20-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="cf">function</span>(request){</span>
+<span id="cb20-2"><a href="data-products-1.html#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fluidPage</span>(</span>
+<span id="cb20-3"><a href="data-products-1.html#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="data-products-1.html#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">titlePanel</span>(<span class="st">&quot;Unemployment in Luxembourg&quot;</span>),</span>
+<span id="cb20-5"><a href="data-products-1.html#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="data-products-1.html#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarLayout</span>(</span>
+<span id="cb20-7"><a href="data-products-1.html#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-8"><a href="data-products-1.html#cb20-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">sidebarPanel</span>(</span>
+<span id="cb20-9"><a href="data-products-1.html#cb20-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">selectizeInput</span>(<span class="st">&quot;place_name_selected&quot;</span>, <span class="st">&quot;Select place:&quot;</span>,</span>
+<span id="cb20-10"><a href="data-products-1.html#cb20-10" aria-hidden="true" tabindex="-1"></a>                    <span class="at">choices=</span><span class="fu">unique</span>(unemp<span class="sc">$</span>place_name),</span>
+<span id="cb20-11"><a href="data-products-1.html#cb20-11" aria-hidden="true" tabindex="-1"></a>                    <span class="at">multiple =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb20-12"><a href="data-products-1.html#cb20-12" aria-hidden="true" tabindex="-1"></a>                    <span class="at">selected =</span> <span class="fu">c</span>(<span class="st">&quot;Rumelange&quot;</span>, <span class="st">&quot;Dudelange&quot;</span>),</span>
+<span id="cb20-13"><a href="data-products-1.html#cb20-13" aria-hidden="true" tabindex="-1"></a>                    <span class="at">options =</span> <span class="fu">list</span>(</span>
+<span id="cb20-14"><a href="data-products-1.html#cb20-14" aria-hidden="true" tabindex="-1"></a>                      <span class="at">plugins =</span> <span class="fu">list</span>(<span class="st">&quot;remove_button&quot;</span>),</span>
+<span id="cb20-15"><a href="data-products-1.html#cb20-15" aria-hidden="true" tabindex="-1"></a>                      <span class="at">create =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb20-16"><a href="data-products-1.html#cb20-16" aria-hidden="true" tabindex="-1"></a>                      <span class="at">persist =</span> <span class="cn">FALSE</span> <span class="co"># keep created choices in dropdown</span></span>
+<span id="cb20-17"><a href="data-products-1.html#cb20-17" aria-hidden="true" tabindex="-1"></a>                    )</span>
+<span id="cb20-18"><a href="data-products-1.html#cb20-18" aria-hidden="true" tabindex="-1"></a>                    ),</span>
+<span id="cb20-19"><a href="data-products-1.html#cb20-19" aria-hidden="true" tabindex="-1"></a>        <span class="fu">hr</span>(),</span>
+<span id="cb20-20"><a href="data-products-1.html#cb20-20" aria-hidden="true" tabindex="-1"></a>        <span class="fu">helpText</span>(<span class="st">&quot;Original data from STATEC&quot;</span>)</span>
+<span id="cb20-21"><a href="data-products-1.html#cb20-21" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb20-22"><a href="data-products-1.html#cb20-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-23"><a href="data-products-1.html#cb20-23" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mainPanel</span>(</span>
+<span id="cb20-24"><a href="data-products-1.html#cb20-24" aria-hidden="true" tabindex="-1"></a>        <span class="fu">plotOutput</span>(<span class="st">&quot;unemp_plot&quot;</span>)</span>
+<span id="cb20-25"><a href="data-products-1.html#cb20-25" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb20-26"><a href="data-products-1.html#cb20-26" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb20-27"><a href="data-products-1.html#cb20-27" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb20-28"><a href="data-products-1.html#cb20-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-29"><a href="data-products-1.html#cb20-29" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>I’ve added some useful things to the ui. First of all, I made it a function of an argument,
+<code>request</code>. This is useful for bookmarking the state of the variable. We’ll add a bookmark button
+later. The ui is divided into two parts, a sidebar panel, and a main panel. The sidebar panel is
+where you will typically add dropdown menus, checkboxes, radio buttons, etc, for the users to make
+various selections. In the main panel, you will show the result of their selections. In the sidebar
+panel I add a <code>selectizeInput()</code> to create a dynamic dropdown list using the <code>selectize</code> JS
+library, included with <code>{shiny}</code>. The available choices are all the unique place names contained in
+our data, I allow users to select multiple place names, by default two communes are selected and
+using the <code>options</code> argument I need little “remove” buttons in the selected commune names. Finally,
+in the main panel I use the <code>plotOutput()</code> function to render the plot. Notice that I use the name
+of the plot defined in the server, “unemp_plot”. Finally, to run this, add a new script, called
+<code>app.R</code> and add the following line in it:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="data-products-1.html#cb21-1" aria-hidden="true" tabindex="-1"></a>shiny<span class="sc">::</span><span class="fu">runApp</span>(<span class="st">&quot;.&quot;</span>)</span></code></pre></div>
+<p>You can now run this script in RStudio, or from any R console, and this should open a web browser
+with your app.</p>
+<div style="text-align:center;">
+<video width="640" height="480" controls>
+<source src="img/shiny_1.mp4" type="video/mp4">
+</video>
 </div>
-<div id="dynamic-products" class="section level2 hasAnchor" number="8.3">
-<h2><span class="header-section-number">8.3</span> Dynamic products<a href="data-products-1.html#dynamic-products" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="html-documents-redux" class="section level3 hasAnchor" number="8.3.1">
-<h3><span class="header-section-number">8.3.1</span> HTML documents redux<a href="data-products-1.html#html-documents-redux" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Believe it or not, but this app contains almost every ingredient you need to know to build shiny apps.
+But of course, there are many, many other widgets that you can use to give your users even more
+ways to interact with applications. I will give you another example, and then we will need to move on.</p>
 </div>
-<div id="interactive-web-applications" class="section level3 hasAnchor" number="8.3.2">
-<h3><span class="header-section-number">8.3.2</span> Interactive web applications<a href="data-products-1.html#interactive-web-applications" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="slightly-more-advanced-shiny" class="section level3 hasAnchor" number="8.4.2">
+<h3><span class="header-section-number">8.4.2</span> Slightly more advanced shiny<a href="data-products-1.html#slightly-more-advanced-shiny" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>users can choose which variable they want to see</li>
+<li>users can choose position of legend</li>
+<li>switching from line plot to polygon plot</li>
+<li>action button to plot</li>
+<li>bookmark button</li>
+<li>replace ggplot with g2r</li>
+</ul>
+</div>
+<div id="references" class="section level3 hasAnchor" number="8.4.3">
+<h3><span class="header-section-number">8.4.3</span> References<a href="data-products-1.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><a href="https://mastering-shiny.org/basic-reactivity.html?q=input#the-server-function">The server function</a></li>
+</ul>
 </div>
 </div>
-<div id="targets-and-quarto" class="section level2 hasAnchor" number="8.4">
-<h2><span class="header-section-number">8.4</span> <code>{targets}</code> and Quarto<a href="data-products-1.html#targets-and-quarto" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="how-to-build-data-products-using-targets" class="section level2 hasAnchor" number="8.5">
+<h2><span class="header-section-number">8.5</span> How to build data products using <code>{targets}</code><a href="data-products-1.html#how-to-build-data-products-using-targets" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 
 </div>
 </div>
@@ -610,6 +1188,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Reproducible Analytical Pipelines - Master’s of Data Science</title>
-  <meta name="description" content="Reproducible Analytical Pipelines - Master’s of Data Science" />
+  <title>Chapter 12 Conclusion | Reproducible Analytical Pipelines - Master’s of Data Science</title>
+  <meta name="description" content="Chapter 12 Conclusion | Reproducible Analytical Pipelines - Master’s of Data Science" />
   <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Reproducible Analytical Pipelines - Master’s of Data Science" />
+  <meta property="og:title" content="Chapter 12 Conclusion | Reproducible Analytical Pipelines - Master’s of Data Science" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Reproducible Analytical Pipelines - Master’s of Data Science" />
+  <meta name="twitter:title" content="Chapter 12 Conclusion | Reproducible Analytical Pipelines - Master’s of Data Science" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
+<link rel="prev" href="what-else-should-you-learn.html"/>
 
-<link rel="next" href="introduction-to-r.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -259,198 +259,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Reproducible Analytical Pipelines - Master’s of Data Science</h1>
-<p class="author"><em>Bruno Rodrigues</em></p>
-<p class="date"><em>2022-10-28</em></p>
-</div>
-<div id="introduction" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div style="text-align:center;">
-<p><img src="/img/cover.png" title = "Cover image created with Dall-e. The prompt was 'Roman engineer building a pipeline in the style of ancient roman art'. The result doesn't really show that, but I thought it looked nice." width="70%"></p>
-</div>
-<div id="schedule" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Schedule<a href="index.html#schedule" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li>2022/10/25, morning: Introduction and data exploration with R</li>
-<li>2022/10/25, afternoon: Functional programming</li>
-<li>2022/10/31, afternoon: Git (optional?)</li>
-<li>2022/11/07, afternoon: Package development and unit testing</li>
-<li>2022/11/08, morning: Build automation</li>
-<li>2022/11/08, afternoon: Building Data products</li>
-<li>2022/11/21, afternoon: Self-contained pipelines with Docker</li>
-<li>2022/11/22, morning: CI/CD with Github Actions</li>
-</ul>
-</div>
-<div id="reproducible-analytical-pipelines" class="section level2 hasAnchor" number="1.2">
-<h2><span class="header-section-number">1.2</span> Reproducible analytical pipelines?<a href="index.html#reproducible-analytical-pipelines" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>This course is my take on setting up code that results in some <em>data product</em>.
-This code has to be reproducible, documented and production ready.
-Not my original idea, but introduced by the UK’s
-<a href="https://analysisfunction.civilservice.gov.uk/support/reproducible-analytical-pipelines/">Analysis Function</a>.</p>
-<p>The basic idea of a reproducible analytical pipeline (RAP) is to have code that always produces the
-same result when run, whatever this result might be. This is obviously crucial in research and
-science, but this is also the case in businesses that deal with data science/data-driven decision
-making etc.</p>
-<p>A well documented RAP avoids a lot of headache and is usually re-usable for other projects as well.</p>
-</div>
-<div id="data-products" class="section level2 hasAnchor" number="1.3">
-<h2><span class="header-section-number">1.3</span> Data products?<a href="index.html#data-products" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In this course each of you will develop a <em>data product</em>. A data product is anything that requires
-data as an input. This can be a very simple report in PDF or Word format or a complex web app. This
-website is actually also a data product, which I made using the R programming language. In this
-course we will not focus too much on how to create automated reports or web apps (but I’ll give an
-introduction to these, don’t worry) but our focus will be on how to set up a pipeline that results
-in these data products in a reproducible way.</p>
-</div>
-<div id="machine-learning" class="section level2 hasAnchor" number="1.4">
-<h2><span class="header-section-number">1.4</span> Machine learning?<a href="index.html#machine-learning" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>No, being a master in machine learning is not enough to become a data scientist. Actually, the
-older I get, the more I think that machine learning is almost optional. What is not optional is
-knowing how:</p>
-<ul>
-<li>to write, test, and properly document code;</li>
-<li>to acquire (reading in data can be tricky!) and clean data;</li>
-<li>to work inside the Linux terminal/command line interface;</li>
-<li>to use Git, Docker for Dev(Git)Ops;</li>
-<li>the Internet works (what’s a firewall? what’s a reverse proxy? what’s a domain name? etc,
-etc…);</li>
-</ul>
-<p>But what about machine learning? Well, depending what you’ll end up doing, you might indeed focus a
-lot on machine learning and/or statistical modeling. That being said, in practice, it is very often
-much more efficient to let some automl algorithm figure out the best hyperparameters of a XGBoost
-model and simply use that, at least as a starting point (but good luck improving upon automl…).
-What matters, is that the data you’re feeding to your model is clean, that your analysis is
-sensible, and most importantly, that it could be understood by someone taking over (imagine you
-get sick) and rerun with minimal effort in the future. The model here should simply be a piece that
-could be replaced by another model without much impact. The model is rarely central… but of
-course there are exceptions to this, especially in research, but every other point I’ve made still
-stands. It’s just that not only do you have to care about your model a lot, you also have to care
-about everything else.</p>
-<p>So in this course we’re going to learn a bit of all of this. We’re going to learn how to write
-reusable code, learn some basics of the Linux command line, Git and Docker.</p>
-</div>
-<div id="why-r-why-not-insert-your-favourite-programming-language" class="section level2 hasAnchor" number="1.5">
-<h2><span class="header-section-number">1.5</span> Why R? Why not [insert your favourite programming language]<a href="index.html#why-r-why-not-insert-your-favourite-programming-language" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In my absolutely objective opinion R is currently the most interesting and simple language
-you can use to create such data products. If you learn R you have access to almost 19’000
-packages (as of October 2022) to:</p>
-<ul>
-<li>clean data (see: <code>{dplyr}</code>, <code>{tidyr}</code>, <code>{data.table}</code>…);</li>
-<li>work with medium and big data (see: <code>{arrow}</code>, <code>{sparklyr}</code>…);</li>
-<li>visualize data (see: <code>{ggplot2}</code>, <code>{plotly}</code>, <code>{echarts4r}</code>…);</li>
-<li>do literate programming (using Rmarkdown or Quarto, you can write books, documents even create a website);</li>
-<li>do functional programming (see: <code>{purrr}</code>…);</li>
-<li>call other languages from R (see: <code>{reticulate}</code> to call Python from R);</li>
-<li>do machine learning and AI (see: <code>{tidymodels}</code>, <code>{tensorflow}</code>, <code>{keras}</code>…)</li>
-<li>create webapps (see: <code>{shiny}</code>…)</li>
-<li>domain specific statistics/machine learning (see <a href="https://cran.r-project.org/web/views/">CRAN Task Views</a> for an exhaustive list);</li>
-<li>and more</li>
-</ul>
-<p>It’s not just about what the packages provide: installing R and its packages and dependencies is rarely
-frustrating, which is not the case with Python
-(Python 2 vs Python 3, <code>pip</code> vs <code>conda</code>, <code>pyenv</code> vs <code>venv</code>…, dependency hell is a real place full of snakes)</p>
-<div style="text-align:center;">
-<p><img src="img/dependency_hell.png" width="512" /></p>
-</div>
-<p>That doesn’t mean that R does not have any issues. Quite the contrary, R sometimes behaves in seemingly truly
-bizarre ways (as an example, try running <code>nchar("123456789")</code> and then <code>nchar(123456789)</code> and try to make sense
-of it). To know more about such bizarre behaviour, I recommend you read <em>The R Inferno</em> (linked at the end
-of this chapter). So, yes, R is far from perfect, but it sucks less than the alternatives
-(again, in my absolutely objective opinion).</p>
-</div>
-<div id="pre-requisites" class="section level2 hasAnchor" number="1.6">
-<h2><span class="header-section-number">1.6</span> Pre-requisites<a href="index.html#pre-requisites" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>I will assume basic programming knowledge, and not much more. If you need to set up R on your computer
-you can read the intro to my other book <a href="https://b-rodrigues.github.io/modern_R/index.html#prerequisites">Modern R with the tidyverse</a>.
-Follow the pre-requisites there: install R, RStudio and these packages:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(</span>
-<span id="cb1-2"><a href="index.html#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Ecdat&quot;</span>,</span>
-<span id="cb1-3"><a href="index.html#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;janitor&quot;</span>,</span>
-<span id="cb1-4"><a href="index.html#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;plm&quot;</span>,</span>
-<span id="cb1-5"><a href="index.html#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;pwt9&quot;</span>,</span>
-<span id="cb1-6"><a href="index.html#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;quarto&quot;</span>,</span>
-<span id="cb1-7"><a href="index.html#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;renv&quot;</span>,</span>
-<span id="cb1-8"><a href="index.html#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;rio&quot;</span>,</span>
-<span id="cb1-9"><a href="index.html#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;shiny&quot;</span>,</span>
-<span id="cb1-10"><a href="index.html#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;targets&quot;</span>,</span>
-<span id="cb1-11"><a href="index.html#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;testthat&quot;</span>,</span>
-<span id="cb1-12"><a href="index.html#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;tidyverse&quot;</span>,</span>
-<span id="cb1-13"><a href="index.html#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;tribble&quot;</span>,</span>
-<span id="cb1-14"><a href="index.html#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;usethis&quot;</span></span>
-<span id="cb1-15"><a href="index.html#cb1-15" aria-hidden="true" tabindex="-1"></a>))</span></code></pre></div>
-<p>The course will be very, very hands-on. I’ll give general hints and steps, and ask you to do stuff.
-It will not always be 100% simple and obvious, and you will need to also think a bit by yourself.
-I’ll help of course, so don’t worry. The idea is to put you in the shoes of a real data scientist
-that gets asked at 9 in the morning to come up with a solution to a problem by COB. In 99% of the cases,
-you will never have encountered that problem ever, as it will be very specific to the company you’re working at.
-Google and Stackoverflow will be your only friends in these moments.</p>
-<p>The beginning of this course will likely be the toughest part, especially if you’re not familiar with R.
-I will need to bring you up to speed in 6 hours. Only after can we actually start talking about
-RAPs. What’s important is to never give up and work together with me.</p>
-</div>
-<div id="grading" class="section level2 hasAnchor" number="1.7">
-<h2><span class="header-section-number">1.7</span> Grading<a href="index.html#grading" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The way grading works in this course is as follows: during lecture hours you will follow along. At
-home, you’ll be working on setting up your own pipeline. For this, choose a dataset that ideally
-would need some cleaning and/or tweaking to be usable. We are going first to learn how to package
-this dataset alongside some functions to make it clean. If time allows, I’ll leave some time
-during lecture hours for you to work on it and ask me and your colleagues for help. At the end of
-the semester, I will need to download your code and get it running. The less effort this takes me,
-the better your score. Here is a tentative breakdown:</p>
-<ul>
-<li><p>Code is on github.com and I can pull it: 2 points;</p></li>
-<li><p>Data and functions to run pipeline are in a tested, documented package? 3 points;</p></li>
-<li><p>I don’t need to do anything to load data: 5 points;</p></li>
-<li><p>I can download and install your pipeline’s dependencies in one command line: 5 points;</p></li>
-<li><p>I can run your pipeline in one command line: 5 points</p></li>
-<li><p>Extra points: pipeline is dockerized and uses github actions to run? 5 points</p></li>
-</ul>
-<p>The way to fail this class is to write an undocumented script that only runs on your machine and
-expect me to debug it to get it to run.</p>
-</div>
-<div id="jargon" class="section level2 hasAnchor" number="1.8">
-<h2><span class="header-section-number">1.8</span> Jargon<a href="index.html#jargon" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>There’s some jargon that is helpful to know when working with R. Here’s a non-exhaustive list to
-get you started:</p>
-<ul>
-<li>CRAN: the Comprehensive R Archive Network. This is a curated online repository of packages and R installers. When you type <code>install.packages("package_name")</code> in an R console, the package gets downloaded from there;</li>
-<li>Library: the collection of R packages installed on your machine;</li>
-<li>R console: the program where the R interpreter runs;</li>
-<li>Posit/RStudio: Posit (named RStudio in the past) are the makers of the RStudio IDE and of the <em>tidyverse</em> collection of packages;</li>
-<li>tidyverse: a collection of packages created by Posit that offer a common language and syntax to perform any task required for data science — from reading in data, to cleaning data, up to machine learning and visualisation;</li>
-<li>base R: refers to a vanilla installation (and vanilla capabilities) of R. Often used to contrast a <em>tidyverse</em> specific approach to a problem (for example, using base R’s <code>lapply()</code> in constrast to the <em>tidyverse</em> <code>purrr::map()</code>).</li>
-<li><code>package::function()</code>: Functions can be accessed in several ways in R, either by loading an entire package at the start of a script with <code>library(dplyr)</code> or by using <code>dplyr::select()</code>.</li>
-<li>Function factory (sometimes adverb): a function that returns a function.</li>
-<li>Variable: the variable of a function (as in <code>x</code> in <code>f(x)</code>) or the variable from statistical modeling (synonym of feature)</li>
-<li><code>&lt;-</code> vs <code>=</code>: in practice, you can use <code>&lt;-</code> and <code>=</code> interchangeably. I prefer <code>&lt;-</code>, but feel free to use <code>=</code> if you wish.</li>
-</ul>
-</div>
-<div id="further-reading" class="section level2 hasAnchor" number="1.9">
-<h2><span class="header-section-number">1.9</span> Further reading<a href="index.html#further-reading" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li><a href="https://cran.r-project.org/doc/manuals/r-release/R-intro.html">An Introduction to R (from the R team themselves)</a></li>
-<li><a href="https://cran.r-project.org/doc/FAQ/R-FAQ.html#What-is-CRAN_003f">What is CRAN?</a></li>
-<li><a href="https://www.burns-stat.com/pages/Tutor/R_inferno.pdf">The R Inferno</a></li>
-<li><a href="https://analysisfunction.civilservice.gov.uk/support/reproducible-analytical-pipelines/">Reproducible Analytical Pipelines (RAP)</a></li>
-</ul>
-</div>
-<div id="license" class="section level2 hasAnchor" number="1.10">
-<h2><span class="header-section-number">1.10</span> License<a href="index.html#license" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>This course is licensed under the <a href="http://www.wtfpl.net/txt/copying/">WTFPL</a>.</p>
-<p><a href="http://www.wtfpl.net/"><img
-       src="img/wtfpl-badge-4.png"
-       width="80" height="15" alt="WTFPL" /></a></p>
+<div id="conclusion" class="section level1 hasAnchor" number="12">
+<h1><span class="header-section-number">Chapter 12</span> Conclusion<a href="conclusion.html#conclusion" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="why-bother" class="section level2 hasAnchor" number="12.1">
+<h2><span class="header-section-number">12.1</span> Why bother<a href="conclusion.html#why-bother" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We’re at the end of this course, which I hope you enjoyed. There is now yet another question we need to ask ourselves: is this worth it?
+Why should we bother with making our pipelines reproducible? I believe that there are two, fundamental, essential reasons.</p>
+<p>The first one, is that time is finite, and working manually does not scale. Reproducible pipelines do take time to set up, but they allow
+us to win this time back once we start re-running them. Wasting time and resources running things manually (with the potential for introducing
+errors) is simply not acceptable. This freed up time can then be used to provide further value to your employer, yourself, and ideally your
+community as well.</p>
+<p>The second reason, is that setting up RAPs is in itself an enjoyable activity, which requires the full depth and breadth of your skills.
+If you’re working in science, there is the added benefit that by setting up a RAP you’re doing actual science: providing a reproducible
+analysis where an hypothesis gets tested (an not writing papers).</p>
 
 </div>
 </div>
+
+
+
+
+
+
             </section>
 
           </div>
         </div>
       </div>
+<a href="what-else-should-you-learn.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-<a href="introduction-to-r.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -481,7 +318,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/b-rodrigues/rap4mads/edit/master/index.Rmd",
+"link": "https://github.com/b-rodrigues/rap4mads/edit/master/12-conclusion.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -489,7 +326,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/b-rodrigues/rap4mads/blob/master/index.Rmd",
+"link": "https://github.com/b-rodrigues/rap4mads/blob/master/12-conclusion.Rmd",
 "text": null
 },
 "download": null,
