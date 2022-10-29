@@ -969,16 +969,428 @@ with your app.
 
 Believe it or not, but this app contains almost every ingredient you need to know to build shiny apps.
 But of course, there are many, many other widgets that you can use to give your users even more
-ways to interact with applications. I will give you another example, and then we will need to move on.
+ways to interact with applications. 
 
 ### Slightly more advanced shiny
 
-- users can choose which variable they want to see
-- users can choose position of legend
-- switching from line plot to polygon plot
-- action button to plot
-- bookmark button
-- replace ggplot with g2r
+Let's take a look at another, more complex example. Because this second example is much more
+complex, let's first take a look at a video of the app in action:
+
+<div style="text-align:center;">
+<video width="640" height="480" controls>
+  <source src="img/shiny_2.mp4" type="video/mp4">
+</video>
+</div>
+
+
+The global file will be almost the same as before:
+
+```{r, eval = F}
+library(myPackage)
+library(dplyr)
+library(ggplot2)
+library(g2r)
+
+data("unemp")
+
+enableBookmarking(store = "url")
+
+```
+
+The only difference is that I load the `{g2r}` package to create a nice interactive plot, and enable
+bookmarking of the state of the app using `enableBookmarking(store = "url")`. Let's move on to the ui:
+
+```{r, eval = F}
+ui <- function(request){
+  fluidPage(
+
+    titlePanel("Unemployment in Luxembourg"),
+
+    sidebarLayout(
+
+      sidebarPanel(
+        selectizeInput("place_name_selected", "Select place:",
+                       choices=unique(unemp$place_name),
+                       multiple = TRUE,
+                       selected = c("Rumelange", "Dudelange"),
+                       options = list(
+                         plugins = list("remove_button"),
+                         create = TRUE,
+                         persist = FALSE # keep created choices in dropdown
+                       )
+                       ),
+        hr(),
+        # To allow users to select the variable, we add a selectInput
+        # (not selectizeInput, like above)
+        # don’t forget to use input$variable_selected in the
+        # server function later!
+        selectInput("variable_selected", "Select variable to plot:",
+                       choices = setdiff(unique(colnames(unemp)), c("year", "place_name", "level")),
+                       multiple = FALSE,
+                       selected = "unemployment_rate_in_percent",
+                       ),
+        hr(),
+        # Just for illustration purposes, these radioButtons will not be bound
+        # to the actionButton.
+        radioButtons(inputId = "legend_position",
+                     label = "Choose legend position",
+                     choices = c("top", "bottom", "left", "right"),
+                     selected = "right",
+                     inline = TRUE),
+        hr(),
+        actionButton(inputId = "render_plot",
+                     label = "Click here to generate plot"),
+        hr(),
+        helpText("Original data from STATEC"),
+        hr(),
+        bookmarkButton()
+      ),
+
+      mainPanel(
+        # We add a tabsetPanel with two tabs. The first tab show
+        # the plot made using ggplot the second tab
+        # shows the plot using g2r
+        tabsetPanel(
+          tabPanel("ggplot version", plotOutput("unemp_plot")),
+          tabPanel("g2r version", g2Output("unemp_plot_g2r"))
+        )
+      )
+    )
+  )
+
+}
+```
+
+There are many new things. Everything is explained in the comments within the script itself so take 
+a look at them. What's important to notice, is that I now added two buttons, an action button, and
+a bookmark button. The action button will be used to draw the plots. This means that the user will
+choose the options for the plot, and then the plot will only appear once the user clicks on the button.
+This is quite useful in cases where computations take time to run, and you don't want the every reactive
+object to get recomputed as soon as the user interacts with the app. This way, only once every selection
+has been made can the user give the green light to the app to compute everything.
+
+At the bottom of the ui you'll see that I've added a `tabsetPanel()` with some `tabPanel()`s. This
+is where the graphs "live". Let's move on to the server script:
+
+```{r, eval = F}
+server <- function(session, input, output) {
+
+  # Because I want the plots to only render once the user clicks the 
+  # actionButton, I need to move every interactive, or reactive, element into
+  # an eventReactive() function. eventReactive() waits for something to "happen"
+  # in order to let the reactive variables run. If you don’t do that, then
+  # when the user interacts with app, these reactive variables will run
+  # which we do not want.
+
+  # Data only gets filtered once the user clicks on the actionButton
+  filtered_data <- eventReactive(input$render_plot, {
+    unemp %>%
+      filter(place_name %in% input$place_name_selected)
+  })
+
+
+  # The variable the user selects gets passed down to the plot only once the user
+  # clicks on the actionButton.
+  # If you don’t do this, what will happen is that the variable will then update the plot
+  # even when the user does not click on the actionButton
+  variable_selected <- eventReactive(input$render_plot, {
+    input$variable_selected
+  })
+
+  # The plot title only gets generated once the user clicks on the actionButton
+  # If you don’t do this, what will happen is that the title of the plot will get
+  # updated even when the user does not click on the actionButton
+  plot_title <- eventReactive(input$render_plot, {
+    paste(variable_selected(), "for", paste(input$place_name_selected, collapse = ", "))
+  })
+
+  output$unemp_plot <- renderPlot({
+
+    ggplot(data = filtered_data()) +
+      theme_minimal() +
+      # Because the selected variable is a string, we need to convert it to a symbol
+      # using rlang::sym and evaluate it using !!. This is because the aes() function
+      # expects bare variable names, and not strings.
+      # Because this is something that developers have to use often in shiny apps,
+      # there is a version of aes() that works with strings, called aes_string()
+      # You can use both approaches interchangeably.
+      #geom_line(aes(year, !!rlang::sym(variable_selected()), color = place_name)) +
+      geom_line(aes_string("year", variable_selected(), color = "place_name")) +
+      labs(title = plot_title()) +
+      theme(legend.position = input$legend_position)
+
+
+  })
+
+  output$unemp_plot_g2r <- renderG2({
+
+    g2(data = filtered_data()) %>%
+      # g2r’s asp() requires bare variable names
+      fig_line(asp(year, !!rlang::sym(variable_selected()), color = place_name)) %>%
+      # For some reason, the title does not show...
+      subject(plot_title()) %>%
+      legend_color(position = input$legend_position)
+
+  })
+}
+
+```
+
+What's new here, is that I now must redefine the reactive objects in such a way that they only get
+run once the user clicks the button. This is why every reactive object (but one, the position of the
+legend) is now wrapped by `eventReactive()`. `eventReactive()` waits for a trigger, in this case
+the clicking of the action button, to run the reactive object. `eventReactive()` takes the action button
+ID as an input. I've also defined the plot title as a reactive value, not only the dataset as before,
+because if I didn't do it, then the title of the plot would get updated as the user would choose
+other communes, but the contents of the plot, that depend on the data, would not get updated. To avoid
+the title and the plot to get desynched, I need to also wrap it around `eventReactive()`. You can see
+this behaviour by changing the legend position. The legend position gets updated without the user needing
+to click the button. This is because I have not wrapped the legend position inside `eventReactive()`.
+
+Finally, I keep the `{ggplot2}` graph, but also remake it using `{g2r}`, to illustrate how it works
+inside a Shiny app.
+
+To conclude this section, we will take a look at one last app. This app will allow users to 
+do data aggregation on relatively large dataset, so computations will take some time. The app
+will illustrate how to best deal with this.
+
+### Basic optimization of Shiny apps
+
+The app we will build now requires what is sometimes referred to *medium* size data. *Medium* size
+data is data that is far from being big data, but already big enough that handling it requires
+some thought, especially in this scenario. What we want to do is build an app that will allow
+users to do some aggregations on this data. Because the size of the data is not trivial, these
+computations will take some time to run. So we need to think about certain strategies to avoid
+frustrating our users. The file we will be using can be downloaded from 
+[here](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/HG7NV7).
+We're not going to use the exact same data set though, I have prepared a smaller version that
+will be more than enough for our purposes. But the strategies that we are going to implement
+here will also work for the original, much larger, dataset. You can get the smaller version
+[here](https://mega.nz/file/l1IxHYIT#mZkeQOVpMc9XymMNtDY687sHEZHoIvDcUOm-4AwK6OI).
+Uncompressed it'll be a 2.4GB file. Not big data in any sense, but big enough to be 
+annoying to handle without the use of some optimization strategies.
+
+One such strategy is only letting the computations run once the user gives the green light by clicking
+on an action button. This is what we have seen in the previous example. The next obvious strategy
+is to use packages that are optimized for speed. It turns out that the functions we have seen
+until now, from packages like `{dplyr}` and the like, are not the fastest. Their ease of use and 
+expressiveness come at a speed cost. So we will need to switch to something faster. We will do the same
+to read in the data. 
+
+This faster solution is the `{arrow}` package, which is an interface to the [Arrow software developed by Apache](https://arrow.apache.org/faq/).
+
+So first, install the `{arrow}` package by running `install.packages("arrow")`. This will compile
+`libarrow` from source on Linux and might take some time, so perhaps go grab a coffee.
+
+Before building the app, let me perform a very simple benchmark. The script below reads in the data,
+then performs some aggregations. This is done using standard `{tidyverse}` functions, but also
+using `{arrow}`:
+
+```{r, eval = F}
+start_tidy <- Sys.time()
+  # {vroom} is able to read in larger files than {readr}
+  # I could not get this file into R using readr::read_csv
+  # my RAM would get maxed out
+  air <- vroom::vroom("data/combined")
+
+  mean_dep_delay <- air |>
+    dplyr::group_by(Year, Month, DayofMonth) |>
+    dplyr::summarise(mean_delay = mean(DepDelay, na.rm = TRUE))
+end_tidy <- Sys.time()
+
+time_tidy <- end_tidy - start_tidy
+
+
+start_arrow <- Sys.time()
+  air <- arrow::open_dataset("data/combined", format = "csv")
+
+  mean_dep_delay <- air |>
+    dplyr::group_by(Year, Month, DayofMonth) |>
+    dplyr::summarise(mean_delay = mean(DepDelay, na.rm = TRUE))
+end_arrow <- Sys.time()
+
+end_tidy - start_tidy
+end_arrow - start_arrow
+```
+
+The "tidy" approach took 17 seconds, while the arrow approach took 6 seconds. This is an impressive
+improvement, but put yourself in the shoes of a user who has to wait 6 seconds for each query. That
+be very annoying, very quickly. So the other strategy that we will use is to provide some visual 
+cue that computations are running, and then we will go one step further and use caching of results 
+in the Shiny app.
+
+But before we continue, you may be confused by the code above. After all, I told you before that
+functions from `{dplyr}` and the like were not the fastest, and yet, I am using them in the arrow
+approach as well, and they now run almost 3 times as fast. What's going on? What's happening here,
+is that the `air` object that we read using `arrow::open_dataset` is not a dataframe, but an `arrow`
+dataset. These are special, and work in a different way. But that's not what's important: what's important
+is that the `{dplyr}` api can be used to work with these `arrow` datasets. This means that functions
+from `{dplyr}` change the way they work depending on the type of the object their working with.
+If it's a good old regular data frame, some C++ code gets called to perform the computations. If it's 
+an `arrow` dataset, `libarrow` and its black magic get called instead to perform the computations.
+If you're familiar with the concept of
+[polymorphism](https://en.wikipedia.org/wiki/Polymorphism_(computer_science)) this is it
+(think of `+` in Python: `1+1` returns `2`, `"a"+"b"` returns `"a+b"`. A different computation
+gets performed depending on the type of the function's inputs).
+
+Let's now build a basic version of the app, without any fancy visual cues nor caching. Here is
+the global file:
+
+```{r, eval = F}
+library(arrow)
+library(dplyr)
+library(rlang)
+library(DT)
+
+air <- arrow::open_dataset("data/combined", format = "csv")
+```
+
+The ui will be quite simple:
+
+```{r, eval = F}
+ui <- function(request){
+  fluidPage(
+
+    titlePanel("Air On Time data"),
+
+    sidebarLayout(
+
+      sidebarPanel(
+        selectizeInput("group_by_selected", "Variables to group by:",
+                       choices = c("Year", "Month", "DayofMonth", "Origin", "Dest"),
+                       multiple = TRUE,
+                       selected = c("Year", "Month"),
+                       options = list(
+                         plugins = list("remove_button"),
+                         create = TRUE,
+                         persist = FALSE # keep created choices in dropdown
+                       )
+                       ),
+        hr(),
+        selectizeInput("var_to_average", "Select variable to average by groups:",
+                       choices = c("ArrDelay", "DepDelay", "Distance"),
+                       multiple = FALSE,
+                       selected = "DepDelay",
+                       ),
+        hr(),
+        actionButton(inputId = "run_aggregation",
+                     label = "Click here to run aggregation"),
+        hr(),
+        bookmarkButton()
+      ),
+
+      mainPanel(
+        DTOutput("result")
+      )
+    )
+  )
+
+}
+
+```
+
+And finally the server:
+
+```{r, eval = F}
+server <- function(session, input, output) {
+
+  # Numbers get crunched only when the user clicks on the action button
+  grouped_data <- eventReactive(input$run_aggregation, {
+    air %>%
+      group_by(!!!syms(input$group_by_selected)) %>%
+      summarise(result = mean(!!sym(input$var_to_average),
+                              na.rm = TRUE))
+  })
+
+  output$result <- renderDT({
+    as.data.frame(grouped_data())
+  })
+
+}
+```
+
+Because `group_by()` and `mean()` expect bare variable names, I convert them from strings to 
+symbols using `rlang::syms()` and `rlang::sym()`. The difference between the two is that 
+`rlang::syms()` is required when a list of strings gets passed down to the function (remember 
+that the user must select several variables to group by), and this is also why `!!!` are needed
+(to unquote the list of symbols). Finally, the computed data must be converted back to a 
+data frame using `as.data.frame()`. This is actually when the computations happen. `{arrow}` collects
+all the aggregations but does not perform anything until absolutely required. Let's see the app 
+in action:
+
+<div style="text-align:center;">
+<video width="640" height="480" controls>
+  <source src="img/shiny_3.mp4" type="video/mp4">
+</video>
+</div>
+
+As you can see, in terms of User Experience (UX) this is quite poor. When the user clicks on the button
+nothing seems to be going on for several seconds, until the table appears. Then, when the user
+changes some options and clicks again on the action button, it looks like the app is crashing.
+
+Let's add some visual cues to indicate to the user that something is happening when the button gets 
+clicked. For this, we are going to use the `{shinycssloaders}` package:
+
+```{r, eval = F}
+install.packages("shinycssloaders")
+```
+
+and simply change the ui to this (and don't forget to load `{shinycssloaders}` in the global script!):
+
+```{r, eval = F}
+ui <- function(request){
+  fluidPage(
+
+    titlePanel("Air On Time data"),
+
+    sidebarLayout(
+
+      sidebarPanel(
+        selectizeInput("group_by_selected", "Variables to group by:",
+                       choices = c("Year", "Month", "DayofMonth", "Origin", "Dest"),
+                       multiple = TRUE,
+                       selected = c("Year", "Month"),
+                       options = list(
+                         plugins = list("remove_button"),
+                         create = TRUE,
+                         persist = FALSE # keep created choices in dropdown
+                       )
+                       ),
+        hr(),
+        selectizeInput("var_to_average", "Select variable to average by groups:",
+                       choices = c("ArrDelay", "DepDelay", "Distance"),
+                       multiple = FALSE,
+                       selected = "DepDelay",
+                       ),
+        hr(),
+        actionButton(inputId = "run_aggregation",
+                     label = "Click here to run aggregation"),
+        hr(),
+        bookmarkButton()
+      ),
+
+      mainPanel(
+        # We add a tabsetPanel with two tabs. The first tab show the plot made using ggplot
+        # the second tab shows the plot using g2r
+        DTOutput("result") |>
+          withSpinner()
+      )
+    )
+  )
+
+}
+
+```
+
+The only difference with before is that now the `DTOutput()` right at the end gets passed down
+to `withSpinner()`. There are several spinners that you can choose, but let's simply stay with the 
+default one. This is how the app looks now:
+
+<div style="text-align:center;">
+<video width="640" height="480" controls>
+  <source src="img/shiny_4.mp4" type="video/mp4">
+</video>
+</div>
 
 ### References
 

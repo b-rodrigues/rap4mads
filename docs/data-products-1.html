@@ -23,7 +23,7 @@
 <meta name="author" content="Bruno Rodrigues" />
 
 
-<meta name="date" content="2022-10-28" />
+<meta name="date" content="2022-10-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -230,7 +230,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="8.4.1" data-path="data-products-1.html"><a href="data-products-1.html#the-basic-structure-of-a-shiny-app"><i class="fa fa-check"></i><b>8.4.1</b> The basic structure of a Shiny app</a></li>
 <li class="chapter" data-level="8.4.2" data-path="data-products-1.html"><a href="data-products-1.html#slightly-more-advanced-shiny"><i class="fa fa-check"></i><b>8.4.2</b> Slightly more advanced shiny</a></li>
-<li class="chapter" data-level="8.4.3" data-path="data-products-1.html"><a href="data-products-1.html#references"><i class="fa fa-check"></i><b>8.4.3</b> References</a></li>
+<li class="chapter" data-level="8.4.3" data-path="data-products-1.html"><a href="data-products-1.html#basic-optimization-of-shiny-apps"><i class="fa fa-check"></i><b>8.4.3</b> Basic optimization of Shiny apps</a></li>
+<li class="chapter" data-level="8.4.4" data-path="data-products-1.html"><a href="data-products-1.html#references"><i class="fa fa-check"></i><b>8.4.4</b> References</a></li>
 </ul></li>
 <li class="chapter" data-level="8.5" data-path="data-products-1.html"><a href="data-products-1.html#how-to-build-data-products-using-targets"><i class="fa fa-check"></i><b>8.5</b> How to build data products using <code>{targets}</code></a></li>
 </ul></li>
@@ -1103,21 +1104,375 @@ with your app.</p>
 </div>
 <p>Believe it or not, but this app contains almost every ingredient you need to know to build shiny apps.
 But of course, there are many, many other widgets that you can use to give your users even more
-ways to interact with applications. I will give you another example, and then we will need to move on.</p>
+ways to interact with applications.</p>
 </div>
 <div id="slightly-more-advanced-shiny" class="section level3 hasAnchor" number="8.4.2">
 <h3><span class="header-section-number">8.4.2</span> Slightly more advanced shiny<a href="data-products-1.html#slightly-more-advanced-shiny" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li>users can choose which variable they want to see</li>
-<li>users can choose position of legend</li>
-<li>switching from line plot to polygon plot</li>
-<li>action button to plot</li>
-<li>bookmark button</li>
-<li>replace ggplot with g2r</li>
-</ul>
+<p>Let’s take a look at another, more complex example. Because this second example is much more
+complex, let’s first take a look at a video of the app in action:</p>
+<div style="text-align:center;">
+<video width="640" height="480" controls>
+<source src="img/shiny_2.mp4" type="video/mp4">
+</video>
 </div>
-<div id="references" class="section level3 hasAnchor" number="8.4.3">
-<h3><span class="header-section-number">8.4.3</span> References<a href="data-products-1.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The global file will be almost the same as before:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="data-products-1.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(myPackage)</span>
+<span id="cb22-2"><a href="data-products-1.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb22-3"><a href="data-products-1.html#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb22-4"><a href="data-products-1.html#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(g2r)</span>
+<span id="cb22-5"><a href="data-products-1.html#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="data-products-1.html#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;unemp&quot;</span>)</span>
+<span id="cb22-7"><a href="data-products-1.html#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-8"><a href="data-products-1.html#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="fu">enableBookmarking</span>(<span class="at">store =</span> <span class="st">&quot;url&quot;</span>)</span></code></pre></div>
+<p>The only difference is that I load the <code>{g2r}</code> package to create a nice interactive plot, and enable
+bookmarking of the state of the app using <code>enableBookmarking(store = "url")</code>. Let’s move on to the ui:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="data-products-1.html#cb23-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="cf">function</span>(request){</span>
+<span id="cb23-2"><a href="data-products-1.html#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fluidPage</span>(</span>
+<span id="cb23-3"><a href="data-products-1.html#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="data-products-1.html#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">titlePanel</span>(<span class="st">&quot;Unemployment in Luxembourg&quot;</span>),</span>
+<span id="cb23-5"><a href="data-products-1.html#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-6"><a href="data-products-1.html#cb23-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarLayout</span>(</span>
+<span id="cb23-7"><a href="data-products-1.html#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-8"><a href="data-products-1.html#cb23-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">sidebarPanel</span>(</span>
+<span id="cb23-9"><a href="data-products-1.html#cb23-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">selectizeInput</span>(<span class="st">&quot;place_name_selected&quot;</span>, <span class="st">&quot;Select place:&quot;</span>,</span>
+<span id="cb23-10"><a href="data-products-1.html#cb23-10" aria-hidden="true" tabindex="-1"></a>                       <span class="at">choices=</span><span class="fu">unique</span>(unemp<span class="sc">$</span>place_name),</span>
+<span id="cb23-11"><a href="data-products-1.html#cb23-11" aria-hidden="true" tabindex="-1"></a>                       <span class="at">multiple =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb23-12"><a href="data-products-1.html#cb23-12" aria-hidden="true" tabindex="-1"></a>                       <span class="at">selected =</span> <span class="fu">c</span>(<span class="st">&quot;Rumelange&quot;</span>, <span class="st">&quot;Dudelange&quot;</span>),</span>
+<span id="cb23-13"><a href="data-products-1.html#cb23-13" aria-hidden="true" tabindex="-1"></a>                       <span class="at">options =</span> <span class="fu">list</span>(</span>
+<span id="cb23-14"><a href="data-products-1.html#cb23-14" aria-hidden="true" tabindex="-1"></a>                         <span class="at">plugins =</span> <span class="fu">list</span>(<span class="st">&quot;remove_button&quot;</span>),</span>
+<span id="cb23-15"><a href="data-products-1.html#cb23-15" aria-hidden="true" tabindex="-1"></a>                         <span class="at">create =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb23-16"><a href="data-products-1.html#cb23-16" aria-hidden="true" tabindex="-1"></a>                         <span class="at">persist =</span> <span class="cn">FALSE</span> <span class="co"># keep created choices in dropdown</span></span>
+<span id="cb23-17"><a href="data-products-1.html#cb23-17" aria-hidden="true" tabindex="-1"></a>                       )</span>
+<span id="cb23-18"><a href="data-products-1.html#cb23-18" aria-hidden="true" tabindex="-1"></a>                       ),</span>
+<span id="cb23-19"><a href="data-products-1.html#cb23-19" aria-hidden="true" tabindex="-1"></a>        <span class="fu">hr</span>(),</span>
+<span id="cb23-20"><a href="data-products-1.html#cb23-20" aria-hidden="true" tabindex="-1"></a>        <span class="co"># To allow users to select the variable, we add a selectInput</span></span>
+<span id="cb23-21"><a href="data-products-1.html#cb23-21" aria-hidden="true" tabindex="-1"></a>        <span class="co"># (not selectizeInput, like above)</span></span>
+<span id="cb23-22"><a href="data-products-1.html#cb23-22" aria-hidden="true" tabindex="-1"></a>        <span class="co"># don’t forget to use input$variable_selected in the</span></span>
+<span id="cb23-23"><a href="data-products-1.html#cb23-23" aria-hidden="true" tabindex="-1"></a>        <span class="co"># server function later!</span></span>
+<span id="cb23-24"><a href="data-products-1.html#cb23-24" aria-hidden="true" tabindex="-1"></a>        <span class="fu">selectInput</span>(<span class="st">&quot;variable_selected&quot;</span>, <span class="st">&quot;Select variable to plot:&quot;</span>,</span>
+<span id="cb23-25"><a href="data-products-1.html#cb23-25" aria-hidden="true" tabindex="-1"></a>                       <span class="at">choices =</span> <span class="fu">setdiff</span>(<span class="fu">unique</span>(<span class="fu">colnames</span>(unemp)), <span class="fu">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;place_name&quot;</span>, <span class="st">&quot;level&quot;</span>)),</span>
+<span id="cb23-26"><a href="data-products-1.html#cb23-26" aria-hidden="true" tabindex="-1"></a>                       <span class="at">multiple =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb23-27"><a href="data-products-1.html#cb23-27" aria-hidden="true" tabindex="-1"></a>                       <span class="at">selected =</span> <span class="st">&quot;unemployment_rate_in_percent&quot;</span>,</span>
+<span id="cb23-28"><a href="data-products-1.html#cb23-28" aria-hidden="true" tabindex="-1"></a>                       ),</span>
+<span id="cb23-29"><a href="data-products-1.html#cb23-29" aria-hidden="true" tabindex="-1"></a>        <span class="fu">hr</span>(),</span>
+<span id="cb23-30"><a href="data-products-1.html#cb23-30" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Just for illustration purposes, these radioButtons will not be bound</span></span>
+<span id="cb23-31"><a href="data-products-1.html#cb23-31" aria-hidden="true" tabindex="-1"></a>        <span class="co"># to the actionButton.</span></span>
+<span id="cb23-32"><a href="data-products-1.html#cb23-32" aria-hidden="true" tabindex="-1"></a>        <span class="fu">radioButtons</span>(<span class="at">inputId =</span> <span class="st">&quot;legend_position&quot;</span>,</span>
+<span id="cb23-33"><a href="data-products-1.html#cb23-33" aria-hidden="true" tabindex="-1"></a>                     <span class="at">label =</span> <span class="st">&quot;Choose legend position&quot;</span>,</span>
+<span id="cb23-34"><a href="data-products-1.html#cb23-34" aria-hidden="true" tabindex="-1"></a>                     <span class="at">choices =</span> <span class="fu">c</span>(<span class="st">&quot;top&quot;</span>, <span class="st">&quot;bottom&quot;</span>, <span class="st">&quot;left&quot;</span>, <span class="st">&quot;right&quot;</span>),</span>
+<span id="cb23-35"><a href="data-products-1.html#cb23-35" aria-hidden="true" tabindex="-1"></a>                     <span class="at">selected =</span> <span class="st">&quot;right&quot;</span>,</span>
+<span id="cb23-36"><a href="data-products-1.html#cb23-36" aria-hidden="true" tabindex="-1"></a>                     <span class="at">inline =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb23-37"><a href="data-products-1.html#cb23-37" aria-hidden="true" tabindex="-1"></a>        <span class="fu">hr</span>(),</span>
+<span id="cb23-38"><a href="data-products-1.html#cb23-38" aria-hidden="true" tabindex="-1"></a>        <span class="fu">actionButton</span>(<span class="at">inputId =</span> <span class="st">&quot;render_plot&quot;</span>,</span>
+<span id="cb23-39"><a href="data-products-1.html#cb23-39" aria-hidden="true" tabindex="-1"></a>                     <span class="at">label =</span> <span class="st">&quot;Click here to generate plot&quot;</span>),</span>
+<span id="cb23-40"><a href="data-products-1.html#cb23-40" aria-hidden="true" tabindex="-1"></a>        <span class="fu">hr</span>(),</span>
+<span id="cb23-41"><a href="data-products-1.html#cb23-41" aria-hidden="true" tabindex="-1"></a>        <span class="fu">helpText</span>(<span class="st">&quot;Original data from STATEC&quot;</span>),</span>
+<span id="cb23-42"><a href="data-products-1.html#cb23-42" aria-hidden="true" tabindex="-1"></a>        <span class="fu">hr</span>(),</span>
+<span id="cb23-43"><a href="data-products-1.html#cb23-43" aria-hidden="true" tabindex="-1"></a>        <span class="fu">bookmarkButton</span>()</span>
+<span id="cb23-44"><a href="data-products-1.html#cb23-44" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb23-45"><a href="data-products-1.html#cb23-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-46"><a href="data-products-1.html#cb23-46" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mainPanel</span>(</span>
+<span id="cb23-47"><a href="data-products-1.html#cb23-47" aria-hidden="true" tabindex="-1"></a>        <span class="co"># We add a tabsetPanel with two tabs. The first tab show</span></span>
+<span id="cb23-48"><a href="data-products-1.html#cb23-48" aria-hidden="true" tabindex="-1"></a>        <span class="co"># the plot made using ggplot the second tab</span></span>
+<span id="cb23-49"><a href="data-products-1.html#cb23-49" aria-hidden="true" tabindex="-1"></a>        <span class="co"># shows the plot using g2r</span></span>
+<span id="cb23-50"><a href="data-products-1.html#cb23-50" aria-hidden="true" tabindex="-1"></a>        <span class="fu">tabsetPanel</span>(</span>
+<span id="cb23-51"><a href="data-products-1.html#cb23-51" aria-hidden="true" tabindex="-1"></a>          <span class="fu">tabPanel</span>(<span class="st">&quot;ggplot version&quot;</span>, <span class="fu">plotOutput</span>(<span class="st">&quot;unemp_plot&quot;</span>)),</span>
+<span id="cb23-52"><a href="data-products-1.html#cb23-52" aria-hidden="true" tabindex="-1"></a>          <span class="fu">tabPanel</span>(<span class="st">&quot;g2r version&quot;</span>, <span class="fu">g2Output</span>(<span class="st">&quot;unemp_plot_g2r&quot;</span>))</span>
+<span id="cb23-53"><a href="data-products-1.html#cb23-53" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb23-54"><a href="data-products-1.html#cb23-54" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb23-55"><a href="data-products-1.html#cb23-55" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb23-56"><a href="data-products-1.html#cb23-56" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb23-57"><a href="data-products-1.html#cb23-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-58"><a href="data-products-1.html#cb23-58" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>There are many new things. Everything is explained in the comments within the script itself so take
+a look at them. What’s important to notice, is that I now added two buttons, an action button, and
+a bookmark button. The action button will be used to draw the plots. This means that the user will
+choose the options for the plot, and then the plot will only appear once the user clicks on the button.
+This is quite useful in cases where computations take time to run, and you don’t want the every reactive
+object to get recomputed as soon as the user interacts with the app. This way, only once every selection
+has been made can the user give the green light to the app to compute everything.</p>
+<p>At the bottom of the ui you’ll see that I’ve added a <code>tabsetPanel()</code> with some <code>tabPanel()</code>s. This
+is where the graphs “live”. Let’s move on to the server script:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="data-products-1.html#cb24-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(session, input, output) {</span>
+<span id="cb24-2"><a href="data-products-1.html#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="data-products-1.html#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Because I want the plots to only render once the user clicks the </span></span>
+<span id="cb24-4"><a href="data-products-1.html#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># actionButton, I need to move every interactive, or reactive, element into</span></span>
+<span id="cb24-5"><a href="data-products-1.html#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># an eventReactive() function. eventReactive() waits for something to &quot;happen&quot;</span></span>
+<span id="cb24-6"><a href="data-products-1.html#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># in order to let the reactive variables run. If you don’t do that, then</span></span>
+<span id="cb24-7"><a href="data-products-1.html#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># when the user interacts with app, these reactive variables will run</span></span>
+<span id="cb24-8"><a href="data-products-1.html#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># which we do not want.</span></span>
+<span id="cb24-9"><a href="data-products-1.html#cb24-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-10"><a href="data-products-1.html#cb24-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Data only gets filtered once the user clicks on the actionButton</span></span>
+<span id="cb24-11"><a href="data-products-1.html#cb24-11" aria-hidden="true" tabindex="-1"></a>  filtered_data <span class="ot">&lt;-</span> <span class="fu">eventReactive</span>(input<span class="sc">$</span>render_plot, {</span>
+<span id="cb24-12"><a href="data-products-1.html#cb24-12" aria-hidden="true" tabindex="-1"></a>    unemp <span class="sc">%&gt;%</span></span>
+<span id="cb24-13"><a href="data-products-1.html#cb24-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(place_name <span class="sc">%in%</span> input<span class="sc">$</span>place_name_selected)</span>
+<span id="cb24-14"><a href="data-products-1.html#cb24-14" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb24-15"><a href="data-products-1.html#cb24-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-16"><a href="data-products-1.html#cb24-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-17"><a href="data-products-1.html#cb24-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># The variable the user selects gets passed down to the plot only once the user</span></span>
+<span id="cb24-18"><a href="data-products-1.html#cb24-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># clicks on the actionButton.</span></span>
+<span id="cb24-19"><a href="data-products-1.html#cb24-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># If you don’t do this, what will happen is that the variable will then update the plot</span></span>
+<span id="cb24-20"><a href="data-products-1.html#cb24-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># even when the user does not click on the actionButton</span></span>
+<span id="cb24-21"><a href="data-products-1.html#cb24-21" aria-hidden="true" tabindex="-1"></a>  variable_selected <span class="ot">&lt;-</span> <span class="fu">eventReactive</span>(input<span class="sc">$</span>render_plot, {</span>
+<span id="cb24-22"><a href="data-products-1.html#cb24-22" aria-hidden="true" tabindex="-1"></a>    input<span class="sc">$</span>variable_selected</span>
+<span id="cb24-23"><a href="data-products-1.html#cb24-23" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb24-24"><a href="data-products-1.html#cb24-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-25"><a href="data-products-1.html#cb24-25" aria-hidden="true" tabindex="-1"></a>  <span class="co"># The plot title only gets generated once the user clicks on the actionButton</span></span>
+<span id="cb24-26"><a href="data-products-1.html#cb24-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># If you don’t do this, what will happen is that the title of the plot will get</span></span>
+<span id="cb24-27"><a href="data-products-1.html#cb24-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># updated even when the user does not click on the actionButton</span></span>
+<span id="cb24-28"><a href="data-products-1.html#cb24-28" aria-hidden="true" tabindex="-1"></a>  plot_title <span class="ot">&lt;-</span> <span class="fu">eventReactive</span>(input<span class="sc">$</span>render_plot, {</span>
+<span id="cb24-29"><a href="data-products-1.html#cb24-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste</span>(<span class="fu">variable_selected</span>(), <span class="st">&quot;for&quot;</span>, <span class="fu">paste</span>(input<span class="sc">$</span>place_name_selected, <span class="at">collapse =</span> <span class="st">&quot;, &quot;</span>))</span>
+<span id="cb24-30"><a href="data-products-1.html#cb24-30" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb24-31"><a href="data-products-1.html#cb24-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-32"><a href="data-products-1.html#cb24-32" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>unemp_plot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb24-33"><a href="data-products-1.html#cb24-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-34"><a href="data-products-1.html#cb24-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">filtered_data</span>()) <span class="sc">+</span></span>
+<span id="cb24-35"><a href="data-products-1.html#cb24-35" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb24-36"><a href="data-products-1.html#cb24-36" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Because the selected variable is a string, we need to convert it to a symbol</span></span>
+<span id="cb24-37"><a href="data-products-1.html#cb24-37" aria-hidden="true" tabindex="-1"></a>      <span class="co"># using rlang::sym and evaluate it using !!. This is because the aes() function</span></span>
+<span id="cb24-38"><a href="data-products-1.html#cb24-38" aria-hidden="true" tabindex="-1"></a>      <span class="co"># expects bare variable names, and not strings.</span></span>
+<span id="cb24-39"><a href="data-products-1.html#cb24-39" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Because this is something that developers have to use often in shiny apps,</span></span>
+<span id="cb24-40"><a href="data-products-1.html#cb24-40" aria-hidden="true" tabindex="-1"></a>      <span class="co"># there is a version of aes() that works with strings, called aes_string()</span></span>
+<span id="cb24-41"><a href="data-products-1.html#cb24-41" aria-hidden="true" tabindex="-1"></a>      <span class="co"># You can use both approaches interchangeably.</span></span>
+<span id="cb24-42"><a href="data-products-1.html#cb24-42" aria-hidden="true" tabindex="-1"></a>      <span class="co">#geom_line(aes(year, !!rlang::sym(variable_selected()), color = place_name)) +</span></span>
+<span id="cb24-43"><a href="data-products-1.html#cb24-43" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_line</span>(<span class="fu">aes_string</span>(<span class="st">&quot;year&quot;</span>, <span class="fu">variable_selected</span>(), <span class="at">color =</span> <span class="st">&quot;place_name&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb24-44"><a href="data-products-1.html#cb24-44" aria-hidden="true" tabindex="-1"></a>      <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">plot_title</span>()) <span class="sc">+</span></span>
+<span id="cb24-45"><a href="data-products-1.html#cb24-45" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme</span>(<span class="at">legend.position =</span> input<span class="sc">$</span>legend_position)</span>
+<span id="cb24-46"><a href="data-products-1.html#cb24-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-47"><a href="data-products-1.html#cb24-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-48"><a href="data-products-1.html#cb24-48" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb24-49"><a href="data-products-1.html#cb24-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-50"><a href="data-products-1.html#cb24-50" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>unemp_plot_g2r <span class="ot">&lt;-</span> <span class="fu">renderG2</span>({</span>
+<span id="cb24-51"><a href="data-products-1.html#cb24-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-52"><a href="data-products-1.html#cb24-52" aria-hidden="true" tabindex="-1"></a>    <span class="fu">g2</span>(<span class="at">data =</span> <span class="fu">filtered_data</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb24-53"><a href="data-products-1.html#cb24-53" aria-hidden="true" tabindex="-1"></a>      <span class="co"># g2r’s asp() requires bare variable names</span></span>
+<span id="cb24-54"><a href="data-products-1.html#cb24-54" aria-hidden="true" tabindex="-1"></a>      <span class="fu">fig_line</span>(<span class="fu">asp</span>(year, <span class="sc">!!</span>rlang<span class="sc">::</span><span class="fu">sym</span>(<span class="fu">variable_selected</span>()), <span class="at">color =</span> place_name)) <span class="sc">%&gt;%</span></span>
+<span id="cb24-55"><a href="data-products-1.html#cb24-55" aria-hidden="true" tabindex="-1"></a>      <span class="co"># For some reason, the title does not show...</span></span>
+<span id="cb24-56"><a href="data-products-1.html#cb24-56" aria-hidden="true" tabindex="-1"></a>      <span class="fu">subject</span>(<span class="fu">plot_title</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb24-57"><a href="data-products-1.html#cb24-57" aria-hidden="true" tabindex="-1"></a>      <span class="fu">legend_color</span>(<span class="at">position =</span> input<span class="sc">$</span>legend_position)</span>
+<span id="cb24-58"><a href="data-products-1.html#cb24-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-59"><a href="data-products-1.html#cb24-59" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb24-60"><a href="data-products-1.html#cb24-60" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>What’s new here, is that I now must redefine the reactive objects in such a way that they only get
+run once the user clicks the button. This is why every reactive object (but one, the position of the
+legend) is now wrapped by <code>eventReactive()</code>. <code>eventReactive()</code> waits for a trigger, in this case
+the clicking of the action button, to run the reactive object. <code>eventReactive()</code> takes the action button
+ID as an input. I’ve also defined the plot title as a reactive value, not only the dataset as before,
+because if I didn’t do it, then the title of the plot would get updated as the user would choose
+other communes, but the contents of the plot, that depend on the data, would not get updated. To avoid
+the title and the plot to get desynched, I need to also wrap it around <code>eventReactive()</code>. You can see
+this behaviour by changing the legend position. The legend position gets updated without the user needing
+to click the button. This is because I have not wrapped the legend position inside <code>eventReactive()</code>.</p>
+<p>Finally, I keep the <code>{ggplot2}</code> graph, but also remake it using <code>{g2r}</code>, to illustrate how it works
+inside a Shiny app.</p>
+<p>To conclude this section, we will take a look at one last app. This app will allow users to
+do data aggregation on relatively large dataset, so computations will take some time. The app
+will illustrate how to best deal with this.</p>
+</div>
+<div id="basic-optimization-of-shiny-apps" class="section level3 hasAnchor" number="8.4.3">
+<h3><span class="header-section-number">8.4.3</span> Basic optimization of Shiny apps<a href="data-products-1.html#basic-optimization-of-shiny-apps" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The app we will build now requires what is sometimes referred to <em>medium</em> size data. <em>Medium</em> size
+data is data that is far from being big data, but already big enough that handling it requires
+some thought, especially in this scenario. What we want to do is build an app that will allow
+users to do some aggregations on this data. Because the size of the data is not trivial, these
+computations will take some time to run. So we need to think about certain strategies to avoid
+frustrating our users. The file we will be using can be downloaded from
+<a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/HG7NV7">here</a>.
+We’re not going to use the exact same data set though, I have prepared a smaller version that
+will be more than enough for our purposes. But the strategies that we are going to implement
+here will also work for the original, much larger, dataset. You can get the smaller version
+<a href="https://mega.nz/file/l1IxHYIT#mZkeQOVpMc9XymMNtDY687sHEZHoIvDcUOm-4AwK6OI">here</a>.
+Uncompressed it’ll be a 2.4GB file. Not big data in any sense, but big enough to be
+annoying to handle without the use of some optimization strategies.</p>
+<p>One such strategy is only letting the computations run once the user gives the green light by clicking
+on an action button. This is what we have seen in the previous example. The next obvious strategy
+is to use packages that are optimized for speed. It turns out that the functions we have seen
+until now, from packages like <code>{dplyr}</code> and the like, are not the fastest. Their ease of use and
+expressiveness come at a speed cost. So we will need to switch to something faster. We will do the same
+to read in the data.</p>
+<p>This faster solution is the <code>{arrow}</code> package, which is an interface to the <a href="https://arrow.apache.org/faq/">Arrow software developed by Apache</a>.</p>
+<p>So first, install the <code>{arrow}</code> package by running <code>install.packages("arrow")</code>. This will compile
+<code>libarrow</code> from source on Linux and might take some time, so perhaps go grab a coffee.</p>
+<p>Before building the app, let me perform a very simple benchmark. The script below reads in the data,
+then performs some aggregations. This is done using standard <code>{tidyverse}</code> functions, but also
+using <code>{arrow}</code>:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="data-products-1.html#cb25-1" aria-hidden="true" tabindex="-1"></a>start_tidy <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb25-2"><a href="data-products-1.html#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># {vroom} is able to read in larger files than {readr}</span></span>
+<span id="cb25-3"><a href="data-products-1.html#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># I could not get this file into R using readr::read_csv</span></span>
+<span id="cb25-4"><a href="data-products-1.html#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># my RAM would get maxed out</span></span>
+<span id="cb25-5"><a href="data-products-1.html#cb25-5" aria-hidden="true" tabindex="-1"></a>  air <span class="ot">&lt;-</span> vroom<span class="sc">::</span><span class="fu">vroom</span>(<span class="st">&quot;data/combined&quot;</span>)</span>
+<span id="cb25-6"><a href="data-products-1.html#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="data-products-1.html#cb25-7" aria-hidden="true" tabindex="-1"></a>  mean_dep_delay <span class="ot">&lt;-</span> air <span class="sc">|&gt;</span></span>
+<span id="cb25-8"><a href="data-products-1.html#cb25-8" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">group_by</span>(Year, Month, DayofMonth) <span class="sc">|&gt;</span></span>
+<span id="cb25-9"><a href="data-products-1.html#cb25-9" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">mean_delay =</span> <span class="fu">mean</span>(DepDelay, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb25-10"><a href="data-products-1.html#cb25-10" aria-hidden="true" tabindex="-1"></a>end_tidy <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb25-11"><a href="data-products-1.html#cb25-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-12"><a href="data-products-1.html#cb25-12" aria-hidden="true" tabindex="-1"></a>time_tidy <span class="ot">&lt;-</span> end_tidy <span class="sc">-</span> start_tidy</span>
+<span id="cb25-13"><a href="data-products-1.html#cb25-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-14"><a href="data-products-1.html#cb25-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-15"><a href="data-products-1.html#cb25-15" aria-hidden="true" tabindex="-1"></a>start_arrow <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb25-16"><a href="data-products-1.html#cb25-16" aria-hidden="true" tabindex="-1"></a>  air <span class="ot">&lt;-</span> arrow<span class="sc">::</span><span class="fu">open_dataset</span>(<span class="st">&quot;data/combined&quot;</span>, <span class="at">format =</span> <span class="st">&quot;csv&quot;</span>)</span>
+<span id="cb25-17"><a href="data-products-1.html#cb25-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-18"><a href="data-products-1.html#cb25-18" aria-hidden="true" tabindex="-1"></a>  mean_dep_delay <span class="ot">&lt;-</span> air <span class="sc">|&gt;</span></span>
+<span id="cb25-19"><a href="data-products-1.html#cb25-19" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">group_by</span>(Year, Month, DayofMonth) <span class="sc">|&gt;</span></span>
+<span id="cb25-20"><a href="data-products-1.html#cb25-20" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">mean_delay =</span> <span class="fu">mean</span>(DepDelay, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb25-21"><a href="data-products-1.html#cb25-21" aria-hidden="true" tabindex="-1"></a>end_arrow <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb25-22"><a href="data-products-1.html#cb25-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-23"><a href="data-products-1.html#cb25-23" aria-hidden="true" tabindex="-1"></a>end_tidy <span class="sc">-</span> start_tidy</span>
+<span id="cb25-24"><a href="data-products-1.html#cb25-24" aria-hidden="true" tabindex="-1"></a>end_arrow <span class="sc">-</span> start_arrow</span></code></pre></div>
+<p>The “tidy” approach took 17 seconds, while the arrow approach took 6 seconds. This is an impressive
+improvement, but put yourself in the shoes of a user who has to wait 6 seconds for each query. That
+be very annoying, very quickly. So the other strategy that we will use is to provide some visual
+cue that computations are running, and then we will go one step further and use caching of results
+in the Shiny app.</p>
+<p>But before we continue, you may be confused by the code above. After all, I told you before that
+functions from <code>{dplyr}</code> and the like were not the fastest, and yet, I am using them in the arrow
+approach as well, and they now run almost 3 times as fast. What’s going on? What’s happening here,
+is that the <code>air</code> object that we read using <code>arrow::open_dataset</code> is not a dataframe, but an <code>arrow</code>
+dataset. These are special, and work in a different way. But that’s not what’s important: what’s important
+is that the <code>{dplyr}</code> api can be used to work with these <code>arrow</code> datasets. This means that functions
+from <code>{dplyr}</code> change the way they work depending on the type of the object their working with.
+If it’s a good old regular data frame, some C++ code gets called to perform the computations. If it’s
+an <code>arrow</code> dataset, <code>libarrow</code> and its black magic get called instead to perform the computations.
+If you’re familiar with the concept of
+<a href="https://en.wikipedia.org/wiki/Polymorphism_(computer_science)">polymorphism</a> this is it
+(think of <code>+</code> in Python: <code>1+1</code> returns <code>2</code>, <code>"a"+"b"</code> returns <code>"a+b"</code>. A different computation
+gets performed depending on the type of the function’s inputs).</p>
+<p>Let’s now build a basic version of the app, without any fancy visual cues nor caching. Here is
+the global file:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="data-products-1.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arrow)</span>
+<span id="cb26-2"><a href="data-products-1.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb26-3"><a href="data-products-1.html#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rlang)</span>
+<span id="cb26-4"><a href="data-products-1.html#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DT)</span>
+<span id="cb26-5"><a href="data-products-1.html#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-6"><a href="data-products-1.html#cb26-6" aria-hidden="true" tabindex="-1"></a>air <span class="ot">&lt;-</span> arrow<span class="sc">::</span><span class="fu">open_dataset</span>(<span class="st">&quot;data/combined&quot;</span>, <span class="at">format =</span> <span class="st">&quot;csv&quot;</span>)</span></code></pre></div>
+<p>The ui will be quite simple:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="data-products-1.html#cb27-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="cf">function</span>(request){</span>
+<span id="cb27-2"><a href="data-products-1.html#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fluidPage</span>(</span>
+<span id="cb27-3"><a href="data-products-1.html#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="data-products-1.html#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">titlePanel</span>(<span class="st">&quot;Air On Time data&quot;</span>),</span>
+<span id="cb27-5"><a href="data-products-1.html#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-6"><a href="data-products-1.html#cb27-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarLayout</span>(</span>
+<span id="cb27-7"><a href="data-products-1.html#cb27-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-8"><a href="data-products-1.html#cb27-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">sidebarPanel</span>(</span>
+<span id="cb27-9"><a href="data-products-1.html#cb27-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">selectizeInput</span>(<span class="st">&quot;group_by_selected&quot;</span>, <span class="st">&quot;Variables to group by:&quot;</span>,</span>
+<span id="cb27-10"><a href="data-products-1.html#cb27-10" aria-hidden="true" tabindex="-1"></a>                       <span class="at">choices =</span> <span class="fu">c</span>(<span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Month&quot;</span>, <span class="st">&quot;DayofMonth&quot;</span>, <span class="st">&quot;Origin&quot;</span>, <span class="st">&quot;Dest&quot;</span>),</span>
+<span id="cb27-11"><a href="data-products-1.html#cb27-11" aria-hidden="true" tabindex="-1"></a>                       <span class="at">multiple =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb27-12"><a href="data-products-1.html#cb27-12" aria-hidden="true" tabindex="-1"></a>                       <span class="at">selected =</span> <span class="fu">c</span>(<span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Month&quot;</span>),</span>
+<span id="cb27-13"><a href="data-products-1.html#cb27-13" aria-hidden="true" tabindex="-1"></a>                       <span class="at">options =</span> <span class="fu">list</span>(</span>
+<span id="cb27-14"><a href="data-products-1.html#cb27-14" aria-hidden="true" tabindex="-1"></a>                         <span class="at">plugins =</span> <span class="fu">list</span>(<span class="st">&quot;remove_button&quot;</span>),</span>
+<span id="cb27-15"><a href="data-products-1.html#cb27-15" aria-hidden="true" tabindex="-1"></a>                         <span class="at">create =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb27-16"><a href="data-products-1.html#cb27-16" aria-hidden="true" tabindex="-1"></a>                         <span class="at">persist =</span> <span class="cn">FALSE</span> <span class="co"># keep created choices in dropdown</span></span>
+<span id="cb27-17"><a href="data-products-1.html#cb27-17" aria-hidden="true" tabindex="-1"></a>                       )</span>
+<span id="cb27-18"><a href="data-products-1.html#cb27-18" aria-hidden="true" tabindex="-1"></a>                       ),</span>
+<span id="cb27-19"><a href="data-products-1.html#cb27-19" aria-hidden="true" tabindex="-1"></a>        <span class="fu">hr</span>(),</span>
+<span id="cb27-20"><a href="data-products-1.html#cb27-20" aria-hidden="true" tabindex="-1"></a>        <span class="fu">selectizeInput</span>(<span class="st">&quot;var_to_average&quot;</span>, <span class="st">&quot;Select variable to average by groups:&quot;</span>,</span>
+<span id="cb27-21"><a href="data-products-1.html#cb27-21" aria-hidden="true" tabindex="-1"></a>                       <span class="at">choices =</span> <span class="fu">c</span>(<span class="st">&quot;ArrDelay&quot;</span>, <span class="st">&quot;DepDelay&quot;</span>, <span class="st">&quot;Distance&quot;</span>),</span>
+<span id="cb27-22"><a href="data-products-1.html#cb27-22" aria-hidden="true" tabindex="-1"></a>                       <span class="at">multiple =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb27-23"><a href="data-products-1.html#cb27-23" aria-hidden="true" tabindex="-1"></a>                       <span class="at">selected =</span> <span class="st">&quot;DepDelay&quot;</span>,</span>
+<span id="cb27-24"><a href="data-products-1.html#cb27-24" aria-hidden="true" tabindex="-1"></a>                       ),</span>
+<span id="cb27-25"><a href="data-products-1.html#cb27-25" aria-hidden="true" tabindex="-1"></a>        <span class="fu">hr</span>(),</span>
+<span id="cb27-26"><a href="data-products-1.html#cb27-26" aria-hidden="true" tabindex="-1"></a>        <span class="fu">actionButton</span>(<span class="at">inputId =</span> <span class="st">&quot;run_aggregation&quot;</span>,</span>
+<span id="cb27-27"><a href="data-products-1.html#cb27-27" aria-hidden="true" tabindex="-1"></a>                     <span class="at">label =</span> <span class="st">&quot;Click here to run aggregation&quot;</span>),</span>
+<span id="cb27-28"><a href="data-products-1.html#cb27-28" aria-hidden="true" tabindex="-1"></a>        <span class="fu">hr</span>(),</span>
+<span id="cb27-29"><a href="data-products-1.html#cb27-29" aria-hidden="true" tabindex="-1"></a>        <span class="fu">bookmarkButton</span>()</span>
+<span id="cb27-30"><a href="data-products-1.html#cb27-30" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb27-31"><a href="data-products-1.html#cb27-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-32"><a href="data-products-1.html#cb27-32" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mainPanel</span>(</span>
+<span id="cb27-33"><a href="data-products-1.html#cb27-33" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DTOutput</span>(<span class="st">&quot;result&quot;</span>)</span>
+<span id="cb27-34"><a href="data-products-1.html#cb27-34" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb27-35"><a href="data-products-1.html#cb27-35" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb27-36"><a href="data-products-1.html#cb27-36" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb27-37"><a href="data-products-1.html#cb27-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-38"><a href="data-products-1.html#cb27-38" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>And finally the server:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="data-products-1.html#cb28-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(session, input, output) {</span>
+<span id="cb28-2"><a href="data-products-1.html#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="data-products-1.html#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Numbers get crunched only when the user clicks on the action button</span></span>
+<span id="cb28-4"><a href="data-products-1.html#cb28-4" aria-hidden="true" tabindex="-1"></a>  grouped_data <span class="ot">&lt;-</span> <span class="fu">eventReactive</span>(input<span class="sc">$</span>run_aggregation, {</span>
+<span id="cb28-5"><a href="data-products-1.html#cb28-5" aria-hidden="true" tabindex="-1"></a>    air <span class="sc">%&gt;%</span></span>
+<span id="cb28-6"><a href="data-products-1.html#cb28-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">group_by</span>(<span class="sc">!!!</span><span class="fu">syms</span>(input<span class="sc">$</span>group_by_selected)) <span class="sc">%&gt;%</span></span>
+<span id="cb28-7"><a href="data-products-1.html#cb28-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">summarise</span>(<span class="at">result =</span> <span class="fu">mean</span>(<span class="sc">!!</span><span class="fu">sym</span>(input<span class="sc">$</span>var_to_average),</span>
+<span id="cb28-8"><a href="data-products-1.html#cb28-8" aria-hidden="true" tabindex="-1"></a>                              <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb28-9"><a href="data-products-1.html#cb28-9" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb28-10"><a href="data-products-1.html#cb28-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-11"><a href="data-products-1.html#cb28-11" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>result <span class="ot">&lt;-</span> <span class="fu">renderDT</span>({</span>
+<span id="cb28-12"><a href="data-products-1.html#cb28-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.data.frame</span>(<span class="fu">grouped_data</span>())</span>
+<span id="cb28-13"><a href="data-products-1.html#cb28-13" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb28-14"><a href="data-products-1.html#cb28-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-15"><a href="data-products-1.html#cb28-15" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Because <code>group_by()</code> and <code>mean()</code> expect bare variable names, I convert them from strings to
+symbols using <code>rlang::syms()</code> and <code>rlang::sym()</code>. The difference between the two is that
+<code>rlang::syms()</code> is required when a list of strings gets passed down to the function (remember
+that the user must select several variables to group by), and this is also why <code>!!!</code> are needed
+(to unquote the list of symbols). Finally, the computed data must be converted back to a
+data frame using <code>as.data.frame()</code>. This is actually when the computations happen. <code>{arrow}</code> collects
+all the aggregations but does not perform anything until absolutely required. Let’s see the app
+in action:</p>
+<div style="text-align:center;">
+<video width="640" height="480" controls>
+<source src="img/shiny_3.mp4" type="video/mp4">
+</video>
+</div>
+<p>As you can see, in terms of User Experience (UX) this is quite poor. When the user clicks on the button
+nothing seems to be going on for several seconds, until the table appears. Then, when the user
+changes some options and clicks again on the action button, it looks like the app is crashing.</p>
+<p>Let’s add some visual cues to indicate to the user that something is happening when the button gets
+clicked. For this, we are going to use the <code>{shinycssloaders}</code> package:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="data-products-1.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;shinycssloaders&quot;</span>)</span></code></pre></div>
+<p>and simply change the ui to this (and don’t forget to load <code>{shinycssloaders}</code> in the global script!):</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="data-products-1.html#cb30-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="cf">function</span>(request){</span>
+<span id="cb30-2"><a href="data-products-1.html#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fluidPage</span>(</span>
+<span id="cb30-3"><a href="data-products-1.html#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="data-products-1.html#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">titlePanel</span>(<span class="st">&quot;Air On Time data&quot;</span>),</span>
+<span id="cb30-5"><a href="data-products-1.html#cb30-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-6"><a href="data-products-1.html#cb30-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarLayout</span>(</span>
+<span id="cb30-7"><a href="data-products-1.html#cb30-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-8"><a href="data-products-1.html#cb30-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">sidebarPanel</span>(</span>
+<span id="cb30-9"><a href="data-products-1.html#cb30-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">selectizeInput</span>(<span class="st">&quot;group_by_selected&quot;</span>, <span class="st">&quot;Variables to group by:&quot;</span>,</span>
+<span id="cb30-10"><a href="data-products-1.html#cb30-10" aria-hidden="true" tabindex="-1"></a>                       <span class="at">choices =</span> <span class="fu">c</span>(<span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Month&quot;</span>, <span class="st">&quot;DayofMonth&quot;</span>, <span class="st">&quot;Origin&quot;</span>, <span class="st">&quot;Dest&quot;</span>),</span>
+<span id="cb30-11"><a href="data-products-1.html#cb30-11" aria-hidden="true" tabindex="-1"></a>                       <span class="at">multiple =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb30-12"><a href="data-products-1.html#cb30-12" aria-hidden="true" tabindex="-1"></a>                       <span class="at">selected =</span> <span class="fu">c</span>(<span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Month&quot;</span>),</span>
+<span id="cb30-13"><a href="data-products-1.html#cb30-13" aria-hidden="true" tabindex="-1"></a>                       <span class="at">options =</span> <span class="fu">list</span>(</span>
+<span id="cb30-14"><a href="data-products-1.html#cb30-14" aria-hidden="true" tabindex="-1"></a>                         <span class="at">plugins =</span> <span class="fu">list</span>(<span class="st">&quot;remove_button&quot;</span>),</span>
+<span id="cb30-15"><a href="data-products-1.html#cb30-15" aria-hidden="true" tabindex="-1"></a>                         <span class="at">create =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb30-16"><a href="data-products-1.html#cb30-16" aria-hidden="true" tabindex="-1"></a>                         <span class="at">persist =</span> <span class="cn">FALSE</span> <span class="co"># keep created choices in dropdown</span></span>
+<span id="cb30-17"><a href="data-products-1.html#cb30-17" aria-hidden="true" tabindex="-1"></a>                       )</span>
+<span id="cb30-18"><a href="data-products-1.html#cb30-18" aria-hidden="true" tabindex="-1"></a>                       ),</span>
+<span id="cb30-19"><a href="data-products-1.html#cb30-19" aria-hidden="true" tabindex="-1"></a>        <span class="fu">hr</span>(),</span>
+<span id="cb30-20"><a href="data-products-1.html#cb30-20" aria-hidden="true" tabindex="-1"></a>        <span class="fu">selectizeInput</span>(<span class="st">&quot;var_to_average&quot;</span>, <span class="st">&quot;Select variable to average by groups:&quot;</span>,</span>
+<span id="cb30-21"><a href="data-products-1.html#cb30-21" aria-hidden="true" tabindex="-1"></a>                       <span class="at">choices =</span> <span class="fu">c</span>(<span class="st">&quot;ArrDelay&quot;</span>, <span class="st">&quot;DepDelay&quot;</span>, <span class="st">&quot;Distance&quot;</span>),</span>
+<span id="cb30-22"><a href="data-products-1.html#cb30-22" aria-hidden="true" tabindex="-1"></a>                       <span class="at">multiple =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb30-23"><a href="data-products-1.html#cb30-23" aria-hidden="true" tabindex="-1"></a>                       <span class="at">selected =</span> <span class="st">&quot;DepDelay&quot;</span>,</span>
+<span id="cb30-24"><a href="data-products-1.html#cb30-24" aria-hidden="true" tabindex="-1"></a>                       ),</span>
+<span id="cb30-25"><a href="data-products-1.html#cb30-25" aria-hidden="true" tabindex="-1"></a>        <span class="fu">hr</span>(),</span>
+<span id="cb30-26"><a href="data-products-1.html#cb30-26" aria-hidden="true" tabindex="-1"></a>        <span class="fu">actionButton</span>(<span class="at">inputId =</span> <span class="st">&quot;run_aggregation&quot;</span>,</span>
+<span id="cb30-27"><a href="data-products-1.html#cb30-27" aria-hidden="true" tabindex="-1"></a>                     <span class="at">label =</span> <span class="st">&quot;Click here to run aggregation&quot;</span>),</span>
+<span id="cb30-28"><a href="data-products-1.html#cb30-28" aria-hidden="true" tabindex="-1"></a>        <span class="fu">hr</span>(),</span>
+<span id="cb30-29"><a href="data-products-1.html#cb30-29" aria-hidden="true" tabindex="-1"></a>        <span class="fu">bookmarkButton</span>()</span>
+<span id="cb30-30"><a href="data-products-1.html#cb30-30" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb30-31"><a href="data-products-1.html#cb30-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-32"><a href="data-products-1.html#cb30-32" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mainPanel</span>(</span>
+<span id="cb30-33"><a href="data-products-1.html#cb30-33" aria-hidden="true" tabindex="-1"></a>        <span class="co"># We add a tabsetPanel with two tabs. The first tab show the plot made using ggplot</span></span>
+<span id="cb30-34"><a href="data-products-1.html#cb30-34" aria-hidden="true" tabindex="-1"></a>        <span class="co"># the second tab shows the plot using g2r</span></span>
+<span id="cb30-35"><a href="data-products-1.html#cb30-35" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DTOutput</span>(<span class="st">&quot;result&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb30-36"><a href="data-products-1.html#cb30-36" aria-hidden="true" tabindex="-1"></a>          <span class="fu">withSpinner</span>()</span>
+<span id="cb30-37"><a href="data-products-1.html#cb30-37" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb30-38"><a href="data-products-1.html#cb30-38" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb30-39"><a href="data-products-1.html#cb30-39" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb30-40"><a href="data-products-1.html#cb30-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-41"><a href="data-products-1.html#cb30-41" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>The only difference with before is that now the <code>DTOutput()</code> right at the end gets passed down
+to <code>withSpinner()</code>. There are several spinners that you can choose, but let’s simply stay with the
+default one. This is how the app looks now:</p>
+<div style="text-align:center;">
+<video width="640" height="480" controls>
+<source src="img/shiny_4.mp4" type="video/mp4">
+</video>
+</div>
+</div>
+<div id="references" class="section level3 hasAnchor" number="8.4.4">
+<h3><span class="header-section-number">8.4.4</span> References<a href="data-products-1.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li><a href="https://mastering-shiny.org/basic-reactivity.html?q=input#the-server-function">The server function</a></li>
 </ul>

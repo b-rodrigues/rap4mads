@@ -69,6 +69,7 @@ presentations
 pdf
 interactive-web-applications-with-shiny
 the-basic-structure-of-a-shiny-app
+slightly-more-advanced-shiny
 references
 how-to-build-data-products-using-targets
 self-contained-raps-with-docker
@@ -76,4 +77,4 @@ cicd-with-github-actions
 what-else-should-you-learn
 conclusion
 why-bother
-slightly-more-advanced-shiny
+basic-optimization-of-shiny-apps

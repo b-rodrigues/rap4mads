@@ -23,7 +23,7 @@
 <meta name="author" content="Bruno Rodrigues" />
 
 
-<meta name="date" content="2022-10-28" />
+<meta name="date" content="2022-10-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -229,7 +229,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.4" data-path="data-products-1.html"><a href="data-products-1.html#interactive-web-applications-with-shiny"><i class="fa fa-check"></i><b>8.4</b> Interactive web applications with {shiny}</a>
 <ul>
 <li class="chapter" data-level="8.4.1" data-path="data-products-1.html"><a href="data-products-1.html#the-basic-structure-of-a-shiny-app"><i class="fa fa-check"></i><b>8.4.1</b> The basic structure of a Shiny app</a></li>
-<li class="chapter" data-level="8.4.2" data-path="data-products-1.html"><a href="data-products-1.html#references"><i class="fa fa-check"></i><b>8.4.2</b> References</a></li>
+<li class="chapter" data-level="8.4.2" data-path="data-products-1.html"><a href="data-products-1.html#slightly-more-advanced-shiny"><i class="fa fa-check"></i><b>8.4.2</b> Slightly more advanced shiny</a></li>
+<li class="chapter" data-level="8.4.3" data-path="data-products-1.html"><a href="data-products-1.html#references"><i class="fa fa-check"></i><b>8.4.3</b> References</a></li>
 </ul></li>
 <li class="chapter" data-level="8.5" data-path="data-products-1.html"><a href="data-products-1.html#how-to-build-data-products-using-targets"><i class="fa fa-check"></i><b>8.5</b> How to build data products using <code>{targets}</code></a></li>
 </ul></li>
@@ -287,8 +288,8 @@ sometimes not possible to avoid. Such situations have to be carefully documented
 <p>As a more realistic example, imagine that within the pipeline you set up, some random numbers are generated.
 For example, to generate 10 random draws from a normal distribution:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="a-primer-on-functional-programming.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code></pre></div>
-<pre><code>##  [1] -0.02870442 -0.01356331 -0.30271304  0.38735747  1.94267555 -0.24359954
-##  [7] -0.21345714  0.42620675  0.44108169 -0.34575353</code></pre>
+<pre><code>##  [1]  0.23206280  0.20650054  0.85872590 -1.08732054 -0.04500341 -0.24662001
+##  [7] -2.24191827 -0.13874612 -1.59819782  1.19928093</code></pre>
 <p>Each time you run this line, you will get another set of 10 random numbers. This is obviously a good thing
 in interactive data analysis, but much less so when running a pipeline programmatically. R provides a way to fix the
 random seed, which will make sure you always get the same random numbers:</p>
