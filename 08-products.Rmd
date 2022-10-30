@@ -6,7 +6,8 @@ knitr::include_graphics("img/product.png")
 ```
 </div>
 
-What you’ll have learned by the end of the chapter: you'll know how to build data products using Quarto and Shiny.
+What you’ll have learned by the end of the chapter: you'll know how to build data products using
+Quarto and Shiny.
 
 ## Introduction
 
@@ -1299,11 +1300,12 @@ server <- function(session, input, output) {
     air %>%
       group_by(!!!syms(input$group_by_selected)) %>%
       summarise(result = mean(!!sym(input$var_to_average),
-                              na.rm = TRUE))
+                              na.rm = TRUE)) %>%
+      as.data.frame()
   })
 
   output$result <- renderDT({
-    as.data.frame(grouped_data())
+    grouped_data()
   })
 
 }
@@ -1383,7 +1385,7 @@ ui <- function(request){
 ```
 
 The only difference with before is that now the `DTOutput()` right at the end gets passed down
-to `withSpinner()`. There are several spinners that you can choose, but let's simply stay with the 
+to `withSpinner()`. There are several spinners that you can choose, but let's simply use the 
 default one. This is how the app looks now:
 
 <div style="text-align:center;">
@@ -1392,8 +1394,89 @@ default one. This is how the app looks now:
 </video>
 </div>
 
+Now the user gets a visual cue that something is happening. This makes waiting more bearable,
+but even better than waiting is no waiting at all. For this, we are going to enable caching
+of results. There are several ways that you can cache results inside your app. You can enable
+the cache on a per-user and per-session basis, or only on a per-user basis. But I think that 
+in our case here, the ideal caching strategy is to keep the cache persistent, and available
+across sessions. This means that each computation done by any user will get cached and available
+to any other user. In order to achieve this, you simply have to install the `{cachem}` packages
+add the following lines to the global script:
+
+```{r, eval = F}
+shinyOptions(cache = cachem::cache_disk("./app-cache",
+                                        max_age = Inf))
+```
+
+By setting the `max_age` argument to `Inf`, the cache will never get pruned. The maximum size
+of the cache, by default is 1GB. You can of course increase it.
+
+Now, you must also edit the server file like so:
+
+```{r, eval = F}
+server <- function(session, input, output) {
+
+  # Numbers get crunched only when the user clicks on the action button
+  grouped_data <- reactive({
+    air %>%
+      group_by(!!!syms(input$group_by_selected)) %>%
+      summarise(result = mean(!!sym(input$var_to_average),
+                              na.rm = TRUE)) %>%
+      as.data.frame()
+  }) %>%
+    bindCache(input$group_by_selected,
+              input$var_to_average) %>%
+    bindEvent(input$run_aggregation)
+
+  output$result <- renderDT({
+    grouped_data()
+  })
+
+}
+```
+
+We've had to change `eventReactive()` to `reactive()`, just like in the app where we don't use
+an action button to run computations. Then, we pass the reactive object to `bindCache()`.
+`bindCache()` also takes the `inputs`
+as arguments. These are used to generate cache keys to retrieve the correct objects from cache. 
+Finally, we pass all this to `bindEvent()`. This function takes the input referencing the 
+action button. This is how we can now bind the computations to the button once again. Let's 
+test our app now. You will notice that the first time we choose certain options, the computations
+will take time, as before. But if we perform the same computations again, then the results will show
+instantly:
+
+<div style="text-align:center;">
+<video width="640" height="480" controls>
+  <source src="img/shiny_5.mp4" type="video/mp4">
+</video>
+</div>
+
+As you can see, once I go back to a computation that was done in the past, the table appears
+instantly. At the end of the video I open a terminal and navigate to the directory of the app,
+and show you the cache. There are three `.Rds` objects, these are the final data frames that
+get computed by the app. If the user wants to rerun a previous computation, the correct data frame
+gets retrieved, making it look like the computation happened instantly, and with another added
+benefit: as discussed above, the cache is persistent between sessions, so even if the user
+closes the browser and comes back later, the cache is still there, and other users will also
+benefit from the cache.
+
+### Deploying your shiny app
+
+The easiest way is certainly to use shinyapps.io. I won't go into details, but you can read
+more about it [here](https://shiny.rstudio.com/articles/shinyapps.html). You could also
+get a Virtual Private Server on a website like [Vultr](https://vultr.com) or 
+[DigitalOcean](https://www.digitalocean.com/). When signing up with these services you get some
+free credit to test things out. Vultr is quite generous as they give you up to 300USD. This
+is more than enough to get a basic VPS with Ubuntu on it. You can then try to install everything
+needed to deploy Shiny apps from your VPS. You could follow 
+[this guide](https://www.marinedatascience.co/blog/2019/04/28/run-shiny-server-on-your-own-digitalocean-droplet-part-1/) 
+to deploy from DigitalOcean, which should generalize well to other services like Vultr.
+Doing this will teach you a lot, and I would highly recommend you do it.
+
 ### References
 
 - [The server function](https://mastering-shiny.org/basic-reactivity.html?q=input#the-server-function)
+- [Using caching in Shiny to maximize performance](https://shiny.rstudio.com/articles/caching.html)
+- [Engineering Production-Grade Shiny Apps](https://engineering-shiny.org/)
 
 ## How to build data products using `{targets}`

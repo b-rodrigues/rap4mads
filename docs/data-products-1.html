@@ -231,7 +231,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.4.1" data-path="data-products-1.html"><a href="data-products-1.html#the-basic-structure-of-a-shiny-app"><i class="fa fa-check"></i><b>8.4.1</b> The basic structure of a Shiny app</a></li>
 <li class="chapter" data-level="8.4.2" data-path="data-products-1.html"><a href="data-products-1.html#slightly-more-advanced-shiny"><i class="fa fa-check"></i><b>8.4.2</b> Slightly more advanced shiny</a></li>
 <li class="chapter" data-level="8.4.3" data-path="data-products-1.html"><a href="data-products-1.html#basic-optimization-of-shiny-apps"><i class="fa fa-check"></i><b>8.4.3</b> Basic optimization of Shiny apps</a></li>
-<li class="chapter" data-level="8.4.4" data-path="data-products-1.html"><a href="data-products-1.html#references"><i class="fa fa-check"></i><b>8.4.4</b> References</a></li>
+<li class="chapter" data-level="8.4.4" data-path="data-products-1.html"><a href="data-products-1.html#deploying-your-shiny-app"><i class="fa fa-check"></i><b>8.4.4</b> Deploying your shiny app</a></li>
+<li class="chapter" data-level="8.4.5" data-path="data-products-1.html"><a href="data-products-1.html#references"><i class="fa fa-check"></i><b>8.4.5</b> References</a></li>
 </ul></li>
 <li class="chapter" data-level="8.5" data-path="data-products-1.html"><a href="data-products-1.html#how-to-build-data-products-using-targets"><i class="fa fa-check"></i><b>8.5</b> How to build data products using <code>{targets}</code></a></li>
 </ul></li>
@@ -266,7 +267,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div style="text-align:center;">
 <p><img src="img/product.png" width="512" /></p>
 </div>
-<p>What you’ll have learned by the end of the chapter: you’ll know how to build data products using Quarto and Shiny.</p>
+<p>What you’ll have learned by the end of the chapter: you’ll know how to build data products using
+Quarto and Shiny.</p>
 <div id="introduction-6" class="section level2 hasAnchor" number="8.1">
 <h2><span class="header-section-number">8.1</span> Introduction<a href="data-products-1.html#introduction-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We are going to start by building data products using Quarto.</p>
@@ -1393,14 +1395,15 @@ the global file:</p>
 <span id="cb28-5"><a href="data-products-1.html#cb28-5" aria-hidden="true" tabindex="-1"></a>    air <span class="sc">%&gt;%</span></span>
 <span id="cb28-6"><a href="data-products-1.html#cb28-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">group_by</span>(<span class="sc">!!!</span><span class="fu">syms</span>(input<span class="sc">$</span>group_by_selected)) <span class="sc">%&gt;%</span></span>
 <span id="cb28-7"><a href="data-products-1.html#cb28-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">summarise</span>(<span class="at">result =</span> <span class="fu">mean</span>(<span class="sc">!!</span><span class="fu">sym</span>(input<span class="sc">$</span>var_to_average),</span>
-<span id="cb28-8"><a href="data-products-1.html#cb28-8" aria-hidden="true" tabindex="-1"></a>                              <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb28-9"><a href="data-products-1.html#cb28-9" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb28-10"><a href="data-products-1.html#cb28-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-11"><a href="data-products-1.html#cb28-11" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>result <span class="ot">&lt;-</span> <span class="fu">renderDT</span>({</span>
-<span id="cb28-12"><a href="data-products-1.html#cb28-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.data.frame</span>(<span class="fu">grouped_data</span>())</span>
-<span id="cb28-13"><a href="data-products-1.html#cb28-13" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb28-14"><a href="data-products-1.html#cb28-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-15"><a href="data-products-1.html#cb28-15" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<span id="cb28-8"><a href="data-products-1.html#cb28-8" aria-hidden="true" tabindex="-1"></a>                              <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb28-9"><a href="data-products-1.html#cb28-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">as.data.frame</span>()</span>
+<span id="cb28-10"><a href="data-products-1.html#cb28-10" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb28-11"><a href="data-products-1.html#cb28-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-12"><a href="data-products-1.html#cb28-12" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>result <span class="ot">&lt;-</span> <span class="fu">renderDT</span>({</span>
+<span id="cb28-13"><a href="data-products-1.html#cb28-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grouped_data</span>()</span>
+<span id="cb28-14"><a href="data-products-1.html#cb28-14" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb28-15"><a href="data-products-1.html#cb28-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-16"><a href="data-products-1.html#cb28-16" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Because <code>group_by()</code> and <code>mean()</code> expect bare variable names, I convert them from strings to
 symbols using <code>rlang::syms()</code> and <code>rlang::sym()</code>. The difference between the two is that
 <code>rlang::syms()</code> is required when a list of strings gets passed down to the function (remember
@@ -1463,18 +1466,87 @@ clicked. For this, we are going to use the <code>{shinycssloaders}</code> packag
 <span id="cb30-40"><a href="data-products-1.html#cb30-40" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb30-41"><a href="data-products-1.html#cb30-41" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>The only difference with before is that now the <code>DTOutput()</code> right at the end gets passed down
-to <code>withSpinner()</code>. There are several spinners that you can choose, but let’s simply stay with the
+to <code>withSpinner()</code>. There are several spinners that you can choose, but let’s simply use the
 default one. This is how the app looks now:</p>
 <div style="text-align:center;">
 <video width="640" height="480" controls>
 <source src="img/shiny_4.mp4" type="video/mp4">
 </video>
 </div>
+<p>Now the user gets a visual cue that something is happening. This makes waiting more bearable,
+but even better than waiting is no waiting at all. For this, we are going to enable caching
+of results. There are several ways that you can cache results inside your app. You can enable
+the cache on a per-user and per-session basis, or only on a per-user basis. But I think that
+in our case here, the ideal caching strategy is to keep the cache persistent, and available
+across sessions. This means that each computation done by any user will get cached and available
+to any other user. In order to achieve this, you simply have to install the <code>{cachem}</code> packages
+add the following lines to the global script:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="data-products-1.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyOptions</span>(<span class="at">cache =</span> cachem<span class="sc">::</span><span class="fu">cache_disk</span>(<span class="st">&quot;./app-cache&quot;</span>,</span>
+<span id="cb31-2"><a href="data-products-1.html#cb31-2" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">max_age =</span> <span class="cn">Inf</span>))</span></code></pre></div>
+<p>By setting the <code>max_age</code> argument to <code>Inf</code>, the cache will never get pruned. The maximum size
+of the cache, by default is 1GB. You can of course increase it.</p>
+<p>Now, you must also edit the server file like so:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="data-products-1.html#cb32-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(session, input, output) {</span>
+<span id="cb32-2"><a href="data-products-1.html#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="data-products-1.html#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Numbers get crunched only when the user clicks on the action button</span></span>
+<span id="cb32-4"><a href="data-products-1.html#cb32-4" aria-hidden="true" tabindex="-1"></a>  grouped_data <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb32-5"><a href="data-products-1.html#cb32-5" aria-hidden="true" tabindex="-1"></a>    air <span class="sc">%&gt;%</span></span>
+<span id="cb32-6"><a href="data-products-1.html#cb32-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">group_by</span>(<span class="sc">!!!</span><span class="fu">syms</span>(input<span class="sc">$</span>group_by_selected)) <span class="sc">%&gt;%</span></span>
+<span id="cb32-7"><a href="data-products-1.html#cb32-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">summarise</span>(<span class="at">result =</span> <span class="fu">mean</span>(<span class="sc">!!</span><span class="fu">sym</span>(input<span class="sc">$</span>var_to_average),</span>
+<span id="cb32-8"><a href="data-products-1.html#cb32-8" aria-hidden="true" tabindex="-1"></a>                              <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb32-9"><a href="data-products-1.html#cb32-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">as.data.frame</span>()</span>
+<span id="cb32-10"><a href="data-products-1.html#cb32-10" aria-hidden="true" tabindex="-1"></a>  }) <span class="sc">%&gt;%</span></span>
+<span id="cb32-11"><a href="data-products-1.html#cb32-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bindCache</span>(input<span class="sc">$</span>group_by_selected,</span>
+<span id="cb32-12"><a href="data-products-1.html#cb32-12" aria-hidden="true" tabindex="-1"></a>              input<span class="sc">$</span>var_to_average) <span class="sc">%&gt;%</span></span>
+<span id="cb32-13"><a href="data-products-1.html#cb32-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bindEvent</span>(input<span class="sc">$</span>run_aggregation)</span>
+<span id="cb32-14"><a href="data-products-1.html#cb32-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-15"><a href="data-products-1.html#cb32-15" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>result <span class="ot">&lt;-</span> <span class="fu">renderDT</span>({</span>
+<span id="cb32-16"><a href="data-products-1.html#cb32-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grouped_data</span>()</span>
+<span id="cb32-17"><a href="data-products-1.html#cb32-17" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb32-18"><a href="data-products-1.html#cb32-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-19"><a href="data-products-1.html#cb32-19" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>We’ve had to change <code>eventReactive()</code> to <code>reactive()</code>, just like in the app where we don’t use
+an action button to run computations. Then, we pass the reactive object to <code>bindCache()</code>.
+<code>bindCache()</code> also takes the <code>inputs</code>
+as arguments. These are used to generate cache keys to retrieve the correct objects from cache.
+Finally, we pass all this to <code>bindEvent()</code>. This function takes the input referencing the
+action button. This is how we can now bind the computations to the button once again. Let’s
+test our app now. You will notice that the first time we choose certain options, the computations
+will take time, as before. But if we perform the same computations again, then the results will show
+instantly:</p>
+<div style="text-align:center;">
+<video width="640" height="480" controls>
+<source src="img/shiny_5.mp4" type="video/mp4">
+</video>
 </div>
-<div id="references" class="section level3 hasAnchor" number="8.4.4">
-<h3><span class="header-section-number">8.4.4</span> References<a href="data-products-1.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As you can see, once I go back to a computation that was done in the past, the table appears
+instantly. At the end of the video I open a terminal and navigate to the directory of the app,
+and show you the cache. There are three <code>.Rds</code> objects, these are the final data frames that
+get computed by the app. If the user wants to rerun a previous computation, the correct data frame
+gets retrieved, making it look like the computation happened instantly, and with another added
+benefit: as discussed above, the cache is persistent between sessions, so even if the user
+closes the browser and comes back later, the cache is still there, and other users will also
+benefit from the cache.</p>
+</div>
+<div id="deploying-your-shiny-app" class="section level3 hasAnchor" number="8.4.4">
+<h3><span class="header-section-number">8.4.4</span> Deploying your shiny app<a href="data-products-1.html#deploying-your-shiny-app" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The easiest way is certainly to use shinyapps.io. I won’t go into details, but you can read
+more about it <a href="https://shiny.rstudio.com/articles/shinyapps.html">here</a>. You could also
+get a Virtual Private Server on a website like <a href="https://vultr.com">Vultr</a> or
+<a href="https://www.digitalocean.com/">DigitalOcean</a>. When signing up with these services you get some
+free credit to test things out. Vultr is quite generous as they give you up to 300USD. This
+is more than enough to get a basic VPS with Ubuntu on it. You can then try to install everything
+needed to deploy Shiny apps from your VPS. You could follow
+<a href="https://www.marinedatascience.co/blog/2019/04/28/run-shiny-server-on-your-own-digitalocean-droplet-part-1/">this guide</a>
+to deploy from DigitalOcean, which should generalize well to other services like Vultr.
+Doing this will teach you a lot, and I would highly recommend you do it.</p>
+</div>
+<div id="references" class="section level3 hasAnchor" number="8.4.5">
+<h3><span class="header-section-number">8.4.5</span> References<a href="data-products-1.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li><a href="https://mastering-shiny.org/basic-reactivity.html?q=input#the-server-function">The server function</a></li>
+<li><a href="https://shiny.rstudio.com/articles/caching.html">Using caching in Shiny to maximize performance</a></li>
+<li><a href="https://engineering-shiny.org/">Engineering Production-Grade Shiny Apps</a></li>
 </ul>
 </div>
 </div>
