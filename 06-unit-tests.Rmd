@@ -9,6 +9,10 @@ knitr::include_graphics("img/pcr_test.png")
 What you’ll have learned by the end of the chapter: what unit tests are, how to write them, and how
 to test your package thoroughly.
 
+This lines should conflict with the commit I forgot to push the other day
+
+I need to replace the link with this one https://github.com/b-rodrigues/unemp_lux_r4m
+
 ## Introduction
 
 It might not have seemed like it, but developing our own package was actually the first step in
