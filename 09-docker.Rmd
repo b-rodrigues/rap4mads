@@ -8,4 +8,8 @@ knitr::include_graphics("img/container.png")
 
 This link should be discussed
 
+https://rocker-project.org/use/reproducibility.html
+
+and this link then as well
+
 https://github.com/rocker-org/rocker-versioned2/wiki/Versions
