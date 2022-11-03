@@ -1180,6 +1180,8 @@ to read in the data.
 
 This faster solution is the `{arrow}` package, which is an interface to the [Arrow software developed by Apache](https://arrow.apache.org/faq/).
 
+The final strategy is to enable caching in the app.
+
 So first, install the `{arrow}` package by running `install.packages("arrow")`. This will compile
 `libarrow` from source on Linux and might take some time, so perhaps go grab a coffee.
 
@@ -1216,7 +1218,7 @@ end_arrow - start_arrow
 
 The "tidy" approach took 17 seconds, while the arrow approach took 6 seconds. This is an impressive
 improvement, but put yourself in the shoes of a user who has to wait 6 seconds for each query. That
-be very annoying, very quickly. So the other strategy that we will use is to provide some visual 
+would get very annoying, very quickly. So the other strategy that we will use is to provide some visual 
 cue that computations are running, and then we will go one step further and use caching of results 
 in the Shiny app.
 
@@ -1226,7 +1228,7 @@ approach as well, and they now run almost 3 times as fast. What's going on? What
 is that the `air` object that we read using `arrow::open_dataset` is not a dataframe, but an `arrow`
 dataset. These are special, and work in a different way. But that's not what's important: what's important
 is that the `{dplyr}` api can be used to work with these `arrow` datasets. This means that functions
-from `{dplyr}` change the way they work depending on the type of the object their working with.
+from `{dplyr}` change the way they work depending on the type of the object their dealing with.
 If it's a good old regular data frame, some C++ code gets called to perform the computations. If it's 
 an `arrow` dataset, `libarrow` and its black magic get called instead to perform the computations.
 If you're familiar with the concept of
@@ -1234,8 +1236,8 @@ If you're familiar with the concept of
 (think of `+` in Python: `1+1` returns `2`, `"a"+"b"` returns `"a+b"`. A different computation
 gets performed depending on the type of the function's inputs).
 
-Let's now build a basic version of the app, without any fancy visual cues nor caching. Here is
-the global file:
+Let's now build a basic version of the app, only
+using `{arrow}` functions for speed. This is the global file:
 
 ```{r, eval = F}
 library(arrow)
@@ -1395,7 +1397,7 @@ default one. This is how the app looks now:
 </div>
 
 Now the user gets a visual cue that something is happening. This makes waiting more bearable,
-but even better than waiting is no waiting at all. For this, we are going to enable caching
+but even better than waiting with a spinner is no waiting at all. For this, we are going to enable caching
 of results. There are several ways that you can cache results inside your app. You can enable
 the cache on a per-user and per-session basis, or only on a per-user basis. But I think that 
 in our case here, the ideal caching strategy is to keep the cache persistent, and available
@@ -1442,7 +1444,7 @@ as arguments. These are used to generate cache keys to retrieve the correct obje
 Finally, we pass all this to `bindEvent()`. This function takes the input referencing the 
 action button. This is how we can now bind the computations to the button once again. Let's 
 test our app now. You will notice that the first time we choose certain options, the computations
-will take time, as before. But if we perform the same computations again, then the results will show
+will take time, as before. But if we perform the same computations again, then the results will be shown
 instantly:
 
 <div style="text-align:center;">
@@ -1453,7 +1455,7 @@ instantly:
 
 As you can see, once I go back to a computation that was done in the past, the table appears
 instantly. At the end of the video I open a terminal and navigate to the directory of the app,
-and show you the cache. There are three `.Rds` objects, these are the final data frames that
+and show you the cache. There are several `.Rds` objects, these are the final data frames that
 get computed by the app. If the user wants to rerun a previous computation, the correct data frame
 gets retrieved, making it look like the computation happened instantly, and with another added
 benefit: as discussed above, the cache is persistent between sessions, so even if the user
@@ -1466,12 +1468,13 @@ The easiest way is certainly to use shinyapps.io. I won't go into details, but y
 more about it [here](https://shiny.rstudio.com/articles/shinyapps.html). You could also
 get a Virtual Private Server on a website like [Vultr](https://vultr.com) or 
 [DigitalOcean](https://www.digitalocean.com/). When signing up with these services you get some
-free credit to test things out. Vultr is quite generous as they give you up to 300USD. This
-is more than enough to get a basic VPS with Ubuntu on it. You can then try to install everything
-needed to deploy Shiny apps from your VPS. You could follow 
-[this guide](https://www.marinedatascience.co/blog/2019/04/28/run-shiny-server-on-your-own-digitalocean-droplet-part-1/) 
-to deploy from DigitalOcean, which should generalize well to other services like Vultr.
-Doing this will teach you a lot, and I would highly recommend you do it.
+free credit to test things out. If you use my 
+[Vultr referral link](https://www.vultr.com/?ref=9276120-8H) you get 100USD to test the platform. 
+This is more than enough to get a basic VPS with Ubuntu on it. You can then try to install
+everything needed to deploy Shiny apps from your VPS. You could follow [this
+guide](https://www.marinedatascience.co/blog/2019/04/28/run-shiny-server-on-your-own-digitalocean-droplet-part-1/)
+to deploy from DigitalOcean, which should generalize well to other services like Vultr. Doing this
+will teach you a lot, and I would highly recommend you do it.
 
 ### References
 

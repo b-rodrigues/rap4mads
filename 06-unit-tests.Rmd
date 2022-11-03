@@ -32,6 +32,17 @@ code).
 
 ## Testing your package
 
+To make sure that each one of us starts with the exact same package and code, you will first of all
+fork the following repository [that you can find here](https://github.com/b-rodrigues/rap4mads_unit_tests).
+
+
+```{r, echo = F}
+knitr::include_graphics("img/fork.png")
+```
+
+Forking the repository will add a copy of the repository to your github account. You can now clone your fork
+of the repo (make sure you clone using the ssh link!) and start working!
+
 Because our code is packaged, starting to write unit tests will be very easy. For this, open RStudio
 and make sure your package’s project is opened:
 
@@ -320,7 +331,7 @@ I've used the string "This is likely", which appears in the warning. This is to 
 correct warning is raised. Should another warning be thrown, the test will fail, and I'll know that
 something's wrong (try to change the regular expression and rerun the test, you see that it'll fail).
 
-### Back to developing again
+## Back to developing again
 
 Now might be a good time to stop writing tests and think a little bit. While writing these tests,
 and filling the shoes of your users, you might have realized that your function might not be that
@@ -517,7 +528,7 @@ There's a lot more going on now: if you don't get everything that's going on in 
 don't worry, it is not that important for what follows. But do try to understand what's happening,
 especially the part about the optional arguments.
 
-### And back to testing
+## And back to testing
 
 Running our tests now will obviously fail:
 
