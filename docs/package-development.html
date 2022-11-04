@@ -23,7 +23,7 @@
 <meta name="author" content="Bruno Rodrigues" />
 
 
-<meta name="date" content="2022-11-01" />
+<meta name="date" content="2022-11-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -198,9 +198,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="6.2.1" data-path="unit-tests.html"><a href="unit-tests.html#is-the-function-returning-an-expected-value-for-a-given-input"><i class="fa fa-check"></i><b>6.2.1</b> Is the function returning an expected value for a given input?</a></li>
 <li class="chapter" data-level="6.2.2" data-path="unit-tests.html"><a href="unit-tests.html#can-the-function-deal-with-all-kinds-of-input"><i class="fa fa-check"></i><b>6.2.2</b> Can the function deal with all kinds of input?</a></li>
-<li class="chapter" data-level="6.2.3" data-path="unit-tests.html"><a href="unit-tests.html#back-to-developing-again"><i class="fa fa-check"></i><b>6.2.3</b> Back to developing again</a></li>
-<li class="chapter" data-level="6.2.4" data-path="unit-tests.html"><a href="unit-tests.html#and-back-to-testing"><i class="fa fa-check"></i><b>6.2.4</b> And back to testing</a></li>
 </ul></li>
+<li class="chapter" data-level="6.3" data-path="unit-tests.html"><a href="unit-tests.html#back-to-developing-again"><i class="fa fa-check"></i><b>6.3</b> Back to developing again</a></li>
+<li class="chapter" data-level="6.4" data-path="unit-tests.html"><a href="unit-tests.html#and-back-to-testing"><i class="fa fa-check"></i><b>6.4</b> And back to testing</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="setting-up-pipelines-with-targets.html"><a href="setting-up-pipelines-with-targets.html"><i class="fa fa-check"></i><b>7</b> Setting up pipelines with <code>{targets}</code></a>
 <ul>
@@ -236,7 +236,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8.5" data-path="data-products-1.html"><a href="data-products-1.html#how-to-build-data-products-using-targets"><i class="fa fa-check"></i><b>8.5</b> How to build data products using <code>{targets}</code></a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="self-contained-raps-with-docker.html"><a href="self-contained-raps-with-docker.html"><i class="fa fa-check"></i><b>9</b> Self-contained RAPs with Docker</a></li>
+<li class="chapter" data-level="9" data-path="self-contained-raps-with-docker.html"><a href="self-contained-raps-with-docker.html"><i class="fa fa-check"></i><b>9</b> Self-contained RAPs with Docker</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="self-contained-raps-with-docker.html"><a href="self-contained-raps-with-docker.html#references-1"><i class="fa fa-check"></i><b>9.1</b> References</a></li>
+</ul></li>
 <li class="chapter" data-level="10" data-path="cicd-with-github-actions.html"><a href="cicd-with-github-actions.html"><i class="fa fa-check"></i><b>10</b> CI/CD with Github Actions</a></li>
 <li class="chapter" data-level="11" data-path="what-else-should-you-learn.html"><a href="what-else-should-you-learn.html"><i class="fa fa-check"></i><b>11</b> What else should you learn?</a></li>
 <li class="chapter" data-level="12" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>12</b> Conclusion</a>
@@ -491,7 +494,7 @@ I’m thinking about the ones <a href="https://rap4mads.eu/introduction-to-r.htm
 <p>So save the script, and reload your package using <code>CTRL-SHIFT-L</code>, and try with the following lines:</p>
 <div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="package-development.html#cb89-1" aria-hidden="true" tabindex="-1"></a>unemp_2013 <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/unemployment/unemp_2013.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## Rows: 118 Columns: 8
-## ── Column specification ──────────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Column specification ──────────────────────────────────────────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
 ## chr (1): Commune
 ## dbl (7): Total employed population, of which: Wage-earners, of which: Non-wa...
@@ -680,6 +683,7 @@ License: GPL (&gt;=3)
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.2.1
+RemoteType: github
 Depends:
     R (&gt;= 4.1),
 Imports:
@@ -691,6 +695,7 @@ Suggests:
     testthat</code></pre>
 <p>We added three fields:</p>
 <ul>
+<li>RemoteType: we need to specify here that this package lives on github.com. This will become important for reproducibility purposes.</li>
 <li>Depends: we can define hard dependencies here. Because I’m using the base pipe <code>|&gt;</code> in my examples, my package needs at least R version 4.1.</li>
 <li>Imports: these is where we list packages that our package needs in order to run. If these packages are not available, they will be installed when users install our package.</li>
 <li>Suggests: these packages are not required to run, but can unlock further capabilities. This is also where we can list packages that are required to build <em>vignettes</em> (which we’ll discover shortly), or for unit testing.</li>
@@ -739,10 +744,10 @@ can use <code>devtools::install_github()</code> to install it from github.com. Y
 a specific commit hash to your users, so they install a fixed version of your package, and not
 the latest development version. For example, let’s suppose that I have been working on my package,
 but would prefer my potential users to install the package as it stood at the commit with the
-hash <code>"c65b748014de03f848248599b5e53c604c6ca91d"</code>. I can write this in the README of the package:</p>
+hash <code>"e9d9129de3047c1ecce26d09dff429ec078d4dae"</code>. I can write this in the README of the package:</p>
 <pre><code>To install the package, please use the following line
 
-devtools::install_github(&quot;b-rodrigues/myPackage&quot;, ref = &quot;c65b748014de03f848248599b5e53c604c6ca91d&quot;)</code></pre>
+devtools::install_github(&quot;b-rodrigues/myPackage&quot;, ref = &quot;e9d9129de3047c1ecce26d09dff429ec078d4dae&quot;)</code></pre>
 <p>This will install the <code>{myPackage}</code> package as it looked like at this particular commit. You could
 also create a branch called <code>release</code> for example, and direct users to install from this branch:</p>
 <pre><code>To install the package, please use the following line

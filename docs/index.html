@@ -23,7 +23,7 @@
 <meta name="author" content="Bruno Rodrigues" />
 
 
-<meta name="date" content="2022-11-01" />
+<meta name="date" content="2022-11-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -198,9 +198,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="6.2.1" data-path="unit-tests.html"><a href="unit-tests.html#is-the-function-returning-an-expected-value-for-a-given-input"><i class="fa fa-check"></i><b>6.2.1</b> Is the function returning an expected value for a given input?</a></li>
 <li class="chapter" data-level="6.2.2" data-path="unit-tests.html"><a href="unit-tests.html#can-the-function-deal-with-all-kinds-of-input"><i class="fa fa-check"></i><b>6.2.2</b> Can the function deal with all kinds of input?</a></li>
-<li class="chapter" data-level="6.2.3" data-path="unit-tests.html"><a href="unit-tests.html#back-to-developing-again"><i class="fa fa-check"></i><b>6.2.3</b> Back to developing again</a></li>
-<li class="chapter" data-level="6.2.4" data-path="unit-tests.html"><a href="unit-tests.html#and-back-to-testing"><i class="fa fa-check"></i><b>6.2.4</b> And back to testing</a></li>
 </ul></li>
+<li class="chapter" data-level="6.3" data-path="unit-tests.html"><a href="unit-tests.html#back-to-developing-again"><i class="fa fa-check"></i><b>6.3</b> Back to developing again</a></li>
+<li class="chapter" data-level="6.4" data-path="unit-tests.html"><a href="unit-tests.html#and-back-to-testing"><i class="fa fa-check"></i><b>6.4</b> And back to testing</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="setting-up-pipelines-with-targets.html"><a href="setting-up-pipelines-with-targets.html"><i class="fa fa-check"></i><b>7</b> Setting up pipelines with <code>{targets}</code></a>
 <ul>
@@ -236,7 +236,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8.5" data-path="data-products-1.html"><a href="data-products-1.html#how-to-build-data-products-using-targets"><i class="fa fa-check"></i><b>8.5</b> How to build data products using <code>{targets}</code></a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="self-contained-raps-with-docker.html"><a href="self-contained-raps-with-docker.html"><i class="fa fa-check"></i><b>9</b> Self-contained RAPs with Docker</a></li>
+<li class="chapter" data-level="9" data-path="self-contained-raps-with-docker.html"><a href="self-contained-raps-with-docker.html"><i class="fa fa-check"></i><b>9</b> Self-contained RAPs with Docker</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="self-contained-raps-with-docker.html"><a href="self-contained-raps-with-docker.html#references-1"><i class="fa fa-check"></i><b>9.1</b> References</a></li>
+</ul></li>
 <li class="chapter" data-level="10" data-path="cicd-with-github-actions.html"><a href="cicd-with-github-actions.html"><i class="fa fa-check"></i><b>10</b> CI/CD with Github Actions</a></li>
 <li class="chapter" data-level="11" data-path="what-else-should-you-learn.html"><a href="what-else-should-you-learn.html"><i class="fa fa-check"></i><b>11</b> What else should you learn?</a></li>
 <li class="chapter" data-level="12" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>12</b> Conclusion</a>
@@ -265,7 +268,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Reproducible Analytical Pipelines - Master’s of Data Science</h1>
 <p class="author"><em>Bruno Rodrigues</em></p>
-<p class="date"><em>2022-11-01</em></p>
+<p class="date"><em>2022-11-04</em></p>
 </div>
 <div id="introduction" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">Chapter 1</span> Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
@@ -357,7 +360,7 @@ frustrating, which is not the case with Python
 <p><img src="img/dependency_hell.png" width="512" /></p>
 </div>
 <p>That doesn’t mean that R does not have any issues. Quite the contrary, R sometimes behaves in seemingly truly
-bizarre ways (as an example, try running <code>nchar("123456789")</code> and then <code>nchar(123456789)</code> and try to make sense
+bizarre ways (as an example, try running <code>nchar("1000000000")</code> and then <code>nchar(1000000000)</code> and try to make sense
 of it). To know more about such bizarre behaviour, I recommend you read <em>The R Inferno</em> (linked at the end
 of this chapter). So, yes, R is far from perfect, but it sucks less than the alternatives
 (again, in my absolutely objective opinion).</p>
@@ -369,19 +372,21 @@ you can read the intro to my other book <a href="https://b-rodrigues.github.io/m
 Follow the pre-requisites there: install R, RStudio and these packages:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(</span>
 <span id="cb1-2"><a href="index.html#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Ecdat&quot;</span>,</span>
-<span id="cb1-3"><a href="index.html#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;janitor&quot;</span>,</span>
-<span id="cb1-4"><a href="index.html#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;plm&quot;</span>,</span>
-<span id="cb1-5"><a href="index.html#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;pwt9&quot;</span>,</span>
-<span id="cb1-6"><a href="index.html#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;quarto&quot;</span>,</span>
-<span id="cb1-7"><a href="index.html#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;renv&quot;</span>,</span>
-<span id="cb1-8"><a href="index.html#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;rio&quot;</span>,</span>
-<span id="cb1-9"><a href="index.html#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;shiny&quot;</span>,</span>
-<span id="cb1-10"><a href="index.html#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;targets&quot;</span>,</span>
-<span id="cb1-11"><a href="index.html#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;testthat&quot;</span>,</span>
-<span id="cb1-12"><a href="index.html#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;tidyverse&quot;</span>,</span>
-<span id="cb1-13"><a href="index.html#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;tribble&quot;</span>,</span>
-<span id="cb1-14"><a href="index.html#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;usethis&quot;</span></span>
-<span id="cb1-15"><a href="index.html#cb1-15" aria-hidden="true" tabindex="-1"></a>))</span></code></pre></div>
+<span id="cb1-3"><a href="index.html#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;devtools&quot;</span>,</span>
+<span id="cb1-4"><a href="index.html#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;janitor&quot;</span>,</span>
+<span id="cb1-5"><a href="index.html#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;plm&quot;</span>,</span>
+<span id="cb1-6"><a href="index.html#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;pwt9&quot;</span>,</span>
+<span id="cb1-7"><a href="index.html#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;quarto&quot;</span>,</span>
+<span id="cb1-8"><a href="index.html#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;renv&quot;</span>,</span>
+<span id="cb1-9"><a href="index.html#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;rio&quot;</span>,</span>
+<span id="cb1-10"><a href="index.html#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;shiny&quot;</span>,</span>
+<span id="cb1-11"><a href="index.html#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;targets&quot;</span>,</span>
+<span id="cb1-12"><a href="index.html#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;tarchetypes&quot;</span>,</span>
+<span id="cb1-13"><a href="index.html#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;testthat&quot;</span>,</span>
+<span id="cb1-14"><a href="index.html#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;tidyverse&quot;</span>,</span>
+<span id="cb1-15"><a href="index.html#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;tribble&quot;</span>,</span>
+<span id="cb1-16"><a href="index.html#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;usethis&quot;</span></span>
+<span id="cb1-17"><a href="index.html#cb1-17" aria-hidden="true" tabindex="-1"></a>))</span></code></pre></div>
 <p>The course will be very, very hands-on. I’ll give general hints and steps, and ask you to do stuff.
 It will not always be 100% simple and obvious, and you will need to also think a bit by yourself.
 I’ll help of course, so don’t worry. The idea is to put you in the shoes of a real data scientist
@@ -507,20 +512,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

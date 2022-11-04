@@ -422,7 +422,7 @@ our project. For this, run the following line (you might need to install `{devto
 
 ```{r, eval = F}
 devtools::install_github("b-rodrigues/myPackage",
-                         ref = "c65b748014de03f848248599b5e53c604c6ca91d")
+                         ref = "e9d9129de3047c1ecce26d09dff429ec078d4dae")
 ```
 
 The provided hash will make sure that the right version of the package gets installed for this project.
@@ -455,10 +455,41 @@ The following package(s) will be updated in the lockfile:
 - yaml         [* -> 2.3.6]
 
 # GitHub =============================
-- myPackage    [* -> b-rodrigues/myPackage@c65b748014de03f848248599b5e53c604c6ca91d]
+- myPackage    [* -> b-rodrigues/myPackage@e9d9129de3047c1ecce26d09dff429ec078d4dae]
 
 Do you want to proceed? [y/N]: 
 ```
+
+It might be a good idea to take a look at the lock file, and in particular the `{myPackage}` entry.
+If everything went alright, you should see something like this:
+
+```
+"myPackage": {
+  "Package": "myPackage",
+  "Version": "0.1.0",
+  "Source": "GitHub",
+  "RemoteType": "github",
+  "RemoteHost": "api.github.com",
+  "RemoteRepo": "myPackage",
+  "RemoteUsername": "b-rodrigues",
+  "RemoteRef": "e9d9129de3047c1ecce26d09dff429ec078d4dae",
+  "RemoteSha": "e9d9129de3047c1ecce26d09dff429ec078d4dae",
+  "Hash": "4740b43847e10e012bad2b8a1a533433",
+  "Requirements": [
+    "dplyr",
+    "janitor",
+    "rlang"
+  ]
+},
+```
+
+It can happen that every entry starting with "Remote" is missing. This depends how this
+package was installed, and if the `DESCRIPTION` file of this package contains the required info.
+If you installed it using `devtools::install_github()`, it should be fine. But it is always
+better to check.
+In case these are missing, you should add them by hand. Adding these fields will ensure that the
+package will always get installed from github.com, and that the correct commit will be used. You
+can then save the lock file and commit it alongside the rest of your project.
 
 Ok, now we should be able to run our pipeline with `targets::tar_make()`.
 

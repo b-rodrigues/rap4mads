@@ -103,7 +103,7 @@ knitr::include_graphics("img/dependency_hell.png")
 </div>
 
 That doesn’t mean that R does not have any issues. Quite the contrary, R sometimes behaves in seemingly truly
-bizarre ways (as an example, try running `nchar("123456789")` and then `nchar(123456789)` and try to make sense
+bizarre ways (as an example, try running `nchar("1000000000")` and then `nchar(1000000000)` and try to make sense
 of it). To know more about such bizarre behaviour, I recommend you read *The R Inferno* (linked at the end 
 of this chapter). So, yes, R is far from perfect, but it sucks less than the alternatives 
 (again, in my absolutely objective opinion). 
@@ -117,6 +117,7 @@ Follow the pre-requisites there: install R, RStudio and these packages:
 ```{r, eval = F}
 install.packages(c(
   "Ecdat",
+  "devtools",
   "janitor",
   "plm",
   "pwt9",
@@ -125,6 +126,7 @@ install.packages(c(
   "rio",
   "shiny",
   "targets",
+  "tarchetypes",
   "testthat",
   "tidyverse",
   "tribble",

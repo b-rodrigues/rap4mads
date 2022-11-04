@@ -23,7 +23,7 @@
 <meta name="author" content="Bruno Rodrigues" />
 
 
-<meta name="date" content="2022-11-01" />
+<meta name="date" content="2022-11-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -236,7 +236,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8.5" data-path="data-products-1.html"><a href="data-products-1.html#how-to-build-data-products-using-targets"><i class="fa fa-check"></i><b>8.5</b> How to build data products using <code>{targets}</code></a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="self-contained-raps-with-docker.html"><a href="self-contained-raps-with-docker.html"><i class="fa fa-check"></i><b>9</b> Self-contained RAPs with Docker</a></li>
+<li class="chapter" data-level="9" data-path="self-contained-raps-with-docker.html"><a href="self-contained-raps-with-docker.html"><i class="fa fa-check"></i><b>9</b> Self-contained RAPs with Docker</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="self-contained-raps-with-docker.html"><a href="self-contained-raps-with-docker.html#references-1"><i class="fa fa-check"></i><b>9.1</b> References</a></li>
+</ul></li>
 <li class="chapter" data-level="10" data-path="cicd-with-github-actions.html"><a href="cicd-with-github-actions.html"><i class="fa fa-check"></i><b>10</b> CI/CD with Github Actions</a></li>
 <li class="chapter" data-level="11" data-path="what-else-should-you-learn.html"><a href="what-else-should-you-learn.html"><i class="fa fa-check"></i><b>11</b> What else should you learn?</a></li>
 <li class="chapter" data-level="12" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>12</b> Conclusion</a>
@@ -328,6 +331,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

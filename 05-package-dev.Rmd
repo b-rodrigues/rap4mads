@@ -480,6 +480,7 @@ License: GPL (>=3)
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.2.1
+RemoteType: github
 Depends:
     R (>= 4.1),
 Imports:
@@ -493,6 +494,7 @@ Suggests:
 
 We added three fields:
 
+- RemoteType: we need to specify here that this package lives on github.com. This will become important for reproducibility purposes.
 - Depends: we can define hard dependencies here. Because I'm using the base pipe `|>` in my examples, my package needs at least R version 4.1.
 - Imports: these is where we list packages that our package needs in order to run. If these packages are not available, they will be installed when users install our package.
 - Suggests: these packages are not required to run, but can unlock further capabilities. This is also where we can list packages that are required to build *vignettes* (which we'll discover shortly), or for unit testing.
@@ -552,12 +554,12 @@ can use `devtools::install_github()` to install it from github.com. You might wa
 a specific commit hash to your users, so they install a fixed version of your package, and not
 the latest development version. For example, let’s suppose that I have been working on my package,
 but would prefer my potential users to install the package as it stood at the commit with the
-hash `"c65b748014de03f848248599b5e53c604c6ca91d"`. I can write this in the README of the package:
+hash `"e9d9129de3047c1ecce26d09dff429ec078d4dae"`. I can write this in the README of the package:
 
 ```
 To install the package, please use the following line
 
-devtools::install_github("b-rodrigues/myPackage", ref = "c65b748014de03f848248599b5e53c604c6ca91d")
+devtools::install_github("b-rodrigues/myPackage", ref = "e9d9129de3047c1ecce26d09dff429ec078d4dae")
 ```
 
 This will install the `{myPackage}` package as it looked like at this particular commit. You could

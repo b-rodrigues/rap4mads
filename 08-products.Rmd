@@ -1483,3 +1483,190 @@ will teach you a lot, and I would highly recommend you do it.
 - [Engineering Production-Grade Shiny Apps](https://engineering-shiny.org/)
 
 ## How to build data products using `{targets}`
+
+We will now put everything together and create a `{targets}` pipeline to build a data product
+from start to finish. Let's go back to one of the pipelines we wrote in Chapter 7. If you're
+using RStudio, start a new project and make it `renv`-enabled by checking the required checkbox.
+If you're using another editor, start with an empty folder and run `renv::init()`. Now create a new
+script with the following code:
+
+```{r, eval = F}
+library(targets)
+library(myPackage)
+library(dplyr)
+library(ggplot2)
+source("functions.R")
+
+list(
+    tar_target(
+        unemp_data,
+        get_data()
+    ),
+
+    tar_target(
+        lux_data,
+        clean_unemp(unemp_data,
+                    place_name_of_interest = "Luxembourg",
+                    level_of_interest = "Country",
+                    col_of_interest = active_population)
+    ),
+
+    tar_target(
+        canton_data,
+        clean_unemp(unemp_data,
+                    level_of_interest = "Canton",
+                    col_of_interest = active_population)
+    ),
+
+    tar_target(
+        commune_data,
+        clean_unemp(unemp_data,
+                    place_name_of_interest = c("Luxembourg", "Dippach", "Wiltz", "Esch/Alzette", "Mersch"),
+                    col_of_interest = active_population)
+    ),
+
+    tar_target(
+        lux_plot,
+        make_plot(lux_data)
+    ),
+
+    tar_target(
+        canton_plot,
+        make_plot(canton_data)
+    ),
+
+    tar_target(
+        commune_plot,
+        make_plot(commune_data)
+    )
+
+)
+```
+
+This pipeline reads in data, then filters data and produces some plots. In another version of this
+pipeline we wrote the plots to disk. Now we will add them to a Quarto document, using the
+`tar_quarto()` function that can be found in the `{tarchetypes}` packages (so install it if this is
+not the case yet). `{tarchetypes}` provides functions to define further types of targets, such as
+`tar_quarto()` which makes it possible to render Quarto documents from a `{targets}` pipeline. But
+before rendering a document, we need to write this document. This is what the document could look
+like:
+
+````{verbatim}
+---
+title: "Reading objects from a targets pipeline"
+author: "Bruno Rodrigues"
+date: today
+---
+
+This document loads three plots that were made using a `{targets}` pipeline.
+
+```{r}
+targets::tar_read(lux_plot)
+```
+
+```{r}
+targets::tar_read(canton_plot)
+```
+
+```{r}
+targets::tar_read(commune_plot)
+```
+
+````
+
+Here is what the final pipeline would look like (notice that I've added `library(quarto)` to the 
+list of packages getting called):
+
+```{r, eval = F}
+library(targets)
+library(tarchetypes)
+library(myPackage)
+library(dplyr)
+library(ggplot2)
+library(quarto)
+source("functions.R")
+
+list(
+
+  tar_target(
+    unemp_data,
+    get_data()
+  ),
+
+  tar_target(
+    lux_data,
+    clean_unemp(unemp_data,
+                place_name_of_interest = "Luxembourg",
+                level_of_interest = "Country",
+                col_of_interest = active_population)
+  ),
+
+  tar_target(
+    canton_data,
+    clean_unemp(unemp_data,
+                level_of_interest = "Canton",
+                col_of_interest = active_population)
+  ),
+
+  tar_target(
+    commune_data,
+    clean_unemp(unemp_data,
+                place_name_of_interest = c("Luxembourg", "Dippach", "Wiltz", "Esch/Alzette", "Mersch"),
+                col_of_interest = active_population)
+  ),
+
+  tar_target(
+    lux_plot,
+    make_plot(lux_data)
+  ),
+
+  tar_target(
+    canton_plot,
+    make_plot(canton_data)
+  ),
+
+  tar_target(
+    commune_plot,
+    make_plot(commune_data)
+  ),
+
+  tar_quarto(
+    my_doc,
+    path = "my_doc.qmd"
+  )
+
+)
+
+```
+
+Make sure that this pipeline runs using `tar_make()`. If yes, and you're done with it, don't forget to run
+`renv::snapshot()` to save the projects dependencies in a lock file. Again, take a look at the lock file
+to make extra sure that your package is correctly being versioned. As a reminder, you should see something
+like this:
+
+```
+"myPackage": {
+  "Package": "myPackage",
+  "Version": "0.1.0",
+  "Source": "GitHub",
+  "RemoteType": "github",
+  "RemoteHost": "api.github.com",
+  "RemoteRepo": "myPackage",
+  "RemoteUsername": "b-rodrigues",
+  "RemoteRef": "e9d9129de3047c1ecce26d09dff429ec078d4dae",
+  "RemoteSha": "e9d9129de3047c1ecce26d09dff429ec078d4dae",
+  "Hash": "4740b43847e10e012bad2b8a1a533433",
+  "Requirements": [
+    "dplyr",
+    "janitor",
+    "rlang"
+  ]
+},
+```
+
+What's really important is that you find the "RemoteXXXX" fields. We are now ready to push this
+project to github.com. Don't forget to first edit the `.gitignore` file and add the `renv` folder
+in it. This is the folder that contains the downloaded packages, and it can get quite big. It is
+better to not push it. We are now done with building an almost 100% reproducible pipeline!
+If your product is a Shiny app, you may want to put as much calculations as possible in the
+`{targets}` pipelines. You can then use `tar_load()` or `tar_read()` inside the `global.R` file.
