@@ -23,7 +23,7 @@
 <meta name="author" content="Bruno Rodrigues" />
 
 
-<meta name="date" content="2022-11-04" />
+<meta name="date" content="2022-11-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -238,7 +238,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9" data-path="self-contained-raps-with-docker.html"><a href="self-contained-raps-with-docker.html"><i class="fa fa-check"></i><b>9</b> Self-contained RAPs with Docker</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="self-contained-raps-with-docker.html"><a href="self-contained-raps-with-docker.html#references-1"><i class="fa fa-check"></i><b>9.1</b> References</a></li>
+<li class="chapter" data-level="9.1" data-path="self-contained-raps-with-docker.html"><a href="self-contained-raps-with-docker.html#introduction-7"><i class="fa fa-check"></i><b>9.1</b> Introduction</a></li>
+<li class="chapter" data-level="9.2" data-path="self-contained-raps-with-docker.html"><a href="self-contained-raps-with-docker.html#installing-docker"><i class="fa fa-check"></i><b>9.2</b> Installing Docker</a></li>
+<li class="chapter" data-level="9.3" data-path="self-contained-raps-with-docker.html"><a href="self-contained-raps-with-docker.html#the-rocker-project"><i class="fa fa-check"></i><b>9.3</b> The Rocker Project</a></li>
+<li class="chapter" data-level="9.4" data-path="self-contained-raps-with-docker.html"><a href="self-contained-raps-with-docker.html#docker-essentials"><i class="fa fa-check"></i><b>9.4</b> Docker essentials</a></li>
+<li class="chapter" data-level="9.5" data-path="self-contained-raps-with-docker.html"><a href="self-contained-raps-with-docker.html#making-our-own-images-and-run-some-code"><i class="fa fa-check"></i><b>9.5</b> Making our own images and run some code</a></li>
+<li class="chapter" data-level="9.6" data-path="self-contained-raps-with-docker.html"><a href="self-contained-raps-with-docker.html#reproducibility-with-docker"><i class="fa fa-check"></i><b>9.6</b> Reproducibility with Docker</a></li>
+<li class="chapter" data-level="9.7" data-path="self-contained-raps-with-docker.html"><a href="self-contained-raps-with-docker.html#building-a-truly-reproducible-pipeline"><i class="fa fa-check"></i><b>9.7</b> Building a truly reproducible pipeline</a></li>
+<li class="chapter" data-level="9.8" data-path="self-contained-raps-with-docker.html"><a href="self-contained-raps-with-docker.html#references-1"><i class="fa fa-check"></i><b>9.8</b> References</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="cicd-with-github-actions.html"><a href="cicd-with-github-actions.html"><i class="fa fa-check"></i><b>10</b> CI/CD with Github Actions</a></li>
 <li class="chapter" data-level="11" data-path="what-else-should-you-learn.html"><a href="what-else-should-you-learn.html"><i class="fa fa-check"></i><b>11</b> What else should you learn?</a></li>
@@ -314,17 +321,10 @@ It allows to do this:</p>
 <pre><code>## [1] 2</code></pre>
 <p>Before R version 4.1, there was already a forward pipe, introduced with the <code>{magrittr}</code> package
 (and automatically loaded by many other packages from the <em>tidyverse</em>, like <code>{dplyr}</code>):</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="introduction-to-r.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
-<pre><code>## 
-## Attaching package: &#39;dplyr&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     filter, lag</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     intersect, setdiff, setequal, union</code></pre>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="introduction-to-r.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="sc">%&gt;%</span></span>
-<span id="cb8-2"><a href="introduction-to-r.html#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="introduction-to-r.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb4-2"><a href="introduction-to-r.html#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="introduction-to-r.html#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="sc">%&gt;%</span></span>
+<span id="cb4-4"><a href="introduction-to-r.html#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>()</span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
 <p>Both expressions above are equivalent to <code>sqrt(4)</code>. You will see why this is useful very soon. For now,
 just know this exists and try to get used to it.</p>

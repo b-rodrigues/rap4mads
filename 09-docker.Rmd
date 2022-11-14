@@ -6,13 +6,446 @@ knitr::include_graphics("img/container.png")
 ```
 </div>
 
-This link should be discussed
+## Introduction
 
-https://rocker-project.org/use/reproducibility.html
+As discussed in section 7.7, while `{renv}` is a great tool that makes reproducibility quite simple, 
+there are still some issues.
+In order to tackle these issues, we are going to learn about Docker. Docker is used to package software
+including all its dependencies, making it easy to run/deploy anywhere.
+The idea is to not only deliver the source code to our data products, but also include it 
+inside a complete package that contains not only R and the required libraries to rebuild the 
+data product, but also many components of the underlying operating system itself 
+(which will usually be Ubuntu).
+For rebuilding this data product, a single command can be used which will pull the Docker image
+from Docker Hub, start a container, build the data product, and stop.
 
-and this link then as well
+If you've never heard of Docker before, this chapter should give you the very basic knowledge required
+to get started. 
 
-https://github.com/rocker-org/rocker-versioned2/wiki/Versions
+Let's start by watching [this very short video](https://www.youtube.com/watch?v=-X3AeROGmOw) that 
+introduces Docker.
+
+As a reminder, let's state again what problems `{renv}` does not allow to solve. Users will need to make 
+sure themselves that they're running the pipeline with the same version of R,
+(as recorder in the `renv.lock` file), the same operating system, hope that `{renv}` will be able
+to install the packages (which can unfortunately sometimes fail) and hope that the underlying 
+infrastructure (MRAN and CRAN) are up and running. In the past, these issues were solved using 
+virtual machines. The issue with virtual machines, is that you cannot work with them programmatically.
+In a sense, Docker can be seen a lightweight virtual machine running a Linux distribution (usually
+Ubuntu) that you can interact with using the command line. This also means then that familiarity with
+Linux distributions (and in particular Ubuntu) will make using Docker easily. Thankfully, there is a 
+very large community of Docker users who also use R. This community is organized as the 
+[Rocker Project](https://rocker-project.org/) and provides a very large collection of `Dockerfile`s 
+to get easily started. As you saw in the video above, `Dockerfile`s are simple text files that
+define a Docker image, from which you can start a container.
+
+## Installing Docker
+
+The first step is to install Docker.
+You'll find the instructions for Ubuntu 
+[here](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository),
+for Windows [here](https://docs.docker.com/desktop/install/windows-install/) (read the
+system requirements section as well!) and for macOS 
+[here](https://docs.docker.com/desktop/install/mac-install/) (make sure to choose the right
+version for the architecture of your Mac, if you have an M1 Mac use *Mac with Apple silicon*).
+
+After installation, it might be a good idea to restart your computer, if the installation wizard
+does not invite you to do so. To check whether Docker was installed successfully, run the following
+command in a terminal (or on the desktop app on Windows): 
+
+```
+docker run --rm hello-world
+```
+
+This should print the following message:
+
+```
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+
+```
+
+If you see this message, congratulations, you are ready to run Docker. If you see an error message 
+about permissions, this means that something went wrong. If you're running Linux, make sure that 
+your user is in the Docker group by running:
+
+```
+groups $USER
+```
+
+you should see your username and a list of scripts that your user belongs to. If a group called
+`docker` is not listed, then you should add yourself to the group by following 
+[these steps](https://docs.docker.com/engine/install/linux-postinstall/).
+
+## The Rocker Project
+
+The Rocker Project is instrumental for R users that want to use Docker. The project provides a large
+list of images that are ready to run with a single command. As an illustration, open a terminal 
+and paste the following line:
+
+```
+docker run --rm -e PASSWORD=yourpassword -p 8787:8787 rocker/rstudio
+```
+
+Once this stops running, go to `http://localhost:8787/` and enter `rstudio` as the username
+and `yourpassword` as the password. You should login to a RStudio instance: this is the web
+interface of RStudio that allows you to work with R from a server. In this case, the *server*
+is the Docker container running the image. Let's open a new script and run the following lines:
+
+```{r, eval = F}
+data(mtcars)
+
+summary(mtcars)
+```
+
+You can now stop the container (by pressing `CTRL-C` in the terminal). Let's now rerun the container...
+you should realize that your script is gone! This is the first lesson: whatever you do inside a container
+will disappear once the container is stopped. This also means that if you install the R packages that 
+you need while the container is running, you will need to reinstall them every time. 
+Thankfully, the Rocker Project provides a list of images with many packages already available. 
+For example to run R with the `{tidyverse}` collection of packages already pre-installed, run the
+following command:
+
+```
+docker run --rm -e PASSWORD=yourpassword -p 8787:8787 rocker/tidyverse
+```
+
+If you compare it to the previous command, you see that we have replaced *rstudio* with *tidyverse*.
+This is because `rocker/tidyverse` references an image, hosted on Docker Hub, that provides the 
+latest version of R, RStudio server and the packages from the `{tidyverse}`. You can find the image
+hosted on Docker Hub [here](https://hub.docker.com/r/rocker/tidyverse). There are many different
+images, and we will be using the *versioned* images made specifically for reproducibility. For now,
+however, let's stick with the `tidyverse` image, and let's learn a bit more about some specifics.
+
+## Docker essentials
+
+You already know about running containers using `docker run`. With the commands we ran before, your
+terminal will need to stay open, or else, the container will stop. Starting now, we will run
+Docker commands in the background. For this, we will use the `-d` flag (`d` as in *detach*), so 
+let's stop the container one last time with `CTRL-C` and rerun it using:
+
+```
+docker run -d --rm -e PASSWORD=yourpassword -p 8787:8787 -v rocker/tidyverse
+```
+
+(notice `-d` just after `run`). You can run several containers in the background simultaneously.
+You can list running containers with `docker ps`:
+
+```
+docker ps
+CONTAINER ID   IMAGE              COMMAND   CREATED         STATUS         PORTS                                       NAMES
+c956fbeeebcb   rocker/tidyverse   "/init"   3 minutes ago   Up 3 minutes   0.0.0.0:8787->8787/tcp, :::8787->8787/tcp   elastic_morse
+```
+
+The running container has the ID `c956fbeeebcb`. Also, the very last column, shows the name of the 
+running container. This is a label that you can change. For now, take note of ID, because we are going
+to stop the container:
+
+```
+docker stop c956fbeeebcb
+```
+
+After Docker is done stopping the running container, you can check the running containers using 
+`docker ps` again, but this time no containers should get listed. Let's also discuss the other
+flags `--rm`, `-e` and `-p`. `--rm` removes the container once it's stopped. Without this flag,
+we can restart the container and all the data and preferences we saved will be restored. However,
+this is dangerous because if the container gets removed, then everything will get lost, forever.
+We are going to learn how to deal with that later. `-e` allows you to provide environment variables
+to the container, so in this case the `$PASSWORD` variable. `-p` is for setting the port at which
+your app is going to get served. Let's now rerun the container, but by giving it a name:
+
+```
+docker run -d --name my_r --rm -e PASSWORD=yourpassword -p 8787:8787 rocker/tidyverse
+```
+
+Notice the `--name` flag followed by the name we want to use `my_r`. We can now interact
+with this container using its name instead of its ID. For example, let's open an interactive
+bash session. Run the following command:
+
+```
+docker exec -ti my_r bash
+```
+
+You now be inside a terminal session, inside the running container! This can be useful for 
+debugging purposes. It's also possible to start R in the terminal, simply replace `bash`
+by `R` in the command above.
+
+Finally, let's solve the issue of our scripts disappearing. For this, create a folder somewhere on 
+your computer (host). Then, rerun the container, but this time with this command:
+
+```
+docker run -d --name my_r --rm -e PASSWORD=yourpassword -p 8787:8787 -v /path/to/your/local/folder:/home/rstudio/scripts:rw rocker/tidyverse
+```
+
+where `/path/to/your/local/folder` should be replaced to the folder you created. You should now be able
+to save the scripts inside the `scripts/` folder from RStudio and they will appear in the folder
+you created.
+
+## Making our own images and run some code
+
+We now know how to save files to our computer from Docker. But as the container gets stopped 
+(and removed because of --rm) if we install R packages, we would need to reinstall them each
+time. The solution is thus to create our own Docker image, and as you will see, it is quite
+simple to get started. Create a folder somewhere on your computer, and add a text file 
+called `Dockerfile` (without any extension). In this file add, the following lines:
+
+```
+FROM rocker/tidyverse
+
+RUN R -e "devtools::install_github('b-rodrigues/myPackage', ref = 'e9d9129de3047c1ecce26d09dff429ec078d4dae')"
+```
+
+Every `Dockerfile` starts with a `FROM` statement. This means that this `Dockerfile` will use the 
+`rocker/tidyverse` file as a starting point. Then, we will simply download the package we've
+been developing together using a `RUN` statement, which you've guessed it, runs a command.
+Then we need to build the image. For this, run the following line:
+
+
+```
+docker build -t my_package .
+```
+
+This will build the image right in this folder and call it `my_package`.
+
+```
+Sending build context to Docker daemon  2.048kB
+Step 1/2 : FROM rocker/tidyverse
+ ---> a838ee142831
+Step 2/2 : RUN R -e "devtools::install_github('b-rodrigues/myPackage', ref = 'e9d9129de3047c1ecce26d09dff429ec078d4dae')"
+ ---> Using cache
+ ---> 17d5d3179293
+Successfully built 17d5d3179293
+Successfully tagged my_package:latest
+```
+
+By running `docker images` you should see all the images that are on your PC (with running containers
+or not):
+
+```
+docker images
+```
+
+```
+REPOSITORY         TAG       IMAGE ID       CREATED          SIZE
+my_package         latest    17d5d3179293   13 minutes ago   2.16GB
+rocker/tidyverse   latest    a838ee142831   11 days ago      2.15GB
+rocker/rstudio     latest    d110bab4d154   11 days ago      1.79GB
+hello-world        latest    feb5d9fea6a5   13 months ago    13.3kB
+```
+
+You should see that each image takes up a lot of space: but this is misleading. Each image
+that builds upon another does not duplicate the same layers. So this means that our image,
+`my_package`, only add the `{myPackage}` package to the `rocker/tidyverse` image, which in
+turn only adds the `{tidyverse}` packages to `rocker/rstudio`. This means unlike what
+is shown here, all the images to not need 6GB of space, but only 2.16GB in total. So let's now
+make sure that every other container is stopped (because we will run our container on the 
+same port) and let's run our container using this command:
+
+```
+docker run --rm -d --name my_package_container -e PASSWORD=yourpassword -p 8787:8787 my_package
+```
+
+You should now see `{myPackage}` available in the list of packages in the RStudio pane.
+Let's now go one step further. Let's create one plot from within Docker, and make it available to
+the person running it. Let's stop again our container:
+
+```
+docker stop my_package_container
+```
+
+Now, in the same folder where your `Dockerfile` resides, add the following `R` script:
+
+```
+library(ggplot2)
+library(myPackage)
+
+data("unemp")
+
+canton_data <- clean_unemp(unemp,
+                           level_of_interest = "Canton",
+                           col_of_interest = active_population)
+
+my_plot <- ggplot(canton_data) +
+  geom_col(
+    aes(
+      y = active_population,
+      x = year,
+      fill = place_name
+    )
+  ) +
+  theme(legend.position = "bottom",
+        legend.title = element_blank())
+
+ggsave("/home/rstudio/scripts/my_plot.pdf", my_plot)
+```
+
+This script loads the data, and saves it to the scripts folder (as you see, this is a path inside of
+the Docker image). We will also need to update the `Dockerfile`. Edit it to look like this:
+
+```
+FROM rocker/tidyverse
+
+RUN R -e "devtools::install_github('b-rodrigues/myPackage', ref = 'e9d9129de3047c1ecce26d09dff429ec078d4dae')"
+
+RUN mkdir /home/rstudio/graphs
+
+COPY my_graph.R /home/rstudio/graphs/my_graph.R
+
+CMD R -e "source('/home/rstudio/graphs/my_graph.R')"
+```
+
+We added three commands at the end; one to create a folder (using `mkdir`) another to copy our 
+script to this folder (so for this, remember that you should put the R script that creates the plot
+next to the `Dockerfile`) and finally an R command to source (or run) the script we've just copied.
+
+Let's now run our container with the following command (notice that we do not use `-p` nor the `-e`
+flags anymore, because we're not interested in running RStudio in the browser anymore):
+
+```
+docker run --rm --name my_package_container /path/to/your/local/folder:/home/rstudio/scripts:rw my_package
+```
+
+After some seconds, you should see a PDF in the folder that you set up. This is the output of the 
+script! You probably see now where this is going: we are going to define a `{targets}` pipeline
+that will be run each time the container is run. But one problem remains.
+
+## Reproducibility with Docker
+
+Our `Dockerfile` as it is now, is not suited for reproducibility. This is because each time the image
+gets built, the latest version of R and package will get pulled from the Internet. We need to use
+a `Dockerfile` that builds exactly the same image, regardless of when it gets built.
+Thankfully, the Rocker Project is here to help. A series of `Dockerfiles` are available that:
+
+- always use the exact same version of R;
+- a frozen CRAN repository will be used to pull the packages;
+- a long term support of Ubuntu is used as a base image.
+
+You can read about it more [here](https://github.com/rocker-org/rocker-versioned2/wiki/Versions). As
+I'm writing this, the latest stable image uses R v4.2.1 on Ubuntu 20.04. The latest image,
+based on Ubuntu 22.04 and which uses the latest version of R (v4.2.2) still uses the default CRAN
+repository, not a frozen one. So for our purposes, we will be using the `rocker/r-ver:4.2.1` image,
+which you can find [here](https://hub.docker.com/layers/rocker/r-ver/4.2.1/images/sha256-3636493af7028d899a6598ee4aabe70d231fb0ff60f61a70f8ea0ea24a51c3e6?context=explore). What's quite important,
+is to check that the CRAN mirror is frozen. Look for the line in the `Dockerfile` that starts
+with `ENV CRAN...` and you should see this:
+
+
+<div style="text-align:center;">
+```{r, echo = F}
+knitr::include_graphics("img/docker_1.png")
+```
+</div>
+
+
+As you can see in the screenshot, we see that the CRAN mirror is set to the 28 of October 2022.
+Let's now edit our `Dockerfile` like so:
+
+```
+FROM rocker/r-ver:4.2.1
+
+RUN R -e "install.packages(c('devtools', 'ggplot2'))"
+
+RUN R -e "devtools::install_github('b-rodrigues/myPackage', ref = 'e9d9129de3047c1ecce26d09dff429ec078d4dae')"
+
+RUN mkdir /home/rstudio/graphs
+
+COPY my_graph.R /home/graphs/my_graph.R
+
+CMD R -e "source('/home/graphs/my_graph.R')"
+```
+
+As you can see, we've changed to first line to `rocker/r-ver:4.2.1`, added a line to install the 
+required packages, and we've removed `rstudio` from the paths in the other commands. This is because
+`r-ver` do not launch an RStudio session in browser, so there's no `rstudio` user. Before
+building the image, you should also update the script that creates the plot. This is because in the
+last line of our script, we save the plot to `"/home/rstudio/scripts/my_plot.pdf"`, but remember, there's
+no `rstudio` user. So remove this from the `ggsave()` function. Also, add another line to the script,
+right at the bottom:
+
+```
+writeLines(capture.output(sessionInfo()), "/home/scripts/sessionInfo.txt")
+```
+
+so the script finally looks like this:
+
+```
+library(ggplot2)
+library(myPackage)
+
+data("unemp")
+
+canton_data <- clean_unemp(unemp,
+                           level_of_interest = "Canton",
+                           col_of_interest = active_population)
+
+my_plot <- ggplot(canton_data) +
+  geom_col(
+    aes(
+      y = active_population,
+      x = year,
+      fill = place_name
+    )
+  ) +
+  theme(legend.position = "bottom",
+        legend.title = element_blank())
+
+ggsave("/home/scripts/my_plot.pdf", my_plot)
+
+writeLines(capture.output(sessionInfo()), "/home/scripts/sessionInfo.txt")
+```
+
+Now, build this image using:
+
+```
+docker build -t my_package .
+```
+
+and this will run R and install the packages. This should take some time, because `r-ver` images do not
+come with any packages preinstalled. Once this is done, we can run a container from this image using:
+
+```
+docker run --rm --name my_package_container -v /path/to/your/local/folder:/home/scripts:rw my_package
+```
+
+You should see two files now: the plot, and a `sessionInfo.txt` file. Open this file, and you should see
+the following:
+
+```
+R version 4.2.1 (2022-06-23)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Ubuntu 20.04.5 LTS
+```
+
+This confirms that the code ran indeed on R 4.2.1 under Ubuntu 20.04.5 LTS. You should also
+see that the `{ggplot2}` version used is `{ggplot2}` version 3.3.6, which is older than the 
+version you could get now (as of November 2022), which is 3.4.0.
+
+We now have all the ingredients and basic knowledge to build a fully reproducible pipeline.
+
+## Building a truly reproducible pipeline
+
+- put an image on docker hub with all the depencies
+- put a dockerfile from this image on github only running our pipeline
+- put pipeline inside package that gets installed at build time
+
+
 
 
 ## References

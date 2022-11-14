@@ -75,6 +75,13 @@ deploying-your-shiny-app
 references
 how-to-build-data-products-using-targets
 self-contained-raps-with-docker
+introduction-7
+installing-docker
+the-rocker-project
+docker-essentials
+making-our-own-images-and-run-some-code
+reproducibility-with-docker
+building-a-truly-reproducible-pipeline
 references-1
 cicd-with-github-actions
 what-else-should-you-learn
