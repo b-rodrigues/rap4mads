@@ -14,8 +14,9 @@ In order to tackle these issues, we are going to learn about Docker. Docker is u
 including all its dependencies, making it easy to run/deploy anywhere.
 The idea is to not only deliver the source code to our data products, but also include it 
 inside a complete package that contains not only R and the required libraries to rebuild the 
-data product, but also many components of the underlying operating system itself 
-(which will usually be Ubuntu).
+data product, but also many components of the underlying operating system itself, which will usually be Ubuntu...
+which also means that if you're familiar with Ubuntu, you're at an advantage.
+
 For rebuilding this data product, a single command can be used which will pull the Docker image
 from Docker Hub, start a container, build the data product, and stop.
 
@@ -364,7 +365,7 @@ RUN R -e "install.packages(c('devtools', 'ggplot2'))"
 
 RUN R -e "devtools::install_github('b-rodrigues/myPackage', ref = 'e9d9129de3047c1ecce26d09dff429ec078d4dae')"
 
-RUN mkdir /home/rstudio/graphs
+RUN mkdir /home/graphs
 
 COPY my_graph.R /home/graphs/my_graph.R
 
@@ -441,13 +442,162 @@ We now have all the ingredients and basic knowledge to build a fully reproducibl
 
 ## Building a truly reproducible pipeline
 
+Ok so we are almost there; we now know how to run code in an environment that is completely
+stable, so our results are 100% reproducible. However, there are still some things that
+we can learn in order to make our pipeline even better. First of all, we can make it run 
+faster by creating an image that has already all the packages that we need installed.
+This way, whenever we will need to build it, no packages will need to be installed. We will 
+also put this image on Docker Hub, so in the future, people that want to run our pipeline
+can do so by pulling the pre-built image from Docker, instead of having to rebuild it 
+using the `Dockerfile`. In order to get an image on Docker Hub, you first need to create
+an account [there](https://hub.docker.com/). Once logged in, you can click on 
+`Create repository`:
+
+<div style="text-align:center;">
+```{r, echo = F}
+knitr::include_graphics("img/docker_2.png")
+```
+</div>
+
+You can then give a name to this repository. Let's now create an image that we will push.
+Let's restart from the `Dockerfile` that we used:
+
+```
+FROM rocker/r-ver:4.2.1
+
+RUN apt_get updated && apt-get install -y \
+    libxml2-dev \
+    libcairo2-dev \
+    libgit2-dev \
+    default-libmysqlclient-dev \
+    libpq-dev \
+    libsasl2-dev \
+    libsqlite3-dev \
+    libssh2-1-dev \
+    libxtst6 \
+    libcurl4-openssl-dev \
+    libharfbuzz-dev \
+    libfribidi-dev \
+    libfreetype6-dev \
+    libpng-dev \
+    libtiff5-dev \
+    libjpeg-dev \
+    unixodbc-dev \
+    wget
+
+RUN wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.2.269/quarto-1.2.269-linux-amd64.deb -O /home/quarto.deb
+RUN apt-get install --yes /home/quarto.deb
+RUN rm /home/quarto.deb
+
+RUN R -e "install.packages(c('devtools', 'tidyverse', 'janitor', \
+   'shiny', 'targets', 'tarchetypes', \
+   'quarto', 'shiny', 'testthat', \
+   'usethis', 'rio'))"
+
+RUN R -e "devtools::install_github('b-rodrigues/myPackage', ref = 'e9d9129de3047c1ecce26d09dff429ec078d4dae')"
+
+CMD ["R"]
+```
+
+This `Dockerfile` starts off with `r-ver:4.2.1` and adds the dependencies that we will need for our pipelines.
+Then, I install development libraries, these are required to run the R packages (maybe not all of them though).
+I found the list [here](https://github.com/rocker-org/rocker-versioned2/blob/master/scripts/install_tidyverse.sh);
+this is a script that gets used by some of the `Dockerfile`s provided by the Rocker Project. I only copied
+the parts I needed. Then I download the Quarto installer for Ubuntu, and install it. Finally I install the 
+packages for R, as well as the package we've developed together. This `Dockerfile` should not look too
+intimidating IF you're familiar with Ubuntu. If not... well this is why I said in the intro that familiarity 
+with Ubuntu would be helpful. Now you probably see why Rocker is so useful; if you start from an `rstudio` image
+all of these dependencies come already installed. But because we're using an image made specifically for 
+reproducibility, *only* the frozen repos were set up, which is why I had to add all of this manually. But no worries,
+you can now use this `Dockerfile` as a reference. 
+
+Anyways, we can now build this image using:
+
+```
+docker build -t r421_rap .
+```
+
+And now we need to wait for the process to be done. Once it's finished, we can run it using:
+
+```
+docker run --rm -ti --name r421_rap_container r421_rap 
+```
+
+(notice the `-ti` argument here; this is needed because we want to have an interactive session with R opened, if
+you omit this flag, R will get launched, but then immediately closed). We can test it by loading some packages
+and see that everything is alright. 
+
+Let's now get this image on Dockerhub; this way, we can pull it instead of having to build it in the future. First
+logging to Docker Hub from the terminal:
+
+```
+docker login 
+```
+
+You should then enter your username and password. We are now ready to push, so check the image id using `docker images`:
+
+```
+docker images
+REPOSITORY         TAG       IMAGE ID       CREATED          SIZE
+r421_rap           latest    864350bf1143   5 minutes ago    1.98GB
+```
+
+Tag the image, in this case the tag I've used is `version1`:
+
+```
+docker tag 864350bf1143 your_username_on_docker_hub/r421_rap:version1
+```
+
+And now I can push it, so that everyone can use it:
+
+```
+docker push brodriguesco/r421_rap:version1
+```
+
+We can now use this as a base for our pipelines! Let's now create a new `Dockerfile` that will use
+this image as a base and run the plot from before:
+
+```
+FROM brodriguesco/r421_rap:version1
+
+RUN mkdir /home/graphs
+
+COPY my_graph.R /home/graphs/my_graph.R
+
+CMD R -e "source('/home/graphs/my_graph.R')"
+```
+
+save this `Dockerfile` in a new folder, and don't forget to add the `my_graph.R` script with it.
+You can now build the image using:
+
+```
+docker build -t my_pipeline .
+```
+
+You should see this:
+
+```
+Sending build context to Docker daemon  3.584kB
+Step 1/4 : FROM brodriguesco/r421_rap:version1
+version1: Pulling from brodriguesco/r421_rap
+eaead16dc43b: Pull complete 
+```
+
+As you can see, now Docker is pulling the image I've uploaded... and what's great is that this image already contains 
+
+```
+docker run --rm --name my_pipeline_container -v /home/cbrunos/docker_folder:/home/scripts:rw my_pipeline
+```
+
+
 - put an image on docker hub with all the depencies
 - put a dockerfile from this image on github only running our pipeline
 - put pipeline inside package that gets installed at build time
 
 
 
-
 ## References
 
-https://www.statworx.com/content-hub/blog/wie-du-ein-r-skript-in-docker-ausfuehrst/ (in German, English translation: https://www.r-bloggers.com/2019/02/running-your-r-script-in-docker/)
+- https://www.statworx.com/content-hub/blog/wie-du-ein-r-skript-in-docker-ausfuehrst/ (in German, English translation: https://www.r-bloggers.com/2019/02/running-your-r-script-in-docker/)
+- https://colinfay.me/docker-r-reproducibility/
+- https://jsta.github.io/r-docker-tutorial/
