@@ -23,7 +23,7 @@
 <meta name="author" content="Bruno Rodrigues" />
 
 
-<meta name="date" content="2022-11-14" />
+<meta name="date" content="2022-11-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -287,38 +287,38 @@ return the same result are called pure, and a language that only allows writing 
 is called a pure functional programming language. R is not a pure functional programming language,
 so we have to be careful not to write impure functions that manipulate the global state.</p>
 <p>But what is state? Run the following code in your console:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="a-primer-on-functional-programming.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="a-primer-on-functional-programming.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span></code></pre></div>
 <p>This will list every object defined in the global environment. Now run the following line:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="a-primer-on-functional-programming.html#cb7-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="a-primer-on-functional-programming.html#cb11-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span></span></code></pre></div>
 <p>and then <code>ls()</code> again. <code>x</code> should now be listed alongside the other objects. You just manipulated the state
 of your current R session. Now if you run something like:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="a-primer-on-functional-programming.html#cb8-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="a-primer-on-functional-programming.html#cb12-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div>
 <p>This will produce <code>2</code>. We want to avoid pipelines that depend on some definition of some global variable somewhere,
 which could be subject to change, because this could mean that 2 different runs of the same pipeline could
 produce 2 different results. Notice that I used the verb <em>avoid</em> in the sentence before. This is
 sometimes not possible to avoid. Such situations have to be carefully documented and controlled.</p>
 <p>As a more realistic example, imagine that within the pipeline you set up, some random numbers are generated.
 For example, to generate 10 random draws from a normal distribution:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="a-primer-on-functional-programming.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code></pre></div>
-<pre><code>##  [1] -0.47719270 -0.99838644 -0.77625389  0.06445882  0.95949406 -0.11028549
-##  [7] -0.51100951 -0.91119542 -0.83717168  2.41583518</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="a-primer-on-functional-programming.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code></pre></div>
+<pre><code>##  [1] -0.8541765  1.5502426  1.5214872  0.6571620 -1.8551919 -1.0613887
+##  [7]  0.2719289  0.1571617 -0.6575692 -1.1084138</code></pre>
 <p>Each time you run this line, you will get another set of 10 random numbers. This is obviously a good thing
 in interactive data analysis, but much less so when running a pipeline programmatically. R provides a way to fix the
 random seed, which will make sure you always get the same random numbers:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="a-primer-on-functional-programming.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb11-2"><a href="a-primer-on-functional-programming.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="a-primer-on-functional-programming.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb15-2"><a href="a-primer-on-functional-programming.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code></pre></div>
 <pre><code>##  [1] -1.2070657  0.2774292  1.0844412 -2.3456977  0.4291247  0.5060559
 ##  [7] -0.5747400 -0.5466319 -0.5644520 -0.8900378</code></pre>
 <p>But <code>set.seed()</code> only works for one call, so you must call it again if you need the random numbers again:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="a-primer-on-functional-programming.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb13-2"><a href="a-primer-on-functional-programming.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">10</span>)</span></code></pre></div>
-<pre><code>##  [1] -1.2070657  0.2774292  1.0844412 -2.3456977  0.4291247  0.5060559
-##  [7] -0.5747400 -0.5466319 -0.5644520 -0.8900378</code></pre>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="a-primer-on-functional-programming.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">10</span>)</span></code></pre></div>
-<pre><code>##  [1] -0.47719270 -0.99838644 -0.77625389  0.06445882  0.95949406 -0.11028549
-##  [7] -0.51100951 -0.91119542 -0.83717168  2.41583518</code></pre>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="a-primer-on-functional-programming.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
 <span id="cb17-2"><a href="a-primer-on-functional-programming.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">10</span>)</span></code></pre></div>
+<pre><code>##  [1] -1.2070657  0.2774292  1.0844412 -2.3456977  0.4291247  0.5060559
+##  [7] -0.5747400 -0.5466319 -0.5644520 -0.8900378</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="a-primer-on-functional-programming.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">10</span>)</span></code></pre></div>
+<pre><code>##  [1] -0.47719270 -0.99838644 -0.77625389  0.06445882  0.95949406 -0.11028549
+##  [7] -0.51100951 -0.91119542 -0.83717168  2.41583518</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="a-primer-on-functional-programming.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb21-2"><a href="a-primer-on-functional-programming.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">10</span>)</span></code></pre></div>
 <pre><code>##  [1] -1.2070657  0.2774292  1.0844412 -2.3456977  0.4291247  0.5060559
 ##  [7] -0.5747400 -0.5466319 -0.5644520 -0.8900378</code></pre>
 <p>The problem with <code>set.seed()</code> is that you only partially solve the problem of <code>rnorm()</code> not being pure;
@@ -330,22 +330,22 @@ the packages from the <em>tidyverse</em>), called <code>{withr}</code> which all
 pure way. <code>{withr}</code> has several functions, all starting with <code>with_</code> that allow users to run
 code with some temporary defined variables, without altering the global environment. For example,
 it is possible to run a <code>rnorm()</code> with a seed, using <code>withr::with_seed()</code>:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="a-primer-on-functional-programming.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(withr)</span>
-<span id="cb19-2"><a href="a-primer-on-functional-programming.html#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-3"><a href="a-primer-on-functional-programming.html#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">with_seed</span>(<span class="at">seed =</span> <span class="dv">1234</span>, {</span>
-<span id="cb19-4"><a href="a-primer-on-functional-programming.html#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rnorm</span>(<span class="dv">10</span>)</span>
-<span id="cb19-5"><a href="a-primer-on-functional-programming.html#cb19-5" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="a-primer-on-functional-programming.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(withr)</span>
+<span id="cb23-2"><a href="a-primer-on-functional-programming.html#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="a-primer-on-functional-programming.html#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">with_seed</span>(<span class="at">seed =</span> <span class="dv">1234</span>, {</span>
+<span id="cb23-4"><a href="a-primer-on-functional-programming.html#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rnorm</span>(<span class="dv">10</span>)</span>
+<span id="cb23-5"><a href="a-primer-on-functional-programming.html#cb23-5" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 <pre><code>##  [1] -1.2070657  0.2774292  1.0844412 -2.3456977  0.4291247  0.5060559
 ##  [7] -0.5747400 -0.5466319 -0.5644520 -0.8900378</code></pre>
 <p>But ideally you’d want to go a step further and define a new function that is pure. To turn
 an impure function into a pure function, you usually only need to add some arguments to it.
 This is how we would create a <code>pure_rnorm()</code> function:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="a-primer-on-functional-programming.html#cb21-1" aria-hidden="true" tabindex="-1"></a>pure_rnorm <span class="ot">&lt;-</span> <span class="cf">function</span>(..., seed){</span>
-<span id="cb21-2"><a href="a-primer-on-functional-programming.html#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="a-primer-on-functional-programming.html#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with_seed</span>(seed, <span class="fu">rnorm</span>(...))</span>
-<span id="cb21-4"><a href="a-primer-on-functional-programming.html#cb21-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb21-5"><a href="a-primer-on-functional-programming.html#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-6"><a href="a-primer-on-functional-programming.html#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="fu">pure_rnorm</span>(<span class="dv">10</span>, <span class="at">seed =</span> <span class="dv">1234</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="a-primer-on-functional-programming.html#cb25-1" aria-hidden="true" tabindex="-1"></a>pure_rnorm <span class="ot">&lt;-</span> <span class="cf">function</span>(..., seed){</span>
+<span id="cb25-2"><a href="a-primer-on-functional-programming.html#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="a-primer-on-functional-programming.html#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with_seed</span>(seed, <span class="fu">rnorm</span>(...))</span>
+<span id="cb25-4"><a href="a-primer-on-functional-programming.html#cb25-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb25-5"><a href="a-primer-on-functional-programming.html#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-6"><a href="a-primer-on-functional-programming.html#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="fu">pure_rnorm</span>(<span class="dv">10</span>, <span class="at">seed =</span> <span class="dv">1234</span>)</span></code></pre></div>
 <pre><code>##  [1] -1.2070657  0.2774292  1.0844412 -2.3456977  0.4291247  0.5060559
 ##  [7] -0.5747400 -0.5466319 -0.5644520 -0.8900378</code></pre>
 <p><code>pure_rnorm()</code> is now self-contained, and does not pollute the global environment. We’re going to learn
@@ -367,48 +367,48 @@ doing at first glance. There are only two solutions in this case:</p>
 <li>you have to let the loop run either in your head or in a console with some examples to really understand whit is going on.</li>
 </ul>
 <p>For example, consider the following code:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="a-primer-on-functional-programming.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(dplyr))</span>
-<span id="cb23-2"><a href="a-primer-on-functional-programming.html#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-3"><a href="a-primer-on-functional-programming.html#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(starwars)</span>
-<span id="cb23-4"><a href="a-primer-on-functional-programming.html#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-5"><a href="a-primer-on-functional-programming.html#cb23-5" aria-hidden="true" tabindex="-1"></a>sum_humans <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb23-6"><a href="a-primer-on-functional-programming.html#cb23-6" aria-hidden="true" tabindex="-1"></a>sum_others <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb23-7"><a href="a-primer-on-functional-programming.html#cb23-7" aria-hidden="true" tabindex="-1"></a>n_humans <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb23-8"><a href="a-primer-on-functional-programming.html#cb23-8" aria-hidden="true" tabindex="-1"></a>n_others <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb23-9"><a href="a-primer-on-functional-programming.html#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-10"><a href="a-primer-on-functional-programming.html#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_along</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(starwars))){</span>
-<span id="cb23-11"><a href="a-primer-on-functional-programming.html#cb23-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-12"><a href="a-primer-on-functional-programming.html#cb23-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="sc">!</span><span class="fu">is.na</span>(<span class="fu">unlist</span>(starwars[i, <span class="st">&quot;species&quot;</span>])) <span class="sc">&amp;</span></span>
-<span id="cb23-13"><a href="a-primer-on-functional-programming.html#cb23-13" aria-hidden="true" tabindex="-1"></a>     <span class="fu">unlist</span>(starwars[i, <span class="st">&quot;species&quot;</span>]) <span class="sc">==</span> <span class="st">&quot;Human&quot;</span>){</span>
-<span id="cb23-14"><a href="a-primer-on-functional-programming.html#cb23-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="sc">!</span><span class="fu">is.na</span>(<span class="fu">unlist</span>(starwars[i, <span class="st">&quot;height&quot;</span>]))){</span>
-<span id="cb23-15"><a href="a-primer-on-functional-programming.html#cb23-15" aria-hidden="true" tabindex="-1"></a>      sum_humans <span class="ot">&lt;-</span> sum_humans <span class="sc">+</span> <span class="fu">unlist</span>(starwars[i, <span class="st">&quot;height&quot;</span>])</span>
-<span id="cb23-16"><a href="a-primer-on-functional-programming.html#cb23-16" aria-hidden="true" tabindex="-1"></a>      n_humans <span class="ot">&lt;-</span> n_humans <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb23-17"><a href="a-primer-on-functional-programming.html#cb23-17" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
-<span id="cb23-18"><a href="a-primer-on-functional-programming.html#cb23-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-19"><a href="a-primer-on-functional-programming.html#cb23-19" aria-hidden="true" tabindex="-1"></a>      <span class="dv">0</span></span>
-<span id="cb23-20"><a href="a-primer-on-functional-programming.html#cb23-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-21"><a href="a-primer-on-functional-programming.html#cb23-21" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb23-22"><a href="a-primer-on-functional-programming.html#cb23-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-23"><a href="a-primer-on-functional-programming.html#cb23-23" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb23-24"><a href="a-primer-on-functional-programming.html#cb23-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="sc">!</span><span class="fu">is.na</span>(<span class="fu">unlist</span>(starwars[i, <span class="st">&quot;height&quot;</span>]))){</span>
-<span id="cb23-25"><a href="a-primer-on-functional-programming.html#cb23-25" aria-hidden="true" tabindex="-1"></a>      sum_others <span class="ot">&lt;-</span> sum_others <span class="sc">+</span> <span class="fu">unlist</span>(starwars[i, <span class="st">&quot;height&quot;</span>])</span>
-<span id="cb23-26"><a href="a-primer-on-functional-programming.html#cb23-26" aria-hidden="true" tabindex="-1"></a>      n_others <span class="ot">&lt;-</span> n_others <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb23-27"><a href="a-primer-on-functional-programming.html#cb23-27" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
-<span id="cb23-28"><a href="a-primer-on-functional-programming.html#cb23-28" aria-hidden="true" tabindex="-1"></a>      <span class="dv">0</span></span>
-<span id="cb23-29"><a href="a-primer-on-functional-programming.html#cb23-29" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb23-30"><a href="a-primer-on-functional-programming.html#cb23-30" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb23-31"><a href="a-primer-on-functional-programming.html#cb23-31" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb23-32"><a href="a-primer-on-functional-programming.html#cb23-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-33"><a href="a-primer-on-functional-programming.html#cb23-33" aria-hidden="true" tabindex="-1"></a>mean_height_humans <span class="ot">&lt;-</span> sum_humans<span class="sc">/</span>n_humans</span>
-<span id="cb23-34"><a href="a-primer-on-functional-programming.html#cb23-34" aria-hidden="true" tabindex="-1"></a>mean_height_others <span class="ot">&lt;-</span> sum_others<span class="sc">/</span>n_others</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="a-primer-on-functional-programming.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(dplyr))</span>
+<span id="cb27-2"><a href="a-primer-on-functional-programming.html#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="a-primer-on-functional-programming.html#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(starwars)</span>
+<span id="cb27-4"><a href="a-primer-on-functional-programming.html#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="a-primer-on-functional-programming.html#cb27-5" aria-hidden="true" tabindex="-1"></a>sum_humans <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb27-6"><a href="a-primer-on-functional-programming.html#cb27-6" aria-hidden="true" tabindex="-1"></a>sum_others <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb27-7"><a href="a-primer-on-functional-programming.html#cb27-7" aria-hidden="true" tabindex="-1"></a>n_humans <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb27-8"><a href="a-primer-on-functional-programming.html#cb27-8" aria-hidden="true" tabindex="-1"></a>n_others <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb27-9"><a href="a-primer-on-functional-programming.html#cb27-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-10"><a href="a-primer-on-functional-programming.html#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_along</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(starwars))){</span>
+<span id="cb27-11"><a href="a-primer-on-functional-programming.html#cb27-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-12"><a href="a-primer-on-functional-programming.html#cb27-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="sc">!</span><span class="fu">is.na</span>(<span class="fu">unlist</span>(starwars[i, <span class="st">&quot;species&quot;</span>])) <span class="sc">&amp;</span></span>
+<span id="cb27-13"><a href="a-primer-on-functional-programming.html#cb27-13" aria-hidden="true" tabindex="-1"></a>     <span class="fu">unlist</span>(starwars[i, <span class="st">&quot;species&quot;</span>]) <span class="sc">==</span> <span class="st">&quot;Human&quot;</span>){</span>
+<span id="cb27-14"><a href="a-primer-on-functional-programming.html#cb27-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="sc">!</span><span class="fu">is.na</span>(<span class="fu">unlist</span>(starwars[i, <span class="st">&quot;height&quot;</span>]))){</span>
+<span id="cb27-15"><a href="a-primer-on-functional-programming.html#cb27-15" aria-hidden="true" tabindex="-1"></a>      sum_humans <span class="ot">&lt;-</span> sum_humans <span class="sc">+</span> <span class="fu">unlist</span>(starwars[i, <span class="st">&quot;height&quot;</span>])</span>
+<span id="cb27-16"><a href="a-primer-on-functional-programming.html#cb27-16" aria-hidden="true" tabindex="-1"></a>      n_humans <span class="ot">&lt;-</span> n_humans <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb27-17"><a href="a-primer-on-functional-programming.html#cb27-17" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb27-18"><a href="a-primer-on-functional-programming.html#cb27-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-19"><a href="a-primer-on-functional-programming.html#cb27-19" aria-hidden="true" tabindex="-1"></a>      <span class="dv">0</span></span>
+<span id="cb27-20"><a href="a-primer-on-functional-programming.html#cb27-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-21"><a href="a-primer-on-functional-programming.html#cb27-21" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb27-22"><a href="a-primer-on-functional-programming.html#cb27-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-23"><a href="a-primer-on-functional-programming.html#cb27-23" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb27-24"><a href="a-primer-on-functional-programming.html#cb27-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="sc">!</span><span class="fu">is.na</span>(<span class="fu">unlist</span>(starwars[i, <span class="st">&quot;height&quot;</span>]))){</span>
+<span id="cb27-25"><a href="a-primer-on-functional-programming.html#cb27-25" aria-hidden="true" tabindex="-1"></a>      sum_others <span class="ot">&lt;-</span> sum_others <span class="sc">+</span> <span class="fu">unlist</span>(starwars[i, <span class="st">&quot;height&quot;</span>])</span>
+<span id="cb27-26"><a href="a-primer-on-functional-programming.html#cb27-26" aria-hidden="true" tabindex="-1"></a>      n_others <span class="ot">&lt;-</span> n_others <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb27-27"><a href="a-primer-on-functional-programming.html#cb27-27" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb27-28"><a href="a-primer-on-functional-programming.html#cb27-28" aria-hidden="true" tabindex="-1"></a>      <span class="dv">0</span></span>
+<span id="cb27-29"><a href="a-primer-on-functional-programming.html#cb27-29" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb27-30"><a href="a-primer-on-functional-programming.html#cb27-30" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb27-31"><a href="a-primer-on-functional-programming.html#cb27-31" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb27-32"><a href="a-primer-on-functional-programming.html#cb27-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-33"><a href="a-primer-on-functional-programming.html#cb27-33" aria-hidden="true" tabindex="-1"></a>mean_height_humans <span class="ot">&lt;-</span> sum_humans<span class="sc">/</span>n_humans</span>
+<span id="cb27-34"><a href="a-primer-on-functional-programming.html#cb27-34" aria-hidden="true" tabindex="-1"></a>mean_height_others <span class="ot">&lt;-</span> sum_others<span class="sc">/</span>n_others</span></code></pre></div>
 <p>What this does is not immediately obvious. The only hint you get are the two last lines, where you can
 read that we compute the average height for humans and non-humans in the sample. And this code could
 look a lot worse, because I am using functions like <code>is.na()</code> to test if a value is <code>NA</code> or not, and I’m
 using <code>unlist()</code> as well. If you compare this mess to a functional approach, I hope that I can stop my
 diatribe against imperative style programming here:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="a-primer-on-functional-programming.html#cb24-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span></span>
-<span id="cb24-2"><a href="a-primer-on-functional-programming.html#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="at">is_human =</span> species <span class="sc">==</span> <span class="st">&quot;Human&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb24-3"><a href="a-primer-on-functional-programming.html#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_height =</span> <span class="fu">mean</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="a-primer-on-functional-programming.html#cb28-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span></span>
+<span id="cb28-2"><a href="a-primer-on-functional-programming.html#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="at">is_human =</span> species <span class="sc">==</span> <span class="st">&quot;Human&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb28-3"><a href="a-primer-on-functional-programming.html#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_height =</span> <span class="fu">mean</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 2
 ##   is_human mean_height
 ##   &lt;lgl&gt;          &lt;dbl&gt;
@@ -423,25 +423,25 @@ returns a new function <em>h</em> such that <span class="math inline">\(h(x) = g
 <pre><code>h = g ∘ f such that h(x) = g(f(x))</code></pre>
 <p><code>∘</code> is the composition operator. You can read <code>g ∘ f</code> as <em>g after f</em>. When using functional programming,
 you can compose functions very easily, simply by using <code>|&gt;</code> or <code>%&gt;%</code>:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="a-primer-on-functional-programming.html#cb27-1" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> f <span class="sc">|&gt;</span> g</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="a-primer-on-functional-programming.html#cb31-1" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> f <span class="sc">|&gt;</span> g</span></code></pre></div>
 <p><code>f |&gt; g</code> can be read as <em>f then g</em>, which is equivalent to <em>g after f</em>. Function composition might
 not seem like a big deal, but it actually is. If we structure our programs in this way, as a sequence
 of function calls, we get many benefits. Functions are easy to test, document, maintain, share and
 can be composed. This allows us to very succintly express complex workflows:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="a-primer-on-functional-programming.html#cb28-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span></span>
-<span id="cb28-2"><a href="a-primer-on-functional-programming.html#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(skin_color <span class="sc">==</span> <span class="st">&quot;light&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb28-3"><a href="a-primer-on-functional-programming.html#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species, sex, mass) <span class="sc">%&gt;%</span></span>
-<span id="cb28-4"><a href="a-primer-on-functional-programming.html#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex, species) <span class="sc">%&gt;%</span></span>
-<span id="cb28-5"><a href="a-primer-on-functional-programming.html#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb28-6"><a href="a-primer-on-functional-programming.html#cb28-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_individuals =</span> <span class="fu">n</span>(),</span>
-<span id="cb28-7"><a href="a-primer-on-functional-programming.html#cb28-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">min_mass =</span> <span class="fu">min</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb28-8"><a href="a-primer-on-functional-programming.html#cb28-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_mass =</span> <span class="fu">mean</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb28-9"><a href="a-primer-on-functional-programming.html#cb28-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_mass =</span> <span class="fu">sd</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb28-10"><a href="a-primer-on-functional-programming.html#cb28-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">max_mass =</span> <span class="fu">max</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb28-11"><a href="a-primer-on-functional-programming.html#cb28-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span></span>
-<span id="cb28-12"><a href="a-primer-on-functional-programming.html#cb28-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb28-13"><a href="a-primer-on-functional-programming.html#cb28-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>species) <span class="sc">%&gt;%</span></span>
-<span id="cb28-14"><a href="a-primer-on-functional-programming.html#cb28-14" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(<span class="sc">-</span>sex, <span class="at">names_to =</span> <span class="st">&quot;statistic&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="a-primer-on-functional-programming.html#cb32-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span></span>
+<span id="cb32-2"><a href="a-primer-on-functional-programming.html#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(skin_color <span class="sc">==</span> <span class="st">&quot;light&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb32-3"><a href="a-primer-on-functional-programming.html#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species, sex, mass) <span class="sc">%&gt;%</span></span>
+<span id="cb32-4"><a href="a-primer-on-functional-programming.html#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex, species) <span class="sc">%&gt;%</span></span>
+<span id="cb32-5"><a href="a-primer-on-functional-programming.html#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb32-6"><a href="a-primer-on-functional-programming.html#cb32-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_individuals =</span> <span class="fu">n</span>(),</span>
+<span id="cb32-7"><a href="a-primer-on-functional-programming.html#cb32-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">min_mass =</span> <span class="fu">min</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb32-8"><a href="a-primer-on-functional-programming.html#cb32-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_mass =</span> <span class="fu">mean</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb32-9"><a href="a-primer-on-functional-programming.html#cb32-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_mass =</span> <span class="fu">sd</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb32-10"><a href="a-primer-on-functional-programming.html#cb32-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">max_mass =</span> <span class="fu">max</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb32-11"><a href="a-primer-on-functional-programming.html#cb32-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span></span>
+<span id="cb32-12"><a href="a-primer-on-functional-programming.html#cb32-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb32-13"><a href="a-primer-on-functional-programming.html#cb32-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>species) <span class="sc">%&gt;%</span></span>
+<span id="cb32-14"><a href="a-primer-on-functional-programming.html#cb32-14" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(<span class="sc">-</span>sex, <span class="at">names_to =</span> <span class="st">&quot;statistic&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 10 × 3
 ##    sex    statistic         value
 ##    &lt;chr&gt;  &lt;chr&gt;             &lt;dbl&gt;

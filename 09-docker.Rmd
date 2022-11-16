@@ -28,10 +28,10 @@ introduces Docker.
 
 As a reminder, let's state again what problems `{renv}` does not allow to solve. Users will need to make 
 sure themselves that they're running the pipeline with the same version of R,
-(as recorder in the `renv.lock` file), the same operating system, hope that `{renv}` will be able
+(as recorded in the `renv.lock` file), the same operating system, hope that `{renv}` will be able
 to install the packages (which can unfortunately sometimes fail) and hope that the underlying 
 infrastructure (MRAN and CRAN) are up and running. In the past, these issues were solved using 
-virtual machines. The issue with virtual machines, is that you cannot work with them programmatically.
+virtual machines. The issue with virtual machines is that you cannot work with them programmatically.
 In a sense, Docker can be seen a lightweight virtual machine running a Linux distribution (usually
 Ubuntu) that you can interact with using the command line. This also means then that familiarity with
 Linux distributions (and in particular Ubuntu) will make using Docker easily. Thankfully, there is a 
@@ -92,7 +92,7 @@ your user is in the Docker group by running:
 groups $USER
 ```
 
-you should see your username and a list of scripts that your user belongs to. If a group called
+you should see your username and a list of groups that your user belongs to. If a group called
 `docker` is not listed, then you should add yourself to the group by following 
 [these steps](https://docs.docker.com/engine/install/linux-postinstall/).
 
@@ -109,7 +109,17 @@ docker run --rm -e PASSWORD=yourpassword -p 8787:8787 rocker/rstudio
 Once this stops running, go to `http://localhost:8787/` and enter `rstudio` as the username
 and `yourpassword` as the password. You should login to a RStudio instance: this is the web
 interface of RStudio that allows you to work with R from a server. In this case, the *server*
-is the Docker container running the image. Let's open a new script and run the following lines:
+is the Docker container running the image. Yes, you've just pulled a Docker image containing 
+Ubuntu with a fully working installation of RStudio web!
+
+(If you cannot connect to `http://localhost:8787`, try with the following command:
+
+```
+docker run --rm -ti -d -e PASSWORD=yourpassword -p 8787:8787 --network="host" rocker/rstudio
+```
+)
+
+Let's open a new script and run the following lines:
 
 ```{r, eval = F}
 data(mtcars)
@@ -117,16 +127,16 @@ data(mtcars)
 summary(mtcars)
 ```
 
-You can now stop the container (by pressing `CTRL-C` in the terminal). Let's now rerun the container...
-you should realize that your script is gone! This is the first lesson: whatever you do inside a container
-will disappear once the container is stopped. This also means that if you install the R packages that 
-you need while the container is running, you will need to reinstall them every time. 
-Thankfully, the Rocker Project provides a list of images with many packages already available. 
-For example to run R with the `{tidyverse}` collection of packages already pre-installed, run the
-following command:
+You can now stop the container (by pressing `CTRL-C` in the terminal). Let's now rerun the
+container... (with the same command as before) you should realize that your script is gone! This is
+the first lesson: whatever you do inside a container will disappear once the container is stopped.
+This also means that if you install the R packages that you need while the container is running,
+you will need to reinstall them every time. Thankfully, the Rocker Project provides a list of
+images with many packages already available. For example to run R with the `{tidyverse}` collection
+of packages already pre-installed, run the following command:
 
 ```
-docker run --rm -e PASSWORD=yourpassword -p 8787:8787 rocker/tidyverse
+docker run --rm -ti -e PASSWORD=yourpassword -p 8787:8787 rocker/tidyverse
 ```
 
 If you compare it to the previous command, you see that we have replaced *rstudio* with *tidyverse*.
@@ -144,7 +154,7 @@ Docker commands in the background. For this, we will use the `-d` flag (`d` as i
 let's stop the container one last time with `CTRL-C` and rerun it using:
 
 ```
-docker run -d --rm -e PASSWORD=yourpassword -p 8787:8787 -v rocker/tidyverse
+docker run --rm -d -e PASSWORD=yourpassword -p 8787:8787 rocker/tidyverse
 ```
 
 (notice `-d` just after `run`). You can run several containers in the background simultaneously.
@@ -177,7 +187,7 @@ your app is going to get served. Let's now rerun the container, but by giving it
 docker run -d --name my_r --rm -e PASSWORD=yourpassword -p 8787:8787 rocker/tidyverse
 ```
 
-Notice the `--name` flag followed by the name we want to use `my_r`. We can now interact
+Notice the `--name` flag followed by the name we want to use, `my_r`. We can now interact
 with this container using its name instead of its ID. For example, let's open an interactive
 bash session. Run the following command:
 
@@ -185,7 +195,7 @@ bash session. Run the following command:
 docker exec -ti my_r bash
 ```
 
-You now be inside a terminal session, inside the running container! This can be useful for 
+You are now inside a terminal session, inside the running container! This can be useful for 
 debugging purposes. It's also possible to start R in the terminal, simply replace `bash`
 by `R` in the command above.
 
@@ -215,10 +225,9 @@ RUN R -e "devtools::install_github('b-rodrigues/myPackage', ref = 'e9d9129de3047
 ```
 
 Every `Dockerfile` starts with a `FROM` statement. This means that this `Dockerfile` will use the 
-`rocker/tidyverse` file as a starting point. Then, we will simply download the package we've
+`rocker/tidyverse` image as a starting point. Then, we will simply download the package we've
 been developing together using a `RUN` statement, which you've guessed it, runs a command.
 Then we need to build the image. For this, run the following line:
-
 
 ```
 docker build -t my_package .
@@ -272,7 +281,8 @@ the person running it. Let's stop again our container:
 docker stop my_package_container
 ```
 
-Now, in the same folder where your `Dockerfile` resides, add the following `R` script:
+Now, in the same folder where your `Dockerfile` resides, add the following `R` script
+(save this inside `my_graph.R`):
 
 ```
 library(ggplot2)
@@ -330,7 +340,7 @@ that will be run each time the container is run. But one problem remains.
 
 ## Reproducibility with Docker
 
-Our `Dockerfile` as it is now, is not suited for reproducibility. This is because each time the image
+Our `Dockerfile`, as it is now, is not suited for reproducibility. This is because each time the image
 gets built, the latest version of R and package will get pulled from the Internet. We need to use
 a `Dockerfile` that builds exactly the same image, regardless of when it gets built.
 Thankfully, the Rocker Project is here to help. A series of `Dockerfiles` are available that:
@@ -583,18 +593,40 @@ version1: Pulling from brodriguesco/r421_rap
 eaead16dc43b: Pull complete 
 ```
 
-As you can see, now Docker is pulling the image I've uploaded... and what's great is that this image already contains 
+As you can see, now Docker is pulling the image I've uploaded... and what's great is that this
+image already contains the correct versions of the required packages and R.
+
+Before continuing now, let's make something very clear: the image that I made available on
+Docker Hub is prebuilt, which means that anyone building a project on top of it, will not
+have to rebuild it. This means also, that in theory, there would be no need to create an image
+built on top of an image like `rocker/r-ver:4.2.1` with frozen repositories. Because most
+users of the `brodriguesco/r421_rap` image would have no need to rebuild it. However, in cases
+where users would need to rebuild it, it is best practice to use such a stable image as 
+`rocker/r-ver:4.2.1`. This makes sure that if the image gets rebuilt in the future, then 
+it still pulls the exact same R and packages versions as today.
+
+Ok, so now to run the pipeline this line will do the job:
 
 ```
 docker run --rm --name my_pipeline_container -v /home/cbrunos/docker_folder:/home/scripts:rw my_pipeline
 ```
 
+So basically, all you need for your project to be reproducible is a Github repo, where you
+make the `Dockerfile` available, as well as the required scripts, and give some basic instructions
+in a `Readme`.
 
-- put an image on docker hub with all the depencies
-- put a dockerfile from this image on github only running our pipeline
-- put pipeline inside package that gets installed at build time
+To conclude this section, take a look at 
+[this repository](https://github.com/b-rodrigues/dockerized_pipeline_demo/tree/main).
+This repository defines in three files a pipeline that uses Docker for reproducibility:
 
+- A `Dockerfile`;
+- `_targets.R` defining a `{targets}` pipeline;
+- `functions.R` which includes needed functions for the pipeline.
 
+Try to run the pipeline, and study the different files. You should recognize the commands used
+in the `Dockerfile`. 
+
+Now it's your turn to build reproducible pipelines!
 
 ## References
 

@@ -23,7 +23,7 @@
 <meta name="author" content="Bruno Rodrigues" />
 
 
-<meta name="date" content="2022-11-14" />
+<meta name="date" content="2022-11-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -285,9 +285,9 @@ In order to tackle these issues, we are going to learn about Docker. Docker is u
 including all its dependencies, making it easy to run/deploy anywhere.
 The idea is to not only deliver the source code to our data products, but also include it
 inside a complete package that contains not only R and the required libraries to rebuild the
-data product, but also many components of the underlying operating system itself
-(which will usually be Ubuntu).
-For rebuilding this data product, a single command can be used which will pull the Docker image
+data product, but also many components of the underlying operating system itself, which will usually be Ubuntu…
+which also means that if you’re familiar with Ubuntu, you’re at an advantage.</p>
+<p>For rebuilding this data product, a single command can be used which will pull the Docker image
 from Docker Hub, start a container, build the data product, and stop.</p>
 <p>If you’ve never heard of Docker before, this chapter should give you the very basic knowledge required
 to get started.</p>
@@ -295,10 +295,10 @@ to get started.</p>
 introduces Docker.</p>
 <p>As a reminder, let’s state again what problems <code>{renv}</code> does not allow to solve. Users will need to make
 sure themselves that they’re running the pipeline with the same version of R,
-(as recorder in the <code>renv.lock</code> file), the same operating system, hope that <code>{renv}</code> will be able
+(as recorded in the <code>renv.lock</code> file), the same operating system, hope that <code>{renv}</code> will be able
 to install the packages (which can unfortunately sometimes fail) and hope that the underlying
 infrastructure (MRAN and CRAN) are up and running. In the past, these issues were solved using
-virtual machines. The issue with virtual machines, is that you cannot work with them programmatically.
+virtual machines. The issue with virtual machines is that you cannot work with them programmatically.
 In a sense, Docker can be seen a lightweight virtual machine running a Linux distribution (usually
 Ubuntu) that you can interact with using the command line. This also means then that familiarity with
 Linux distributions (and in particular Ubuntu) will make using Docker easily. Thankfully, there is a
@@ -346,7 +346,7 @@ For more examples and ideas, visit:
 about permissions, this means that something went wrong. If you’re running Linux, make sure that
 your user is in the Docker group by running:</p>
 <pre><code>groups $USER</code></pre>
-<p>you should see your username and a list of scripts that your user belongs to. If a group called
+<p>you should see your username and a list of groups that your user belongs to. If a group called
 <code>docker</code> is not listed, then you should add yourself to the group by following
 <a href="https://docs.docker.com/engine/install/linux-postinstall/">these steps</a>.</p>
 </div>
@@ -359,18 +359,23 @@ and paste the following line:</p>
 <p>Once this stops running, go to <code>http://localhost:8787/</code> and enter <code>rstudio</code> as the username
 and <code>yourpassword</code> as the password. You should login to a RStudio instance: this is the web
 interface of RStudio that allows you to work with R from a server. In this case, the <em>server</em>
-is the Docker container running the image. Let’s open a new script and run the following lines:</p>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="self-contained-raps-with-docker.html#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
-<span id="cb186-2"><a href="self-contained-raps-with-docker.html#cb186-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb186-3"><a href="self-contained-raps-with-docker.html#cb186-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mtcars)</span></code></pre></div>
-<p>You can now stop the container (by pressing <code>CTRL-C</code> in the terminal). Let’s now rerun the container…
-you should realize that your script is gone! This is the first lesson: whatever you do inside a container
-will disappear once the container is stopped. This also means that if you install the R packages that
-you need while the container is running, you will need to reinstall them every time.
-Thankfully, the Rocker Project provides a list of images with many packages already available.
-For example to run R with the <code>{tidyverse}</code> collection of packages already pre-installed, run the
-following command:</p>
-<pre><code>docker run --rm -e PASSWORD=yourpassword -p 8787:8787 rocker/tidyverse</code></pre>
+is the Docker container running the image. Yes, you’ve just pulled a Docker image containing
+Ubuntu with a fully working installation of RStudio web!</p>
+<p>(If you cannot connect to <code>http://localhost:8787</code>, try with the following command:</p>
+<pre><code>docker run --rm -ti -d -e PASSWORD=yourpassword -p 8787:8787 --network=&quot;host&quot; rocker/rstudio</code></pre>
+<p>)</p>
+<p>Let’s open a new script and run the following lines:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="self-contained-raps-with-docker.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
+<span id="cb6-2"><a href="self-contained-raps-with-docker.html#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="self-contained-raps-with-docker.html#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mtcars)</span></code></pre></div>
+<p>You can now stop the container (by pressing <code>CTRL-C</code> in the terminal). Let’s now rerun the
+container… (with the same command as before) you should realize that your script is gone! This is
+the first lesson: whatever you do inside a container will disappear once the container is stopped.
+This also means that if you install the R packages that you need while the container is running,
+you will need to reinstall them every time. Thankfully, the Rocker Project provides a list of
+images with many packages already available. For example to run R with the <code>{tidyverse}</code> collection
+of packages already pre-installed, run the following command:</p>
+<pre><code>docker run --rm -ti -e PASSWORD=yourpassword -p 8787:8787 rocker/tidyverse</code></pre>
 <p>If you compare it to the previous command, you see that we have replaced <em>rstudio</em> with <em>tidyverse</em>.
 This is because <code>rocker/tidyverse</code> references an image, hosted on Docker Hub, that provides the
 latest version of R, RStudio server and the packages from the <code>{tidyverse}</code>. You can find the image
@@ -384,7 +389,7 @@ however, let’s stick with the <code>tidyverse</code> image, and let’s learn 
 terminal will need to stay open, or else, the container will stop. Starting now, we will run
 Docker commands in the background. For this, we will use the <code>-d</code> flag (<code>d</code> as in <em>detach</em>), so
 let’s stop the container one last time with <code>CTRL-C</code> and rerun it using:</p>
-<pre><code>docker run -d --rm -e PASSWORD=yourpassword -p 8787:8787 -v rocker/tidyverse</code></pre>
+<pre><code>docker run --rm -d -e PASSWORD=yourpassword -p 8787:8787 rocker/tidyverse</code></pre>
 <p>(notice <code>-d</code> just after <code>run</code>). You can run several containers in the background simultaneously.
 You can list running containers with <code>docker ps</code>:</p>
 <pre><code>docker ps
@@ -403,11 +408,11 @@ We are going to learn how to deal with that later. <code>-e</code> allows you to
 to the container, so in this case the <code>$PASSWORD</code> variable. <code>-p</code> is for setting the port at which
 your app is going to get served. Let’s now rerun the container, but by giving it a name:</p>
 <pre><code>docker run -d --name my_r --rm -e PASSWORD=yourpassword -p 8787:8787 rocker/tidyverse</code></pre>
-<p>Notice the <code>--name</code> flag followed by the name we want to use <code>my_r</code>. We can now interact
+<p>Notice the <code>--name</code> flag followed by the name we want to use, <code>my_r</code>. We can now interact
 with this container using its name instead of its ID. For example, let’s open an interactive
 bash session. Run the following command:</p>
 <pre><code>docker exec -ti my_r bash</code></pre>
-<p>You now be inside a terminal session, inside the running container! This can be useful for
+<p>You are now inside a terminal session, inside the running container! This can be useful for
 debugging purposes. It’s also possible to start R in the terminal, simply replace <code>bash</code>
 by <code>R</code> in the command above.</p>
 <p>Finally, let’s solve the issue of our scripts disappearing. For this, create a folder somewhere on
@@ -428,7 +433,7 @@ called <code>Dockerfile</code> (without any extension). In this file add, the fo
 
 RUN R -e &quot;devtools::install_github(&#39;b-rodrigues/myPackage&#39;, ref = &#39;e9d9129de3047c1ecce26d09dff429ec078d4dae&#39;)&quot;</code></pre>
 <p>Every <code>Dockerfile</code> starts with a <code>FROM</code> statement. This means that this <code>Dockerfile</code> will use the
-<code>rocker/tidyverse</code> file as a starting point. Then, we will simply download the package we’ve
+<code>rocker/tidyverse</code> image as a starting point. Then, we will simply download the package we’ve
 been developing together using a <code>RUN</code> statement, which you’ve guessed it, runs a command.
 Then we need to build the image. For this, run the following line:</p>
 <pre><code>docker build -t my_package .</code></pre>
@@ -461,7 +466,8 @@ same port) and let’s run our container using this command:</p>
 Let’s now go one step further. Let’s create one plot from within Docker, and make it available to
 the person running it. Let’s stop again our container:</p>
 <pre><code>docker stop my_package_container</code></pre>
-<p>Now, in the same folder where your <code>Dockerfile</code> resides, add the following <code>R</code> script:</p>
+<p>Now, in the same folder where your <code>Dockerfile</code> resides, add the following <code>R</code> script
+(save this inside <code>my_graph.R</code>):</p>
 <pre><code>library(ggplot2)
 library(myPackage)
 
@@ -506,7 +512,7 @@ that will be run each time the container is run. But one problem remains.</p>
 </div>
 <div id="reproducibility-with-docker" class="section level2 hasAnchor" number="9.6">
 <h2><span class="header-section-number">9.6</span> Reproducibility with Docker<a href="self-contained-raps-with-docker.html#reproducibility-with-docker" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Our <code>Dockerfile</code> as it is now, is not suited for reproducibility. This is because each time the image
+<p>Our <code>Dockerfile</code>, as it is now, is not suited for reproducibility. This is because each time the image
 gets built, the latest version of R and package will get pulled from the Internet. We need to use
 a <code>Dockerfile</code> that builds exactly the same image, regardless of when it gets built.
 Thankfully, the Rocker Project is here to help. A series of <code>Dockerfiles</code> are available that:</p>
@@ -533,7 +539,7 @@ RUN R -e &quot;install.packages(c(&#39;devtools&#39;, &#39;ggplot2&#39;))&quot;
 
 RUN R -e &quot;devtools::install_github(&#39;b-rodrigues/myPackage&#39;, ref = &#39;e9d9129de3047c1ecce26d09dff429ec078d4dae&#39;)&quot;
 
-RUN mkdir /home/rstudio/graphs
+RUN mkdir /home/graphs
 
 COPY my_graph.R /home/graphs/my_graph.R
 
@@ -587,15 +593,135 @@ version you could get now (as of November 2022), which is 3.4.0.</p>
 </div>
 <div id="building-a-truly-reproducible-pipeline" class="section level2 hasAnchor" number="9.7">
 <h2><span class="header-section-number">9.7</span> Building a truly reproducible pipeline<a href="self-contained-raps-with-docker.html#building-a-truly-reproducible-pipeline" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Ok so we are almost there; we now know how to run code in an environment that is completely
+stable, so our results are 100% reproducible. However, there are still some things that
+we can learn in order to make our pipeline even better. First of all, we can make it run
+faster by creating an image that has already all the packages that we need installed.
+This way, whenever we will need to build it, no packages will need to be installed. We will
+also put this image on Docker Hub, so in the future, people that want to run our pipeline
+can do so by pulling the pre-built image from Docker, instead of having to rebuild it
+using the <code>Dockerfile</code>. In order to get an image on Docker Hub, you first need to create
+an account <a href="https://hub.docker.com/">there</a>. Once logged in, you can click on
+<code>Create repository</code>:</p>
+<div style="text-align:center;">
+<p><img src="img/docker_2.png" width="832" /></p>
+</div>
+<p>You can then give a name to this repository. Let’s now create an image that we will push.
+Let’s restart from the <code>Dockerfile</code> that we used:</p>
+<pre><code>FROM rocker/r-ver:4.2.1
+
+RUN apt_get updated &amp;&amp; apt-get install -y \
+    libxml2-dev \
+    libcairo2-dev \
+    libgit2-dev \
+    default-libmysqlclient-dev \
+    libpq-dev \
+    libsasl2-dev \
+    libsqlite3-dev \
+    libssh2-1-dev \
+    libxtst6 \
+    libcurl4-openssl-dev \
+    libharfbuzz-dev \
+    libfribidi-dev \
+    libfreetype6-dev \
+    libpng-dev \
+    libtiff5-dev \
+    libjpeg-dev \
+    unixodbc-dev \
+    wget
+
+RUN wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.2.269/quarto-1.2.269-linux-amd64.deb -O /home/quarto.deb
+RUN apt-get install --yes /home/quarto.deb
+RUN rm /home/quarto.deb
+
+RUN R -e &quot;install.packages(c(&#39;devtools&#39;, &#39;tidyverse&#39;, &#39;janitor&#39;, \
+   &#39;shiny&#39;, &#39;targets&#39;, &#39;tarchetypes&#39;, \
+   &#39;quarto&#39;, &#39;shiny&#39;, &#39;testthat&#39;, \
+   &#39;usethis&#39;, &#39;rio&#39;))&quot;
+
+RUN R -e &quot;devtools::install_github(&#39;b-rodrigues/myPackage&#39;, ref = &#39;e9d9129de3047c1ecce26d09dff429ec078d4dae&#39;)&quot;
+
+CMD [&quot;R&quot;]</code></pre>
+<p>This <code>Dockerfile</code> starts off with <code>r-ver:4.2.1</code> and adds the dependencies that we will need for our pipelines.
+Then, I install development libraries, these are required to run the R packages (maybe not all of them though).
+I found the list <a href="https://github.com/rocker-org/rocker-versioned2/blob/master/scripts/install_tidyverse.sh">here</a>;
+this is a script that gets used by some of the <code>Dockerfile</code>s provided by the Rocker Project. I only copied
+the parts I needed. Then I download the Quarto installer for Ubuntu, and install it. Finally I install the
+packages for R, as well as the package we’ve developed together. This <code>Dockerfile</code> should not look too
+intimidating IF you’re familiar with Ubuntu. If not… well this is why I said in the intro that familiarity
+with Ubuntu would be helpful. Now you probably see why Rocker is so useful; if you start from an <code>rstudio</code> image
+all of these dependencies come already installed. But because we’re using an image made specifically for
+reproducibility, <em>only</em> the frozen repos were set up, which is why I had to add all of this manually. But no worries,
+you can now use this <code>Dockerfile</code> as a reference.</p>
+<p>Anyways, we can now build this image using:</p>
+<pre><code>docker build -t r421_rap .</code></pre>
+<p>And now we need to wait for the process to be done. Once it’s finished, we can run it using:</p>
+<pre><code>docker run --rm -ti --name r421_rap_container r421_rap </code></pre>
+<p>(notice the <code>-ti</code> argument here; this is needed because we want to have an interactive session with R opened, if
+you omit this flag, R will get launched, but then immediately closed). We can test it by loading some packages
+and see that everything is alright.</p>
+<p>Let’s now get this image on Dockerhub; this way, we can pull it instead of having to build it in the future. First
+logging to Docker Hub from the terminal:</p>
+<pre><code>docker login </code></pre>
+<p>You should then enter your username and password. We are now ready to push, so check the image id using <code>docker images</code>:</p>
+<pre><code>docker images
+REPOSITORY         TAG       IMAGE ID       CREATED          SIZE
+r421_rap           latest    864350bf1143   5 minutes ago    1.98GB</code></pre>
+<p>Tag the image, in this case the tag I’ve used is <code>version1</code>:</p>
+<pre><code>docker tag 864350bf1143 your_username_on_docker_hub/r421_rap:version1</code></pre>
+<p>And now I can push it, so that everyone can use it:</p>
+<pre><code>docker push brodriguesco/r421_rap:version1</code></pre>
+<p>We can now use this as a base for our pipelines! Let’s now create a new <code>Dockerfile</code> that will use
+this image as a base and run the plot from before:</p>
+<pre><code>FROM brodriguesco/r421_rap:version1
+
+RUN mkdir /home/graphs
+
+COPY my_graph.R /home/graphs/my_graph.R
+
+CMD R -e &quot;source(&#39;/home/graphs/my_graph.R&#39;)&quot;</code></pre>
+<p>save this <code>Dockerfile</code> in a new folder, and don’t forget to add the <code>my_graph.R</code> script with it.
+You can now build the image using:</p>
+<pre><code>docker build -t my_pipeline .</code></pre>
+<p>You should see this:</p>
+<pre><code>Sending build context to Docker daemon  3.584kB
+Step 1/4 : FROM brodriguesco/r421_rap:version1
+version1: Pulling from brodriguesco/r421_rap
+eaead16dc43b: Pull complete </code></pre>
+<p>As you can see, now Docker is pulling the image I’ve uploaded… and what’s great is that this
+image already contains the correct versions of the required packages and R.</p>
+<p>Before continuing now, let’s make something very clear: the image that I made available on
+Docker Hub is prebuilt, which means that anyone building a project on top of it, will not
+have to rebuild it. This means also, that in theory, there would be no need to create an image
+built on top of an image like <code>rocker/r-ver:4.2.1</code> with frozen repositories. Because most
+users of the <code>brodriguesco/r421_rap</code> image would have no need to rebuild it. However, in cases
+where users would need to rebuild it, it is best practice to use such a stable image as
+<code>rocker/r-ver:4.2.1</code>. This makes sure that if the image gets rebuilt in the future, then
+it still pulls the exact same R and packages versions as today.</p>
+<p>Ok, so now to run the pipeline this line will do the job:</p>
+<pre><code>docker run --rm --name my_pipeline_container -v /home/cbrunos/docker_folder:/home/scripts:rw my_pipeline</code></pre>
+<p>So basically, all you need for your project to be reproducible is a Github repo, where you
+make the <code>Dockerfile</code> available, as well as the required scripts, and give some basic instructions
+in a <code>Readme</code>.</p>
+<p>To conclude this section, take a look at
+<a href="https://github.com/b-rodrigues/dockerized_pipeline_demo/tree/main">this repository</a>.
+This repository defines in three files a pipeline that uses Docker for reproducibility:</p>
 <ul>
-<li>put an image on docker hub with all the depencies</li>
-<li>put a dockerfile from this image on github only running our pipeline</li>
-<li>put pipeline inside package that gets installed at build time</li>
+<li>A <code>Dockerfile</code>;</li>
+<li><code>_targets.R</code> defining a <code>{targets}</code> pipeline;</li>
+<li><code>functions.R</code> which includes needed functions for the pipeline.</li>
 </ul>
+<p>Try to run the pipeline, and study the different files. You should recognize the commands used
+in the <code>Dockerfile</code>.</p>
+<p>Now it’s your turn to build reproducible pipelines!</p>
 </div>
 <div id="references-1" class="section level2 hasAnchor" number="9.8">
 <h2><span class="header-section-number">9.8</span> References<a href="self-contained-raps-with-docker.html#references-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><a href="https://www.statworx.com/content-hub/blog/wie-du-ein-r-skript-in-docker-ausfuehrst/" class="uri">https://www.statworx.com/content-hub/blog/wie-du-ein-r-skript-in-docker-ausfuehrst/</a> (in German, English translation: <a href="https://www.r-bloggers.com/2019/02/running-your-r-script-in-docker/" class="uri">https://www.r-bloggers.com/2019/02/running-your-r-script-in-docker/</a>)</p>
+<ul>
+<li><a href="https://www.statworx.com/content-hub/blog/wie-du-ein-r-skript-in-docker-ausfuehrst/" class="uri">https://www.statworx.com/content-hub/blog/wie-du-ein-r-skript-in-docker-ausfuehrst/</a> (in German, English translation: <a href="https://www.r-bloggers.com/2019/02/running-your-r-script-in-docker/" class="uri">https://www.r-bloggers.com/2019/02/running-your-r-script-in-docker/</a>)</li>
+<li><a href="https://colinfay.me/docker-r-reproducibility/" class="uri">https://colinfay.me/docker-r-reproducibility/</a></li>
+<li><a href="https://jsta.github.io/r-docker-tutorial/" class="uri">https://jsta.github.io/r-docker-tutorial/</a></li>
+</ul>
 
 </div>
 </div>
@@ -659,20 +785,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>
