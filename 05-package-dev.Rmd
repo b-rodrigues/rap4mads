@@ -572,3 +572,7 @@ devtools::install_github("b-rodrigues/myPackage", ref = "release")
 ```
 
 But for this, you need to create a release branch, which will only contain release-ready code.
+
+## Further reading
+
+- https://r-pkgs.org/
