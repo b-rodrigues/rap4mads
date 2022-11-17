@@ -5,3 +5,24 @@
 knitr::include_graphics("img/octopus.png")
 ```
 </div>
+
+We are almost at the end; actually, we could have stopped at the end of the previous chapter. We
+have reached our goal; we are able to run pipeline in a 100% reproducible way. However, this
+requires some manual steps. And maybe that's not a problem; if your image is done, and users only
+need to pull it and run the container, that's not really a big problem. But you should keep in mind
+that manual steps don't scale. Let's imagine another context; let's suppose that you are part of a
+company and that you are part of a team that needs to quickly ship products to clients. Maybe
+several people contribute to the product using, an internal version control solution (like a Gitlab
+instance that is deployed on the premises of your company). Maybe you even need to work on several
+products in the same day; you (and your teammates) should only be focusing writing code (and
+`Dockerfiles`)... your time and resources cannot get clogged by building images (which depending on
+what you're working on, can take quite some time). So ideally, we would want to offload these step.
+That is what we are going to learn it.
+
+Consider this chapter a very basic intro to CI/CD (Continuous Integration and Continuous
+Deployment/Delivery) and DevOps. In fact, to be more precise, we should be talking about GitOps.
+
+
+## Further reading
+
+- http://haines-lab.com/post/2022-01-23-automating-computational-reproducibility-with-r-using-renv-docker-and-github-actions/
