@@ -636,8 +636,9 @@ push this image, which would contain every package, to Docker Hub, and then prov
 to your future users instead. This way, you wouldn’t need to use a base image with frozen CRAN
 repos as we did. That’s up to you.
 
-## References
+## Further reading
 
 - https://www.statworx.com/content-hub/blog/wie-du-ein-r-skript-in-docker-ausfuehrst/ (in German, English translation: https://www.r-bloggers.com/2019/02/running-your-r-script-in-docker/)
 - https://colinfay.me/docker-r-reproducibility/
 - https://jsta.github.io/r-docker-tutorial/
+- http://haines-lab.com/post/2022-01-23-automating-computational-reproducibility-with-r-using-renv-docker-and-github-actions/
