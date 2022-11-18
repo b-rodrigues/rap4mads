@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 10 (Very) basic CI/CD with Github Actions | Reproducible Analytical Pipelines - Master’s of Data Science</title>
+  <meta name="description" content="Chapter 10 (Very) basic CI/CD with Github Actions | Reproducible Analytical Pipelines - Master’s of Data Science" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 10 (Very) basic CI/CD with Github Actions | Reproducible Analytical Pipelines - Master’s of Data Science" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 10 (Very) basic CI/CD with Github Actions | Reproducible Analytical Pipelines - Master’s of Data Science" />
+  
+  
+  
+
+<meta name="author" content="Bruno Rodrigues" />
+
+
+<meta name="date" content="2022-11-18" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="self-contained-raps-with-docker.html"/>
+<link rel="next" href="what-else-should-you-learn.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">RAP4MADS</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#schedule"><i class="fa fa-check"></i><b>1.1</b> Schedule</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#reproducible-analytical-pipelines"><i class="fa fa-check"></i><b>1.2</b> Reproducible analytical pipelines?</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#data-products"><i class="fa fa-check"></i><b>1.3</b> Data products?</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#machine-learning"><i class="fa fa-check"></i><b>1.4</b> Machine learning?</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#why-r-why-not-insert-your-favourite-programming-language"><i class="fa fa-check"></i><b>1.5</b> Why R? Why not [insert your favourite programming language]</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#pre-requisites"><i class="fa fa-check"></i><b>1.6</b> Pre-requisites</a></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#grading"><i class="fa fa-check"></i><b>1.7</b> Grading</a></li>
+<li class="chapter" data-level="1.8" data-path="index.html"><a href="index.html#jargon"><i class="fa fa-check"></i><b>1.8</b> Jargon</a></li>
+<li class="chapter" data-level="1.9" data-path="index.html"><a href="index.html#further-reading"><i class="fa fa-check"></i><b>1.9</b> Further reading</a></li>
+<li class="chapter" data-level="1.10" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i><b>1.10</b> License</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>2</b> Introduction to R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#reading-in-data-with-r"><i class="fa fa-check"></i><b>2.1</b> Reading in data with R</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#a-little-aside-on-pipes"><i class="fa fa-check"></i><b>2.2</b> A little aside on pipes</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#exploring-and-cleaning-data-with-r"><i class="fa fa-check"></i><b>2.3</b> Exploring and cleaning data with R</a></li>
+<li class="chapter" data-level="2.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#data-visualization"><i class="fa fa-check"></i><b>2.4</b> Data visualization</a></li>
+<li class="chapter" data-level="2.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#further-reading-1"><i class="fa fa-check"></i><b>2.5</b> Further reading</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="a-primer-on-functional-programming.html"><a href="a-primer-on-functional-programming.html"><i class="fa fa-check"></i><b>3</b> A primer on functional programming</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="a-primer-on-functional-programming.html"><a href="a-primer-on-functional-programming.html#introduction-1"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="a-primer-on-functional-programming.html"><a href="a-primer-on-functional-programming.html#defining-your-own-functions"><i class="fa fa-check"></i><b>3.2</b> Defining your own functions</a></li>
+<li class="chapter" data-level="3.3" data-path="a-primer-on-functional-programming.html"><a href="a-primer-on-functional-programming.html#functional-programming"><i class="fa fa-check"></i><b>3.3</b> Functional programming</a></li>
+<li class="chapter" data-level="3.4" data-path="a-primer-on-functional-programming.html"><a href="a-primer-on-functional-programming.html#further-reading-2"><i class="fa fa-check"></i><b>3.4</b> Further reading</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>4</b> Git</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="git.html"><a href="git.html#introduction-2"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="git.html"><a href="git.html#installing-git"><i class="fa fa-check"></i><b>4.2</b> Installing Git</a></li>
+<li class="chapter" data-level="4.3" data-path="git.html"><a href="git.html#setting-up-a-repo"><i class="fa fa-check"></i><b>4.3</b> Setting up a repo</a></li>
+<li class="chapter" data-level="4.4" data-path="git.html"><a href="git.html#cloning-the-repository-onto-your-computer"><i class="fa fa-check"></i><b>4.4</b> Cloning the repository onto your computer</a></li>
+<li class="chapter" data-level="4.5" data-path="git.html"><a href="git.html#your-first-commit"><i class="fa fa-check"></i><b>4.5</b> Your first commit</a></li>
+<li class="chapter" data-level="4.6" data-path="git.html"><a href="git.html#collaborating"><i class="fa fa-check"></i><b>4.6</b> Collaborating</a></li>
+<li class="chapter" data-level="4.7" data-path="git.html"><a href="git.html#branches"><i class="fa fa-check"></i><b>4.7</b> Branches</a></li>
+<li class="chapter" data-level="4.8" data-path="git.html"><a href="git.html#contributing-to-someone-elses-repository"><i class="fa fa-check"></i><b>4.8</b> Contributing to someone else’s repository</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="package-development.html"><a href="package-development.html"><i class="fa fa-check"></i><b>5</b> Package development</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="package-development.html"><a href="package-development.html#introduction-3"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="package-development.html"><a href="package-development.html#getting-started"><i class="fa fa-check"></i><b>5.2</b> Getting started</a></li>
+<li class="chapter" data-level="5.3" data-path="package-development.html"><a href="package-development.html#adding-functions"><i class="fa fa-check"></i><b>5.3</b> Adding functions</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="package-development.html"><a href="package-development.html#functions-dependencies"><i class="fa fa-check"></i><b>5.3.1</b> Functions dependencies</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="package-development.html"><a href="package-development.html#documentation"><i class="fa fa-check"></i><b>5.4</b> Documentation</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="package-development.html"><a href="package-development.html#documenting-functions"><i class="fa fa-check"></i><b>5.4.1</b> Documenting functions</a></li>
+<li class="chapter" data-level="5.4.2" data-path="package-development.html"><a href="package-development.html#documenting-the-package"><i class="fa fa-check"></i><b>5.4.2</b> Documenting the package</a></li>
+<li class="chapter" data-level="5.4.3" data-path="package-development.html"><a href="package-development.html#checking-your-package"><i class="fa fa-check"></i><b>5.4.3</b> Checking your package</a></li>
+<li class="chapter" data-level="5.4.4" data-path="package-development.html"><a href="package-development.html#installing-your-package"><i class="fa fa-check"></i><b>5.4.4</b> Installing your package</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="package-development.html"><a href="package-development.html#further-reading-3"><i class="fa fa-check"></i><b>5.5</b> Further reading</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="unit-tests.html"><a href="unit-tests.html"><i class="fa fa-check"></i><b>6</b> Unit tests</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="unit-tests.html"><a href="unit-tests.html#introduction-4"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="unit-tests.html"><a href="unit-tests.html#testing-your-package"><i class="fa fa-check"></i><b>6.2</b> Testing your package</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="unit-tests.html"><a href="unit-tests.html#is-the-function-returning-an-expected-value-for-a-given-input"><i class="fa fa-check"></i><b>6.2.1</b> Is the function returning an expected value for a given input?</a></li>
+<li class="chapter" data-level="6.2.2" data-path="unit-tests.html"><a href="unit-tests.html#can-the-function-deal-with-all-kinds-of-input"><i class="fa fa-check"></i><b>6.2.2</b> Can the function deal with all kinds of input?</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="unit-tests.html"><a href="unit-tests.html#back-to-developing-again"><i class="fa fa-check"></i><b>6.3</b> Back to developing again</a></li>
+<li class="chapter" data-level="6.4" data-path="unit-tests.html"><a href="unit-tests.html#and-back-to-testing"><i class="fa fa-check"></i><b>6.4</b> And back to testing</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="setting-up-pipelines-with-targets.html"><a href="setting-up-pipelines-with-targets.html"><i class="fa fa-check"></i><b>7</b> Setting up pipelines with <code>{targets}</code></a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="setting-up-pipelines-with-targets.html"><a href="setting-up-pipelines-with-targets.html#introduction-5"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.2" data-path="setting-up-pipelines-with-targets.html"><a href="setting-up-pipelines-with-targets.html#build-automation-with-r"><i class="fa fa-check"></i><b>7.2</b> Build automation with R</a></li>
+<li class="chapter" data-level="7.3" data-path="setting-up-pipelines-with-targets.html"><a href="setting-up-pipelines-with-targets.html#an-aside-on-renv"><i class="fa fa-check"></i><b>7.3</b> An aside on <code>{renv}</code></a></li>
+<li class="chapter" data-level="7.4" data-path="setting-up-pipelines-with-targets.html"><a href="setting-up-pipelines-with-targets.html#our-actual-first-pipeline"><i class="fa fa-check"></i><b>7.4</b> Our actual first pipeline</a></li>
+<li class="chapter" data-level="7.5" data-path="setting-up-pipelines-with-targets.html"><a href="setting-up-pipelines-with-targets.html#running-someone-elses-pipeline"><i class="fa fa-check"></i><b>7.5</b> Running someone else’s pipeline</a></li>
+<li class="chapter" data-level="7.6" data-path="setting-up-pipelines-with-targets.html"><a href="setting-up-pipelines-with-targets.html#running-any-code-with-older-packages"><i class="fa fa-check"></i><b>7.6</b> Running any code with older packages</a></li>
+<li class="chapter" data-level="7.7" data-path="setting-up-pipelines-with-targets.html"><a href="setting-up-pipelines-with-targets.html#why-we-need-more"><i class="fa fa-check"></i><b>7.7</b> Why we need more</a></li>
+<li class="chapter" data-level="7.8" data-path="setting-up-pipelines-with-targets.html"><a href="setting-up-pipelines-with-targets.html#further-reading-4"><i class="fa fa-check"></i><b>7.8</b> Further reading</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="data-products-1.html"><a href="data-products-1.html"><i class="fa fa-check"></i><b>8</b> Data products</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="data-products-1.html"><a href="data-products-1.html#introduction-6"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
+<li class="chapter" data-level="8.2" data-path="data-products-1.html"><a href="data-products-1.html#a-first-taste-of-quarto"><i class="fa fa-check"></i><b>8.2</b> A first taste of Quarto</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="data-products-1.html"><a href="data-products-1.html#python-and-julia-code-chunks"><i class="fa fa-check"></i><b>8.2.1</b> Python and Julia code chunks</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="data-products-1.html"><a href="data-products-1.html#other-output-formats"><i class="fa fa-check"></i><b>8.3</b> Other output formats</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="data-products-1.html"><a href="data-products-1.html#word"><i class="fa fa-check"></i><b>8.3.1</b> Word</a></li>
+<li class="chapter" data-level="8.3.2" data-path="data-products-1.html"><a href="data-products-1.html#presentations"><i class="fa fa-check"></i><b>8.3.2</b> Presentations</a></li>
+<li class="chapter" data-level="8.3.3" data-path="data-products-1.html"><a href="data-products-1.html#pdf"><i class="fa fa-check"></i><b>8.3.3</b> PDF</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="data-products-1.html"><a href="data-products-1.html#interactive-web-applications-with-shiny"><i class="fa fa-check"></i><b>8.4</b> Interactive web applications with {shiny}</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="data-products-1.html"><a href="data-products-1.html#the-basic-structure-of-a-shiny-app"><i class="fa fa-check"></i><b>8.4.1</b> The basic structure of a Shiny app</a></li>
+<li class="chapter" data-level="8.4.2" data-path="data-products-1.html"><a href="data-products-1.html#slightly-more-advanced-shiny"><i class="fa fa-check"></i><b>8.4.2</b> Slightly more advanced shiny</a></li>
+<li class="chapter" data-level="8.4.3" data-path="data-products-1.html"><a href="data-products-1.html#basic-optimization-of-shiny-apps"><i class="fa fa-check"></i><b>8.4.3</b> Basic optimization of Shiny apps</a></li>
+<li class="chapter" data-level="8.4.4" data-path="data-products-1.html"><a href="data-products-1.html#deploying-your-shiny-app"><i class="fa fa-check"></i><b>8.4.4</b> Deploying your shiny app</a></li>
+<li class="chapter" data-level="8.4.5" data-path="data-products-1.html"><a href="data-products-1.html#references"><i class="fa fa-check"></i><b>8.4.5</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="data-products-1.html"><a href="data-products-1.html#how-to-build-data-products-using-targets"><i class="fa fa-check"></i><b>8.5</b> How to build data products using <code>{targets}</code></a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="self-contained-raps-with-docker.html"><a href="self-contained-raps-with-docker.html"><i class="fa fa-check"></i><b>9</b> Self-contained RAPs with Docker</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="self-contained-raps-with-docker.html"><a href="self-contained-raps-with-docker.html#introduction-7"><i class="fa fa-check"></i><b>9.1</b> Introduction</a></li>
+<li class="chapter" data-level="9.2" data-path="self-contained-raps-with-docker.html"><a href="self-contained-raps-with-docker.html#installing-docker"><i class="fa fa-check"></i><b>9.2</b> Installing Docker</a></li>
+<li class="chapter" data-level="9.3" data-path="self-contained-raps-with-docker.html"><a href="self-contained-raps-with-docker.html#the-rocker-project"><i class="fa fa-check"></i><b>9.3</b> The Rocker Project</a></li>
+<li class="chapter" data-level="9.4" data-path="self-contained-raps-with-docker.html"><a href="self-contained-raps-with-docker.html#docker-essentials"><i class="fa fa-check"></i><b>9.4</b> Docker essentials</a></li>
+<li class="chapter" data-level="9.5" data-path="self-contained-raps-with-docker.html"><a href="self-contained-raps-with-docker.html#making-our-own-images-and-run-some-code"><i class="fa fa-check"></i><b>9.5</b> Making our own images and run some code</a></li>
+<li class="chapter" data-level="9.6" data-path="self-contained-raps-with-docker.html"><a href="self-contained-raps-with-docker.html#reproducibility-with-docker"><i class="fa fa-check"></i><b>9.6</b> Reproducibility with Docker</a></li>
+<li class="chapter" data-level="9.7" data-path="self-contained-raps-with-docker.html"><a href="self-contained-raps-with-docker.html#building-a-truly-reproducible-pipeline"><i class="fa fa-check"></i><b>9.7</b> Building a truly reproducible pipeline</a></li>
+<li class="chapter" data-level="9.8" data-path="self-contained-raps-with-docker.html"><a href="self-contained-raps-with-docker.html#one-last-thing"><i class="fa fa-check"></i><b>9.8</b> One last thing</a></li>
+<li class="chapter" data-level="9.9" data-path="self-contained-raps-with-docker.html"><a href="self-contained-raps-with-docker.html#further-reading-5"><i class="fa fa-check"></i><b>9.9</b> Further reading</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="very-basic-cicd-with-github-actions.html"><a href="very-basic-cicd-with-github-actions.html"><i class="fa fa-check"></i><b>10</b> (Very) basic CI/CD with Github Actions</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="very-basic-cicd-with-github-actions.html"><a href="very-basic-cicd-with-github-actions.html#getting-your-repo-ready-for-github-actions"><i class="fa fa-check"></i><b>10.1</b> Getting your repo ready for Github Actions</a></li>
+<li class="chapter" data-level="10.2" data-path="very-basic-cicd-with-github-actions.html"><a href="very-basic-cicd-with-github-actions.html#further-reading-6"><i class="fa fa-check"></i><b>10.2</b> Further reading</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="what-else-should-you-learn.html"><a href="what-else-should-you-learn.html"><i class="fa fa-check"></i><b>11</b> What else should you learn?</a></li>
+<li class="chapter" data-level="12" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>12</b> Conclusion</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="conclusion.html"><a href="conclusion.html#why-bother"><i class="fa fa-check"></i><b>12.1</b> Why bother</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/b-rodrigues/rap4mads" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Reproducible Analytical Pipelines - Master’s of Data Science</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="very-basic-cicd-with-github-actions" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">Chapter 10</span> (Very) basic CI/CD with Github Actions<a href="very-basic-cicd-with-github-actions.html#very-basic-cicd-with-github-actions" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div style="text-align:center;">
+<p><img src="img/octopus.png" width="512" /></p>
+</div>
+<p>We are almost at the end; actually, we could have stopped at the end of the previous chapter. We
+have reached our goal; we are able to run pipeline in a 100% reproducible way. However, this
+requires some manual steps. And maybe that’s not a problem; if your image is done, and users only
+need to pull it and run the container, that’s not really a big problem. But you should keep in mind
+that manual steps don’t scale. Let’s imagine another context; let’s suppose that you are part of a
+company and that you are part of a team that needs to quickly ship products to clients. Maybe
+several people contribute to the product using, an internal version control solution (like a Gitlab
+instance that is deployed on the premises of your company). Maybe you even need to work on several
+products in the same day; you (and your teammates) should only be focusing writing code (and
+<code>Dockerfiles</code>)… your time and resources cannot get clogged by building images (which depending on
+what you’re working on, can take quite some time). So ideally, we would want to offload these step.
+That is what we are going to learn it. I should also note that this is going to be the shortest
+chapter of this course. I’m not an expert on CI/CD with Github Actions, but wanted to show to you,
+first of all, that this exists, and second of all, how you could get started.</p>
+<p>So consider this chapter a very basic intro to CI/CD (Continuous Integration and Continuous
+Deployment/Delivery) and DevOps. In fact, to be more precise, we should be talking about GitOps.
+What’s Dev(Git)Ops? I think that the <a href="https://www.atlassian.com/devops">Atlassian</a> page on DevOps makes
+a good job of explaining it. The bottom line is that DevOps makes it easy for developers to focus on
+coding, and make it easy for them to ship data products. The core IT team provides the required
+infrastructure and tools to make this possible. GitOps is a variant of DevOps where the definition
+of the infrastructure is versioned, and can be changed by editing simple text files. Through events,
+such as pushing to the repository, new images can be built, or containers executed. Data products
+can then also be redeployed automatically. All the steps we’ve been doing manually, with one simple push!
+It’s also possible, in the context of package development, to execute unit tests when code gets pushed
+to repo, or get documentation and vignettes compiled. This also means that you could be developing
+on a very thin client with only a text editor and git installed. Pushing to Github would then
+execute everything needed to have a package ready for sharing.</p>
+<p>So our goal here is, in short, to do exactly the same as what we have been doing on our computer
+(so build an image, run a container, and get back 3 plots), but on Github.</p>
+<div id="getting-your-repo-ready-for-github-actions" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> Getting your repo ready for Github Actions<a href="very-basic-cicd-with-github-actions.html#getting-your-repo-ready-for-github-actions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>You should see an “Actions” tab on top of any Github repo:</p>
+<div style="text-align:center;">
+<p><img src="img/ga_1.png" width="760" /></p>
+</div>
+<p>This will open a new view where you can select a lot of available, ready to use actions. Shop around for
+a bit, and choose the right one (depending on what you want to do). You should know that there is a
+very nice repository with many <a href="https://github.com/r-lib/actions">actions for R</a>. Once you’re doing
+choosing an action, a new view in which you can edit a file will open. This file will have the name of
+the chosen action, and have the <code>.yaml</code> extension. This file will be automatically added to your repository,
+in the following path <code>.github/workflows</code>.</p>
+<p>Let’s take a look at such a workflow file:</p>
+<pre><code>name: Hello world
+on: [push]
+jobs:
+  say-hello:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo &quot;Hello from Github Actions!&quot;
+      - run: echo &quot;This command is running from an Ubuntu VM each time you push.&quot;</code></pre>
+<p>Let’s study this workflow definition line by line:</p>
+<pre><code>name: Hello world</code></pre>
+<p>Simply gives a nawe to the workflow.</p>
+<pre><code>on: [push]</code></pre>
+<p>When should this workflow be triggered? Here, whenever something gets pushed.</p>
+<pre><code>jobs:</code></pre>
+<p>What is the actual things that should happen? This define a list of actions.</p>
+<pre><code>  say-hello:</code></pre>
+<p>This defines he <code>say-hello</code> job.</p>
+<pre><code>    runs-on: ubuntu-latest</code></pre>
+<p>This job should run on an Ubuntu VM. You can also run jobs on Windows or macOS VMs.</p>
+<pre><code>    steps:</code></pre>
+<p>What are the different steps of the job?</p>
+<pre><code>      - run: echo &quot;Hello from Github Actions!&quot;</code></pre>
+<p>First, run the command <code>echo "Hello from Github Actions!"</code>. This commands runs inside the VM.
+Then, run this next command:</p>
+<pre><code>      - run: echo &quot;This command is running from an Ubuntu VM each time you push.&quot;</code></pre>
+<p>Let’s push, and see what happens on github.com:</p>
+<div style="text-align:center;">
+<p><video width="640" height="480" controls>
+<source src="img/ga_1.mp4" type="video/mp4">
+</video></p>
+</div>
+<p>If we take a look at the commit we just pushed, we see this yellow dot next to the commit name.
+This means that an action is running. We can then take a look at the output of the job, and
+see that our commands, defined with the <code>run</code> statements in the workflow file, succeeded and echoed
+what we asked them.</p>
+<p>So, the next step is running our Docker image and getting back our plots. This is what our
+workflow file looks like:</p>
+<pre><code>name: Reproducible pipeline
+
+on:
+  push:
+    branches: [ &quot;main&quot; ]
+  pull_request:
+    branches: [ &quot;main&quot; ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build -t my-image-name .
+    - name: Docker Run Action
+      run: docker run --rm --name my_pipeline_container -v /github/workspace/fig/:/home/graphs/:rw my-image-name
+    - uses: actions/upload-artifact@v3
+      with:
+        name: my-figures
+        path: /github/workspace/fig/
+</code></pre>
+<p>For now, let’s focus on the <code>run</code> statements, because these should be the familiar:</p>
+<pre><code>run: docker build -t my-image-name .</code></pre>
+<p>and:</p>
+<pre><code>run: docker run --rm --name my_pipeline_container -v /github/workspace/fig/:/home/graphs/:rw my-image-name</code></pre>
+<p>The only new thing here, is that the path has been changed to <code>/github/workspace/</code>. This is the
+home directory of your repository, so to speak. Now there’s the <code>uses</code> keyword:</p>
+<pre><code>uses: actions/checkout@v3</code></pre>
+<p>This action checkouts your repository inside the VM, so the files in the repo are available inside the VM.
+Then, there’s this action here:</p>
+<pre><code>- uses: actions/upload-artifact@v3
+  with:
+    name: my-figures
+    path: /github/workspace/fig/</code></pre>
+<p>This action takes what’s inside <code>/github/workspace/fig/</code> (which will be the output of our pipeline)
+and upload the contents as a so-called “artifacts”. Artifacts are the outputs of your workflow. In our
+case, as stated, the output of the pipeline. So let’s run this by pushing a change,
+and let’s take a look at these artifacts!</p>
+<div style="text-align:center;">
+<p><video width="640" height="480" controls>
+<source src="img/ga_2.mp4" type="video/mp4">
+</video></p>
+</div>
+<p>As you can see from the video above, an zip file is now available and can be downloaded. This
+zip contains our plots! It is thus possible to rerun our workflow in the cloud. This has the
+advantage that we can now focus on simple changing the code, and not have to bother with
+useless manual steps. For example, let’s change this target in the <code>_targets.R</code> file:</p>
+<pre><code>tar_target(
+    commune_data,
+    clean_unemp(unemp_data,
+                place_name_of_interest = c(&quot;Luxembourg&quot;, &quot;Dippach&quot;, 
+                                           &quot;Wiltz&quot;, &quot;Esch/Alzette&quot;, 
+                                           &quot;Mersch&quot;, &quot;Dudelange&quot;),
+                col_of_interest = active_population)
+)
+</code></pre>
+<p>So I’ve added “Dudelange” to the list of communes to plot. Let me push this change to the repo now,
+and let’s take a look at the artifacts. The video below summarises the process:</p>
+<div style="text-align:center;">
+<p><video width="640" height="480" controls>
+<source src="img/ga_3.mp4" type="video/mp4">
+</video></p>
+</div>
+<p>As you can see in the video, the <code>_targets.R</code> script was changed, and the changes pushed to Github.
+This triggered the action we’ve defined before. The plots (artifacts) get refreshed, and we can
+download them. We see then that Dudelange was added in the <code>communes.png</code> plot!</p>
+<p>It is also possible to “deploy” the plots directly to another branch, and do much, much more. I just wanted
+to give you a little taste of Github Actions (and more generally GitOps). The possibilities are virtually
+limitless, and I still can’t get over the fact that Github Actions is free (well, up to
+<a href="https://docs.github.com/en/billing/managing-billing-for-github-actions/about-billing-for-github-actions">2000 compute minutes and 500MB storage per month</a>).</p>
+</div>
+<div id="further-reading-6" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> Further reading<a href="very-basic-cicd-with-github-actions.html#further-reading-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><a href="http://haines-lab.com/post/2022-01-23-automating-computational-reproducibility-with-r-using-renv-docker-and-github-actions/" class="uri">http://haines-lab.com/post/2022-01-23-automating-computational-reproducibility-with-r-using-renv-docker-and-github-actions/</a></li>
+<li><a href="https://orchid00.github.io/actions_sandbox/" class="uri">https://orchid00.github.io/actions_sandbox/</a></li>
+<li><a href="https://www.petefreitag.com/item/903.cfm" class="uri">https://www.petefreitag.com/item/903.cfm</a></li>
+<li><a href="https://dev.to/mihinduranasinghe/using-docker-containers-in-jobs-github-actions-3eof" class="uri">https://dev.to/mihinduranasinghe/using-docker-containers-in-jobs-github-actions-3eof</a></li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="self-contained-raps-with-docker.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="what-else-should-you-learn.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/b-rodrigues/rap4mads/edit/master/10-github_actions.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/b-rodrigues/rap4mads/blob/master/10-github_actions.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

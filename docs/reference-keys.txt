@@ -43,6 +43,7 @@ vignettes
 packages-website
 checking-your-package
 installing-your-package
+further-reading-3
 unit-tests
 introduction-4
 testing-your-package
@@ -58,7 +59,7 @@ our-actual-first-pipeline
 running-someone-elses-pipeline
 running-any-code-with-older-packages
 why-we-need-more
-further-reading-3
+further-reading-4
 data-products-1
 introduction-6
 a-first-taste-of-quarto
@@ -82,8 +83,14 @@ docker-essentials
 making-our-own-images-and-run-some-code
 reproducibility-with-docker
 building-a-truly-reproducible-pipeline
-references-1
-cicd-with-github-actions
+one-last-thing
+further-reading-5
+very-basic-cicd-with-github-actions
+getting-your-repo-ready-for-github-actions
+further-reading-6
 what-else-should-you-learn
 conclusion
 why-bother
+touch-typing
+vim
+statistical-modeling

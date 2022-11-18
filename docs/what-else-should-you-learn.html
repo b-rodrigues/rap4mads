@@ -23,14 +23,14 @@
 <meta name="author" content="Bruno Rodrigues" />
 
 
-<meta name="date" content="2022-11-16" />
+<meta name="date" content="2022-11-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="cicd-with-github-actions.html"/>
+<link rel="prev" href="very-basic-cicd-with-github-actions.html"/>
 <link rel="next" href="conclusion.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -54,70 +54,6 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
-<style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
 
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -190,6 +126,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.4.3" data-path="package-development.html"><a href="package-development.html#checking-your-package"><i class="fa fa-check"></i><b>5.4.3</b> Checking your package</a></li>
 <li class="chapter" data-level="5.4.4" data-path="package-development.html"><a href="package-development.html#installing-your-package"><i class="fa fa-check"></i><b>5.4.4</b> Installing your package</a></li>
 </ul></li>
+<li class="chapter" data-level="5.5" data-path="package-development.html"><a href="package-development.html#further-reading-3"><i class="fa fa-check"></i><b>5.5</b> Further reading</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="unit-tests.html"><a href="unit-tests.html"><i class="fa fa-check"></i><b>6</b> Unit tests</a>
 <ul>
@@ -211,7 +148,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.5" data-path="setting-up-pipelines-with-targets.html"><a href="setting-up-pipelines-with-targets.html#running-someone-elses-pipeline"><i class="fa fa-check"></i><b>7.5</b> Running someone else’s pipeline</a></li>
 <li class="chapter" data-level="7.6" data-path="setting-up-pipelines-with-targets.html"><a href="setting-up-pipelines-with-targets.html#running-any-code-with-older-packages"><i class="fa fa-check"></i><b>7.6</b> Running any code with older packages</a></li>
 <li class="chapter" data-level="7.7" data-path="setting-up-pipelines-with-targets.html"><a href="setting-up-pipelines-with-targets.html#why-we-need-more"><i class="fa fa-check"></i><b>7.7</b> Why we need more</a></li>
-<li class="chapter" data-level="7.8" data-path="setting-up-pipelines-with-targets.html"><a href="setting-up-pipelines-with-targets.html#further-reading-3"><i class="fa fa-check"></i><b>7.8</b> Further reading</a></li>
+<li class="chapter" data-level="7.8" data-path="setting-up-pipelines-with-targets.html"><a href="setting-up-pipelines-with-targets.html#further-reading-4"><i class="fa fa-check"></i><b>7.8</b> Further reading</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="data-products-1.html"><a href="data-products-1.html"><i class="fa fa-check"></i><b>8</b> Data products</a>
 <ul>
@@ -245,10 +182,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.5" data-path="self-contained-raps-with-docker.html"><a href="self-contained-raps-with-docker.html#making-our-own-images-and-run-some-code"><i class="fa fa-check"></i><b>9.5</b> Making our own images and run some code</a></li>
 <li class="chapter" data-level="9.6" data-path="self-contained-raps-with-docker.html"><a href="self-contained-raps-with-docker.html#reproducibility-with-docker"><i class="fa fa-check"></i><b>9.6</b> Reproducibility with Docker</a></li>
 <li class="chapter" data-level="9.7" data-path="self-contained-raps-with-docker.html"><a href="self-contained-raps-with-docker.html#building-a-truly-reproducible-pipeline"><i class="fa fa-check"></i><b>9.7</b> Building a truly reproducible pipeline</a></li>
-<li class="chapter" data-level="9.8" data-path="self-contained-raps-with-docker.html"><a href="self-contained-raps-with-docker.html#references-1"><i class="fa fa-check"></i><b>9.8</b> References</a></li>
+<li class="chapter" data-level="9.8" data-path="self-contained-raps-with-docker.html"><a href="self-contained-raps-with-docker.html#one-last-thing"><i class="fa fa-check"></i><b>9.8</b> One last thing</a></li>
+<li class="chapter" data-level="9.9" data-path="self-contained-raps-with-docker.html"><a href="self-contained-raps-with-docker.html#further-reading-5"><i class="fa fa-check"></i><b>9.9</b> Further reading</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="cicd-with-github-actions.html"><a href="cicd-with-github-actions.html"><i class="fa fa-check"></i><b>10</b> CI/CD with Github Actions</a></li>
-<li class="chapter" data-level="11" data-path="what-else-should-you-learn.html"><a href="what-else-should-you-learn.html"><i class="fa fa-check"></i><b>11</b> What else should you learn?</a></li>
+<li class="chapter" data-level="10" data-path="very-basic-cicd-with-github-actions.html"><a href="very-basic-cicd-with-github-actions.html"><i class="fa fa-check"></i><b>10</b> (Very) basic CI/CD with Github Actions</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="very-basic-cicd-with-github-actions.html"><a href="very-basic-cicd-with-github-actions.html#getting-your-repo-ready-for-github-actions"><i class="fa fa-check"></i><b>10.1</b> Getting your repo ready for Github Actions</a></li>
+<li class="chapter" data-level="10.2" data-path="very-basic-cicd-with-github-actions.html"><a href="very-basic-cicd-with-github-actions.html#further-reading-6"><i class="fa fa-check"></i><b>10.2</b> Further reading</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="what-else-should-you-learn.html"><a href="what-else-should-you-learn.html"><i class="fa fa-check"></i><b>11</b> What else should you learn?</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="what-else-should-you-learn.html"><a href="what-else-should-you-learn.html#touch-typing"><i class="fa fa-check"></i><b>11.1</b> Touch typing</a></li>
+<li class="chapter" data-level="11.2" data-path="what-else-should-you-learn.html"><a href="what-else-should-you-learn.html#vim"><i class="fa fa-check"></i><b>11.2</b> Vim</a></li>
+<li class="chapter" data-level="11.3" data-path="what-else-should-you-learn.html"><a href="what-else-should-you-learn.html#statistical-modeling"><i class="fa fa-check"></i><b>11.3</b> Statistical modeling</a></li>
+</ul></li>
 <li class="chapter" data-level="12" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>12</b> Conclusion</a>
 <ul>
 <li class="chapter" data-level="12.1" data-path="conclusion.html"><a href="conclusion.html#why-bother"><i class="fa fa-check"></i><b>12.1</b> Why bother</a></li>
@@ -274,14 +221,55 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="what-else-should-you-learn" class="section level1 hasAnchor" number="11">
 <h1><span class="header-section-number">Chapter 11</span> What else should you learn?<a href="what-else-should-you-learn.html#what-else-should-you-learn" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Here’s a list of things I think would be nice for you to invest some time in, in no particular order.</p>
+<div id="touch-typing" class="section level2 hasAnchor" number="11.1">
+<h2><span class="header-section-number">11.1</span> Touch typing<a href="what-else-should-you-learn.html#touch-typing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>One of the things I NEVER see discussed when talking “upskilling” is improving your typing speed.
+According to a survey (which I’m sure is not statistically, nor scientifically sound, but still…)
+by onlinetyping.org (which you can find
+<a href="https://onlinetyping.org/blog/average-typing-speed.php#office-workers">here</a>, most back office
+workers (who spend all day typing) have a typing speed of 20 to 30 wpm (words per minute).
+According to this article by the
+<a href="https://www.theatlantic.com/technology/archive/2013/01/you-probably-write-a-novels-worth-of-email-every-year/266942/">Atlantic</a>
+people write about 41638 words in email per year. You as programmers (yes, even if you’re focused
+on data, you’re a programmer) very surely type twice or thrice this amount of words per year. But
+let’s stay with 41638 words per year. That would translate to almost 28 days of non stop typing at
+a typing speed of 25 words per minute. Doubling to 50 wpm is actually quite easy, and reaching 70
+is really doable. This could improve productivity, or better yet, make you go home earlier instead
+of working until 19h00 every day because you type like a snail.</p>
+<p>You need to learn touch typing, meaning, typing without looking at your keyboard.</p>
+</div>
+<div id="vim" class="section level2 hasAnchor" number="11.2">
+<h2><span class="header-section-number">11.2</span> Vim<a href="what-else-should-you-learn.html#vim" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Yes, I think you should learn vim, or at the very least, your text editor of choice, by
+heart. You should know every keyboard shortcut and every possibility that your text editor offers.
+You should never touch the mouse when writing text. This is not just because of productivity, but
+also for your health. Grabbing the mouse to click one or twice, and then go back to typing, then go
+back to moving the mouse, etc, will destroy your shoulder. By keeping your hands on the keyboard at
+all times and minimizing mouse usage, you may be able to grow old healthy. Vim helps with that
+because it is a modal text editor (and most editors actually ship a
+<a href="https://marketplace.visualstudio.com/items?itemName=vscodevim.vim">Vim-mode</a>).
+Watch <a href="https://www.youtube.com/watch?v=-txKSRn0qeA">this video</a> to get a quick introduction on
+Vim, and how to enable Vim mode in Vscode.</p>
+</div>
+<div id="statistical-modeling" class="section level2 hasAnchor" number="11.3">
+<h2><span class="header-section-number">11.3</span> Statistical modeling<a href="what-else-should-you-learn.html#statistical-modeling" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Statistical modeling is crucial, and if you didn’t major in stats, you very likely lack
+this knowledge. Here’s a reading (and watching) list:</p>
+<ul>
+<li><a href="https://avehtari.github.io/ROS-Examples/">Regression and other stories</a> (has a <a href="https://users.aalto.fi/~ave/ROS.pdf">free PDF</a>)</li>
+<li><a href="https://www.youtube.com/watch?v=BYUykHScxj8&amp;list=PLDcUM9US4XdMROZ57-OIRtIK0aOynbgZN">Statistical Rethinking 2022 (on youtube)</a></li>
+<li><a href="https://press.princeton.edu/books/paperback/9780691120355/mostly-harmless-econometrics">Mostly harmless econometrics</a></li>
+</ul>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="cicd-with-github-actions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="very-basic-cicd-with-github-actions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="conclusion.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
@@ -336,20 +324,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>
