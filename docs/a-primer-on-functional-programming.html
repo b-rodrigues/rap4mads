@@ -312,8 +312,8 @@ sometimes not possible to avoid. Such situations have to be carefully documented
 <p>As a more realistic example, imagine that within the pipeline you set up, some random numbers are generated.
 For example, to generate 10 random draws from a normal distribution:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="a-primer-on-functional-programming.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code></pre></div>
-<pre><code>##  [1] -0.037630263  0.723976061 -0.496738863  0.011395161  0.009859946
-##  [6]  0.678271423  1.029563029 -1.729528504 -2.204348095  0.543172896</code></pre>
+<pre><code>##  [1] -0.47719270 -0.99838644 -0.77625389  0.06445882  0.95949406 -0.11028549
+##  [7] -0.51100951 -0.91119542 -0.83717168  2.41583518</code></pre>
 <p>Each time you run this line, you will get another set of 10 random numbers. This is obviously a good thing
 in interactive data analysis, but much less so when running a pipeline programmatically. R provides a way to fix the
 random seed, which will make sure you always get the same random numbers:</p>
