@@ -4,6 +4,10 @@ author: "Bruno Rodrigues"
 date: "`r Sys.Date()`"
 bibliography: biblio.bib
 site: bookdown::bookdown_site
+output:
+  html_document:
+    includes:
+      in_header: header.html
 ---
 
 # Introduction
