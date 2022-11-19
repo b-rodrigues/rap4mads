@@ -627,6 +627,7 @@ Let’s restart from the <code>Dockerfile</code> that we used, and add a bunch o
 <pre><code>FROM rocker/r-ver:4.2.1
 
 RUN apt-get update &amp;&amp; apt-get install -y \
+    libglpk-dev \
     libxml2-dev \
     libcairo2-dev \
     libgit2-dev \

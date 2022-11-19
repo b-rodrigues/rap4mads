@@ -484,6 +484,7 @@ Let's restart from the `Dockerfile` that we used, and add a bunch of stuff:
 FROM rocker/r-ver:4.2.1
 
 RUN apt-get update && apt-get install -y \
+    libglpk-dev \
     libxml2-dev \
     libcairo2-dev \
     libgit2-dev \
