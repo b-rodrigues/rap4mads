@@ -483,7 +483,7 @@ Let's restart from the `Dockerfile` that we used, and add a bunch of stuff:
 ```
 FROM rocker/r-ver:4.2.1
 
-RUN apt_get updated && apt-get install -y \
+RUN apt-get updated && apt-get install -y \
     libxml2-dev \
     libcairo2-dev \
     libgit2-dev \
