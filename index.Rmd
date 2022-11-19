@@ -16,6 +16,8 @@ output:
 <img src="/img/cover.png" title = "Cover image created with Dall-e. The prompt was 'Roman engineer building a pipeline in the style of ancient roman art'. The result doesn't really show that, but I thought it looked nice." width="70%">
 </div>
 
+This a course that I taught during the winter semester at the University of Luxembourg in 2022. 
+It was aimed at second year Master's students.
 
 ## Schedule
 
