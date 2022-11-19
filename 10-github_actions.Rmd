@@ -6,6 +6,11 @@ knitr::include_graphics("img/octopus.png")
 ```
 </div>
 
+What you’ll have learned by the end of the chapter: very basic knowledge of Github Actions,
+but enough to run your RAP in the cloud.
+
+## Introduction
+
 We are almost at the end; actually, we could have stopped at the end of the previous chapter. We
 have reached our goal; we are able to run pipeline in a 100% reproducible way. However, this
 requires some manual steps. And maybe that's not a problem; if your image is done, and users only

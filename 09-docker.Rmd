@@ -6,6 +6,9 @@ knitr::include_graphics("img/container.png")
 ```
 </div>
 
+What you’ll have learned by the end of the chapter: build self-contained, truly reproducible 
+analytical pipelines thanks to Docker.
+
 ## Introduction
 
 As discussed in section 7.7, while `{renv}` is a great tool that makes reproducibility quite simple, 
@@ -326,12 +329,17 @@ CMD R -e "source('/home/rstudio/graphs/my_graph.R')"
 We added three commands at the end; one to create a folder (using `mkdir`) another to copy our 
 script to this folder (so for this, remember that you should put the R script that creates the plot
 next to the `Dockerfile`) and finally an R command to source (or run) the script we've just copied.
+Save the `Dockerfile` and build it again:
+
+```
+docker build -t my_package .
+```
 
 Let's now run our container with the following command (notice that we do not use `-p` nor the `-e`
 flags anymore, because we're not interested in running RStudio in the browser anymore):
 
 ```
-docker run --rm --name my_package_container /path/to/your/local/folder:/home/rstudio/scripts:rw my_package
+docker run --rm --name my_package_container -v /path/to/your/local/folder:/home/rstudio/scripts:rw my_package
 ```
 
 After some seconds, you should see a PDF in the folder that you set up. This is the output of the 
@@ -384,7 +392,7 @@ CMD R -e "source('/home/graphs/my_graph.R')"
 
 As you can see, we've changed to first line to `rocker/r-ver:4.2.1`, added a line to install the 
 required packages, and we've removed `rstudio` from the paths in the other commands. This is because
-`r-ver` do not launch an RStudio session in browser, so there's no `rstudio` user. Before
+`r-ver` does not launch an RStudio session in browser, so there's no `rstudio` user. Before
 building the image, you should also update the script that creates the plot. This is because in the
 last line of our script, we save the plot to `"/home/rstudio/scripts/my_plot.pdf"`, but remember, there's
 no `rstudio` user. So remove this from the `ggsave()` function. Also, add another line to the script,
@@ -470,7 +478,7 @@ knitr::include_graphics("img/docker_2.png")
 </div>
 
 You can then give a name to this repository. Let's now create an image that we will push.
-Let's restart from the `Dockerfile` that we used:
+Let's restart from the `Dockerfile` that we used, and add a bunch of stuff:
 
 ```
 FROM rocker/r-ver:4.2.1
@@ -509,17 +517,19 @@ RUN R -e "devtools::install_github('b-rodrigues/myPackage', ref = 'e9d9129de3047
 CMD ["R"]
 ```
 
-This `Dockerfile` starts off with `r-ver:4.2.1` and adds the dependencies that we will need for our pipelines.
-Then, I install development libraries, these are required to run the R packages (maybe not all of them though).
-I found the list [here](https://github.com/rocker-org/rocker-versioned2/blob/master/scripts/install_tidyverse.sh);
-this is a script that gets used by some of the `Dockerfile`s provided by the Rocker Project. I only copied
-the parts I needed. Then I download the Quarto installer for Ubuntu, and install it. Finally I install the 
-packages for R, as well as the package we've developed together. This `Dockerfile` should not look too
-intimidating IF you're familiar with Ubuntu. If not... well this is why I said in the intro that familiarity 
-with Ubuntu would be helpful. Now you probably see why Rocker is so useful; if you start from an `rstudio` image
-all of these dependencies come already installed. But because we're using an image made specifically for 
-reproducibility, *only* the frozen repos were set up, which is why I had to add all of this manually. But no worries,
-you can now use this `Dockerfile` as a reference. 
+This `Dockerfile` starts off with `r-ver:4.2.1` and adds the dependencies that we will need for our
+pipelines. Then, I install development libraries, these are required to run the R packages (maybe
+not all of them though). I found the list
+[here](https://github.com/rocker-org/rocker-versioned2/blob/master/scripts/install_tidyverse.sh);
+this is a script that gets used by some of the `Dockerfile`s provided by the Rocker Project. I only
+copied the parts I needed. Then I download the Quarto installer for Ubuntu, and install it. Finally
+I install the packages for R, as well as the package we've developed together. This `Dockerfile`
+should not look too intimidating IF you're familiar with Ubuntu. If not... well this is why I said
+in the intro that familiarity with Ubuntu would be helpful. Now you probably see why Rocker is so
+useful; if you start from an `rstudio` image all of these dependencies come already installed. But
+because we're using an image made specifically for reproducibility, *only* the frozen repos were
+set up, which is why I had to add all of this manually. But no worries, you can now use this
+`Dockerfile` as a reference.
 
 Anyways, we can now build this image using:
 
@@ -533,18 +543,19 @@ And now we need to wait for the process to be done. Once it's finished, we can r
 docker run --rm -ti --name r421_rap_container r421_rap 
 ```
 
-(notice the `-ti` argument here; this is needed because we want to have an interactive session with R opened, if
-you omit this flag, R will get launched, but then immediately closed). We can test it by loading some packages
-and see that everything is alright. 
+(notice the `-ti` argument here; this is needed because we want to have an interactive session with
+R opened, if you omit this flag, R will get launched, but then immediately close). We can test it
+by loading some packages and see that everything is alright.
 
-Let's now get this image on Dockerhub; this way, we can pull it instead of having to build it in the future. First
-logging to Docker Hub from the terminal:
+Let's now get this image on Dockerhub; this way, we can pull it instead of having to build it in
+the future. First logging to Docker Hub from the terminal:
 
 ```
 docker login 
 ```
 
-You should then enter your username and password. We are now ready to push, so check the image id using `docker images`:
+You should then enter your username and password. We are now ready to push, so check the image id
+using `docker images`:
 
 ```
 docker images

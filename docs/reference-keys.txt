@@ -86,11 +86,12 @@ building-a-truly-reproducible-pipeline
 one-last-thing
 further-reading-5
 very-basic-cicd-with-github-actions
+introduction-8
 getting-your-repo-ready-for-github-actions
 further-reading-6
 what-else-should-you-learn
-conclusion
-why-bother
 touch-typing
 vim
 statistical-modeling
+conclusion
+why-bother

@@ -23,7 +23,7 @@
 <meta name="author" content="Bruno Rodrigues" />
 
 
-<meta name="date" content="2022-11-18" />
+<meta name="date" content="2022-11-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -54,6 +54,70 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -187,10 +251,16 @@
 </ul></li>
 <li class="chapter" data-level="10" data-path="very-basic-cicd-with-github-actions.html"><a href="very-basic-cicd-with-github-actions.html"><i class="fa fa-check"></i><b>10</b> (Very) basic CI/CD with Github Actions</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="very-basic-cicd-with-github-actions.html"><a href="very-basic-cicd-with-github-actions.html#getting-your-repo-ready-for-github-actions"><i class="fa fa-check"></i><b>10.1</b> Getting your repo ready for Github Actions</a></li>
-<li class="chapter" data-level="10.2" data-path="very-basic-cicd-with-github-actions.html"><a href="very-basic-cicd-with-github-actions.html#further-reading-6"><i class="fa fa-check"></i><b>10.2</b> Further reading</a></li>
+<li class="chapter" data-level="10.1" data-path="very-basic-cicd-with-github-actions.html"><a href="very-basic-cicd-with-github-actions.html#introduction-8"><i class="fa fa-check"></i><b>10.1</b> Introduction</a></li>
+<li class="chapter" data-level="10.2" data-path="very-basic-cicd-with-github-actions.html"><a href="very-basic-cicd-with-github-actions.html#getting-your-repo-ready-for-github-actions"><i class="fa fa-check"></i><b>10.2</b> Getting your repo ready for Github Actions</a></li>
+<li class="chapter" data-level="10.3" data-path="very-basic-cicd-with-github-actions.html"><a href="very-basic-cicd-with-github-actions.html#further-reading-6"><i class="fa fa-check"></i><b>10.3</b> Further reading</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="what-else-should-you-learn.html"><a href="what-else-should-you-learn.html"><i class="fa fa-check"></i><b>11</b> What else should you learn?</a></li>
+<li class="chapter" data-level="11" data-path="what-else-should-you-learn.html"><a href="what-else-should-you-learn.html"><i class="fa fa-check"></i><b>11</b> What else should you learn?</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="what-else-should-you-learn.html"><a href="what-else-should-you-learn.html#touch-typing"><i class="fa fa-check"></i><b>11.1</b> Touch typing</a></li>
+<li class="chapter" data-level="11.2" data-path="what-else-should-you-learn.html"><a href="what-else-should-you-learn.html#vim"><i class="fa fa-check"></i><b>11.2</b> Vim</a></li>
+<li class="chapter" data-level="11.3" data-path="what-else-should-you-learn.html"><a href="what-else-should-you-learn.html#statistical-modeling"><i class="fa fa-check"></i><b>11.3</b> Statistical modeling</a></li>
+</ul></li>
 <li class="chapter" data-level="12" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>12</b> Conclusion</a>
 <ul>
 <li class="chapter" data-level="12.1" data-path="conclusion.html"><a href="conclusion.html#why-bother"><i class="fa fa-check"></i><b>12.1</b> Why bother</a></li>
@@ -219,6 +289,10 @@
 <div style="text-align:center;">
 <p><img src="img/octopus.png" width="512" /></p>
 </div>
+<p>What you’ll have learned by the end of the chapter: very basic knowledge of Github Actions,
+but enough to run your RAP in the cloud.</p>
+<div id="introduction-8" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> Introduction<a href="very-basic-cicd-with-github-actions.html#introduction-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We are almost at the end; actually, we could have stopped at the end of the previous chapter. We
 have reached our goal; we are able to run pipeline in a 100% reproducible way. However, this
 requires some manual steps. And maybe that’s not a problem; if your image is done, and users only
@@ -248,18 +322,19 @@ on a very thin client with only a text editor and git installed. Pushing to Gith
 execute everything needed to have a package ready for sharing.</p>
 <p>So our goal here is, in short, to do exactly the same as what we have been doing on our computer
 (so build an image, run a container, and get back 3 plots), but on Github.</p>
-<div id="getting-your-repo-ready-for-github-actions" class="section level2 hasAnchor" number="10.1">
-<h2><span class="header-section-number">10.1</span> Getting your repo ready for Github Actions<a href="very-basic-cicd-with-github-actions.html#getting-your-repo-ready-for-github-actions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="getting-your-repo-ready-for-github-actions" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> Getting your repo ready for Github Actions<a href="very-basic-cicd-with-github-actions.html#getting-your-repo-ready-for-github-actions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>You should see an “Actions” tab on top of any Github repo:</p>
 <div style="text-align:center;">
 <p><img src="img/ga_1.png" width="760" /></p>
 </div>
 <p>This will open a new view where you can select a lot of available, ready to use actions. Shop around for
 a bit, and choose the right one (depending on what you want to do). You should know that there is a
-very nice repository with many <a href="https://github.com/r-lib/actions">actions for R</a>. Once you’re doing
+very nice repository with many <a href="https://github.com/r-lib/actions">actions for R</a>. Once you’re done
 choosing an action, a new view in which you can edit a file will open. This file will have the name of
-the chosen action, and have the <code>.yaml</code> extension. This file will be automatically added to your repository,
-in the following path <code>.github/workflows</code>.</p>
+the chosen action, and have the <code>.yml</code> extension. This file will be automatically added to your repository,
+in the following path: <code>.github/workflows</code>.</p>
 <p>Let’s take a look at such a workflow file:</p>
 <pre><code>name: Hello world
 on: [push]
@@ -271,15 +346,16 @@ jobs:
       - run: echo &quot;This command is running from an Ubuntu VM each time you push.&quot;</code></pre>
 <p>Let’s study this workflow definition line by line:</p>
 <pre><code>name: Hello world</code></pre>
-<p>Simply gives a nawe to the workflow.</p>
+<p>Simply gives a name to the workflow.</p>
 <pre><code>on: [push]</code></pre>
 <p>When should this workflow be triggered? Here, whenever something gets pushed.</p>
 <pre><code>jobs:</code></pre>
-<p>What is the actual things that should happen? This define a list of actions.</p>
+<p>What is the actual things that should happen? This defines a list of actions.</p>
 <pre><code>  say-hello:</code></pre>
-<p>This defines he <code>say-hello</code> job.</p>
+<p>This defines the <code>say-hello</code> job.</p>
 <pre><code>    runs-on: ubuntu-latest</code></pre>
-<p>This job should run on an Ubuntu VM. You can also run jobs on Windows or macOS VMs.</p>
+<p>This job should run on an Ubuntu VM. You can also run jobs on Windows or macOS VMs, but
+this uses more compute minutes than a Linux VM (you have 2000 compute minutes for free per month).</p>
 <pre><code>    steps:</code></pre>
 <p>What are the different steps of the job?</p>
 <pre><code>      - run: echo &quot;Hello from Github Actions!&quot;</code></pre>
@@ -323,12 +399,12 @@ jobs:
         name: my-figures
         path: /github/workspace/fig/
 </code></pre>
-<p>For now, let’s focus on the <code>run</code> statements, because these should be the familiar:</p>
+<p>For now, let’s focus on the <code>run</code> statements, because these should be familiar:</p>
 <pre><code>run: docker build -t my-image-name .</code></pre>
 <p>and:</p>
 <pre><code>run: docker run --rm --name my_pipeline_container -v /github/workspace/fig/:/home/graphs/:rw my-image-name</code></pre>
 <p>The only new thing here, is that the path has been changed to <code>/github/workspace/</code>. This is the
-home directory of your repository, so to speak. Now there’s the <code>uses</code> keyword:</p>
+home directory of your repository, so to speak. Now there’s the <code>uses</code> keyword that’s new:</p>
 <pre><code>uses: actions/checkout@v3</code></pre>
 <p>This action checkouts your repository inside the VM, so the files in the repo are available inside the VM.
 Then, there’s this action here:</p>
@@ -337,17 +413,17 @@ Then, there’s this action here:</p>
     name: my-figures
     path: /github/workspace/fig/</code></pre>
 <p>This action takes what’s inside <code>/github/workspace/fig/</code> (which will be the output of our pipeline)
-and upload the contents as a so-called “artifacts”. Artifacts are the outputs of your workflow. In our
-case, as stated, the output of the pipeline. So let’s run this by pushing a change,
-and let’s take a look at these artifacts!</p>
+and makes the contents available as so-called “artifacts”. Artifacts are the outputs of your
+workflow. In our case, as stated, the output of the pipeline. So let’s run this by pushing a
+change, and let’s take a look at these artifacts!</p>
 <div style="text-align:center;">
 <p><video width="640" height="480" controls>
 <source src="img/ga_2.mp4" type="video/mp4">
 </video></p>
 </div>
-<p>As you can see from the video above, an zip file is now available and can be downloaded. This
+<p>As you can see from the video above, a zip file is now available and can be downloaded. This
 zip contains our plots! It is thus possible to rerun our workflow in the cloud. This has the
-advantage that we can now focus on simple changing the code, and not have to bother with
+advantage that we can now focus on simply changing the code, and not have to bother with
 useless manual steps. For example, let’s change this target in the <code>_targets.R</code> file:</p>
 <pre><code>tar_target(
     commune_data,
@@ -358,7 +434,7 @@ useless manual steps. For example, let’s change this target in the <code>_targ
                 col_of_interest = active_population)
 )
 </code></pre>
-<p>So I’ve added “Dudelange” to the list of communes to plot. Let me push this change to the repo now,
+<p>I’ve added “Dudelange” to the list of communes to plot. Let me push this change to the repo now,
 and let’s take a look at the artifacts. The video below summarises the process:</p>
 <div style="text-align:center;">
 <p><video width="640" height="480" controls>
@@ -373,8 +449,8 @@ to give you a little taste of Github Actions (and more generally GitOps). The po
 limitless, and I still can’t get over the fact that Github Actions is free (well, up to
 <a href="https://docs.github.com/en/billing/managing-billing-for-github-actions/about-billing-for-github-actions">2000 compute minutes and 500MB storage per month</a>).</p>
 </div>
-<div id="further-reading-6" class="section level2 hasAnchor" number="10.2">
-<h2><span class="header-section-number">10.2</span> Further reading<a href="very-basic-cicd-with-github-actions.html#further-reading-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="further-reading-6" class="section level2 hasAnchor" number="10.3">
+<h2><span class="header-section-number">10.3</span> Further reading<a href="very-basic-cicd-with-github-actions.html#further-reading-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li><a href="http://haines-lab.com/post/2022-01-23-automating-computational-reproducibility-with-r-using-renv-docker-and-github-actions/" class="uri">http://haines-lab.com/post/2022-01-23-automating-computational-reproducibility-with-r-using-renv-docker-and-github-actions/</a></li>
 <li><a href="https://orchid00.github.io/actions_sandbox/" class="uri">https://orchid00.github.io/actions_sandbox/</a></li>
@@ -444,6 +520,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
