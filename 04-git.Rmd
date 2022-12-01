@@ -33,8 +33,7 @@ And this is because Git solves a complex problem, and there is no easy way to so
 a complex problem. But I would however say that Git is not unnescessarily complex. So
 buckle up, because this chapter is not going to be easy. 
 
-Git is incredibly powerful, and absolutely essential in our line of work, it is simply not p
-ossible to not know at least some basics of Git. And this is what we're going to do, 
+Git is incredibly powerful, and absolutely essential in our line of work, it is simply not possible to not know at least some basics of Git. And this is what we're going to do, 
 learn the basics, it'll keep us plenty busy already.
 
 But for now, let's pause for a brief moment and watch [this video](https://www.youtube.com/watch?v=2ReR1YJrNOM)
