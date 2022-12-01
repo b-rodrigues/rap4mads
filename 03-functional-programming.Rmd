@@ -10,7 +10,7 @@ What you'll have learned by the end of the chapter: writing your own functions, 
 
 ## Introduction
 
-Functional programming is a way of writing programs that relies exclusively on the evalutation of functions. Mathematical
+Functional programming is a way of writing programs that relies exclusively on the evaluation of functions. Mathematical
 functions have a very neat property: for any given input, they ALWAYS return exactly the same output.
 This is what we want to achieve with the functions that we will write. Functions that always 
 return the same result are called pure, and a language that only allows writing pure functions
