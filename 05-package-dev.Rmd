@@ -265,8 +265,7 @@ And it’s working!
 
 `{{}}` is not a feature available in a base installation of R, but is provided
 by packages from the `tidyverse` (like `{dplyr}`, `{tidyr}`, etc). If you write functions
-that depend on `{dplyr}` functions like `filter()`, `select()` etc, you'll have to know
-keep using `{{}}`.
+that depend on `{dplyr}` functions like `filter()`, `select()` etc, you'll have to know to keep using `{{}}`.
 
 Let's now write a more useful function. Remember the datasets about unemployment in Luxembourg?
 I'm thinking about the ones [here](https://rap4mads.eu/introduction-to-r.html#reading-in-data-with-r),
