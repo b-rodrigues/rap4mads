@@ -135,7 +135,6 @@ install.packages(c(
   "tarchetypes",
   "testthat",
   "tidyverse",
-  "tribble",
   "usethis"
 ))
 
